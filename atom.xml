@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>zzydev的博客</title>
+  
+  <subtitle>学习记录 &amp; 技术分享</subtitle>
+  <link href="http://zzydev.top/atom.xml" rel="self"/>
+  
+  <link href="http://zzydev.top/"/>
+  <updated>2020-08-27T14:42:22.216Z</updated>
+  <id>http://zzydev.top/</id>
+  
+  <author>
+    <name>zzydev</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode15 三数之和</title>
+    <link href="http://zzydev.top/2020/08/27/leetcode15-san-shu-zhi-he/"/>
+    <id>http://zzydev.top/2020/08/27/leetcode15-san-shu-zhi-he/</id>
+    <published>2020-08-27T09:11:36.000Z</published>
+    <updated>2020-08-27T14:42:22.216Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。&lt;br&gt;注意：答案中不可以包含重复的三元组。 </summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="http://zzydev.top/categories/Algorithm/"/>
+    
+    
+    <category term="双指针" scheme="http://zzydev.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode01 两数之和</title>
+    <link href="http://zzydev.top/2020/08/27/leetcode01-liang-shu-zhi-he/"/>
+    <id>http://zzydev.top/2020/08/27/leetcode01-liang-shu-zhi-he/</id>
+    <published>2020-08-27T09:04:16.000Z</published>
+    <updated>2020-08-27T14:48:55.167Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。&lt;br&gt;你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;示例：&lt;br&gt;给定</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="http://zzydev.top/categories/Algorithm/"/>
+    
+    
+    <category term="哈希表" scheme="http://zzydev.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为什么0.1 + 0.2 不等于 0.3 ?</title>
+    <link href="http://zzydev.top/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/"/>
+    <id>http://zzydev.top/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/</id>
+    <published>2020-08-26T22:58:33.000Z</published>
+    <updated>2020-08-27T14:20:47.206Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;IEEE浮点标准&quot;&gt;&lt;a href=&quot;#IEEE浮点标准&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="计算机基础" scheme="http://zzydev.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="计算机基础" scheme="http://zzydev.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+</feed>
