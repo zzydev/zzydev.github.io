@@ -6,7 +6,7 @@
   <link href="http://zzydev.top/atom.xml" rel="self"/>
   
   <link href="http://zzydev.top/"/>
-  <updated>2020-08-27T14:42:22.216Z</updated>
+  <updated>2020-08-28T13:11:10.792Z</updated>
   <id>http://zzydev.top/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端背多分</title>
+    <link href="http://zzydev.top/2020/08/28/qian-duan-bei-duo-fen/"/>
+    <id>http://zzydev.top/2020/08/28/qian-duan-bei-duo-fen/</id>
+    <published>2020-08-28T06:51:11.000Z</published>
+    <updated>2020-08-28T13:11:10.792Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前情提要：小镇拒信家看着爆栈的拒信，留下了没有技术的泪水。于是他又熟练地点开《看完这篇，你就能进FLAG》，《我是如何从零基础到拿BAT ssp offer》这类让人热血沸腾，晚上激动得睡不着觉的爽文。于是他握紧了拳头，想把这些总结记录(ctrl</summary>
+        
+      
+    
+    
+    
+    <category term="笔试面试" scheme="http://zzydev.top/categories/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="笔试面试" scheme="http://zzydev.top/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode15 三数之和</title>
@@ -73,7 +99,7 @@
     <link href="http://zzydev.top/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/"/>
     <id>http://zzydev.top/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/</id>
     <published>2020-08-26T22:58:33.000Z</published>
-    <updated>2020-08-28T01:57:31.986Z</updated>
+    <updated>2020-08-28T06:48:25.880Z</updated>
     
     
       
