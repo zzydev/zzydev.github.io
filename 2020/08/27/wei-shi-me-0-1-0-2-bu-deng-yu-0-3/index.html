@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="zzydev的博客" type="application/atom+xml">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="zzydev的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
@@ -443,7 +443,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    2.1k
                 </div>
                 
 
@@ -458,17 +458,17 @@
                 <h4 id="IEEE浮点标准"><a href="#IEEE浮点标准" class="headerlink" title="IEEE浮点标准"></a>IEEE浮点标准</h4><p>要解答这个问题，我们需要一些前置基础知识。现在的浮点型的存储基本按<strong>IEEE754标准</strong>实现，浮点数分为单精度32位和双精度64位。</p>
 <p>IEEE浮点标准用 <strong>V = ( -1) <sup>s</sup> * M * 2<sup>E</sup></strong> 的形式表示一个数：</p>
 <ul>
-<li>符号   <code>s</code> 决定这数是负数**(s = 1)<strong>还是正数</strong>(s = 0)**，而对于数值0的符号位解释作为特殊情况处理</li>
+<li>符号   <code>s</code> 决定这数是负数<b>(s = 1)</b>还是正数**(s = 0)**，而对于数值0的符号位解释作为特殊情况处理</li>
 <li>尾数   <code>M</code>是一个二进制小数，它的范围是 <code>1 ~ 2 - ε</code> 或者 <code>0 ~ 1 - ε</code></li>
 <li>阶码    <code>E</code>的作用是对浮点数加权，这个权重是<code>2的E次幂</code>(可能是负数)</li>
 </ul>
-<p>从 <strong>V = ( -1) <sup>s</sup> * M * 2<sup>E</sup></strong> 我们可以知道，要在计算机表示一个浮点数需要<code> S, M, E</code> 三个部分，在计算机底层<code>位的表示</code>我们要划分出<code>三个字段</code>分别表示它们的值。下图分别是单精度和双精度的标准浮点格式。</p>
+<p>从 **V = ( -1) <sup>s</sup> * M * 2<sup>E</sup>**这个式子 我们可以知道，要在计算机表示一个浮点数需要<code> S, M, E</code> 三个部分，在计算机底层<code>位的表示</code>我们要划分出<code>三个字段</code>分别表示它们的值。下图分别是单精度和双精度的标准浮点格式。</p>
 <img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/%E6%A0%87%E5%87%86%E6%B5%AE%E7%82%B9%E6%A0%BC%E5%BC%8F.png" class title="标准浮点格式">
 
 <p>下面我以单精度为例，解释各部分的意思：</p>
 <ul>
 <li><strong>s 占1位</strong>，用0表示正数，用1表示负数     直接编码 <b> V = ( -1) <sup>s</sup> * M * 2<sup>E </sup></b>中的 <strong>s</strong></li>
-<li>用<strong>k位(30 - 23 + 1 = 8位)**的阶码字段</strong>exp = e<sub>k -1</sub> … e<sub>1</sub>e<sub>0</sub>**  来编码  <b>V = ( -1) <sup>s</sup> * M * 2<sup>E </sup></b>中的阶码<strong>E</strong>  </li>
+<li>用<b>k位(30 - 23 + 1 = 8位)</b>的阶码字段<strong>exp = e<sub>k -1</sub> … e<sub>1</sub>e<sub>0</sub></strong>  来编码  <b>V = ( -1) <sup>s</sup> * M * 2<sup>E </sup></b>中的阶码<strong>E</strong>  </li>
 <li>用<strong>n(22 - 0 + 1 = 23)位</strong>小数字段 <strong>frac = f<sub>n -1</sub>….f<sub>1</sub>f<sub>0</sub></strong> 来编码尾数<strong>M</strong>，但是编码出来的值也依赖于阶码字段的值是否等于0</li>
 </ul>
 <p>给定位表示，根据exp的值，被编码的的值可以分为三种不同的情况(最后一种情况有两种变种)。下图说明了对单精度格式的情况。</p>
@@ -478,52 +478,62 @@
 <li><p>规格化的值  </p>
 <img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/%E8%A7%84%E6%A0%BC%E5%8C%96%E7%9A%84.png" class>
 
-<p><code>当exp的位不全为0，也不全为1</code>，都属于这种情况。在这种情况中，阶码字段被解释为以<code>偏置(biased)形式</code>表示的<code>有符号整数</code>。什么叫偏置形式表示的有符号整数？其实简单来说就是： 我们阶码的值是<code>E= e - Bias</code>，首先，<strong>Bias(偏置值) = 2<sup>(n - 1) </sup> -1 = 127</strong>，<code>e</code>是无符号数，所以e能表示的最小整数为1，最大整数为255，所以能表示指数的范围为**(1 - 127) ~ (254 - 127) 即 (-126 ~ 127)**<br>小数字段<code>frac</code>被解释为描述小数值<b>f(0 &lt;= f &lt; 1)</b> ，用二进制表示<strong>f = 0.f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> 尾数的定义为<strong>M = 1 + f</strong>  。可以观察看出<strong>M = 1.f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> ，由于我们只需在0~(n -1)位中填入 <strong>f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> ，所以这里隐含以1开头的表示(第一位永远是1)，也就是说我们用 <strong>f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> 来表示 <strong>1.f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> 不需要显式表示它，我们可以轻松获得一个额外精度。</p>
+<p><code>当exp的位不全为0，也不全为1</code>，都属于这种情况。在这种情况中，阶码字段被解释为以<code>偏置(biased)形式</code>表示的<b>有符号整数</b>。什么叫偏置形式表示的有符号整数？其实简单来说就是： 我们阶码的值是<code>E = e - Bias</code>，首先，<strong>Bias(偏置值) = 2<sup>(n - 1) </sup> -1 = 127</strong>，<code>e</code>是无符号数，所以<code>e</code>能表示的最小整数为<b>1</b>，最大整数为<b>255</b>，所以能表示指数的范围为<b>(1 - 127) ~ (254 - 127) </b>即<b> (-126 ~ 127)</b><br>小数字段<code>frac</code>被解释为描述小数值<b>f(0 &lt;= f &lt; 1)</b> ，用二进制表示<strong>f = 0.f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> 尾数的定义为<strong>M = 1 + f</strong>  。可以观察看出<strong>M = 1.f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> ，由于我们只需在<b>0~(n -1)</b>位中填入 <strong>f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> ，所以这里隐含以1开头的表示(第一位永远是1)，也就是说我们用 <strong>f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> 来表示 <strong>1.f<sub>(n - 1)</sub>…f<sub>1</sub>f<sub>0</sub></strong> 不需要显式表示它，我们可以轻松获得一个额外精度。</p>
 </li>
 <li><p>非规格化的值</p>
 <img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/%E9%9D%9E%E8%A7%84%E6%A0%BC%E5%8C%96%E7%9A%84.png" class>
 
-<p>当阶码全为0时，表示非格式化形式。这种情况，阶码值是<code>E= 1 - Bias</code>，尾数的值是<code>M = f</code>，也就是小数字段的值，不包含隐含开头的1<br>非规格化数有两个用途。①，它们提供了一直表示数值0的方法，因为使用规格化数，我们总是必须使M &gt;= 1。②非规格化数的另一个功能是表示那些非常接近0.0的数。它们提供了一种属性，称为逐渐溢出，其中，可能的数组均匀地接近于0.0。</p>
+<p>当阶码全为0时，表示非格式化形式。这种情况，阶码值是<code>E= 1 - Bias</code>，尾数的值是<code>M = f</code>，也就是小数字段的值，不包含隐含开头的1<br>非规格化数有两个用途：①它们提供了一直表示数值0的方法，因为使用规格化数，我们总是必须使M &gt;= 1。<br>②非规格化数的另一个功能是表示那些非常接近0.0的数。它们提供了一种属性，称为逐渐溢出，其中，可能的数组均匀地接近于0.0。</p>
 </li>
-<li><p>特殊值</p>
+<li><p>特殊值  </p>
 <img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/%E7%89%B9%E6%AE%8A%E5%80%BC.png" class>
 
-<p>当阶码全为1时，表示特殊值。①当小数域全为0时，表示无穷，<strong>当s = 0，表示+∞，或当s = 1时是 -∞</strong>。当我们把两个非常大的数相乘，或者除以0时，无穷能表示溢出的结果。②当小数域非零时，表示<code>NaN(Not a Number)</code>。运算的结果不是实数或无穷，就会返回<code>NaN</code>，比如：<code>&#39;字符&#39; / 2</code>，<code>∞ - ∞</code>。</p>
+<p>当阶码全为1时，表示特殊值。①<b>当小数域全为0时</b>，表示无穷，<strong>当s = 0，表示+∞，或当s = 1时是 -∞</strong>。当我们把两个非常大的数相乘，或者除以0时，无穷能表示溢出的结果。<br><b>②当小数域非零时</b>，表示<code>NaN(Not a Number)</code>。运算的结果不是实数或无穷，就会返回<code>NaN</code>，比如：<code>&#39;字符&#39; / 2</code>，<code>∞ - ∞</code>。</p>
 </li>
 </ol>
-<h4 id="数字示例"><a href="#数字示例" class="headerlink" title="数字示例"></a>数字示例</h4><p>以6位浮点格式为例，我们能发现这个规律：①非格式化数聚集在0的附近②越靠近原点它们越密集</p>
+<h4 id="数字示例"><a href="#数字示例" class="headerlink" title="数字示例"></a>数字示例</h4><p>以6位浮点格式为例，我们能发现这个规律：①非格式化数聚集在0的附近<br>②越靠近原点它们越密集  </p>
 <img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/6%E4%BD%8D%E6%B5%AE%E7%82%B9%E6%A0%BC%E5%BC%8F%E8%AF%BE%E8%A1%A8%E7%A4%BA%E7%9A%84%E5%80%BC.png" class title="6位浮点格式课表示的值(k&#x3D;3的阶码位和n&#x3D;2的尾数位。偏置量是3)">
 <p>以8位浮点格式为例，我们要认真体会 ①机器码转换为浮点数值的过程②为什么非规格化值要把阶码值定义为E = 1 - Bais（非规格化值平滑过渡到规格化值）  </p>
 <img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/8%E4%BD%8D%E6%B5%AE%E7%82%B9%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%9D%9E%E8%B4%9F%E5%80%BC%E7%A4%BA%E4%BE%8B.png" class title="8位浮点格式的非负值示例(k&#x3D;4的阶码位和n&#x3D;3的尾数位。偏置量是7)">  
-<p>我们可以通过具体示例来看看非规格化数与规格化数之间如何平滑地过渡，根据前面的原理我们还能得出一个结论，就是<strong>非规格数始终会比规格化数小</strong>。那么他们之间的过渡便可以看成是从<strong>最大非规格化数</strong>过渡到<strong>最小规格化数</strong>了（假设数值都是大于0的）。在数值大于0的情况下，最大非规格化数表示为<code>  0 0000 111</code>，最小规格化数表示为<code>0 0001 000</code>。 由于规格化数的二进制从<code>  0 0000 111</code>过渡到<code>0 0001 000</code>，我们看到0 <code>0001</code> 000 的阶码位 <code>0001</code>刚好是E = e - Bias = 1 - 7 = -6 ，而我们的最大非规格化数如何才能在指数上达成一致呢？答案是直接定义E = 1 - Bias = 1 - 7 = -6。而由于最大非规格化的已经是<code>111</code>，也就是说它是3位二进制的最大值7，不过我们要知道规格化数默认有数值1，相当于<code>1000</code>表示二进制的8。通过计算我们可以知道这就实现了最大非格式化数7 / 512 和最小规格化数8 / 512的平滑过渡。</p>
-<h4 id="练一练"><a href="#练一练" class="headerlink" title="练一练"></a>练一练</h4><p>1.已知float型变量x的机器数为<strong>BEE00000H</strong>，求x的值是多少？<br>答：首先我们把16进制转换为2进制，并分成三段<br>1　01111101　11000000000000000000000<br>S　E　　　　　M<br>计算方式： (-1)<sup>s</sup> * (1 + 尾数) * 2<sup>(阶码的值 - 127)</sup><br>符号：1(负数)<br>阶(指数): ①阶码：01111101B = 125  ②阶码的值：125 - Bais(127) = -2<br>尾数: 1 + 1 * 2<sup>-1</sup> + 1 * 2<sup>-2</sup> + 0 *  2<sup>-3</sup> + … = 1 + 2<sup>-1</sup> + 2<sup>-2</sup> = 1 + 0.5 + 0.25 = 1.75<br>结果：-1.75 * 2<sup>-2</sup> = -0.4375</p>
+<p>我们可以通过具体示例来看看非规格化数与规格化数之间如何平滑地过渡，根据前面的原理我们还能得出一个结论，就是<strong>非规格数始终会比规格化数小</strong>。那么他们之间的过渡便可以看成是从<strong>最大非规格化数</strong>过渡到<strong>最小规格化数</strong>了（假设数值都是大于0的）。在数值大于0的情况下，最大非规格化数表示为<code>  0 0000 111</code>，最小规格化数表示为<code>0 0001 000</code>。 由于规格化数的二进制从<code>  0 0000 111</code>过渡到<code>0 0001 000</code>，我们看到0 <code>0001</code> 000 的阶码位 <code>0001</code>刚好是E = e - Bias = 1 - 7 = -6 ，而我们的最大非规格化数如何才能在指数上达成一致呢？答案是直接定义E = 1 - Bias = 1 - 7 = -6。而由于最大非规格化的尾数位已经是<code>111(三位二进制最大值)</code>，不过我们要知道规格化数默认有数值1，相当于二进制<code>1000</code>表示的8。通过计算我们可以知道这就实现了最大非格式化数7 / 512 和最小规格化数8 / 512的平滑过渡。</p>
+<h4 id="练一练"><a href="#练一练" class="headerlink" title="练一练"></a>练一练</h4><p>1.已知float型变量x的机器数为<strong>BEE00000H</strong>，求x的值是多少？<br>答：首先我们把16进制转换为2进制，并分成三段<br><b>1</b>　<b>01111101</b>　<b>11000000000000000000000</b><br><b>S</b>　<b>E</b>　　　　　<b>M</b><br>计算方式： <b>(-1)<sup>s</sup> * (1 + 尾数) * 2<sup>(阶码的值 - 127)</sup></b><br>符号：1(负数)<br>阶(指数): ①阶码：<b>01111101B = 125</b>  ②阶码的值：<b>125 - Bais(127) = -2</b><br>尾数: <b>1 + 1 * 2<sup>-1</sup> + 1 * 2<sup>-2</sup> + 0 *  2<sup>-3</sup> + … = 1 + 2<sup>-1</sup> + 2<sup>-2</sup> = 1 + 0.5 + 0.25 = 1.75</b><br>结果：<b>-1.75 * 2<sup>-2</sup> = -0.4375</b></p>
 <p>2.已知float型变量x的值为-12.75，求x的机器数是多少?  </p>
-<p>-12.75 = -1100.11B = 1.10011B * 2<sup>3</sup></p>
-<p>符号S = 1<br>阶码E = 127 + 3 = 128 +2 = 1000 0010<br>显式表示的部分尾数 = 把10011抄下来，不够23位补0 = 100 1100 0000 0000 0000 0000<br>x的机器数表示为： 1　1000 0010　100 1100 0000 0000 0000 0000</p>
+<p><b>-12.75 = -1100.11B = 1.10011B * 2<sup>3</sup></b></p>
+<p>符号<b>S = 1</b><br>阶码E = <b>127 + 3 = 128 +2 = 1000 0010</b><br>显式表示的部分尾数 = <b>把10011抄下来，不够23位补0</b> = <b>100 1100 0000 0000 0000 0000</b><br>x的机器数表示为：<b> 1</b>　<b>1000 0010</b>　<b>100 1100 0000 0000 0000 0000</b></p>
 <h4 id="解答为什么0-1-0-2-0-3"><a href="#解答为什么0-1-0-2-0-3" class="headerlink" title="解答为什么0.1 + 0.2 != 0.3"></a>解答为什么0.1 + 0.2 != 0.3</h4><p>前面说了一堆如何用二进制表示浮点数，那么我们来考虑如何表示0.1。很可惜0.1无法精确的表示成这种形式，我们只能用另一个数尽可能接近0.1。(我们无法在10进制表示1/3，但可以在3进制精确表示它 1 * 3 <sup>-1</sup>也是这个理由)。<br>我们可以用一段C语言代码来研究十进制的0.1倍存储成什么：</p>
 <pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">void</span> <span class="token function">printBits</span><span class="token punctuation">(</span>size_t <span class="token keyword">const</span> size<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token keyword">const</span> <span class="token operator">*</span> <span class="token keyword">const</span> ptr<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">printBits</span><span class="token punctuation">(</span>size_t <span class="token keyword">const</span> size<span class="token punctuation">,</span> <span class="token keyword">void</span> <span class="token keyword">const</span> <span class="token operator">*</span> <span class="token keyword">const</span> ptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">unsigned</span> <span class="token keyword">char</span> <span class="token operator">*</span>b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">char</span><span class="token operator">*</span><span class="token punctuation">)</span> ptr<span class="token punctuation">;</span>
     <span class="token keyword">unsigned</span> <span class="token keyword">char</span> byte<span class="token punctuation">;</span>
     <span class="token keyword">int</span> i<span class="token punctuation">,</span> j<span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> size <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">--</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">--</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> size <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
             byte <span class="token operator">=</span> <span class="token punctuation">(</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>></span> j<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">;</span>
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%u"</span><span class="token punctuation">,</span>byte<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
     <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">double</span> a <span class="token operator">=</span> <span class="token number">0.1</span><span class="token punctuation">;</span>
     <span class="token keyword">double</span> b <span class="token operator">=</span> <span class="token number">0.2</span><span class="token punctuation">;</span>
     <span class="token function">printBits</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printBits</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
-<p>结果是：<img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/printbits%E7%BB%93%E6%9E%9C.png" class></p>
+<span class="token punctuation">}</span></code></pre>
+<p>结果是：<img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/printbits%E7%BB%93%E6%9E%9C.png" class><br>这里是macOS环境下测试的结果，双精度用11位表示阶码，52位表示尾数。所以双精度的阶码基数为<b>2<sup>10</sup> - 1 = 1023</b>，从上图可知0.1的阶码是<b>01 111 111 011</b>，等于1019，所以它的指数是1019 - 1023 = -4。  </p>
+<img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/%E7%B2%BE%E7%A1%AE%E7%9A%84%E5%B0%BE%E6%95%B0%E7%BB%93%E6%9E%9C.png" class title="精确的尾数结果">
+<p>尾数为0.600000000000000088817841970012523233890533447265625<br>有了这个尾数，让它乘以指数，结果如下图所示：  </p>
+<img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/%E5%BE%97%E5%88%B00.1%E7%9A%84%E7%B2%BE%E7%A1%AE%E5%AD%98%E5%82%A8%E5%80%BC.png" class title="得到0.1的精确存储值">  
+<p>也就是说0.1的实际存储比0.1大<br>我们注意到，0.2与0.1的区别在于0.2比0.1的阶码大1，其他的完全一样。所以，0.2也是偏大了。  </p>
+<img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/0.2%E7%9A%84%E7%B2%BE%E7%A1%AE%E5%AD%98%E5%82%A8%E5%80%BC.png" class title="0.2的精确存储值">  
+<p>两数相加的结果为：  </p>
+<img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/0.1+0.2%E7%9A%84%E7%B2%BE%E7%A1%AE%E7%BB%93%E6%9E%9C.png" class title="0.1+0.2的精确结果">  在这里我们足以解答为什么在计算机的世界里 0.1+0.2 != 0.3了。
+<p>但是我们在Chrome的控制台打印结果却不是<b>0.300000000000000016</b>而是<b>0.30000000000000004</b>  </p>
+<h4 id="JS中的浮点数相加"><a href="#JS中的浮点数相加" class="headerlink" title="JS中的浮点数相加"></a>JS中的浮点数相加</h4><img src="/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9B%B8%E5%8A%A0.png" class title="浮点数相加">
+<h4 id="判断两个小数是否相等的办法"><a href="#判断两个小数是否相等的办法" class="headerlink" title="判断两个小数是否相等的办法"></a>判断两个小数是否相等的办法</h4><p>ES6新增了一个Number.EPSILON常量(它的值是2.220446049250313e-16)，如比较0.1 + 0.2 是否等于0.3。现在我们可以这样做0.1 + 0.2 -0.3 &lt; Number.EPSION</p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>知网查重：文章重复率高达80%，请立刻停止你的卡卡西行为！</p>
-<p>《Computer.Systems.A.Programmers.Perspective.3rd》P148 - P162</p>
+<p>《Computer.Systems.A.Programmers.Perspective.3rd》P148 - P162<br><a href="https://www.rrfed.com/2017/05/13/float-number/" target="_blank" rel="noopener">https://www.rrfed.com/2017/05/13/float-number/</a></p>
 
             </div>
             <hr/>
@@ -1057,7 +1067,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">2.2k</span>&nbsp;字
+                class="white-color">2.4k</span>&nbsp;字
             
             
             
