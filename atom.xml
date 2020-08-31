@@ -6,7 +6,7 @@
   <link href="http://zzydev.top/atom.xml" rel="self"/>
   
   <link href="http://zzydev.top/"/>
-  <updated>2020-08-28T13:11:10.792Z</updated>
+  <updated>2020-08-31T15:10:15.073Z</updated>
   <id>http://zzydev.top/</id>
   
   <author>
@@ -17,11 +17,51 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>剑指offer</title>
+    <link href="http://zzydev.top/2020/08/31/jian-zhi-offer/"/>
+    <id>http://zzydev.top/2020/08/31/jian-zhi-offer/</id>
+    <published>2020-08-31T03:04:37.000Z</published>
+    <updated>2020-08-31T15:10:15.073Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;剑指-Offer-03-数组中重复的数字&quot;&gt;&lt;a href=&quot;#剑指-Offer-03-数组中重复的数字&quot; class=&quot;headerlink&quot; title=&quot;剑指 Offer 03. 数组中重复的数字&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="http://zzydev.top/categories/Algorithm/"/>
+    
+    
+    <category term="笔试面试" scheme="http://zzydev.top/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="Algorithm" scheme="http://zzydev.top/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法入门篇</title>
+    <link href="http://zzydev.top/2020/08/29/suan-fa-ru-men-pian/"/>
+    <id>http://zzydev.top/2020/08/29/suan-fa-ru-men-pian/</id>
+    <published>2020-08-29T01:39:13.000Z</published>
+    <updated>2020-08-29T01:39:20.481Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>前端背多分</title>
     <link href="http://zzydev.top/2020/08/28/qian-duan-bei-duo-fen/"/>
     <id>http://zzydev.top/2020/08/28/qian-duan-bei-duo-fen/</id>
     <published>2020-08-28T06:51:11.000Z</published>
-    <updated>2020-08-28T13:11:10.792Z</updated>
+    <updated>2020-08-30T13:52:11.913Z</updated>
     
     
       
