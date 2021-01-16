@@ -29,8 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="zzydev的博客" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="zzydev的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -341,21 +341,21 @@
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/">6</a></span>
+    <span class="count"><a href="/">30</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">3</a></span>
+    <span class="count"><a href="/categories">2</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">5</a></span>
+    <span class="count"><a href="/tags">13</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -371,21 +371,21 @@
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/">6</a></span>
+    <span class="count"><a href="/">30</a></span>
     <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories">3</a></span>
+    <span class="count"><a href="/categories">2</a></span>
     <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">5</a></span>
+    <span class="count"><a href="/tags">13</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -519,7 +519,7 @@
         },
         xAxis: {
             type: 'category',
-            data: ["2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09"]
+            data: ["2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01"]
         },
         yAxis: {
             type: 'value',
@@ -529,7 +529,7 @@
                 name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,6,0],
+                data: [0,0,0,0,0,0,0,3,27,0,0,0,0],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -571,7 +571,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"Algorithm","value":3},{"name":"计算机基础","value":1},{"name":"笔试面试","value":1}],
+                data: [{"name":"Algorithm","value":5},{"name":"Leetcode","value":23}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -595,7 +595,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["笔试面试","哈希表","计算机基础","Algorithm","双指针"]
+                data: ["双指针","链表","字符串","数学","哈希表","DP","回溯","dfs","栈","堆"]
             }
         ],
         yAxis: [
@@ -608,7 +608,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [2,1,1,1,1],
+                data: [7,6,6,5,3,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -778,14 +778,68 @@
         <div class="tag-chips center-align">
             
             
+            <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                <span class="chip center-align waves-effect waves-light chip-default">链表</span>
+            </a>
+            
+            
+            
             <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">
                 <span class="chip center-align waves-effect waves-light chip-default">哈希表</span>
             </a>
             
             
             
-            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
-                <span class="chip center-align waves-effect waves-light chip-default">计算机基础</span>
+            <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                <span class="chip center-align waves-effect waves-light chip-default">双指针</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+                <span class="chip center-align waves-effect waves-light chip-default">字符串</span>
+            </a>
+            
+            
+            
+            <a href="/tags/DP/">
+                <span class="chip center-align waves-effect waves-light chip-default">DP</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E6%95%B0%E5%AD%A6/">
+                <span class="chip center-align waves-effect waves-light chip-default">数学</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E5%9B%9E%E6%BA%AF/">
+                <span class="chip center-align waves-effect waves-light chip-default">回溯</span>
+            </a>
+            
+            
+            
+            <a href="/tags/dfs/">
+                <span class="chip center-align waves-effect waves-light chip-default">dfs</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E6%A0%88/">
+                <span class="chip center-align waves-effect waves-light chip-default">栈</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E5%A0%86/">
+                <span class="chip center-align waves-effect waves-light chip-default">堆</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Greedy/">
+                <span class="chip center-align waves-effect waves-light chip-default">Greedy</span>
             </a>
             
             
@@ -795,12 +849,6 @@
             </a>
             
             
-            
-            
-            
-            <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
-                <span class="chip center-align waves-effect waves-light chip-default">双指针</span>
-            </a>
             
             
         </div>
@@ -940,7 +988,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">10k</span>&nbsp;字
+                class="white-color">9.8k</span>&nbsp;字
             
             
             

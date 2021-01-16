@@ -6,7 +6,7 @@
   <link href="http://zzydev.top/atom.xml" rel="self"/>
   
   <link href="http://zzydev.top/"/>
-  <updated>2020-09-01T00:59:42.200Z</updated>
+  <updated>2020-09-07T10:27:30.782Z</updated>
   <id>http://zzydev.top/</id>
   
   <author>
@@ -17,38 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>剑指offer</title>
-    <link href="http://zzydev.top/2020/08/31/jian-zhi-offer/"/>
-    <id>http://zzydev.top/2020/08/31/jian-zhi-offer/</id>
-    <published>2020-08-31T03:04:37.000Z</published>
-    <updated>2020-09-01T00:59:42.200Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h4 id=&quot;剑指-Offer-03-数组中重复的数字&quot;&gt;&lt;a href=&quot;#剑指-Offer-03-数组中重复的数字&quot; class=&quot;headerlink&quot; title=&quot;剑指 Offer 03. 数组中重复的数字&quot;&gt;&lt;/a&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Algorithm" scheme="http://zzydev.top/categories/Algorithm/"/>
-    
-    
-    <category term="笔试面试" scheme="http://zzydev.top/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/"/>
-    
-    <category term="Algorithm" scheme="http://zzydev.top/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法入门篇</title>
-    <link href="http://zzydev.top/2020/08/29/suan-fa-ru-men-pian/"/>
-    <id>http://zzydev.top/2020/08/29/suan-fa-ru-men-pian/</id>
-    <published>2020-08-29T01:39:13.000Z</published>
-    <updated>2020-08-29T01:39:20.481Z</updated>
+    <title>leetcode30-串联所有单词的子串</title>
+    <link href="http://zzydev.top/2020/09/07/leetcode30-chuan-lian-suo-you-dan-ci-de-zi-chuan/"/>
+    <id>http://zzydev.top/2020/09/07/leetcode30-chuan-lian-suo-you-dan-ci-de-zi-chuan/</id>
+    <published>2020-09-07T10:27:30.000Z</published>
+    <updated>2020-09-07T10:27:30.782Z</updated>
     
     
     
@@ -57,50 +30,49 @@
   </entry>
   
   <entry>
-    <title>前端背多分</title>
-    <link href="http://zzydev.top/2020/08/28/qian-duan-bei-duo-fen/"/>
-    <id>http://zzydev.top/2020/08/28/qian-duan-bei-duo-fen/</id>
-    <published>2020-08-28T06:51:11.000Z</published>
-    <updated>2020-08-30T13:52:11.913Z</updated>
+    <title>leetcode29-两数相除</title>
+    <link href="http://zzydev.top/2020/09/07/leetcode29-liang-shu-xiang-chu/"/>
+    <id>http://zzydev.top/2020/09/07/leetcode29-liang-shu-xiang-chu/</id>
+    <published>2020-09-07T04:16:33.000Z</published>
+    <updated>2020-09-07T09:44:18.155Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;前情提要：小镇拒信家看着爆栈的拒信，留下了没有技术的泪水。于是他又熟练地点开《看完这篇，你就能进FLAG》，《我是如何从零基础到拿BAT ssp offer》这类让人热血沸腾，晚上激动得睡不着觉的爽文。于是他握紧了拳头，想把这些总结记录(ctrl</summary>
+    <summary type="html">&lt;h4 id=&quot;29-两数相除&quot;&gt;&lt;a href=&quot;#29-两数相除&quot; class=&quot;headerlink&quot; title=&quot;29. 两数相除&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/divide-two-integers/&quot;</summary>
         
       
     
     
     
-    <category term="笔试面试" scheme="http://zzydev.top/categories/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/"/>
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
     
     
-    <category term="笔试面试" scheme="http://zzydev.top/tags/%E7%AC%94%E8%AF%95%E9%9D%A2%E8%AF%95/"/>
+    <category term="数学" scheme="http://zzydev.top/tags/%E6%95%B0%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
-    <title>leetcode15 三数之和</title>
-    <link href="http://zzydev.top/2020/08/27/leetcode15-san-shu-zhi-he/"/>
-    <id>http://zzydev.top/2020/08/27/leetcode15-san-shu-zhi-he/</id>
-    <published>2020-08-27T09:11:36.000Z</published>
-    <updated>2020-08-27T14:42:22.216Z</updated>
+    <title>leetcode28-实现 strStr()</title>
+    <link href="http://zzydev.top/2020/09/07/leetcode28-shi-xian-strstr/"/>
+    <id>http://zzydev.top/2020/09/07/leetcode28-shi-xian-strstr/</id>
+    <published>2020-09-07T03:49:40.000Z</published>
+    <updated>2020-09-07T04:16:13.556Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。&lt;br&gt;注意：答案中不可以包含重复的三元组。 </summary>
+    <summary type="html">&lt;h4 id=&quot;28-实现-strStr&quot;&gt;&lt;a href=&quot;#28-实现-strStr&quot; class=&quot;headerlink&quot; title=&quot;28. 实现 strStr()&quot;&gt;&lt;/a&gt;&lt;a</summary>
         
       
     
     
     
-    <category term="Algorithm" scheme="http://zzydev.top/categories/Algorithm/"/>
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
     
     
     <category term="双指针" scheme="http://zzydev.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
@@ -108,54 +80,439 @@
   </entry>
   
   <entry>
-    <title>leetcode01 两数之和</title>
-    <link href="http://zzydev.top/2020/08/27/leetcode01-liang-shu-zhi-he/"/>
-    <id>http://zzydev.top/2020/08/27/leetcode01-liang-shu-zhi-he/</id>
-    <published>2020-08-27T09:04:16.000Z</published>
-    <updated>2020-08-27T14:48:55.167Z</updated>
+    <title>leetcode27-移除元素</title>
+    <link href="http://zzydev.top/2020/09/07/leetcode27-yi-chu-yuan-su/"/>
+    <id>http://zzydev.top/2020/09/07/leetcode27-yi-chu-yuan-su/</id>
+    <published>2020-09-07T03:34:39.000Z</published>
+    <updated>2020-09-07T03:50:29.511Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。&lt;br&gt;你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。  &lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;示例：&lt;br&gt;给定</summary>
+    <summary type="html">&lt;h4 id=&quot;27-移除元素&quot;&gt;&lt;a href=&quot;#27-移除元素&quot; class=&quot;headerlink&quot; title=&quot;27. 移除元素&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/remove-element/&quot;</summary>
         
       
     
     
     
-    <category term="Algorithm" scheme="http://zzydev.top/categories/Algorithm/"/>
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
     
     
-    <category term="哈希表" scheme="http://zzydev.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    <category term="双指针" scheme="http://zzydev.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
   <entry>
-    <title>为什么0.1 + 0.2 不等于 0.3 ?</title>
-    <link href="http://zzydev.top/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/"/>
-    <id>http://zzydev.top/2020/08/27/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/</id>
-    <published>2020-08-26T22:58:33.000Z</published>
-    <updated>2020-08-28T06:48:25.880Z</updated>
+    <title>leetcode26-删除排序数组中的重复项</title>
+    <link href="http://zzydev.top/2020/09/07/leetcode26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/"/>
+    <id>http://zzydev.top/2020/09/07/leetcode26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/</id>
+    <published>2020-09-07T03:13:48.000Z</published>
+    <updated>2020-09-07T03:34:07.972Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h4 id=&quot;IEEE浮点标准&quot;&gt;&lt;a href=&quot;#IEEE浮点标准&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;p&gt;&lt;strong&gt;easy&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;给定一个排序数组，你需要在 原地 删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。&lt;/p&gt;
+&lt;p&gt;不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1)</summary>
         
       
     
     
     
-    <category term="计算机基础" scheme="http://zzydev.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
     
     
-    <category term="计算机基础" scheme="http://zzydev.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    <category term="双指针" scheme="http://zzydev.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode25-K 个一组翻转链表</title>
+    <link href="http://zzydev.top/2020/09/06/leetcode25-k-ge-yi-zu-fan-zhuan-lian-biao/"/>
+    <id>http://zzydev.top/2020/09/06/leetcode25-k-ge-yi-zu-fan-zhuan-lian-biao/</id>
+    <published>2020-09-05T16:10:34.000Z</published>
+    <updated>2020-09-07T10:26:55.592Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;25-K-个一组翻转链表&quot;&gt;&lt;a href=&quot;#25-K-个一组翻转链表&quot; class=&quot;headerlink&quot; title=&quot;25. K 个一组翻转链表&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="链表" scheme="http://zzydev.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode24-两两交换链表中的节点</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode24-liang-liang-jiao-huan-lian-biao-zhong-de-jie-dian/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode24-liang-liang-jiao-huan-lian-biao-zhong-de-jie-dian/</id>
+    <published>2020-09-05T15:51:32.000Z</published>
+    <updated>2020-09-05T16:10:00.404Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;24-两两交换链表中的节点&quot;&gt;&lt;a href=&quot;#24-两两交换链表中的节点&quot; class=&quot;headerlink&quot; title=&quot;24. 两两交换链表中的节点&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="链表" scheme="http://zzydev.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode23-合并K个升序链表</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode23-he-bing-k-ge-sheng-xu-lian-biao/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode23-he-bing-k-ge-sheng-xu-lian-biao/</id>
+    <published>2020-09-05T14:46:47.000Z</published>
+    <updated>2020-09-05T15:44:16.209Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;23-合并K个升序链表&quot;&gt;&lt;a href=&quot;#23-合并K个升序链表&quot; class=&quot;headerlink&quot; title=&quot;23. 合并K个升序链表&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="链表" scheme="http://zzydev.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+    <category term="堆" scheme="http://zzydev.top/tags/%E5%A0%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode22-括号生成</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode22-gua-hao-sheng-cheng/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode22-gua-hao-sheng-cheng/</id>
+    <published>2020-09-05T14:35:28.000Z</published>
+    <updated>2020-09-05T14:46:11.341Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;22-括号生成&quot;&gt;&lt;a href=&quot;#22-括号生成&quot; class=&quot;headerlink&quot; title=&quot;22. 括号生成&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="dfs" scheme="http://zzydev.top/tags/dfs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode21-合并两个有序链表</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode21-he-bing-liang-ge-you-xu-lian-biao/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode21-he-bing-liang-ge-you-xu-lian-biao/</id>
+    <published>2020-09-05T14:21:55.000Z</published>
+    <updated>2020-09-05T14:34:43.729Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;21-合并两个有序链表&quot;&gt;&lt;a href=&quot;#21-合并两个有序链表&quot; class=&quot;headerlink&quot; title=&quot;21. 合并两个有序链表&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="链表" scheme="http://zzydev.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode20-有效的括号</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode20-you-xiao-de-gua-hao/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode20-you-xiao-de-gua-hao/</id>
+    <published>2020-09-05T13:52:30.000Z</published>
+    <updated>2020-09-05T14:19:35.248Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;easy&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;给定一个只包括&lt;code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="栈" scheme="http://zzydev.top/tags/%E6%A0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode19-删除链表的倒数第N个节点</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode19-shan-chu-lian-biao-de-dao-shu-di-n-ge-jie-dian/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode19-shan-chu-lian-biao-de-dao-shu-di-n-ge-jie-dian/</id>
+    <published>2020-09-05T13:12:18.000Z</published>
+    <updated>2020-09-05T13:24:35.593Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;19-删除链表的倒数第N个节点&quot;&gt;&lt;a href=&quot;#19-删除链表的倒数第N个节点&quot; class=&quot;headerlink&quot; title=&quot;19. 删除链表的倒数第N个节点&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="链表" scheme="http://zzydev.top/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode18-四数之和</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode18-si-shu-zhi-he/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode18-si-shu-zhi-he/</id>
+    <published>2020-09-05T12:35:57.000Z</published>
+    <updated>2020-09-05T13:11:43.545Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;给定一个包含 n 个整数的数组 &lt;code&gt;nums&lt;/code&gt; 和一个目标值 &lt;code&gt;target&lt;/code&gt;，判断 &lt;code&gt;nums&lt;/code&gt; 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与&lt;code&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="哈希表" scheme="http://zzydev.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"/>
+    
+    <category term="双指针" scheme="http://zzydev.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode17-电话号码的字母组合</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode17-dian-hua-hao-ma-de-zi-mu-zu-he/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode17-dian-hua-hao-ma-de-zi-mu-zu-he/</id>
+    <published>2020-09-05T12:15:31.000Z</published>
+    <updated>2020-09-05T12:32:29.065Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;17-电话号码的字母组合&quot;&gt;&lt;a href=&quot;#17-电话号码的字母组合&quot; class=&quot;headerlink&quot; title=&quot;17. 电话号码的字母组合&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="回溯" scheme="http://zzydev.top/tags/%E5%9B%9E%E6%BA%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode16-最接近的三数之和</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode16-zui-jie-jin-de-san-shu-zhi-he/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode16-zui-jie-jin-de-san-shu-zhi-he/</id>
+    <published>2020-09-05T11:15:51.000Z</published>
+    <updated>2020-09-05T11:48:37.458Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;16-最接近的三数之和&quot;&gt;&lt;a href=&quot;#16-最接近的三数之和&quot; class=&quot;headerlink&quot; title=&quot;16. 最接近的三数之和&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="双指针" scheme="http://zzydev.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode14-最长公共前缀</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode14-zui-chang-gong-gong-qian-zhui/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode14-zui-chang-gong-gong-qian-zhui/</id>
+    <published>2020-09-05T07:30:52.000Z</published>
+    <updated>2020-09-05T08:22:44.562Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;easy&lt;/p&gt;
+&lt;p&gt;编写一个函数来查找字符串数组中的最长公共前缀。&lt;/p&gt;
+&lt;p&gt;如果不存在公共前缀，返回空字符串 &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;示例</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="字符串" scheme="http://zzydev.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode13-罗马数字转整数</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode13-luo-ma-shu-zi-zhuan-zheng-shu/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode13-luo-ma-shu-zi-zhuan-zheng-shu/</id>
+    <published>2020-09-05T07:11:07.000Z</published>
+    <updated>2020-09-05T07:30:29.785Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;13-罗马数字转整数&quot;&gt;&lt;a href=&quot;#13-罗马数字转整数&quot; class=&quot;headerlink&quot; title=&quot;13. 罗马数字转整数&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="字符串" scheme="http://zzydev.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode12-整数转罗马数字</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode12-zheng-shu-zhuan-luo-ma-shu-zi/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode12-zheng-shu-zhuan-luo-ma-shu-zi/</id>
+    <published>2020-09-05T06:40:56.000Z</published>
+    <updated>2020-09-05T07:10:28.451Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;12-整数转罗马数字&quot;&gt;&lt;a href=&quot;#12-整数转罗马数字&quot; class=&quot;headerlink&quot; title=&quot;12. 整数转罗马数字&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="字符串" scheme="http://zzydev.top/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+    <category term="数学" scheme="http://zzydev.top/tags/%E6%95%B0%E5%AD%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode11-盛最多水的容器</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode11-sheng-zui-duo-shui-de-rong-qi/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode11-sheng-zui-duo-shui-de-rong-qi/</id>
+    <published>2020-09-05T05:52:18.000Z</published>
+    <updated>2020-09-05T06:40:42.671Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;11-盛最多水的容器&quot;&gt;&lt;a href=&quot;#11-盛最多水的容器&quot; class=&quot;headerlink&quot; title=&quot;11. 盛最多水的容器&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="Greedy" scheme="http://zzydev.top/tags/Greedy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode10-正则表达式匹配</title>
+    <link href="http://zzydev.top/2020/09/05/leetcode10-zheng-ze-biao-da-shi-pi-pei/"/>
+    <id>http://zzydev.top/2020/09/05/leetcode10-zheng-ze-biao-da-shi-pi-pei/</id>
+    <published>2020-09-05T05:39:53.000Z</published>
+    <updated>2020-09-05T05:51:47.465Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h4 id=&quot;10-正则表达式匹配&quot;&gt;&lt;a href=&quot;#10-正则表达式匹配&quot; class=&quot;headerlink&quot; title=&quot;10. 正则表达式匹配&quot;&gt;&lt;/a&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Leetcode" scheme="http://zzydev.top/categories/Leetcode/"/>
+    
+    
+    <category term="DP" scheme="http://zzydev.top/tags/DP/"/>
     
   </entry>
   
