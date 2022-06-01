@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Series on 人类低质量男性求职准备</title>
-    <link>https://zzydev.top/series/</link>
+    <link>https://zzydev.github.io/series/</link>
     <description>Recent content in Series on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>zzydev</copyright><atom:link href="https://zzydev.top/series/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>zzydev</copyright><atom:link href="https://zzydev.github.io/series/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
