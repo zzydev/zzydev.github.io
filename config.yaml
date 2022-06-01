@@ -182,7 +182,7 @@ params:
     keys: ["title", "permalink", "summary"]
 
   twikoo:
-    version: 1.4.11
+    version: 1.5.11
 
 taxonomies:
   category: categories
