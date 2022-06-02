@@ -38,8 +38,8 @@ languages:
     profileMode:
       enabled: true
       title: (づ｡◕‿‿◕｡)づ
-      subtitle: "太太, 你也不想zzydev失去这份工作吧?"
-      imageUrl: image/profile.gif
+      subtitle: "太太, 你也不想zzydev得不到这份工作吧?"
+      imageUrl: image/chance.gif
       imageTitle:
       imageWidth: 150
       imageHeight: 150
@@ -139,8 +139,8 @@ params:
     - name: QQ
       url: "http://tool.gljlw.com/qq/?qq=1024738521"
 
-    # - name: Phone
-    #   url: "img/phone.png"
+    - name: bilibili
+      url: "https://space.bilibili.com/429451958?spm_id_from=333.1007.0.0"
     - name: email
       url: "mailto:4amzzydev@gmail.com"
     - name: RSS
@@ -161,11 +161,11 @@ params:
   #         SiteVerificationTag: "XYZabc"
 
   assets:
-    favicon: "image/profile.gif"
-    favicon16x16: "image/profile.gif"
-    favicon32x32: "image/profile.gif"
-    apple_touch_icon: "profile.gif"
-    safari_pinned_tab: "profile.gif"
+    favicon: "image/chance.gif"
+    favicon16x16: "image/chance.gif"
+    favicon32x32: "image/chance.gif"
+    apple_touch_icon: "chance.gif"
+    safari_pinned_tab: "chance.gif"
 
   # cover:
   #   hidden: true # hide everywhere but not in structured data

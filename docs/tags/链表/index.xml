@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>链表 on 人类低质量男性求职准备</title>
+    <link>https://zzydev.top/tags/%E9%93%BE%E8%A1%A8/</link>
+    <description>Recent content in 链表 on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>zzydev</copyright>
+    <lastBuildDate>Thu, 02 Jun 2022 18:28:15 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lc02_两数相加</title>
+      <link>https://zzydev.top/posts/leetcode/lc02_%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</link>
+      <pubDate>Thu, 02 Jun 2022 18:28:15 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc02_%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</guid>
+      <description>题解： 模拟加法过程： 举个 🌰：我们计算 abc + efg，我们应该先计算 c + g 如果结果大于等于 10 则进 1，然后继续计算 b + f 再加上之前的 进位 。 也就是说，</description>
+    </item>
+    
+  </channel>
+</rss>

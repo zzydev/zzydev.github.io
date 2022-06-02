@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>hard on 人类低质量男性求职准备</title>
+    <link>https://zzydev.top/tags/hard/</link>
+    <description>Recent content in hard on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>zzydev</copyright>
+    <lastBuildDate>Thu, 02 Jun 2022 22:49:42 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/hard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lc10_正则表达式匹配</title>
+      <link>https://zzydev.top/posts/leetcode/lc10_%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/</link>
+      <pubDate>Thu, 02 Jun 2022 22:49:42 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc10_%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/</guid>
+      <description>如果p[j] == &amp;lsquo;*&amp;rsquo; ，如果 表示 0 个字符，那么 f[i][j] == f[i][j - 2]，如果表示 1 个字符，那么有 f[i - 1][j - 2] &amp;amp;&amp;amp; s[i] == p[j - 1]以此类推 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</description>
+    </item>
+    
+  </channel>
+</rss>

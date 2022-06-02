@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>HeadFirstReact on 人类低质量男性求职准备</title>
+    <link>https://zzydev.top/posts/headfirstreact/</link>
+    <description>Recent content in HeadFirstReact on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>zzydev</copyright>
+    <lastBuildDate>Thu, 02 Jun 2022 17:58:52 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstreact/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React生命周期</title>
+      <link>https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+      <pubDate>Thu, 02 Jun 2022 17:58:52 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+      <description>Mounting 阶段：组件的初始化渲染（挂载） render: 把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。</description>
+    </item>
+    
+    <item>
+      <title>JSX 是如何变成为 DOM 的</title>
+      <link>https://zzydev.top/posts/headfirstreact/jsx%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E4%B8%BAdom%E7%9A%84/</link>
+      <pubDate>Thu, 02 Jun 2022 17:23:43 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/jsx%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E4%B8%BAdom%E7%9A%84/</guid>
+      <description>JSX 的本质：JavaScript 的语法扩展 JSX 会被编译为 React.createElement()， React.createElement() 将返回一个叫作“React Element”</description>
+    </item>
+    
+  </channel>
+</rss>

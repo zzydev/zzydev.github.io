@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>数学 on 人类低质量男性求职准备</title>
+    <link>https://zzydev.top/tags/%E6%95%B0%E5%AD%A6/</link>
+    <description>Recent content in 数学 on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>zzydev</copyright>
+    <lastBuildDate>Thu, 02 Jun 2022 23:35:11 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lc13_罗马数字转整数</title>
+      <link>https://zzydev.top/posts/leetcode/lc13_%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/</link>
+      <pubDate>Thu, 02 Jun 2022 23:35:11 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc13_%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/</guid>
+      <description>定义字母（罗马数字）到数字（阿拉伯数字）的映射。 从前往后扫描，如果发现 s[i+1]的数字比 s[i] 的数字大，那么减去 s[i]的值即可，否则直接累计</description>
+    </item>
+    
+    <item>
+      <title>Lc12_整数转罗马数字</title>
+      <link>https://zzydev.top/posts/leetcode/lc12_%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/</link>
+      <pubDate>Thu, 02 Jun 2022 23:13:10 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc12_%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/</guid>
+      <description>罗马数字的计数方法： 相同的数字连写，所表示的数等于这些数字相加的和，如：III=3； 较小的数字在较大的数字的右边，所表示的数等于这些数字相加</description>
+    </item>
+    
+    <item>
+      <title>Lc07_整数反转</title>
+      <link>https://zzydev.top/posts/leetcode/lc07_%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</link>
+      <pubDate>Thu, 02 Jun 2022 19:08:33 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc07_%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 class Solution { public: int reverse(int x) { int res = 0; while (x) { if (x &amp;gt; 0 &amp;amp;&amp;amp; res &amp;gt; (INT_MAX - x % 10) / 10) return 0; if (x &amp;lt; 0 &amp;amp;&amp;amp; res &amp;lt; (INT_MIN - x % 10) / 10) return 0; res = res * 10 + x % 10; x</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,18 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Lc01_两数之和 | 人类低质量男性求职准备</title>
-<meta name="keywords" content="哈希表, 数组">
-<meta name="description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 class Solution { public: vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) { unordered_map&lt;int,int&gt; hash; for (int i = 0; i &lt; nums.size();i &#43;&#43;) { if (hash.count(target - nums[i])) { return {hash[target - nums[i]], i}; } else { hash[nums[i]] = i; } } return {}; } };">
+<meta name="keywords" content="哈希表, 数组, easy">
+<meta name="description" content="使用 C&#43;&#43;中的哈希表——unordered_map&lt;int, int&gt; 循环一遍 nums 数组，在每步循环中我们判断 target - nums[i] 是否在哈希表中 ： 如果是就找到和">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/leetcode/lc01_%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.159ed832a35a6f91847a90040f0ac6536bddaf559329f15be9aa82b3ab79024e.css" integrity="sha256-FZ7YMqNab5GEepAEDwrGU2vdr1WTKfFb6aqCs6t5Ak4=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://zzydev.top/image/profile.gif">
-<link rel="icon" type="image/png" sizes="16x16" href="https://zzydev.top/image/profile.gif">
-<link rel="icon" type="image/png" sizes="32x32" href="https://zzydev.top/image/profile.gif">
-<link rel="apple-touch-icon" href="https://zzydev.top/profile.gif">
-<link rel="mask-icon" href="https://zzydev.top/profile.gif">
+<link rel="icon" href="https://zzydev.top/image/chance.gif">
+<link rel="icon" type="image/png" sizes="16x16" href="https://zzydev.top/image/chance.gif">
+<link rel="icon" type="image/png" sizes="32x32" href="https://zzydev.top/image/chance.gif">
+<link rel="apple-touch-icon" href="https://zzydev.top/chance.gif">
+<link rel="mask-icon" href="https://zzydev.top/chance.gif">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -57,7 +57,7 @@
 
     </style>
 </noscript><meta property="og:title" content="Lc01_两数之和" />
-<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 class Solution { public: vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) { unordered_map&lt;int,int&gt; hash; for (int i = 0; i &lt; nums.size();i &#43;&#43;) { if (hash.count(target - nums[i])) { return {hash[target - nums[i]], i}; } else { hash[nums[i]] = i; } } return {}; } };" />
+<meta property="og:description" content="使用 C&#43;&#43;中的哈希表——unordered_map&lt;int, int&gt; 循环一遍 nums 数组，在每步循环中我们判断 target - nums[i] 是否在哈希表中 ： 如果是就找到和" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zzydev.top/posts/leetcode/lc01_%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-01T07:40:45&#43;08:00" />
@@ -65,7 +65,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Lc01_两数之和"/>
-<meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 class Solution { public: vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) { unordered_map&lt;int,int&gt; hash; for (int i = 0; i &lt; nums.size();i &#43;&#43;) { if (hash.count(target - nums[i])) { return {hash[target - nums[i]], i}; } else { hash[nums[i]] = i; } } return {}; } };"/>
+<meta name="twitter:description" content="使用 C&#43;&#43;中的哈希表——unordered_map&lt;int, int&gt; 循环一遍 nums 数组，在每步循环中我们判断 target - nums[i] 是否在哈希表中 ： 如果是就找到和"/>
 
 
 <script type="application/ld+json">
@@ -100,12 +100,12 @@
   "@type": "BlogPosting",
   "headline": "Lc01_两数之和",
   "name": "Lc01_两数之和",
-  "description": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 class Solution { public: vector\u0026lt;int\u0026gt; twoSum(vector\u0026lt;int\u0026gt;\u0026amp; nums, int target) { unordered_map\u0026lt;int,int\u0026gt; hash; for (int i = 0; i \u0026lt; nums.size();i ++) { if (hash.count(target - nums[i])) { return {hash[target - nums[i]], i}; } else { hash[nums[i]] = i; } } return {}; } };",
+  "description": "使用 C++中的哈希表——unordered_map\u0026lt;int, int\u0026gt; 循环一遍 nums 数组，在每步循环中我们判断 target - nums[i] 是否在哈希表中 ： 如果是就找到和",
   "keywords": [
-    "哈希表", "数组"
+    "哈希表", "数组", "easy"
   ],
-  "articleBody": " 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 class Solution { public: vector\u003cint\u003e twoSum(vector\u003cint\u003e\u0026 nums, int target) { unordered_map\u003cint,int\u003e hash; for (int i = 0; i \u003c nums.size();i ++) { if (hash.count(target - nums[i])) { return {hash[target - nums[i]], i}; } else { hash[nums[i]] = i; } } return {}; } }; ",
-  "wordCount" : "59",
+  "articleBody": "使用 C++中的哈希表——unordered_map\n循环一遍 nums 数组，在每步循环中我们判断 target - nums[i] 是否在哈希表中 ：\n如果是就找到和为 target 的一对数字，直接返回答案即可； 如果否就将 nums[i] 插入哈希表中；\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 class Solution { public: vector\u003cint\u003e twoSum(vector\u003cint\u003e\u0026 nums, int target) { unordered_map\u003cint,int\u003e hash; for (int i = 0; i \u003c nums.size();i ++) { if (hash.count(target - nums[i])) { return {hash[target - nums[i]], i}; } else { hash[nums[i]] = i; } } return {}; } }; ",
+  "wordCount" : "159",
   "inLanguage": "en",
   "datePublished": "2022-06-01T07:40:45+08:00",
   "dateModified": "2022-06-01T07:40:45+08:00",
@@ -122,7 +122,7 @@
     "name": "人类低质量男性求职准备",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://zzydev.top/image/profile.gif"
+      "url": "https://zzydev.top/image/chance.gif"
     }
   }
 }
@@ -226,12 +226,16 @@
 
 
 
-创建:&nbsp;<span title='2022-06-01 07:40:45 +0800 CST'>2022-06-01</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-01&nbsp;|&nbsp;字数:&nbsp;59字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;zzydev
+创建:&nbsp;<span title='2022-06-01 07:40:45 +0800 CST'>2022-06-01</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-01&nbsp;|&nbsp;字数:&nbsp;159字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;zzydev
 
 </div>
   </header> 
 
-  <div class="post-content"><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+  <div class="post-content"><p>使用 C++中的哈希表——<code>unordered_map&lt;int, int&gt;</code></p>
+<p>循环一遍 nums 数组，在每步循环中我们判断 target - nums[i] 是否在哈希表中 ：</p>
+<p>如果是就找到和为 target 的一对数字，直接返回答案即可；
+如果否就将 nums[i] 插入哈希表中；</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
@@ -275,12 +279,20 @@
     <ul class="post-tags">
       <li><a href="https://zzydev.top/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">哈希表</a></li>
       <li><a href="https://zzydev.top/tags/%E6%95%B0%E7%BB%84/">数组</a></li>
+      <li><a href="https://zzydev.top/tags/easy/">easy</a></li>
     </ul>
+<nav class="paginav">
+  <a class="prev" href="https://zzydev.top/posts/eight-part-essay/%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>有手就行</span>
+  </a>
+</nav>
 
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Lc01_两数之和 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Lc01_%e4%b8%a4%e6%95%b0%e4%b9%8b%e5%92%8c&amp;url=https%3a%2f%2fzzydev.top%2fposts%2fleetcode%2flc01_%25E4%25B8%25A4%25E6%2595%25B0%25E4%25B9%258B%25E5%2592%258C%2f&amp;hashtags=%e5%93%88%e5%b8%8c%e8%a1%a8%2c%e6%95%b0%e7%bb%84">
+        href="https://twitter.com/intent/tweet/?text=Lc01_%e4%b8%a4%e6%95%b0%e4%b9%8b%e5%92%8c&amp;url=https%3a%2f%2fzzydev.top%2fposts%2fleetcode%2flc01_%25E4%25B8%25A4%25E6%2595%25B0%25E4%25B9%258B%25E5%2592%258C%2f&amp;hashtags=%e5%93%88%e5%b8%8c%e8%a1%a8%2c%e6%95%b0%e7%bb%84%2ceasy">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
