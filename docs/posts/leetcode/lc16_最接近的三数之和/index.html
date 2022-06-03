@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Lc16_最接近的三数之和 | 人类低质量男性求职准备</title>
-<meta name="keywords" content="">
-<meta name="description" content="Lc16_最接近的三数之和 - 人类低质量男性求职准备">
+<meta name="keywords" content="双指针, medium">
+<meta name="description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 class Solution { public: int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) { int res = nums[0] &#43; nums[1] &#43; nums[2]; sort(nums.begin(),nums.end()); for (int i = 0; i &lt; nums.size() - 2; i&#43;&#43;) { if (i &amp;&amp; nums[i] == nums[i - 1]) continue; for (int j = i &#43; 1, k = nums.size() -">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/leetcode/lc16_%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.7e17824bf04d638a59aa6c81204b9347ece143f1d755450e2aa47b1cfbb89d1d.css" integrity="sha256-fheCS/BNY4pZqmyBIEuTR&#43;zhQ/HXVUUOKqR7HPu4nR0=" rel="preload stylesheet" as="style">
@@ -29,7 +29,7 @@
 
     </style>
 </noscript><meta property="og:title" content="Lc16_最接近的三数之和" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 class Solution { public: int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) { int res = nums[0] &#43; nums[1] &#43; nums[2]; sort(nums.begin(),nums.end()); for (int i = 0; i &lt; nums.size() - 2; i&#43;&#43;) { if (i &amp;&amp; nums[i] == nums[i - 1]) continue; for (int j = i &#43; 1, k = nums.size() -" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zzydev.top/posts/leetcode/lc16_%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-02T23:51:19&#43;08:00" />
@@ -37,7 +37,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Lc16_最接近的三数之和"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 class Solution { public: int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) { int res = nums[0] &#43; nums[1] &#43; nums[2]; sort(nums.begin(),nums.end()); for (int i = 0; i &lt; nums.size() - 2; i&#43;&#43;) { if (i &amp;&amp; nums[i] == nums[i - 1]) continue; for (int j = i &#43; 1, k = nums.size() -"/>
 
 
 <script type="application/ld+json">
@@ -72,12 +72,12 @@
   "@type": "BlogPosting",
   "headline": "Lc16_最接近的三数之和",
   "name": "Lc16_最接近的三数之和",
-  "description": "",
+  "description": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 class Solution { public: int threeSumClosest(vector\u0026lt;int\u0026gt;\u0026amp; nums, int target) { int res = nums[0] + nums[1] + nums[2]; sort(nums.begin(),nums.end()); for (int i = 0; i \u0026lt; nums.size() - 2; i++) { if (i \u0026amp;\u0026amp; nums[i] == nums[i - 1]) continue; for (int j = i + 1, k = nums.size() -",
   "keywords": [
-    ""
+    "双指针", "medium"
   ],
-  "articleBody": "",
-  "wordCount" : "0",
+  "articleBody": " 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 class Solution { public: int threeSumClosest(vector\u003cint\u003e\u0026 nums, int target) { int res = nums[0] + nums[1] + nums[2]; sort(nums.begin(),nums.end()); for (int i = 0; i \u003c nums.size() - 2; i++) { if (i \u0026\u0026 nums[i] == nums[i - 1]) continue; for (int j = i + 1, k = nums.size() - 1; j \u003c k; j ++) { if (j \u003e i + 1 \u0026\u0026 nums[j] == nums[j - 1]) continue; if (nums[i] + nums[j] + nums[k] == target) return target; while (j \u003c k \u0026\u0026 abs(nums[i] + nums[j] + nums[k - 1] - target) \u003c abs(nums[i] + nums[j] + nums[k] - target)) { res = min(res, nums[i] + nums[j] + nums[k --]); } } } return res; } }; lc15_三数之和\nlc01_两数之和\nlc18_四数之和\n",
+  "wordCount" : "166",
   "inLanguage": "en",
   "datePublished": "2022-06-02T23:51:19+08:00",
   "dateModified": "2022-06-02T23:51:19+08:00",
@@ -194,14 +194,66 @@
 
 
 
-创建:&nbsp;<span title='2022-06-02 23:51:19 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;0字&nbsp;|&nbsp;时长: 0分钟&nbsp;|&nbsp;zzydev
+创建:&nbsp;<span title='2022-06-02 23:51:19 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;166字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;zzydev
 
 </div>
   </header> 
 
+  <div class="post-content"><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">class</span> Solution {
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">public</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">int</span> threeSumClosest(vector&lt;<span style="color:#fff;font-weight:bold">int</span>&gt;&amp; nums, <span style="color:#fff;font-weight:bold">int</span> target) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">int</span> res = nums[<span style="color:#ff0;font-weight:bold">0</span>] + nums[<span style="color:#ff0;font-weight:bold">1</span>] + nums[<span style="color:#ff0;font-weight:bold">2</span>];
+</span></span><span style="display:flex;"><span>        sort(nums.begin(),nums.end());
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> i = <span style="color:#ff0;font-weight:bold">0</span>; i &lt; nums.size() - <span style="color:#ff0;font-weight:bold">2</span>; i++) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">if</span> (i &amp;&amp; nums[i] == nums[i - <span style="color:#ff0;font-weight:bold">1</span>]) <span style="color:#fff;font-weight:bold">continue</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">int</span> j = i + <span style="color:#ff0;font-weight:bold">1</span>, k = nums.size() - <span style="color:#ff0;font-weight:bold">1</span>; j &lt; k; j ++) {
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">if</span> (j &gt; i + <span style="color:#ff0;font-weight:bold">1</span> &amp;&amp; nums[j] == nums[j - <span style="color:#ff0;font-weight:bold">1</span>]) <span style="color:#fff;font-weight:bold">continue</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">if</span> (nums[i] + nums[j] + nums[k] == target) <span style="color:#fff;font-weight:bold">return</span> target;
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">while</span> (j &lt; k  &amp;&amp; abs(nums[i] + nums[j] + nums[k - <span style="color:#ff0;font-weight:bold">1</span>] - target) 
+</span></span><span style="display:flex;"><span>										&lt; abs(nums[i] + nums[j] + nums[k] - target)) {
+</span></span><span style="display:flex;"><span>                    res = min(res, nums[i] + nums[j] + nums[k --]);
+</span></span><span style="display:flex;"><span>                } 
+</span></span><span style="display:flex;"><span>            } 
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> res;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><a href="https://zzydev.top/posts/leetcode/lc15_%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">lc15_三数之和</a><br>
+<a href="https://zzydev.top/posts/leetcode/lc01_%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">lc01_两数之和</a><br>
+<a href="https://zzydev.top/posts/leetcode/lc18_%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/">lc18_四数之和</a></p>
+
+
+  </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://zzydev.top/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a></li>
+      <li><a href="https://zzydev.top/tags/medium/">medium</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://zzydev.top/posts/headfirstreact/%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/">
@@ -219,7 +271,7 @@
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Lc16_最接近的三数之和 on twitter"
-        href="https://twitter.com/intent/tweet/?text=Lc16_%e6%9c%80%e6%8e%a5%e8%bf%91%e7%9a%84%e4%b8%89%e6%95%b0%e4%b9%8b%e5%92%8c&amp;url=https%3a%2f%2fzzydev.top%2fposts%2fleetcode%2flc16_%25E6%259C%2580%25E6%258E%25A5%25E8%25BF%2591%25E7%259A%2584%25E4%25B8%2589%25E6%2595%25B0%25E4%25B9%258B%25E5%2592%258C%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=Lc16_%e6%9c%80%e6%8e%a5%e8%bf%91%e7%9a%84%e4%b8%89%e6%95%b0%e4%b9%8b%e5%92%8c&amp;url=https%3a%2f%2fzzydev.top%2fposts%2fleetcode%2flc16_%25E6%259C%2580%25E6%258E%25A5%25E8%25BF%2591%25E7%259A%2584%25E4%25B8%2589%25E6%2595%25B0%25E4%25B9%258B%25E5%2592%258C%2f&amp;hashtags=%e5%8f%8c%e6%8c%87%e9%92%88%2cmedium">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

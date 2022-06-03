@@ -7,7 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>zzydev</copyright>
-    <lastBuildDate>Fri, 03 Jun 2022 11:16:41 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstreact/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jun 2022 21:12:17 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstreact/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SetState到底是同步的还是异步的？</title>
+      <link>https://zzydev.top/posts/headfirstreact/setstate%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/</link>
+      <pubDate>Fri, 03 Jun 2022 21:12:17 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/setstate%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 class Solution { public: vector&amp;lt;string&amp;gt; ans; string strs[10] = { &amp;#34;&amp;#34;,&amp;#34;&amp;#34;,&amp;#34;abc&amp;#34;,&amp;#34;def&amp;#34;, &amp;#34;ghi&amp;#34;,&amp;#34;jkl&amp;#34;,&amp;#34;mno&amp;#34;, &amp;#34;pqrs&amp;#34;,&amp;#34;tuv&amp;#34;,&amp;#34;wxyz&amp;#34; }; vector&amp;lt;string&amp;gt; letterCombinations(string digits) { if (digits.empty()) return ans; dfs(digits, 0, &amp;#34;&amp;#34;); return ans; } private: void dfs(string&amp;amp; digits, int u, string path) { if (u == digits.size()) ans.push_back(path); else { for (auto c</description>
+    </item>
+    
+    <item>
+      <title>React中的栈调和过程是怎样的？</title>
+      <link>https://zzydev.top/posts/headfirstreact/react%E4%B8%AD%E7%9A%84%E6%A0%88%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/</link>
+      <pubDate>Fri, 03 Jun 2022 20:18:38 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/react%E4%B8%AD%E7%9A%84%E6%A0%88%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/</guid>
+      <description>调和（Reconciliation）过程与 Diff 算法 Virtual DOM 是一种编程概念。在这个概念里，UI 以一种理想化的，或者说“虚拟的”表现形式被保存于内存中</description>
+    </item>
+    
+    <item>
+      <title>真正理解虚拟DOM,React选它是因为性能吗</title>
+      <link>https://zzydev.top/posts/headfirstreact/%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/</link>
+      <pubDate>Fri, 03 Jun 2022 19:55:46 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/</guid>
+      <description>React 中的虚拟 DOM 大致是如何工作的? 挂载阶段，React 将结合 JSX 的描述，构建出虚拟 DOM 树，然后通过 ReactDOM.render 实现虚拟 DOM 到真实 DOM 的映射（触发渲染流水线）； 更新</description>
+    </item>
+    
+    <item>
+      <title>深入React Hooks工作机制:“原则”的背后,是“原理”</title>
+      <link>https://zzydev.top/posts/headfirstreact/%E6%B7%B1%E5%85%A5react-hooks%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6%E5%8E%9F%E5%88%99%E7%9A%84%E8%83%8C%E5%90%8E%E6%98%AF%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Fri, 03 Jun 2022 17:34:48 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/%E6%B7%B1%E5%85%A5react-hooks%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6%E5%8E%9F%E5%88%99%E7%9A%84%E8%83%8C%E5%90%8E%E6%98%AF%E5%8E%9F%E7%90%86/</guid>
+      <description>React 团队面向开发者给出了两条 React-Hooks 的使用原则，原则的内容如下： 只在 React 函数中调用 Hook； 不要在循环、条件或嵌套函数中调用 Hook。 原则 2 中强调的所</description>
+    </item>
+    
     <item>
       <title>React Hooks设计动机与工作模式</title>
       <link>https://zzydev.top/posts/headfirstreact/react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</link>

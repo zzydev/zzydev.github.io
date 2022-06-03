@@ -7,7 +7,52 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>zzydev</copyright>
-    <lastBuildDate>Thu, 02 Jun 2022 18:28:15 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jun 2022 22:53:33 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/%E9%93%BE%E8%A1%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lc25_K个一组翻转链表</title>
+      <link>https://zzydev.top/posts/leetcode/lc25_k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Fri, 03 Jun 2022 22:53:33 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc25_k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/</guid>
+      <description>原题链接 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 /** * Definition for singly-linked list. * struct ListNode { * int val; * ListNode *next; * ListNode() : val(0), next(nullptr) {} * ListNode(int x) : val(x), next(nullptr) {} * ListNode(int x, ListNode *next)</description>
+    </item>
+    
+    <item>
+      <title>Lc24_两两交换链表中的节点</title>
+      <link>https://zzydev.top/posts/leetcode/lc24_%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/</link>
+      <pubDate>Fri, 03 Jun 2022 22:50:44 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc24_%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/</guid>
+      <description>原题链接 迭代以下过程： 创建虚拟头节点dummy，让 p 指针指向 dummy 让a指针指向p→next，让b指针指向a→next 让p指向a 1 2 3 4 5 6 7 8 9</description>
+    </item>
+    
+    <item>
+      <title>Lc23_合并K个升序链表</title>
+      <link>https://zzydev.top/posts/leetcode/lc23_%E5%90%88%E5%B9%B6k%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Fri, 03 Jun 2022 22:47:50 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc23_%E5%90%88%E5%B9%B6k%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8/</guid>
+      <description>原题链接 使用优先队列，将所有链表的头指针加入到优先队列中（小根堆） 当小根堆不为空时，每次将堆顶元素t放入新构建的链表中，再将t的下一个节点加</description>
+    </item>
+    
+    <item>
+      <title>Lc21_合并两个有序链表</title>
+      <link>https://zzydev.top/posts/leetcode/lc21_%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Fri, 03 Jun 2022 22:43:47 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc21_%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/</guid>
+      <description>原题链接 模拟merge sort 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 /** * Definition for singly-linked list. * struct ListNode { * int val; * ListNode *next; * ListNode() :</description>
+    </item>
+    
+    <item>
+      <title>Lc19_删除链表的倒数第N个结点</title>
+      <link>https://zzydev.top/posts/leetcode/lc19_%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E7%BB%93%E7%82%B9/</link>
+      <pubDate>Fri, 03 Jun 2022 22:30:45 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc19_%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E7%BB%93%E7%82%B9/</guid>
+      <description>原题链接 解题思路： 先求出链表长度 求出要删除节点的位置 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 /** * Definition for singly-linked list. * struct ListNode { * int val; *</description>
+    </item>
+    
     <item>
       <title>Lc02_两数相加</title>
       <link>https://zzydev.top/posts/leetcode/lc02_%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/</link>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>栈 on 人类低质量男性求职准备</title>
+    <link>https://zzydev.top/tags/%E6%A0%88/</link>
+    <description>Recent content in 栈 on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>zzydev</copyright>
+    <lastBuildDate>Fri, 03 Jun 2022 22:36:39 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/%E6%A0%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lc20_有效的括号</title>
+      <link>https://zzydev.top/posts/leetcode/lc20_%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/</link>
+      <pubDate>Fri, 03 Jun 2022 22:36:39 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/leetcode/lc20_%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/</guid>
+      <description>原题链接 题解： 这里给出数组中的括号不全是一样的，所以遍历数组，如果遇到括号 &amp;ldquo;(&amp;rdquo; 、 &amp;ldquo;[&amp;quot;、 &amp;ldquo;{&amp;rdquo; 就放入栈中。 如果不是&amp;rdqu</description>
+    </item>
+    
+  </channel>
+</rss>
