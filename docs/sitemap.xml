@@ -2,16 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zzydev.top/posts/headfirstreact/</loc>
+    <lastmod>2022-06-03T11:16:41+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstreact/react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2022-06-03T11:16:41+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/</loc>
+    <lastmod>2022-06-03T11:16:41+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/</loc>
+    <lastmod>2022-06-03T11:16:41+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstreact/%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/</loc>
+    <lastmod>2022-06-03T10:35:11+08:00</lastmod>
+  </url><url>
     <loc>https://zzydev.top/posts/leetcode/lc16_%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</loc>
     <lastmod>2022-06-02T23:51:19+08:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/leetcode/</loc>
-    <lastmod>2022-06-02T23:51:19+08:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/</loc>
-    <lastmod>2022-06-02T23:51:19+08:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/posts/</loc>
     <lastmod>2022-06-02T23:51:19+08:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/leetcode/lc15_%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</loc>
@@ -89,9 +98,6 @@
   </url><url>
     <loc>https://zzydev.top/tags/%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2022-06-02T18:28:15+08:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/posts/headfirstreact/</loc>
-    <lastmod>2022-06-02T17:58:52+08:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</loc>
     <lastmod>2022-06-02T17:58:52+08:00</lastmod>

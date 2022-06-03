@@ -10,7 +10,7 @@
 <meta name="description" content="HeadFirstReact - 人类低质量男性求职准备">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/headfirstreact/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.159ed832a35a6f91847a90040f0ac6536bddaf559329f15be9aa82b3ab79024e.css" integrity="sha256-FZ7YMqNab5GEepAEDwrGU2vdr1WTKfFb6aqCs6t5Ak4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.7e17824bf04d638a59aa6c81204b9347ece143f1d755450e2aa47b1cfbb89d1d.css" integrity="sha256-fheCS/BNY4pZqmyBIEuTR&#43;zhQ/HXVUUOKqR7HPu4nR0=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
 <link rel="icon" type="image/png" sizes="16x16" href="https://zzydev.top/image/chance.gif">
 <link rel="icon" type="image/png" sizes="32x32" href="https://zzydev.top/image/chance.gif">
@@ -24,34 +24,6 @@
         #theme-toggle,
         .top-link {
             display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --hljs-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
         }
 
     </style>
@@ -90,10 +62,6 @@
 <body class="list" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark');
     }
 
@@ -176,11 +144,11 @@
   
   <div class="post-info">
   <header class="entry-header">
-    <h2>React生命周期<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    <h2>React Hooks设计动机与工作模式<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
     </h2>
   </header>
   <div class="entry-content">
-    <p>Mounting 阶段：组件的初始化渲染（挂载） render: 把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。</p>
+    <p>函数组件会捕获 render 内部的状态，这是两类组件最大的不同。 React 框架的主要工作，就是及时地把声明式的代码转换为命令式的 DOM 操作，把数据层面的描述映射到用...</p>
   </div>
   <footer class="entry-footer">
 
@@ -193,7 +161,59 @@
 
 
 
-创建:&nbsp;<span title='2022-06-02 17:58:52 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;52字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;zzydev</footer>
+创建:&nbsp;<span title='2022-06-03 11:16:41 +0800 CST'>2022-06-03</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-03&nbsp;|&nbsp;字数:&nbsp;1063字&nbsp;|&nbsp;时长: 3分钟&nbsp;|&nbsp;zzydev</footer>
+  </div>> 
+  <a class="entry-link" aria-label="post link to React Hooks设计动机与工作模式" href="https://zzydev.top/posts/headfirstreact/react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/"></a>
+</article>
+
+<article class="post-entry">
+  
+  <div class="post-info">
+  <header class="entry-header">
+    <h2>数据是如何在React组件之间流动的？<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>React 的核心特征是“数据驱动视图”，即 UI = render(data) 基于 props 的单向数据流 所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更...</p>
+  </div>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-06-03 10:35:11 +0800 CST'>2022-06-03</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-03&nbsp;|&nbsp;字数:&nbsp;3206字&nbsp;|&nbsp;时长: 7分钟&nbsp;|&nbsp;zzydev</footer>
+  </div>> 
+  <a class="entry-link" aria-label="post link to 数据是如何在React组件之间流动的？" href="https://zzydev.top/posts/headfirstreact/%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/"></a>
+</article>
+
+<article class="post-entry">
+  
+  <div class="post-info">
+  <header class="entry-header">
+    <h2>React生命周期<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>React15的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM...</p>
+  </div>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-06-02 17:58:52 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;3785字&nbsp;|&nbsp;时长: 8分钟&nbsp;|&nbsp;zzydev</footer>
   </div>> 
   <a class="entry-link" aria-label="post link to React生命周期" href="https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"></a>
 </article>

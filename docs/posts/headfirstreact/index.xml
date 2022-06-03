@@ -7,14 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>zzydev</copyright>
-    <lastBuildDate>Thu, 02 Jun 2022 17:58:52 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstreact/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 03 Jun 2022 11:16:41 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstreact/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Hooks设计动机与工作模式</title>
+      <link>https://zzydev.top/posts/headfirstreact/react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Fri, 03 Jun 2022 11:16:41 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</guid>
+      <description>函数组件会捕获 render 内部的状态，这是两类组件最大的不同。 React 框架的主要工作，就是及时地把声明式的代码转换为命令式的 DOM 操作，把数据层面的描述映射到用</description>
+    </item>
+    
+    <item>
+      <title>数据是如何在React组件之间流动的？</title>
+      <link>https://zzydev.top/posts/headfirstreact/%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/</link>
+      <pubDate>Fri, 03 Jun 2022 10:35:11 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstreact/%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/</guid>
+      <description>React 的核心特征是“数据驱动视图”，即 UI = render(data) 基于 props 的单向数据流 所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更</description>
+    </item>
+    
     <item>
       <title>React生命周期</title>
       <link>https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
       <pubDate>Thu, 02 Jun 2022 17:58:52 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
-      <description>Mounting 阶段：组件的初始化渲染（挂载） render: 把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。</description>
+      <description>React15的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM</description>
     </item>
     
     <item>
