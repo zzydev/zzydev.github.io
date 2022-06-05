@@ -120,7 +120,7 @@ class Father extends React.Component {
 
 ## 兄弟组件通信
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/17cdbafa-43a9-4420-b977-60fc36696988/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T024433Z&X-Amz-Expires=86400&X-Amz-Signature=26f7a13ab3e090e272bd3708361bf144292db69cf97fa15ee230de6d8d0bec94&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwAlg1.png](https://s1.ax1x.com/2022/06/05/XwAlg1.png)
 
 ```javascript
 function Child(props) {
@@ -288,11 +288,11 @@ export default function App() {
 
 ```
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1e9db8a9-bfbe-4c41-835d-86d02a1175c0/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T030417Z&X-Amz-Expires=86400&X-Amz-Signature=d4482d5b4019396afb7fe0acf217af8ea2294c9dd816d91c5627307efd264831&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![XwAQ3R.png](https://s1.ax1x.com/2022/06/05/XwAQ3R.png)
 
 ## 使用Context维护全局状态
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/261495b3-da53-4339-829b-7c32be88f98b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T030421Z&X-Amz-Expires=86400&X-Amz-Signature=1b205a9d58812b77639e400f1867a35b0710c941293f359c23402d81f2aa1b3f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![XwA1jx.png](https://s1.ax1x.com/2022/06/05/XwA1jx.png)
 
 [useContext](https://zh-hans.reactjs.org/docs/hooks-reference.html#usecontext)
 

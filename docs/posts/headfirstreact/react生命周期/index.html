@@ -319,8 +319,8 @@
 </script>
 
   <div class="post-content"><h2 id="react15的生命周期">React15的生命周期<a hidden class="anchor" aria-hidden="true" href="#react15的生命周期">#</a></h2>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/31d79b95-119c-4f1b-a1b9-27bd97e21d67/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220603T004402Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=6b61da7c13944a45a0bd3c3501a13473545c59dda68c64f25c38aacc13ab08ff&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<p><a href="https://imgtu.com/i/XwkOjP"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkOjP.png" alt="XwkOjP.png"  />
+</a></p>
 <h3 id="mounting-阶段组件的初始化渲染挂载">Mounting 阶段：组件的初始化渲染（挂载）<a hidden class="anchor" aria-hidden="true" href="#mounting-阶段组件的初始化渲染挂载">#</a></h3>
 <p>挂载过程在组件的一生中<strong>仅会发生一次</strong>，在这个过程中，组件被<strong>初始化</strong>，然后会被渲染到真实 DOM 里，完成所谓的“<strong>首次渲染</strong>”。</p>
 <p>注意 render 在执行过程中并不会去操作真实 DOM（也就是说不会渲染），它的职能是把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。</p>
@@ -344,11 +344,11 @@
 <li>组件中设置了 key 属性，父组件在 render 的过程中，发现 key 值和上一次不一致，那么这个组件就会被干掉。</li>
 </ul>
 <h2 id="react16的生命周期">React16的生命周期<a hidden class="anchor" aria-hidden="true" href="#react16的生命周期">#</a></h2>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c8dc2724-74fa-4c41-8f14-59542f73200c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220603T015646Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=84ac11ac7251b4fc069bbacf9f633a315f308e585ac3a8dfa2b4a5e65cfa0d01&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<p><a href="https://imgtu.com/i/XwkLct"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkLct.png" alt="XwkLct.png"  />
+</a></p>
 <h3 id="mounting-阶段组件的初始化渲染挂载-1">Mounting 阶段：组件的初始化渲染（挂载）<a hidden class="anchor" aria-hidden="true" href="#mounting-阶段组件的初始化渲染挂载-1">#</a></h3>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/184ae6ea-23b2-44c6-9734-99e78ab6762a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220603T015821Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=b48d0689fac927896ad1136b352ea7df56b55628a74284e320f1efc085aee413&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<p><a href="https://imgtu.com/i/Xwkq1I"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwkq1I.png" alt="Xwkq1I.png"  />
+</a></p>
 <h4 id="认识-getderivedstatefrompropspropsstate">认识 getDerivedStateFromProps(props,state)<a hidden class="anchor" aria-hidden="true" href="#认识-getderivedstatefrompropspropsstate">#</a></h4>
 <p>getDerivedStateFromProps这个API，其设计的初衷不是试图替换掉<strong>componentWillMount ，<strong>而是试图替换掉componentWillReceiveProps，因此它</strong>有且仅有一个用途:使用 props 来派生/更新 state</strong></p>
 <p>getDerivedStateFromProps 是一个静态方法，静态方法不依赖组件实例而存在，因此你在这个方法内部是访问不到 this 的。</p>
@@ -377,11 +377,11 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>而是仅仅针对 fatherText 这个属性作更新（这里原有的 state 里没有 fatherText，因此直接新增）。更新后，原有属性与新属性是共存的，如下图所示：
-<img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b81c62c7-3430-4796-9df3-ca2d4bbb3195/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220603T020924Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=043c5a85b11a9cc9b2e0179409e1e2d8c2342eb493ca2fd4b2891a1e83db8efb&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<a href="https://imgtu.com/i/Xwk6h9"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwk6h9.png" alt="Xwk6h9.png"  />
+</a></p>
 <h3 id="updating-阶段组件的更新-1">Updating 阶段：组件的更新<a hidden class="anchor" aria-hidden="true" href="#updating-阶段组件的更新-1">#</a></h3>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/53ce7c09-192f-4e85-8af7-e1de531e067b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220603T021115Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=5dcff78fa243d7bb19b2946416eb979fe33f38452f23e8cc00363b67c1b7f6f1&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<p><a href="https://imgtu.com/i/Xwkb9A"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwkb9A.png" alt="Xwkb9A.png"  />
+</a></p>
 <p>React 16.4 的挂载和卸载流程都是与 React 16.3 保持一致的，差异在于更新流程上：</p>
 <p>在 React 16.4 中，任何因素触发的组件更新流程（包括由 this.setState 和 forceUpdate 触发的更新流程）都会触发 getDerivedStateFromProps；</p>
 <p>而在 v 16.3 版本时，只有父组件的更新会触发该生命周期。</p>
@@ -429,8 +429,8 @@
 <p>而 React 16 引入的 Fiber 架构，恰好能够解决掉这个风险：Fiber 会将一个大的更新任务拆解为许多个小任务。每当执行完一个小任务时，渲染线程都会把主线程交回去，看看有没有优先级更高的工作要处理，确保不会出现其他任务被“饿死”的情况，进而避免同步渲染带来的卡顿。在这个过程中，渲染线程不再“一去不回头”，而是可以被打断的，这就是所谓的“异步渲染”。</p>
 <h3 id="换个角度看生命周期工作流">换个角度看生命周期工作流<a hidden class="anchor" aria-hidden="true" href="#换个角度看生命周期工作流">#</a></h3>
 <p>Fiber 架构的重要特征就是可以被打断的异步渲染模式。但这个“打断”是有原则的，根据“能否被打断”这一标准，React 16 的生命周期被划分为了 <strong>render</strong> 和 <strong>commit</strong> 两个阶段，而 commit 阶段又被细分为了 pre-commit 和 commit。每个阶段所涵盖的生命周期如下图所示：</p>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/53ce7c09-192f-4e85-8af7-e1de531e067b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220603T021115Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=5dcff78fa243d7bb19b2946416eb979fe33f38452f23e8cc00363b67c1b7f6f1&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<p><a href="https://imgtu.com/i/Xwkb9A"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwkb9A.png" alt="Xwkb9A.png"  />
+</a></p>
 <p>总的来说，<strong>render 阶段在执行过程中允许被打断，而 commit 阶段则总是同步执行的</strong>。</p>
 <p>为什么这样设计呢？简单来说，由于 <strong>render 阶段的操作对用户来说其实是“不可见”的</strong>，所以就算打断再重启，对用户来说也是零感知。而 commit 阶段的操作则涉及真实 DOM 的渲染，再狂的框架也不敢在用户眼皮子底下胡乱更改视图，所以这个过程必须用同步渲染来求稳。</p>
 <h3 id="细说生命周期废旧立新背后的思考">细说生命周期“废旧立新”背后的思考<a hidden class="anchor" aria-hidden="true" href="#细说生命周期废旧立新背后的思考">#</a></h3>

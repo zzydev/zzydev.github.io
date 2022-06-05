@@ -113,12 +113,12 @@ export function createElement(type, config, children)
 
 ## createElement 函数拆解
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/967d1d14-07fe-4e8b-ab55-648f9dcf5503/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220602T222019Z&X-Amz-Expires=86400&X-Amz-Signature=dc1de1596f587803dd929f4fc9e482e6945af221946e2b14f7beb93bf12403df&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwkATe.png](https://s1.ax1x.com/2022/06/05/XwkATe.png)](https://imgtu.com/i/XwkATe)
 **createElement 的每一个步骤几乎都是在格式化数据**
 
 createElement 就像是开发者和 ReactElement 调用之间的一个**数据处理层**。它可以从开发者处接受相对简单的参数，然后将这些参数按照 ReactElement 的预期做一层格式化，最终通过调用 ReactElement 来实现元素的创建。整个过程如下图所示：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/50f93e1e-1fb6-41be-bb7b-2e2c68ccbd32/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220602T222119Z&X-Amz-Expires=86400&X-Amz-Signature=c615853228f941c6a630e8fd37a90fc8afd13e6ff64c53e264175a24b4a30996&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwkPOK.png](https://s1.ax1x.com/2022/06/05/XwkPOK.png)](https://imgtu.com/i/XwkPOK)
 
 ## 出参解读 初识虚拟 dom
 
@@ -148,7 +148,7 @@ const ReactElement = function (type, key, ref, self, source, owner, props) {
 
 ReactElement 把传入的参数按照一定的规范，“组装”进了 element 对象里，并把它返回给了 React.createElement，最终 React.createElement 又把它交回到了开发者手中。
 
-![avater](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/469796b1-f2cf-470a-b55b-b4bdebcefc06/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220602T222516Z&X-Amz-Expires=86400&X-Amz-Signature=621691eedbedd24d11dd5583909b39e296f97bc419b86fb04bf9883bf570acc4&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwkPOK.png](https://s1.ax1x.com/2022/06/05/XwkPOK.png)](https://imgtu.com/i/XwkPOK)
 
 想要验证这一点，可以打印输出 JSX 部分：
 
@@ -165,10 +165,17 @@ console.log(AppJSX);
 
 你会发现它确实是一个标准的 ReactElement 对象实例，如下图：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/794477dc-1da9-4f61-a027-4468d2d57281/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220602T230949Z&X-Amz-Expires=86400&X-Amz-Signature=7a8c00f240bc4c7218678da92193b7c1c5f86fc424670617c0a71acd26efe21c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwkkwD.png](https://s1.ax1x.com/2022/06/05/XwkkwD.png)](https://imgtu.com/i/XwkkwD)
 
 这个 ReactElement 对象实例，本质上是 **以 JavaScript 对象形式存在的对 DOM 的描述** ，也就是 **虚拟 DOM 中的一个节点** 。
 
 **“虚拟 DOM”**需要通过 `ReactDOM.render`方法变成**渲染到页面上的真实 DOM**
 
 在每一个 React 项目的入口文件中，都少不了对 `ReactDOM.render` 函数的调用。
+
+
+
+
+
+
+

@@ -5,7 +5,7 @@ draft: true
 author: ["zzydev"]
 ---
 ## React15的生命周期
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/31d79b95-119c-4f1b-a1b9-27bd97e21d67/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T004402Z&X-Amz-Expires=86400&X-Amz-Signature=6b61da7c13944a45a0bd3c3501a13473545c59dda68c64f25c38aacc13ab08ff&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwkOjP.png](https://s1.ax1x.com/2022/06/05/XwkOjP.png)](https://imgtu.com/i/XwkOjP)
 
 ### Mounting 阶段：组件的初始化渲染（挂载）
 挂载过程在组件的一生中**仅会发生一次**，在这个过程中，组件被**初始化**，然后会被渲染到真实 DOM 里，完成所谓的“**首次渲染**”。
@@ -42,11 +42,11 @@ React 组件会根据 shouldComponentUpdate 的返回值，来决定是否执行
 
 ## React16的生命周期
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c8dc2724-74fa-4c41-8f14-59542f73200c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T015646Z&X-Amz-Expires=86400&X-Amz-Signature=84ac11ac7251b4fc069bbacf9f633a315f308e585ac3a8dfa2b4a5e65cfa0d01&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwkLct.png](https://s1.ax1x.com/2022/06/05/XwkLct.png)](https://imgtu.com/i/XwkLct)
 
 ### Mounting 阶段：组件的初始化渲染（挂载）
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/184ae6ea-23b2-44c6-9734-99e78ab6762a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T015821Z&X-Amz-Expires=86400&X-Amz-Signature=b48d0689fac927896ad1136b352ea7df56b55628a74284e320f1efc085aee413&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![Xwkq1I.png](https://s1.ax1x.com/2022/06/05/Xwkq1I.png)](https://imgtu.com/i/Xwkq1I)
 
 #### 认识 getDerivedStateFromProps(props,state)
 
@@ -72,10 +72,10 @@ this.state = { text: "子组件的文本" };
 ```
 
 而是仅仅针对 fatherText 这个属性作更新（这里原有的 state 里没有 fatherText，因此直接新增）。更新后，原有属性与新属性是共存的，如下图所示：
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b81c62c7-3430-4796-9df3-ca2d4bbb3195/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T020924Z&X-Amz-Expires=86400&X-Amz-Signature=043c5a85b11a9cc9b2e0179409e1e2d8c2342eb493ca2fd4b2891a1e83db8efb&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![Xwk6h9.png](https://s1.ax1x.com/2022/06/05/Xwk6h9.png)](https://imgtu.com/i/Xwk6h9)
 
 ### Updating 阶段：组件的更新
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/53ce7c09-192f-4e85-8af7-e1de531e067b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T021115Z&X-Amz-Expires=86400&X-Amz-Signature=5dcff78fa243d7bb19b2946416eb979fe33f38452f23e8cc00363b67c1b7f6f1&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![Xwkb9A.png](https://s1.ax1x.com/2022/06/05/Xwkb9A.png)](https://imgtu.com/i/Xwkb9A)
 
 React 16.4 的挂载和卸载流程都是与 React 16.3 保持一致的，差异在于更新流程上：
 
@@ -123,7 +123,7 @@ componentDidUpdate(prevProps, prevState, valueFromSnapshot) {
 
 Fiber 架构的重要特征就是可以被打断的异步渲染模式。但这个“打断”是有原则的，根据“能否被打断”这一标准，React 16 的生命周期被划分为了 **render** 和 **commit** 两个阶段，而 commit 阶段又被细分为了 pre-commit 和 commit。每个阶段所涵盖的生命周期如下图所示：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/53ce7c09-192f-4e85-8af7-e1de531e067b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T021115Z&X-Amz-Expires=86400&X-Amz-Signature=5dcff78fa243d7bb19b2946416eb979fe33f38452f23e8cc00363b67c1b7f6f1&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![Xwkb9A.png](https://s1.ax1x.com/2022/06/05/Xwkb9A.png)](https://imgtu.com/i/Xwkb9A)
 
 总的来说，**render 阶段在执行过程中允许被打断，而 commit 阶段则总是同步执行的**。
 

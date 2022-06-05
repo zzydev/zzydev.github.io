@@ -31,7 +31,7 @@ cover:
 
 区别就在于多出了一层虚拟 DOM 作为缓冲层。这个缓冲层带来的利好是：当 DOM 操作（渲染更新）比较频繁时，它会先将前后两次的虚拟 DOM 树进行对比，定位出具体需要更新的部分，生成一个“补丁集”，最后只把“补丁”打在需要更新的那部分真实 DOM 上，实现精准的“差量更新”。这个过程对应的虚拟 DOM 工作流如下图所示：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7c7b9a6b-69ef-4a9a-bf73-3c80ec1c26ba/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T120251Z&X-Amz-Expires=86400&X-Amz-Signature=97806e5ee97f48c6cdcf3f406ca5c86dbd8fc85a16d2ac40a7c92cad1389d1fe&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwmNp4.png](https://s1.ax1x.com/2022/06/05/XwmNp4.png)](https://imgtu.com/i/XwmNp4)
 
 ## React 选用虚拟 DOM，真的是为了更好的性能吗？
 
@@ -44,4 +44,4 @@ cover:
 1. **研发体验/研发效率**的问题：这一点前面已经反复强调过，DOM 操作模式的每一次革新，背后都是前端对效率和体验的进一步追求。虚拟 DOM 的出现，为数据驱动视图这一思想提供了高度可用的载体，使得前端开发能够**基于函数式 UI 的编程方式实现高效的声明式编程**。
 2. **跨平台**的问题：虚拟 DOM 是对真实渲染内容的一层抽象。若没有这一层抽象，那么视图层将和渲染平台紧密耦合在一起，为了描述同样的视图内容，你可能要分别在 Web 端和 Native 端写完全不同的两套甚至多套代码。但现在中间多了一层描述性的虚拟 DOM，它描述的东西可以是真实 DOM，也可以是iOS 界面、安卓界面、小程序......同一套虚拟 DOM，可以对接不同平台的渲染逻辑，从而实现“一次编码，多端运行”，如下图所示。其实说到底，跨平台也是研发提效的一种手段，它在思想上和1是高度呼应的。
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ae6caa0e-fb8c-4d99-bebc-15490a92cb6d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T120426Z&X-Amz-Expires=86400&X-Amz-Signature=2a9f135aa1652934d860f3e9a5fdd8dd7c9571fd678a7c3b1d1c83be63af5a42&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwmU1J.png](https://s1.ax1x.com/2022/06/05/XwmU1J.png)](https://imgtu.com/i/XwmU1J)

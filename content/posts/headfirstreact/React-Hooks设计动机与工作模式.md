@@ -28,7 +28,7 @@ React 框架的主要工作，就是及时地把声明式的代码转换为命�
 
 如果你在这个[在线 Demo](https://codesandbox.io/s/pjqnl16lm7)中尝试点击基于类组件形式编写的 ProfilePage 按钮后 3s 内把用户切换为 Sophie，你就会看到如下图所示的效果：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a065cbd6-ac26-49c5-a6a7-c931a4867b84/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T032248Z&X-Amz-Expires=86400&X-Amz-Signature=814f17b896135d445ce63e2e2b00f4e059b461869f66700fe51066acddee6d96&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![XwAcVS.png](https://s1.ax1x.com/2022/06/05/XwAcVS.png)
 
 明明我们是在 Dan 的主页点击的关注，结果却提示了“Followed Sophie”！
 

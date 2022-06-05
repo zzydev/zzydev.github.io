@@ -465,12 +465,12 @@
 <li>children：以对象形式传入，它记录的是组件标签之间嵌套的内容，也就是所谓的“子节点”“子元素”。</li>
 </ul>
 <h2 id="createelement-函数拆解">createElement 函数拆解<a hidden class="anchor" aria-hidden="true" href="#createelement-函数拆解">#</a></h2>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/967d1d14-07fe-4e8b-ab55-648f9dcf5503/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220602T222019Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=dc1de1596f587803dd929f4fc9e482e6945af221946e2b14f7beb93bf12403df&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-
+<p><a href="https://imgtu.com/i/XwkATe"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkATe.png" alt="XwkATe.png"  />
+</a>
 <strong>createElement 的每一个步骤几乎都是在格式化数据</strong></p>
 <p>createElement 就像是开发者和 ReactElement 调用之间的一个<strong>数据处理层</strong>。它可以从开发者处接受相对简单的参数，然后将这些参数按照 ReactElement 的预期做一层格式化，最终通过调用 ReactElement 来实现元素的创建。整个过程如下图所示：</p>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/50f93e1e-1fb6-41be-bb7b-2e2c68ccbd32/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220602T222119Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=c615853228f941c6a630e8fd37a90fc8afd13e6ff64c53e264175a24b4a30996&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<p><a href="https://imgtu.com/i/XwkPOK"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkPOK.png" alt="XwkPOK.png"  />
+</a></p>
 <h2 id="出参解读-初识虚拟-dom">出参解读 初识虚拟 dom<a hidden class="anchor" aria-hidden="true" href="#出参解读-初识虚拟-dom">#</a></h2>
 <p>ReactElement 源码：</p>
 <div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
@@ -518,8 +518,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>ReactElement 把传入的参数按照一定的规范，“组装”进了 element 对象里，并把它返回给了 React.createElement，最终 React.createElement 又把它交回到了开发者手中。</p>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/469796b1-f2cf-470a-b55b-b4bdebcefc06/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220602T222516Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=621691eedbedd24d11dd5583909b39e296f97bc419b86fb04bf9883bf570acc4&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avater"  />
-</p>
+<p><a href="https://imgtu.com/i/XwkPOK"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkPOK.png" alt="XwkPOK.png"  />
+</a></p>
 <p>想要验证这一点，可以打印输出 JSX 部分：</p>
 <div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -544,8 +544,8 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>你会发现它确实是一个标准的 ReactElement 对象实例，如下图：</p>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/794477dc-1da9-4f61-a027-4468d2d57281/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220602T230949Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=7a8c00f240bc4c7218678da92193b7c1c5f86fc424670617c0a71acd26efe21c&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
-</p>
+<p><a href="https://imgtu.com/i/XwkkwD"><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkkwD.png" alt="XwkkwD.png"  />
+</a></p>
 <p>这个 ReactElement 对象实例，本质上是 <strong>以 JavaScript 对象形式存在的对 DOM 的描述</strong> ，也就是 <strong>虚拟 DOM 中的一个节点</strong> 。</p>
 <p><strong>“虚拟 DOM”<strong>需要通过 <code>ReactDOM.render</code>方法变成</strong>渲染到页面上的真实 DOM</strong></p>
 <p>在每一个 React 项目的入口文件中，都少不了对 <code>ReactDOM.render</code> 函数的调用。</p>

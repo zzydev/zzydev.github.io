@@ -46,11 +46,13 @@ React 团队结合设计层面的一些推导，总结了以下两个规律， �
 
 > 需要注意的是：虽然栈调和将传统的树对比算法优化为了分层对比，但整个算法仍然是以递归的形式运转的，**分层递归也是递归**
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e52df881-b17f-4756-995b-bf85d90c899c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T123621Z&X-Amz-Expires=86400&X-Amz-Signature=e5a6ccd7f54223d7566066eaacebcdbc955f5f1c9e11ac93807c98d42bdc3d61&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
 
-那么如果真的发生了跨层级的节点操作（比如将以 B 节点为根节点的子树从 A 节点下面移动到 C 节点下面，如下图所示）会怎样呢？很遗憾，作为“次要矛盾”，在这种情况下 React 并不能够判断出“移动”这个行为，它只能机械地认为移出子树那一层的组件消失了，对应子树需要被销毁；而移入子树的那一层新增了一个组件，需要重新为其创建一棵子树。
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9e6da630-61be-4fea-bddb-fe85a2a18441/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T123723Z&X-Amz-Expires=86400&X-Amz-Signature=a9e89cf288afed63d0cb27d807881d42ff9e8e60290916c2e9c63aa104d46aa0&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwuGz4.png](https://s1.ax1x.com/2022/06/05/XwuGz4.png)](https://imgtu.com/i/XwuGz4)
+
+[那么如果真的发生了跨层级的节点操作（比如将以 B 节点为根节点的子树从 A 节点下面移动到 C 节点下面，如下图所示）会怎样呢？很遗憾，作为“次要矛盾”，在这种情况下 React 并不能够判断出“移动”这个行为，它只能机械地认为移出子树那一层的组件消失了，对应子树需要被销毁；而移入子树的那一层新增了一个组件，需要重新为其创建一棵子树。
+
+[![Xwuwo6.png](https://s1.ax1x.com/2022/06/05/Xwuwo6.png)](https://imgtu.com/i/Xwuwo6)
 
 **销毁 + 重建的代价是昂贵的，因此 React 官方也建议开发者不要做跨层级的操作，尽量保持 DOM 结构的稳定性。**
 
@@ -62,7 +64,7 @@ React 团队结合设计层面的一些推导，总结了以下两个规律， �
 
 这样一来，便能够从很大程度上减少 Diff 过程中冗余的递归操作。
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4c3bd665-9b08-4735-844e-71ec89e6f069/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T123901Z&X-Amz-Expires=86400&X-Amz-Signature=ace33054b9abcae88c382ba49c2706b00ec647b136e3327036e0dc0d1e3f9929&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![Xwuty9.png](https://s1.ax1x.com/2022/06/05/Xwuty9.png)](https://imgtu.com/i/Xwuty9)
 
 ### 3. 重用节点的好帮手：key 属性帮 React “记住”节点
 
@@ -70,7 +72,7 @@ React 团队结合设计层面的一些推导，总结了以下两个规律， �
 
 它试图解决的是**同一层级下节点的重用**问题。在展开分析之前，我们先结合到现在为止对 Diff 过程的理解，来思考这样一种情况，如下图所示：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/652a7d82-d5d4-4e23-9f44-47d39447720a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T124136Z&X-Amz-Expires=86400&X-Amz-Signature=f728f19b8394522f47453351e39a42e1f13c5f562ee2def99170e73f0ad0e06a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![Xwuae1.png](https://s1.ax1x.com/2022/06/05/Xwuae1.png)](https://imgtu.com/i/Xwuae1)
 
 图中 A 组件在保持类型和其他属性均不变的情况下，在两个子节点（B 和 D）之间插入了一个新的节点（C）。按照已知的 Diff 原则，两棵树之间的 Diff 过程应该是这样的：
 
@@ -94,7 +96,7 @@ const todoItems = todos.map((todo) =>
 
 如果你忘记写 key，React 虽然不至于因此报错，但控制台标红是难免的，它会给你抛出一个“请给列表元素补齐 key 属性”的 warning，这个常见的 warning 也从侧面反映出了 key 的重要性。事实上，当我们没有设定 key 值的时候，Diff 的过程就正如上文所描述的一样惨烈。但只要你按照规范加装一个合适的 key，这个 key 就会像一个记号一样，帮助 React “记住”某一个节点，从而在后续的更新中实现对这个节点的追踪。比如说刚刚那棵虚拟 DOM 树，若我们给位于第 2 层的每一个子节点一个 key 值，如下图所示：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/68a50093-f1d5-44f6-9061-e56a3de2644b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T124519Z&X-Amz-Expires=86400&X-Amz-Signature=fa8faaecb63300c71504f75d3b82d50ea3002ad8c47da0366797859777b98589&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwuNLR.png](https://s1.ax1x.com/2022/06/05/XwuNLR.png)](https://imgtu.com/i/XwuNLR)
 
 这个 key 就充当了每个节点的 ID（唯一标识），有了这个标识之后，当 C 被插入到 B 和 D 之间时，React 并不会再认为 C、D、E 这三个坑位都需要被重建——它会通过识别 ID，意识到 D 和 E 并没有发生变化（D 的 ID 仍然是 1，E 的 ID 仍然是 2），而只是被调整了顺序而已。接着，React 便能够轻松地重用它“追踪”到旧的节点，将 D 和 E 转移到新的位置，并完成对 C 的插入。这样一来，同层级下元素的操作成本便大大降低。
 

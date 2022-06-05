@@ -288,7 +288,7 @@
   <div class="post-content"><h2 id="函数组件会捕获-render-内部的状态这是两类组件最大的不同">函数组件会捕获 render 内部的状态，这是两类组件最大的不同。<a hidden class="anchor" aria-hidden="true" href="#函数组件会捕获-render-内部的状态这是两类组件最大的不同">#</a></h2>
 <p>React 框架的主要工作，就是及时地把声明式的代码转换为命令式的 DOM 操作，把数据层面的描述映射到用户可见的 UI 变化中去。这就意味着从原则上来讲，React 的数据应该总是紧紧地和渲染绑定在一起的，而类组件做不到这一点。</p>
 <p>如果你在这个<a href="https://codesandbox.io/s/pjqnl16lm7">在线 Demo</a>中尝试点击基于类组件形式编写的 ProfilePage 按钮后 3s 内把用户切换为 Sophie，你就会看到如下图所示的效果：</p>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a065cbd6-ac26-49c5-a6a7-c931a4867b84/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220603T032248Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=814f17b896135d445ce63e2e2b00f4e059b461869f66700fe51066acddee6d96&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
+<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwAcVS.png" alt="XwAcVS.png"  />
 </p>
 <p>明明我们是在 Dan 的主页点击的关注，结果却提示了“Followed Sophie”！</p>
 <p>这个现象必然让许多人感到困惑：user 的内容是通过 props 下发的，props 作为不可变值，为什么会从 Dan 变成 Sophie 呢？</p>

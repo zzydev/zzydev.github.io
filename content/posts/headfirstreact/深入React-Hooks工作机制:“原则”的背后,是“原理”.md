@@ -73,11 +73,14 @@ function PersonalInfoComponent() {
 export default PersonalInfoComponent;
 ```
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/73be18d2-3716-4739-997c-14df3560691a/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T105825Z&X-Amz-Expires=86400&X-Amz-Signature=07b5a65bbf47fe9caa7bf998254f343ac5c46673e975befb6ad3dd559e8d649f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![XwAh2n.png](https://s1.ax1x.com/2022/06/05/XwAh2n.png)
+
 ## Hooks 的正常运作，在底层依赖于顺序链表
+
 ### 以 useState 为例，分析 React-Hooks 的调用链路
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c79d4b2a-05f5-48f1-87e6-f84c52780049/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T094359Z&X-Amz-Expires=86400&X-Amz-Signature=3d1ac0185135bfd63bd4109d67f4e2e9a35a9657d19745ba34e2267e228eb59c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+
+[![XwA4vq.png](https://s1.ax1x.com/2022/06/05/XwA4vq.png)](https://imgtu.com/i/XwA4vq)
 
 在这个流程中，useState 触发的一系列操作最后会落到 mountState 里面去，所以我们重点需要关注的就是 mountState 做了什么事情。
 
@@ -143,7 +146,7 @@ function mountWorkInProgressHook() {
 
 接下来我们再看更新过程的大图：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c7e99b26-7268-4cc1-b0f5-b8d1aecd4414/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T095442Z&X-Amz-Expires=86400&X-Amz-Signature=fdfc7a70eb7a7af47dc952302ec461637fb4a41d9c471f34756fffdcbcbf2182&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwA25Q.png](https://s1.ax1x.com/2022/06/05/XwA25Q.png)](https://imgtu.com/i/XwA25Q)
 
 根据图中高亮部分的提示不难看出，首次渲染和更新渲染的区别，在于**调用的是 `mountState`，还是 `updateState`。mountState 做了什么**，你已经非常清楚了；而 updateState 之后的操作链路，虽然涉及的代码有很多，但其实做的事情很容易理解：**按顺序去遍历之前构建好的链表，取出对应的数据信息进行渲染。**
 
@@ -164,7 +167,9 @@ function mountWorkInProgressHook() {
 
 ```
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/cf270e9e-4874-4eeb-a2cd-23102d391638/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T111538Z&X-Amz-Expires=86400&X-Amz-Signature=71f80302aa3de1b40a0784c61abbf7593d2c3d65a85a1023485a73fe5b113e1b&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwAgUg.png](https://s1.ax1x.com/2022/06/05/XwAgUg.png)](https://imgtu.com/i/XwAgUg)
+
+
 
 当首次渲染结束，进行二次渲染的时候，实际发生的 useState 调用只有一个：
 
@@ -174,10 +179,10 @@ useState("我是一个前端，爱吃小熊饼干")
 
 链表此时的状态如下图所示：
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/8cb8ec30-6428-43dc-8912-0812348bcb61/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T113613Z&X-Amz-Expires=86400&X-Amz-Signature=e0b48f0afda5c85bf98af1421a971d181178035a6003c5a16d7c196baec955ff&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject" alt="avatar" style="zoom:50%;" />
+[![XwAWCj.png](https://s1.ax1x.com/2022/06/05/XwAWCj.png)](https://imgtu.com/i/XwAWCj)
 
 更新（二次渲染）的时候会发生什么事情：updateState 会依次遍历链表、读取数据并渲染。注意这个过程就像从数组中依次取值一样，是完全按照顺序（或者说索引）来的。因此 React 不会看你命名的变量名是 career 还是别的什么，它只认你这一次 useState 调用，于是它会认为：你想要的是第一个位置的 hook **。
 
 然后就会有下面这样的效果：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/75377153-9997-4e7f-ada4-c74fe61b8074/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220603%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220603T114632Z&X-Amz-Expires=86400&X-Amz-Signature=246c6a2625e23a6b1affb8deef09627475b88e6f99fb3da7bc45c681186edf71&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+[![XwAf8s.png](https://s1.ax1x.com/2022/06/05/XwAf8s.png)](https://imgtu.com/i/XwAf8s)
