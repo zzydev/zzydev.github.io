@@ -10,7 +10,7 @@
 <meta name="description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 class Solution { public: vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) { sort(nums.begin(),nums.end()); vector&lt;vector&lt;int&gt;&gt; res; for (int i = 0; i &lt; nums.size(); i &#43;&#43;) { if (i &amp;&amp; nums[i] == nums[i - 1]) continue; for (int j = i &#43; 1; j &lt; nums.size(); j &#43;&#43;) { if (j &gt;">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/leetcode/lc18_%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.7e17824bf04d638a59aa6c81204b9347ece143f1d755450e2aa47b1cfbb89d1d.css" integrity="sha256-fheCS/BNY4pZqmyBIEuTR&#43;zhQ/HXVUUOKqR7HPu4nR0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4d9d2017acb982930d52dfb0321d713175fa9862a769f5e546518d8055573cf6.css" integrity="sha256-TZ0gF6y5gpMNUt&#43;wMh1xMXX6mGKnafXlRlGNgFVXPPY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
@@ -25,6 +25,34 @@
         #theme-toggle,
         .top-link {
             display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
         }
 
     </style>
@@ -104,6 +132,10 @@
 <body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark');
     }
 
@@ -260,15 +292,16 @@
       <li><a href="https://zzydev.top/tags/medium/">medium</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://zzydev.top/posts/leetcode/lc19_%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E7%BB%93%E7%82%B9/">
+  
+  <a class="prev" href="https://zzydev.top/posts/headfirstreact/setstate%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/">
     <span class="title">« Prev</span>
     <br>
-    <span>Lc19_删除链表的倒数第N个结点</span>
+    <span>SetState到底是同步的还是异步的？</span>
   </a>
-  <a class="next" href="https://zzydev.top/posts/headfirstreact/setstate%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/">
+  <a class="next" href="https://zzydev.top/posts/leetcode/lc19_%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E7%BB%93%E7%82%B9/">
     <span class="title">Next »</span>
     <br>
-    <span>SetState到底是同步的还是异步的？</span>
+    <span>Lc19_删除链表的倒数第N个结点</span>
   </a>
 </nav>
 

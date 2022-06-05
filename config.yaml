@@ -38,8 +38,8 @@ languages:
     profileMode:
       enabled: true
       title: (づ｡◕‿‿◕｡)づ
-      subtitle: '<span style="color:purple">if let</span> <span style="color:brown">小姐姐
-❤️</span> = <span style="color:brown">性别</span> { <span style="color:gray">太太，你也不想我得不到这份工作吧? </span>} <span style="color:purple">else</span> { <span style="color:gray">你看我还有机会吗? </span>}'
+      subtitle: '<span style="color:purple">if let</span> <span style="color:brown">小姐姐❤️
+</span> = <span style="color:brown">visitor</span> { <span style="color:gray">太太，你也不想我得不到这份工作吧 </span>} <span style="color:purple">else</span> { <span style="color:gray">你看我还有机会吗 </span>}'
       imageUrl: image/chance.gif
       imageTitle:
       imageWidth: 150
@@ -107,7 +107,7 @@ params:
   author: zzydev
   # author: ["Me", "You"] # multiple authors
 
-  defaultTheme: light # defaultTheme: light or  dark or auto
+  defaultTheme: auto # defaultTheme: light or  dark or auto
   disableThemeToggle: false
   DateFormat: "2006-01-02"
   ShowShareButtons: true

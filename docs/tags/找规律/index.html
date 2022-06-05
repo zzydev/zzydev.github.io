@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/tags/%E6%89%BE%E8%A7%84%E5%BE%8B/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.7e17824bf04d638a59aa6c81204b9347ece143f1d755450e2aa47b1cfbb89d1d.css" integrity="sha256-fheCS/BNY4pZqmyBIEuTR&#43;zhQ/HXVUUOKqR7HPu4nR0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4d9d2017acb982930d52dfb0321d713175fa9862a769f5e546518d8055573cf6.css" integrity="sha256-TZ0gF6y5gpMNUt&#43;wMh1xMXX6mGKnafXlRlGNgFVXPPY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
 <link rel="icon" type="image/png" sizes="16x16" href="https://zzydev.top/image/chance.gif">
 <link rel="icon" type="image/png" sizes="32x32" href="https://zzydev.top/image/chance.gif">
@@ -24,6 +24,34 @@
         #theme-toggle,
         .top-link {
             display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
         }
 
     </style>
@@ -41,6 +69,10 @@
 <body class="list" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark');
     }
 

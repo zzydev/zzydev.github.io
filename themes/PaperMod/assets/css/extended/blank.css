@@ -202,3 +202,292 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
       font-size: 18px;
   }
 }
+
+
+
+.github {
+    border: 1px solid ;
+    border-radius: 3px;
+    border-color: rgb(50, 48, 48);
+    margin: 0 auto;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+.github .github-icon {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.5em;
+    margin-bottom: 0.2em;
+    fill: rgb(171, 167, 167);
+    transition: all .5s;
+}
+.github .name {
+    font-weight: bold;
+    color: #0fb8ca;
+    text-decoration: none;
+}
+.description {
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+        color: rgb(171, 167, 167);
+        text-align: justify;
+        font-size: 90%;
+        transition: all .5s;
+}
+.language-color {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        width: 0.75em;
+        height: 0.75em;
+        border-radius: 50%;
+}
+.language-name {
+        color: rgb(171, 167, 167);
+        font-size: 90%;
+        margin-left: 0.5em;
+        transition: all .5s;
+}
+
+
+
+
+
+.notice {
+  position: relative;
+  padding: 1em 1em 1em 2.5em;
+  margin-bottom: 1em;
+  border-radius: 4px;
+}
+.notice p:last-child {
+  margin-bottom: 0;
+}
+.notice .notice-title {
+  position: absolute;
+  left: 0.8em;
+}
+.notice .notice-title .notice-icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+.notice.notice-warning {
+  background: hsla(0, 65%, 65%, 0.15);
+  border-left: 5px solid #e06c6c;
+}
+.notice.notice-warning .notice-title {
+  color:hsl(0, 65%, 65%);
+  fill: hsl(0, 65%, 65%);
+}
+.notice.notice-info {
+  background: rgba(240, 179, 117, 0.15);
+  border-left: 5px solid #f0b375;
+}
+.notice.notice-info .notice-title {
+  color: #f0b375;
+  fill: hsl(30, 25%, 35%);
+}
+.notice.notice-note {
+  background: rgba(108, 185, 224, 0.15);
+  border-left: 5px solid #6cb9e0;
+}
+.notice.notice-note .notice-title {
+  color: #6cb9e0;
+  fill: hsl(200, 25%, 35%);
+}
+.notice.notice-tip {
+  background: rgba(108, 224, 146, 0.15);
+  border-left: 5px solid #6ce092;
+}
+.notice.notice-tip .notice-title {
+  color: #6ce092;
+  fill: hsl(140, 25%, 35%);
+}
+[data-theme="dark"] .notice.notice-warning {
+  background: rgba(112, 67, 67, 0.15);
+  border-left: 5px solid #704343;
+}
+[data-theme="dark"] .notice.notice-warning .notice-title {
+  color: #704343;
+}
+[data-theme="dark"] .notice.notice-info {
+  background: rgba(112, 89, 67, 0.15);
+  border-left: 5px solid #705943;
+}
+[data-theme="dark"] .notice.notice-info .notice-title {
+  color: #705943;
+}
+[data-theme="dark"] .notice.notice-note {
+  background: rgba(67, 97, 112, 0.15);
+  border-left: 5px solid #436170;
+}
+[data-theme="dark"] .notice.notice-note .notice-title {
+  color: #436170;
+}
+[data-theme="dark"] .notice.notice-tip {
+  background: rgba(67, 112, 82, 0.15);
+  border-left: 5px solid #437052;
+}
+[data-theme="dark"] .notice.notice-tip .notice-title {
+  color: #437052;
+}
+
+
+.simple-notice {
+  position: relative;
+  padding: 1em 0 1em 2em;
+  margin-bottom: 1em;
+  transition: all 0.5s;
+}
+.simple-notice p:last-child {
+  margin-bottom: 0;
+}
+.simple-notice .simple-notice-title {
+  position: absolute;
+  left: 0.8em;
+}
+.simple-notice .simple-notice-title .simple-notice-icon {
+  width: 1em;
+  height: 1em;
+  margin-left: -0.8em;
+}
+.simple-notice.simple-notice-warning {
+  border-top: 2px solid #b30000;
+  color: #b30000;
+}
+.simple-notice.simple-notice-warning .simple-notice-title {
+  color: #b30000;
+  fill: #b30000
+}
+.simple-notice.simple-notice-warning a {
+  color: #b30000;
+  text-decoration-color: #b30000;
+}
+.simple-notice.simple-notice-info {
+  border-top: 2px solid #cf9117;
+  color: #cf9117;
+}
+.simple-notice.simple-notice-info .simple-notice-title {
+  color: #cf9117;
+  fill:#cf9117;
+}
+.simple-notice.simple-notice-info a {
+  color: #cf9117;
+  text-decoration-color: #cf9117;
+}
+.simple-notice.simple-notice-note {
+  border-top: 2px solid #004080;
+  color: #004080;
+}
+.simple-notice.simple-notice-note .simple-notice-title {
+  color: #004080;
+  fill: #004080;
+}
+.simple-notice.simple-notice-note a {
+  color: #004080;
+  text-decoration-color: #004080;
+}
+.simple-notice.simple-notice-tip {
+  border-top: 2px solid #008040;
+  color: #008040;
+}
+.simple-notice.simple-notice-tip .simple-notice-title {
+  color: #008040;
+  fill: #008040;
+}
+.simple-notice.simple-notice-tip a {
+  color: #008040;
+  text-decoration-color: #008040;
+}
+[data-theme="dark"] .simple-notice.simple-notice-warning {
+  border-top: 2px solid #e06c6c;
+  color: #e06c6c;
+}
+[data-theme="dark"] .simple-notice.simple-notice-warning .simple-notice-title {
+  color: #e06c6c;
+}
+[data-theme="dark"] .simple-notice.simple-notice-warning a {
+  color: #e06c6c;
+  text-decoration-color: #e06c6c;
+}
+[data-theme="dark"] .simple-notice.simple-notice-info {
+  border-top: 2px solid #f0b375;
+  color: #f0b375;
+}
+[data-theme="dark"] .simple-notice.simple-notice-info .simple-notice-title {
+  color: #f0b375;
+}
+[data-theme="dark"] .simple-notice.simple-notice-info a {
+  color: #f0b375;
+  text-decoration-color: #f0b375;
+}
+[data-theme="dark"] .simple-notice.simple-notice-note {
+  border-top: 2px solid #6cb9e0;
+  color: #6cb9e0;
+}
+[data-theme="dark"] .simple-notice.simple-notice-note .simple-notice-title {
+  color: #6cb9e0;
+}
+[data-theme="dark"] .simple-notice.simple-notice-note a {
+  color: #6cb9e0;
+  text-decoration-color: #6cb9e0;
+}
+[data-theme="dark"] .simple-notice.simple-notice-tip {
+  border-top: 2px solid #6ce092;
+  color: #6ce092;
+}
+[data-theme="dark"] .simple-notice.simple-notice-tip .simple-notice-title {
+  color: #6ce092;
+}
+[data-theme="dark"] .simple-notice.simple-notice-tip a {
+  color: #6ce092;
+  text-decoration-color: #6ce092;
+}
+
+
+
+
+
+
+blockquote.quote {
+  position: relative;
+  margin: 2em auto;
+  padding-left: 3em;
+  border: none;
+}
+blockquote.quote::before {
+  position: absolute;
+  left: 0;
+  content: '“';
+  color: gray;
+  font-family: 'Arial','JetBrains Mono', 'Amstelvar', 'Noto Serif SC', serif;
+  font-size: 3em;
+  font-weight: bold;
+  line-height: 1;
+}
+blockquote.quote.poetry {
+  display: table;
+  padding: 0;
+}
+blockquote.quote.poetry::before {
+  left: -1em;
+}
+blockquote.quote.poetry p:last-child {
+  margin: 0;
+}
+blockquote.quote.en p {
+  line-height: 1.618;
+  text-align: left;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+}
+@media (max-width: 600px) {
+  blockquote.quote.poetry {
+    padding-left: 3em;
+ }
+  blockquote.quote.poetry::before {
+    left: 0;
+ }
+}
+
+

@@ -10,7 +10,7 @@
 <meta name="description" content="题解： 模拟加法过程： 举个 🌰：我们计算 abc &#43; efg，我们应该先计算 c &#43; g 如果结果大于等于 10 则进 1，然后继续计算 b &#43; f 再加上之前的 进位 。 也就是说，">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/leetcode/lc02_%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.7e17824bf04d638a59aa6c81204b9347ece143f1d755450e2aa47b1cfbb89d1d.css" integrity="sha256-fheCS/BNY4pZqmyBIEuTR&#43;zhQ/HXVUUOKqR7HPu4nR0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4d9d2017acb982930d52dfb0321d713175fa9862a769f5e546518d8055573cf6.css" integrity="sha256-TZ0gF6y5gpMNUt&#43;wMh1xMXX6mGKnafXlRlGNgFVXPPY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
@@ -25,6 +25,34 @@
         #theme-toggle,
         .top-link {
             display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
         }
 
     </style>
@@ -104,6 +132,10 @@
 <body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark');
     }
 
@@ -359,15 +391,16 @@
       <li><a href="https://zzydev.top/tags/medium/">medium</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://zzydev.top/posts/leetcode/lc03_%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">
+  
+  <a class="prev" href="https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
     <span class="title">« Prev</span>
     <br>
-    <span>Lc03_无重复字符的最长子串</span>
+    <span>React生命周期</span>
   </a>
-  <a class="next" href="https://zzydev.top/posts/headfirstreact/react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+  <a class="next" href="https://zzydev.top/posts/leetcode/lc03_%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">
     <span class="title">Next »</span>
     <br>
-    <span>React生命周期</span>
+    <span>Lc03_无重复字符的最长子串</span>
   </a>
 </nav>
 

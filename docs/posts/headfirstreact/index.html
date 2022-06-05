@@ -10,7 +10,7 @@
 <meta name="description" content="HeadFirstReact - 人类低质量男性求职准备">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/headfirstreact/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.7e17824bf04d638a59aa6c81204b9347ece143f1d755450e2aa47b1cfbb89d1d.css" integrity="sha256-fheCS/BNY4pZqmyBIEuTR&#43;zhQ/HXVUUOKqR7HPu4nR0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4d9d2017acb982930d52dfb0321d713175fa9862a769f5e546518d8055573cf6.css" integrity="sha256-TZ0gF6y5gpMNUt&#43;wMh1xMXX6mGKnafXlRlGNgFVXPPY=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
 <link rel="icon" type="image/png" sizes="16x16" href="https://zzydev.top/image/chance.gif">
 <link rel="icon" type="image/png" sizes="32x32" href="https://zzydev.top/image/chance.gif">
@@ -24,6 +24,34 @@
         #theme-toggle,
         .top-link {
             display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
         }
 
     </style>
@@ -62,6 +90,10 @@
 <body class="list" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark');
     }
 
@@ -187,7 +219,7 @@
 
 
 
-创建:&nbsp;<span title='2022-06-03 20:18:38 +0800 CST'>2022-06-03</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-03&nbsp;|&nbsp;字数:&nbsp;2334字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;zzydev</footer>
+创建:&nbsp;<span title='2022-06-03 20:18:38 +0800 CST'>2022-06-03</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-03&nbsp;|&nbsp;字数:&nbsp;2315字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;zzydev</footer>
   </div>> 
   <a class="entry-link" aria-label="post link to React中的栈调和过程是怎样的？" href="https://zzydev.top/posts/headfirstreact/react%E4%B8%AD%E7%9A%84%E6%A0%88%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/"></a>
 </article>

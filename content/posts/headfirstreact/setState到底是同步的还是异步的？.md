@@ -81,8 +81,6 @@ export default class App extends React.Component {
 
 [![XwMnU0.png](https://s1.ax1x.com/2022/06/05/XwMnU0.png)](https://imgtu.com/i/XwMnU0)
 
-
-
 ## 异步的动机和原理——批量更新的艺术
 
 [![XwMmEq.png](https://s1.ax1x.com/2022/06/05/XwMmEq.png)](https://imgtu.com/i/XwMmEq)
@@ -354,4 +352,3 @@ _renderNewRootComponent: function( nextElement, container, shouldReuseMarkup, co
 这段代码是在首次渲染组件时会执行的一个方法，我们看到它内部调用了一次 batchedUpdates，这是因为在组件的渲染过程中，会按照顺序调用各个生命周期函数。开发者很有可能在声明周期函数中调用 setState。因此，我们需要通过开启 batch 来确保所有的更新都能够进入 dirtyComponents 里去，进而确保初始渲染流程中所有的 setState 都是生效的。
 
 下面代码是 React 事件系统的一部分。当我们在组件上绑定了事件之后，事件中也有可能会触发 setState。为了确保每一次 setState 都有效，React 同样会在此处手动开启批量更新。
-

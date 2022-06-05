@@ -10,7 +10,7 @@
 <meta name="description" content="如果p[j] == &lsquo;*&rsquo; ，如果 表示 0 个字符，那么 f[i][j] == f[i][j - 2]，如果表示 1 个字符，那么有 f[i - 1][j - 2] &amp;&amp; s[i] == p[j - 1]以此类推 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/leetcode/lc10_%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.7e17824bf04d638a59aa6c81204b9347ece143f1d755450e2aa47b1cfbb89d1d.css" integrity="sha256-fheCS/BNY4pZqmyBIEuTR&#43;zhQ/HXVUUOKqR7HPu4nR0=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4d9d2017acb982930d52dfb0321d713175fa9862a769f5e546518d8055573cf6.css" integrity="sha256-TZ0gF6y5gpMNUt&#43;wMh1xMXX6mGKnafXlRlGNgFVXPPY=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
@@ -25,6 +25,34 @@
         #theme-toggle,
         .top-link {
             display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
         }
 
     </style>
@@ -104,6 +132,10 @@
 <body class="" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark');
     }
 
@@ -199,10 +231,10 @@
 </div>
   </header> 
 
-  <div class="post-content"><p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/97e4aee6-1c97-449c-b36d-f2b73f84fe16/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220602T145219Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=49e0a835bf7e3762977d33a4f7b1f9be6b4d008927b3dada4622e6948a3f9f35&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
+  <div class="post-content"><p><img loading="lazy" src="https://github.com/zzydev/zzydev_blog_img/blob/master/lc10_1.png?raw=true" alt="lc10_1"  />
 </p>
 <p>如果<strong>p[j] == &lsquo;*&rsquo;</strong> ，如果 <strong>表示 0 个字符</strong>，那么 <strong>f[i][j] == f[i][j - 2]</strong>，如果<strong>表示 1 个字符</strong>，那么有 <code>f[i - 1][j - 2] &amp;&amp; s[i] == p[j - 1]</code>以此类推</p>
-<p><img loading="lazy" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/95a0f6e9-2e87-483c-b174-f782ec8370df/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220602%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220602T145521Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=2abb84cbd2550055bb3fc73e476a10c001ed03c8315acdde38f70a1472f801ed&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="avatar"  />
+<p><img loading="lazy" src="https://github.com/zzydev/zzydev_blog_img/blob/master/lc10_2.png?raw=true" alt="lc10_2"  />
 </p>
 <div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -266,15 +298,16 @@
       <li><a href="https://zzydev.top/tags/hard/">hard</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://zzydev.top/posts/leetcode/lc11_%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">
+  
+  <a class="prev" href="https://zzydev.top/posts/leetcode/lc09_%E5%9B%9E%E6%96%87%E6%95%B0/">
     <span class="title">« Prev</span>
     <br>
-    <span>Lc11_盛最多水的容器</span>
+    <span>Lc09_回文数</span>
   </a>
-  <a class="next" href="https://zzydev.top/posts/leetcode/lc09_%E5%9B%9E%E6%96%87%E6%95%B0/">
+  <a class="next" href="https://zzydev.top/posts/leetcode/lc11_%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">
     <span class="title">Next »</span>
     <br>
-    <span>Lc09_回文数</span>
+    <span>Lc11_盛最多水的容器</span>
   </a>
 </nav>
 
