@@ -155,6 +155,84 @@
   
   <div class="post-info">
   <header class="entry-header">
+    <h2>Lc40_组合总和II<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>原题链接 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 class Solution { public: vector&lt;vector&lt;int&gt;&gt; ans; vector&lt;int&gt; path; vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) { sort(candidates.begin(), candidates.end()); dfs(candidates, 0, target); return ans; } void dfs(vector&lt;int&gt;&amp; candidates, int u, int target) { if (target == 0) ans.push_back(path); for (int i = u; i &lt; candidates.size(); i...</p>
+  </div>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-06-07 17:33:00 +0800 CST'>2022-06-07</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-07&nbsp;|&nbsp;字数:&nbsp;99字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;zzydev</footer>
+  </div>> 
+  <a class="entry-link" aria-label="post link to Lc40_组合总和II" href="https://zzydev.top/posts/leetcode/lc40_%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8Cii/"></a>
+</article>
+
+<article class="post-entry tag-entry">
+  
+  <div class="post-info">
+  <header class="entry-header">
+    <h2>Lc39_组合总和<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>原题链接 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 class Solution { public: vector&lt;vector&lt;int&gt;&gt; res; vector&lt;int&gt; path; vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) { dfs(candidates, 0, target); return res; } void dfs(vector&lt;int&gt;&amp; candidates, int u, int target) { if (target == 0) res.push_back(path); for (int i = u; i &lt; candidates.size() &amp;&amp; target - candidates[i] &gt;= 0; i...</p>
+  </div>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-06-07 17:14:42 +0800 CST'>2022-06-07</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-07&nbsp;|&nbsp;字数:&nbsp;83字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;zzydev</footer>
+  </div>> 
+  <a class="entry-link" aria-label="post link to Lc39_组合总和" href="https://zzydev.top/posts/leetcode/lc39_%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C/"></a>
+</article>
+
+<article class="post-entry tag-entry">
+  
+  <div class="post-info">
+  <header class="entry-header">
+    <h2>Lc37_解数独<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>原题链接 回溯 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 class Solution { public: bool row[9][9], col[9][9], cell[3][3][9]; void solveSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) { //先记录已经填了数字的 for (int i = 0; i...</p>
+  </div>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-06-06 17:36:27 +0800 CST'>2022-06-06</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-06&nbsp;|&nbsp;字数:&nbsp;214字&nbsp;|&nbsp;时长: 1分钟&nbsp;|&nbsp;zzydev</footer>
+  </div>> 
+  <a class="entry-link" aria-label="post link to Lc37_解数独" href="https://zzydev.top/posts/leetcode/lc37_%E8%A7%A3%E6%95%B0%E7%8B%AC/"></a>
+</article>
+
+<article class="post-entry tag-entry">
+  
+  <div class="post-info">
+  <header class="entry-header">
     <h2>Lc22_括号生成<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
     </h2>
   </header>
