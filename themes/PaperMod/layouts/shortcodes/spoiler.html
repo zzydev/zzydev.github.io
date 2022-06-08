@@ -1,0 +1,13 @@
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open="true">
+  <summary>
+      &nbsp;<h3 id="{{ with .Get 0}}{{.}}{{else}} {{ end }}" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">{{ with .Get 0}}{{.}}{{else}} {{ end }}</h4>
+  </summary>
+  {{- $content := .Inner | markdownify -}}
+  {{- if not (strings.HasPrefix $content "<p>") }}
+    {{ printf `<p style="margin-left:1rem">%s</p>` $content | safeHTML }}
+  {{- else }}
+      {{- $content }}
+  {{- end -}}
+  </details>

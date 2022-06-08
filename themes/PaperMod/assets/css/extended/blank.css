@@ -491,3 +491,33 @@ blockquote.quote.en p {
 }
 
 
+blockquote.quote-center {
+  position: relative;
+  border-left: none;
+  padding-left: 0;
+  border-top: 1px solid var(--color-contrast-lower);
+  border-bottom: 1px solid var(--color-contrast-lower);
+}
+blockquote.quote-center p {
+  text-align: center !important;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+blockquote.quote-center::before {
+  position: absolute;
+  left: 0;
+  content: '“';
+  color: var(--color-contrast-low);
+  font-size: 3em;
+  font-weight: bold;
+  margin-top: -0.42em;
+}
+blockquote.quote-center::after {
+  position: absolute;
+  right: 0;
+  content: '”';
+  color: var(--color-contrast-low);
+  font-size: 3em;
+  font-weight: bold;
+  margin-top: -0.7em;
+}
