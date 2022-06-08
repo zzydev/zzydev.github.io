@@ -3,7 +3,7 @@ title: "5.深入React Hooks工作机制,Hooks本质是链表"
 date: 2022-06-03T17:34:48+08:00
 draft: true
 tags:
-  - ""
+  - "react"
 author: ["zzydev"]
 description: ""
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
@@ -20,7 +20,6 @@ cover:
   alt: ""
   relative: false
 ---
-
 React 团队面向开发者给出了两条 React-Hooks 的使用原则，原则的内容如下：
 
 1. 只在 React 函数中调用 Hook；
@@ -78,7 +77,6 @@ export default PersonalInfoComponent;
 ## Hooks 的正常运作，在底层依赖于顺序链表
 
 ### 以 useState 为例，分析 React-Hooks 的调用链路
-
 
 [![XwA4vq.png](https://s1.ax1x.com/2022/06/05/XwA4vq.png)](https://imgtu.com/i/XwA4vq)
 
@@ -168,8 +166,6 @@ function mountWorkInProgressHook() {
 ```
 
 [![XwAgUg.png](https://s1.ax1x.com/2022/06/05/XwAgUg.png)](https://imgtu.com/i/XwAgUg)
-
-
 
 当首次渲染结束，进行二次渲染的时候，实际发生的 useState 调用只有一个：
 

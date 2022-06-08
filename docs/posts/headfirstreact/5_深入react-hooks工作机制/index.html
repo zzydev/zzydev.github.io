@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>5.深入React Hooks工作机制,Hooks本质是链表 | 人类低质量男性求职准备</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="react">
 <meta name="description" content="React 团队面向开发者给出了两条 React-Hooks 的使用原则，原则的内容如下： 只在 React 函数中调用 Hook； 不要在循环、条件或嵌套函数中调用 Hook。 原则 2 中强调的所">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/headfirstreact/5_%E6%B7%B1%E5%85%A5react-hooks%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.4d9d2017acb982930d52dfb0321d713175fa9862a769f5e546518d8055573cf6.css" integrity="sha256-TZ0gF6y5gpMNUt&#43;wMh1xMXX6mGKnafXlRlGNgFVXPPY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.6ad7fe828ea8791b3b6e8dcd2dcb1d29fa19f759a5ea2101c7fa3318f09e1d8c.css" integrity="sha256-atf&#43;go6oeRs7bo3NLcsdKfoZ91ml6iEBx/ozGPCeHYw=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
@@ -102,7 +102,7 @@
   "name": "5.深入React Hooks工作机制,Hooks本质是链表",
   "description": "React 团队面向开发者给出了两条 React-Hooks 的使用原则，原则的内容如下： 只在 React 函数中调用 Hook； 不要在循环、条件或嵌套函数中调用 Hook。 原则 2 中强调的所",
   "keywords": [
-    ""
+    "react"
   ],
   "articleBody": "React 团队面向开发者给出了两条 React-Hooks 的使用原则，原则的内容如下：\n只在 React 函数中调用 Hook； 不要在循环、条件或嵌套函数中调用 Hook。 原则 2 中强调的所有“不要”，都是在指向同一个目的，那就是要确保 Hooks 在每次渲染时都保持同样的执行顺序。 PersonalInfoComponent 里去，看看实际项目中，变量到底是怎么发生变化的。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 import React, { useState } from \"react\"; // isMounted 用于记录是否已挂载（是否是首次渲染） let isMounted = false; function PersonalInfoComponent() { // 定义变量的逻辑不变 let name, age, career, setName, setCareer; // 这里追加对 isMounted 的输出，这是一个 debug 性质的操作 console.log(\"isMounted is\", isMounted); // 这里追加 if 逻辑：只有在首次渲染（组件还未挂载）时，才获取 name、age 两个状态 if (!isMounted) { // eslint-disable-next-line [name, setName] = useState(\"zzy\"); // eslint-disable-next-line [age] = useState(\"99\"); // if 内部的逻辑执行一次后，就将 isMounted 置为 true（说明已挂载，后续都不再是首次渲染了） isMounted = true; } // 对职业信息的获取逻辑不变 [career, setCareer] = useState(\"我是一个前端，爱吃小熊饼干\"); // 这里追加对 career 的输出，这也是一个 debug 性质的操作 console.log(\"career\", career); // UI 逻辑的改动在于，name 和 age 成了可选的展示项，若值为空，则不展示 return ( \"personalInfo\"\u003e {name ? 姓名：{name}\u003c/p\u003e : null} {age ? 年龄：{age}\u003c/p\u003e : null} 职业：{career}\u003c/p\u003e ",
   "wordCount" : "1930",
@@ -573,6 +573,7 @@ PersonalInfoComponent 里去，看看实际项目中，变量到底是怎么发�
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://zzydev.top/tags/react/">react</a></li>
     </ul>
 <nav class="paginav">
   
@@ -591,7 +592,7 @@ PersonalInfoComponent 里去，看看实际项目中，变量到底是怎么发�
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share 5.深入React Hooks工作机制,Hooks本质是链表 on twitter"
-        href="https://twitter.com/intent/tweet/?text=5.%e6%b7%b1%e5%85%a5React%20Hooks%e5%b7%a5%e4%bd%9c%e6%9c%ba%e5%88%b6%2cHooks%e6%9c%ac%e8%b4%a8%e6%98%af%e9%93%be%e8%a1%a8&amp;url=https%3a%2f%2fzzydev.top%2fposts%2fheadfirstreact%2f5_%25E6%25B7%25B1%25E5%2585%25A5react-hooks%25E5%25B7%25A5%25E4%25BD%259C%25E6%259C%25BA%25E5%2588%25B6%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=5.%e6%b7%b1%e5%85%a5React%20Hooks%e5%b7%a5%e4%bd%9c%e6%9c%ba%e5%88%b6%2cHooks%e6%9c%ac%e8%b4%a8%e6%98%af%e9%93%be%e8%a1%a8&amp;url=https%3a%2f%2fzzydev.top%2fposts%2fheadfirstreact%2f5_%25E6%25B7%25B1%25E5%2585%25A5react-hooks%25E5%25B7%25A5%25E4%25BD%259C%25E6%259C%25BA%25E5%2588%25B6%2f&amp;hashtags=react">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
