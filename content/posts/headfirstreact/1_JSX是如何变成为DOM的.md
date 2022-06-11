@@ -117,7 +117,7 @@ export function createElement(type, config, children)
 
 ## createElement 函数拆解
 
-[![XwkATe.png](https://s1.ax1x.com/2022/06/05/XwkATe.png)](https://imgtu.com/i/XwkATe)
+![XwkATe.png](https://s1.ax1x.com/2022/06/05/XwkATe.png)
 **createElement 的每一个步骤几乎都是在格式化数据**
 
 createElement 就像是开发者和 ReactElement 调用之间的一个**数据处理层**。它可以从开发者处接受相对简单的参数，然后将这些参数按照 ReactElement 的预期做一层格式化，最终通过调用 ReactElement 来实现元素的创建。整个过程如下图所示：
@@ -169,7 +169,7 @@ console.log(AppJSX);
 
 你会发现它确实是一个标准的 ReactElement 对象实例，如下图：
 
-[![XwkkwD.png](https://s1.ax1x.com/2022/06/05/XwkkwD.png)](https://imgtu.com/i/XwkkwD)
+![XwkkwD.png](https://s1.ax1x.com/2022/06/05/XwkkwD.png)
 
 这个 ReactElement 对象实例，本质上是 **以 JavaScript 对象形式存在的对 DOM 的描述** ，也就是 **虚拟 DOM 中的一个节点** 。
 

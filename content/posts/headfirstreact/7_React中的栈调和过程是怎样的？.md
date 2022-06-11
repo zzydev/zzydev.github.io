@@ -3,7 +3,7 @@ title: "7.React中的栈调和过程是怎样的？"
 date: 2022-06-03T20:18:38+08:00
 draft: true
 tags:
-  - ""
+  - "react"
 author: ["zzydev"]
 description: ""
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
@@ -51,11 +51,11 @@ React 团队结合设计层面的一些推导，总结了以下两个规律， �
 {{< /notice >}}
 
 
-[![XwuGz4.png](https://s1.ax1x.com/2022/06/05/XwuGz4.png)](https://imgtu.com/i/XwuGz4)
+![XwuGz4.png](https://s1.ax1x.com/2022/06/05/XwuGz4.png)
 
 [那么如果真的发生了跨层级的节点操作（比如将以 B 节点为根节点的子树从 A 节点下面移动到 C 节点下面，如下图所示）会怎样呢？很遗憾，作为“次要矛盾”，在这种情况下 React 并不能够判断出“移动”这个行为，它只能机械地认为移出子树那一层的组件消失了，对应子树需要被销毁；而移入子树的那一层新增了一个组件，需要重新为其创建一棵子树。
 
-[![Xwuwo6.png](https://s1.ax1x.com/2022/06/05/Xwuwo6.png)](https://imgtu.com/i/Xwuwo6)
+![Xwuwo6.png](https://s1.ax1x.com/2022/06/05/Xwuwo6.png)
 
 **销毁 + 重建的代价是昂贵的，因此 React 官方也建议开发者不要做跨层级的操作，尽量保持 DOM 结构的稳定性。**
 
@@ -67,7 +67,7 @@ React 团队结合设计层面的一些推导，总结了以下两个规律， �
 
 这样一来，便能够从很大程度上减少 Diff 过程中冗余的递归操作。
 
-[![Xwuty9.png](https://s1.ax1x.com/2022/06/05/Xwuty9.png)](https://imgtu.com/i/Xwuty9)
+![Xwuty9.png](https://s1.ax1x.com/2022/06/05/Xwuty9.png)
 
 ### 3. 重用节点的好帮手：key 属性帮 React “记住”节点
 
@@ -77,7 +77,7 @@ React 团队结合设计层面的一些推导，总结了以下两个规律， �
 
 它试图解决的是**同一层级下节点的重用**问题。在展开分析之前，我们先结合到现在为止对 Diff 过程的理解，来思考这样一种情况，如下图所示：
 
-[![Xwuae1.png](https://s1.ax1x.com/2022/06/05/Xwuae1.png)](https://imgtu.com/i/Xwuae1)
+![Xwuae1.png](https://s1.ax1x.com/2022/06/05/Xwuae1.png)
 
 图中 A 组件在保持类型和其他属性均不变的情况下，在两个子节点（B 和 D）之间插入了一个新的节点（C）。按照已知的 Diff 原则，两棵树之间的 Diff 过程应该是这样的：
 
@@ -97,7 +97,7 @@ const todoItems = todos.map((todo) => <li key={todo.id}>{todo.text}</li>);
 
 如果你忘记写 key，React 虽然不至于因此报错，但控制台标红是难免的，它会给你抛出一个“请给列表元素补齐 key 属性”的 warning，这个常见的 warning 也从侧面反映出了 key 的重要性。事实上，当我们没有设定 key 值的时候，Diff 的过程就正如上文所描述的一样惨烈。但只要你按照规范加装一个合适的 key，这个 key 就会像一个记号一样，帮助 React “记住”某一个节点，从而在后续的更新中实现对这个节点的追踪。比如说刚刚那棵虚拟 DOM 树，若我们给位于第 2 层的每一个子节点一个 key 值，如下图所示：
 
-[![XwuNLR.png](https://s1.ax1x.com/2022/06/05/XwuNLR.png)](https://imgtu.com/i/XwuNLR)
+![XwuNLR.png](https://s1.ax1x.com/2022/06/05/XwuNLR.png)
 
 这个 key 就充当了每个节点的 ID（唯一标识），有了这个标识之后，当 C 被插入到 B 和 D 之间时，React 并不会再认为 C、D、E 这三个坑位都需要被重建——它会通过识别 ID，意识到 D 和 E 并没有发生变化（D 的 ID 仍然是 1，E 的 ID 仍然是 2），而只是被调整了顺序而已。接着，React 便能够轻松地重用它“追踪”到旧的节点，将 D 和 E 转移到新的位置，并完成对 C 的插入。这样一来，同层级下元素的操作成本便大大降低。
 

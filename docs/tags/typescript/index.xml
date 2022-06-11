@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>typescript on 人类低质量男性求职准备</title>
+    <link>https://zzydev.top/tags/typescript/</link>
+    <description>Recent content in typescript on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>zzydev</copyright>
+    <lastBuildDate>Fri, 10 Jun 2022 06:19:56 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TS基础拾遗</title>
+      <link>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
+      <pubDate>Fri, 10 Jun 2022 06:19:56 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</guid>
+      <description>&amp;nbsp;函数类型 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 // 函数类型 function info(username: string, age: number) : number { return age; } let info: (username: string, age: number) =&amp;gt; number = function(username, age) { return age; } // 接口当名字的函数类型 interface ActionContext</description>
+    </item>
+    
+  </channel>
+</rss>

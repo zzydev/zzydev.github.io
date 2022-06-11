@@ -4,6 +4,8 @@ languageCode: zh-cn # en-us
 title: "人类低质量男性求职准备"
 theme: PaperMod # 主题名字，和themes文件夹下的一致
 
+publishDir: "docs"
+
 enableInlineShortcodes: true
 enableEmoji: true # 允许使用 Emoji 表情，建议 true
 enableRobotsTXT: true # 允许爬虫抓取到搜索引擎，建议 true

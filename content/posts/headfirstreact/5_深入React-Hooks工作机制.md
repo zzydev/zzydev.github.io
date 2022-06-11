@@ -78,7 +78,7 @@ export default PersonalInfoComponent;
 
 ### 以 useState 为例，分析 React-Hooks 的调用链路
 
-[![XwA4vq.png](https://s1.ax1x.com/2022/06/05/XwA4vq.png)](https://imgtu.com/i/XwA4vq)
+![XwA4vq.png](https://s1.ax1x.com/2022/06/05/XwA4vq.png)
 
 在这个流程中，useState 触发的一系列操作最后会落到 mountState 里面去，所以我们重点需要关注的就是 mountState 做了什么事情。
 
@@ -144,7 +144,7 @@ function mountWorkInProgressHook() {
 
 接下来我们再看更新过程的大图：
 
-[![XwA25Q.png](https://s1.ax1x.com/2022/06/05/XwA25Q.png)](https://imgtu.com/i/XwA25Q)
+![XwA25Q.png](https://s1.ax1x.com/2022/06/05/XwA25Q.png)
 
 根据图中高亮部分的提示不难看出，首次渲染和更新渲染的区别，在于**调用的是 `mountState`，还是 `updateState`。mountState 做了什么**，你已经非常清楚了；而 updateState 之后的操作链路，虽然涉及的代码有很多，但其实做的事情很容易理解：**按顺序去遍历之前构建好的链表，取出对应的数据信息进行渲染。**
 
@@ -165,7 +165,7 @@ function mountWorkInProgressHook() {
 
 ```
 
-[![XwAgUg.png](https://s1.ax1x.com/2022/06/05/XwAgUg.png)](https://imgtu.com/i/XwAgUg)
+![XwAgUg.png](https://s1.ax1x.com/2022/06/05/XwAgUg.png)
 
 当首次渲染结束，进行二次渲染的时候，实际发生的 useState 调用只有一个：
 
@@ -175,10 +175,10 @@ useState("我是一个前端，爱吃小熊饼干")
 
 链表此时的状态如下图所示：
 
-[![XwAWCj.png](https://s1.ax1x.com/2022/06/05/XwAWCj.png)](https://imgtu.com/i/XwAWCj)
+![XwAWCj.png](https://s1.ax1x.com/2022/06/05/XwAWCj.png)
 
 更新（二次渲染）的时候会发生什么事情：**updateState 会依次遍历链表、读取数据并渲染。注意这个过程就像从数组中依次取值一样，是完全按照顺序（或者说索引）来的**。因此 React 不会看你命名的变量名是 career 还是别的什么，它只认你这一次 useState 调用，于是它会认为：**你想要的是第一个位置的 hook** 。
 
 然后就会有下面这样的效果：
 
-[![XwAf8s.png](https://s1.ax1x.com/2022/06/05/XwAf8s.png)](https://imgtu.com/i/XwAf8s)
+![XwAf8s.png](https://s1.ax1x.com/2022/06/05/XwAf8s.png)

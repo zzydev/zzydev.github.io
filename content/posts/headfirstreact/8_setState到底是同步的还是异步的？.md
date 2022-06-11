@@ -80,11 +80,11 @@ export default class App extends React.Component {
 ```
 
 结果打印如下：
-[![XwMnU0.png](https://s1.ax1x.com/2022/06/05/XwMnU0.png)](https://imgtu.com/i/XwMnU0)
+![XwMnU0.png](https://s1.ax1x.com/2022/06/05/XwMnU0.png)
 
 ## 异步的动机和原理——批量更新的艺术
 
-[![XwMmEq.png](https://s1.ax1x.com/2022/06/05/XwMmEq.png)](https://imgtu.com/i/XwMmEq)
+![XwMmEq.png](https://s1.ax1x.com/2022/06/05/XwMmEq.png)
 
 从图上我们可以看出，一个完整的更新流程，涉及了包括 re-render（重渲染） 在内的多个步骤。re-render 本身涉及对 DOM 的操作，它会带来较大的性能开销。假如说“一次 setState 就触发一个完整的更新流程”这个结论成立，那么每一次 setState 的调用都会触发一次 re-render，我们的视图很可能没刷新几次就卡死了。这个过程如我们下面代码中的箭头流程图所示：
 
@@ -136,9 +136,7 @@ test = () => {
 
 也只是会增加 state 任务入队的次数，并不会带来频繁的 re-render。当 100 次调用结束后，仅仅是 state 的任务队列内容发生了变化， state 本身并不会立刻改变：
 
-[![XwMVDs.png](https://s1.ax1x.com/2022/06/05/XwMVDs.png)](https://imgtu.com/i/XwMVDs)
-
-## “同步现象”背后的故事：从源码角度看 setState 工作流
+![XwMVDs.png](https://s1.ax1x.com/2022/06/05/XwMVDs.png)“同步现象”背后的故事：从源码角度看 setState 工作流
 
 读到这里，相信你对异步这回事多少有些眉目了。接下来我们就要重点理解刚刚代码里最诡异的一部分——setState 的同步现象：
 
@@ -170,7 +168,7 @@ reduce = () => {
 
 点击后的输出结果如下图所示：
 
-[![XwMZbn.png](https://s1.ax1x.com/2022/06/05/XwMZbn.png)](https://imgtu.com/i/XwMZbn)
+![XwMZbn.png](https://s1.ax1x.com/2022/06/05/XwMZbn.png)
 
 现在问题就变得清晰多了：为什么 setTimeout 可以将 setState 的执行顺序从异步变为同步？
 
@@ -180,7 +178,7 @@ reduce = () => {
 
 ## 解读 setState 工作流
 
-[![XwMu5V.png](https://s1.ax1x.com/2022/06/05/XwMu5V.png)](https://imgtu.com/i/XwMu5V)
+![XwMu5V.png](https://s1.ax1x.com/2022/06/05/XwMu5V.png)
 
 接下来我们就沿着这个流程，逐个在源码中对号入座。首先是 setState 入口函数：
 
@@ -329,7 +327,7 @@ var TRANSACTION_WRAPPERS = [FLUSH_BATCHED_UPDATES, RESET_BATCHED_UPDATES];
 
 我们把这两个 wrapper 套进 Transaction 的执行机制里，不难得出一个这样的流程：
 
-![avatar](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/f8a51175-347d-4125-9807-d2d9f2c3a2ee/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220605%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220605T083410Z&X-Amz-Expires=86400&X-Amz-Signature=2890b82cd812cc441aadc1d1dbbe8b21423b623cb043db01e322b606740f5cba&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![8_6](http://cdn.zzydev.top/react/8_6.png)
 
 到这里，相信你对 isBatchingUpdates 管控下的批量更新机制已经了然于胸。但是 setState 为何会表现同步这个问题，似乎还是没有从当前展示出来的源码里得到根本上的回答。这是因为 batchedUpdates 这个方法，不仅仅会在 setState 之后才被调用。若我们在 React 源码中全局搜索 batchedUpdates，会发现调用它的地方很多，但与更新流有关的只有这两个地方：
 

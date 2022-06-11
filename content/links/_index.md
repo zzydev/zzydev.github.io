@@ -6,6 +6,16 @@ comments: true
 
 {{<friend name="人类低质量男性求职准备" url="zzydev.top" logo="https://zzydev.top/image/chance.gif" word="下水道的鼠鼠罢了">}}
 
+{{< simple-notice simple-notice-tip >}}
+哥几个又来学前端转行呀
+{{< /simple-notice >}}
+
+{{< simple-notice simple-notice-warning >}}
+zzydev有什么错？他只是想要一个可以回家过年的offer罢了。
+
+{{< /simple-notice >}}
+
+
 ------
 
 {{< notice notice-note >}}

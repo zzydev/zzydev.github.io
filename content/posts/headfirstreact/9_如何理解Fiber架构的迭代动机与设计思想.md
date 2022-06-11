@@ -135,7 +135,7 @@ export const Deletion = /*              */ 0b0000000001000;
 
 {{< notice notice-tip >}}
 
-> 你可以在[这里 (opens new window)](https://zh-hans.reactjs.org/docs/codebase-overview.html#fiber-reconciler)看到`React`官方对React16新**Reconciler**的解释
+> 你可以在[这里](https://zh-hans.reactjs.org/docs/codebase-overview.html#fiber-reconciler)看到`React`官方对React16新**Reconciler**的解释
 
 {{< /notice >}}
 
@@ -143,4 +143,10 @@ export const Deletion = /*              */ 0b0000000001000;
 
 **Renderer**根据**Reconciler**为虚拟DOM打的标记，同步执行对应的DOM操作。
 
+### 总结
+在这套新的架构模式下，更新的处理工作流变成了这样：首先，**每个更新任务都会被赋予一个优先级**。当更新任务抵达调度器时，高优先级的更新任务（记为 A）会更快地被调度进 Reconciler 层；此时若有新的更新任务（记为 B）抵达调度器，调度器会检查它的优先级，若发现 B 的优先级高于当前任务 A，那么当前处于 Reconciler 层的 A 任务就会被中断，调度器会将 B 任务推入 Reconciler 层。当 B 任务完成渲染后，新一轮的调度开始，之前被中断的 **A 任务将会被重新推入 Reconciler 层，继续它的渲染之旅，这便是所谓“可恢复”**。
 
+## Fiber 架构对生命周期的影响
+
+
+[Fiber对生命周期的影响](https://zzydev.top/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#%e7%bb%86%e8%af%b4%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e5%ba%9f%e6%97%a7%e7%ab%8b%e6%96%b0%e8%83%8c%e5%90%8e%e7%9a%84%e6%80%9d%e8%80%83)

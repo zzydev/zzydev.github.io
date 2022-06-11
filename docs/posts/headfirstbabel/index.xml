@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>巴别塔 on 人类低质量男性求职准备</title>
+    <link>https://zzydev.top/posts/headfirstbabel/</link>
+    <description>Recent content in 巴别塔 on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>zzydev</copyright>
+    <lastBuildDate>Tue, 07 Jun 2022 21:10:28 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstbabel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1_初见Babel</title>
+      <link>https://zzydev.top/posts/headfirstbabel/1_%E5%88%9D%E8%A7%81babel/</link>
+      <pubDate>Tue, 07 Jun 2022 21:10:28 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstbabel/1_%E5%88%9D%E8%A7%81babel/</guid>
+      <description>babel是什么 babel 的编译流程 &amp;nbsp;parse parse 阶段的目的是把源码字符串转换成机器能够理解的抽象语法树(AST)，这个过程分为词法分析、语法分析。 let name = &#39;zzydev&#39; 经</description>
+    </item>
+    
+  </channel>
+</rss>

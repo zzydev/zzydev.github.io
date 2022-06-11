@@ -1,11 +1,13 @@
 ---
 title: "2.React生命周期"
 date: 2022-06-02T17:58:52+08:00
+tags:
+  - "react"
 draft: true
 author: ["zzydev"]
 ---
 ## React15的生命周期
-[![XwkOjP.png](https://s1.ax1x.com/2022/06/05/XwkOjP.png)](https://imgtu.com/i/XwkOjP)
+![XwkOjP.png](https://s1.ax1x.com/2022/06/05/XwkOjP.png)
 
 ### Mounting 阶段：组件的初始化渲染（挂载）
 挂载过程在组件的一生中**仅会发生一次**，在这个过程中，组件被**初始化**，然后会被渲染到真实 DOM 里，完成所谓的“**首次渲染**”。
@@ -48,11 +50,11 @@ React 组件会根据 shouldComponentUpdate 的返回值，来决定是否执行
 
 ## React16的生命周期
 
-[![XwkLct.png](https://s1.ax1x.com/2022/06/05/XwkLct.png)](https://imgtu.com/i/XwkLct)
+![XwkLct.png](https://s1.ax1x.com/2022/06/05/XwkLct.png)
 
 ### Mounting 阶段：组件的初始化渲染（挂载）
 
-[![Xwkq1I.png](https://s1.ax1x.com/2022/06/05/Xwkq1I.png)](https://imgtu.com/i/Xwkq1I)
+![Xwkq1I.png](https://s1.ax1x.com/2022/06/05/Xwkq1I.png)
 
 #### 认识 getDerivedStateFromProps(props,state)
 
@@ -78,10 +80,10 @@ this.state = { text: "子组件的文本" };
 ```
 
 而是仅仅针对 fatherText 这个属性作更新（这里原有的 state 里没有 fatherText，因此直接新增）。更新后，原有属性与新属性是共存的，如下图所示：
-[![Xwk6h9.png](https://s1.ax1x.com/2022/06/05/Xwk6h9.png)](https://imgtu.com/i/Xwk6h9)
+![Xwk6h9.png](https://s1.ax1x.com/2022/06/05/Xwk6h9.png)
 
 ### Updating 阶段：组件的更新
-[![Xwkb9A.png](https://s1.ax1x.com/2022/06/05/Xwkb9A.png)](https://imgtu.com/i/Xwkb9A)
+![Xwkb9A.png](https://s1.ax1x.com/2022/06/05/Xwkb9A.png)
 
 React 16.4 的挂载和卸载流程都是与 React 16.3 保持一致的，差异在于更新流程上：
 
@@ -129,7 +131,7 @@ componentDidUpdate(prevProps, prevState, valueFromSnapshot) {
 
 Fiber 架构的重要特征就是可以被打断的异步渲染模式。但这个“打断”是有原则的，根据“能否被打断”这一标准，React 16 的生命周期被划分为了 **render** 和 **commit** 两个阶段，而 commit 阶段又被细分为了 pre-commit 和 commit。每个阶段所涵盖的生命周期如下图所示：
 
-[![Xwkb9A.png](https://s1.ax1x.com/2022/06/05/Xwkb9A.png)](https://imgtu.com/i/Xwkb9A)
+![Xwkb9A.png](https://s1.ax1x.com/2022/06/05/Xwkb9A.png)]
 
 总的来说，**render 阶段在执行过程中允许被打断，而 commit 阶段则总是同步执行的**。
 
