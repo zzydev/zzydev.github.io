@@ -1,0 +1,11 @@
+<details>
+  <summary>
+    &nbsp;<div  id="{{ with .Get 0}}{{.}}{{else}} {{ end }}" style="display: inline-block;">{{ with .Get 0}}{{.}}{{else}} {{ end }}</div>
+  </summary>
+  {{- $content := .Inner | markdownify -}}
+  {{- if not (strings.HasPrefix $content "<p>") }}
+    {{ printf `<p style="margin-left:1rem">%s</p>` $content | safeHTML }}
+  {{- else }}
+      {{- $content }}
+  {{- end -}}
+  </details>

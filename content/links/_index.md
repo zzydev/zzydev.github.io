@@ -4,19 +4,11 @@ hidemeta: true
 comments: true
 ---
 
-{{<friend name="人类低质量男性求职准备" url="zzydev.top" logo="https://zzydev.top/image/chance.gif" word="下水道的鼠鼠罢了">}}
+{{<friend name="人类低质量男性求职准备" url="zzydev.top" logo="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/profile.gif" word="下水道的鼠鼠罢了">}}
 
 {{< simple-notice simple-notice-tip >}}
 哥几个又来学前端转行呀
 {{< /simple-notice >}}
-
-{{< simple-notice simple-notice-warning >}}
-zzydev有什么错？他只是想要一个可以回家过年的offer罢了。
-
-{{< /simple-notice >}}
-
-
-------
 
 {{< notice notice-note >}}
 友链格式：
@@ -28,14 +20,10 @@ zzydev有什么错？他只是想要一个可以回家过年的offer罢了。
 
 {{< /notice >}}
 
-------
-
-
-
 <div>
   <div class="pagination__title">
-      <span class="pagination__title-h" style="font-size: 20px;">💬评论</span>
-      <hr />
+      <span class="pagination__title-h" style="font-size: 20px;">评论</span>
+      <hr/>
   </div>
   <div id="tcomment"></div>
   <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.11/dist/twikoo.all.min.js"></script>

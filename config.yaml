@@ -39,10 +39,9 @@ languages:
     weight: 1
     profileMode:
       enabled: true
-      title: (づ｡◕‿‿◕｡)づ
-      subtitle: '<span style="color:purple">if let</span> <span style="color:brown">小姐姐❤️
-</span> = <span style="color:brown">visitor</span> { <span style="color:gray">太太，你也不想我得不到这份工作吧 </span>} <span style="color:purple">else</span> { <span style="color:gray">你看我还有机会吗 </span>}'
-      imageUrl: image/chance.gif
+      title: 面向<span class="heimu" title="你知道的太多了">讨饭</span>编程
+      subtitle: 好饿啊，早知道<span class="heimu" title="你知道的太多了">不学前端了</span>
+      imageUrl: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/profile.gif"
       imageTitle:
       imageWidth: 150
       imageHeight: 150

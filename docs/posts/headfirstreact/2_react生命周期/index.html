@@ -7,10 +7,10 @@
 <meta name="robots" content="index, follow">
 <title>2.React生命周期 | 人类低质量男性求职准备</title>
 <meta name="keywords" content="react">
-<meta name="description" content="React15的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM">
+<meta name="description" content="React15 的生命周期 Mounting 阶段：组件的初始化渲染 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成“首次渲染”">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.c5f4f73e860068544d894d40f8004cd6dd88aa44ecc5342dc5737832b1ccec57.css" integrity="sha256-xfT3PoYAaFRNiU1A&#43;ABM1t2IqkTsxTQtxXN4MrHM7Fc=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4de2c28ad363a52d9d0f17b1eccc40e33b1a2e842ad060fe71bae5593a5d4c51.css" integrity="sha256-TeLCitNjpS2dDxex7MxA4zsaLoQq0GD&#43;cbrlWTpdTFE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
@@ -57,15 +57,15 @@
 
     </style>
 </noscript><meta property="og:title" content="2.React生命周期" />
-<meta property="og:description" content="React15的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM" />
+<meta property="og:description" content="React15 的生命周期 Mounting 阶段：组件的初始化渲染 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成“首次渲染”" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zzydev.top/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-02T17:58:52&#43;08:00" />
-<meta property="article:modified_time" content="2022-06-02T17:58:52&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-17T21:57:20&#43;00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="2.React生命周期"/>
-<meta name="twitter:description" content="React15的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM"/>
+<meta name="twitter:description" content="React15 的生命周期 Mounting 阶段：组件的初始化渲染 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成“首次渲染”"/>
 
 
 <script type="application/ld+json">
@@ -100,15 +100,15 @@
   "@type": "BlogPosting",
   "headline": "2.React生命周期",
   "name": "2.React生命周期",
-  "description": "React15的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM",
+  "description": "React15 的生命周期 Mounting 阶段：组件的初始化渲染 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成“首次渲染”",
   "keywords": [
     "react"
   ],
-  "articleBody": "React15的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成所谓的“首次渲染”。\n注意 render 在执行过程中并不会去操作真实 DOM（也就是说不会渲染），它的职能是把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。\ncomponentDidMount 方法在渲染结束后被触发，此时因为真实 DOM 已经挂载到了页面上，我们可以在这个生命周期里**执行真实 DOM 相关的操作，**类似于异步请求、数据初始化这样的操作也大可以放在这个生命周期来做。\nUpdating 阶段：组件的更新 componentWillReceiProps(nextProps) 到底是由什么触发的？ 在这个生命周期方法里，nextProps 表示的是接收到新 props 内容，而现有的 props （相对于 nextProps 的“旧 props”）我们可以通过 this.props 拿到，由此便能够感知到 props 的变化。\ncomponentReceiveProps 并不是由 props 的变化触发的，而是由父组件的更新触发的。\n如果父组件导致组件重新渲染，即使props没有更改也会调用此方法（componentWillReceiProps） 如果只想处理更改，请确保当前值与变更值的比较\n—— React官方\n组件自身 setState 触发的更新 componentWillUpdate 会在 render 前被触发，它和 componentWillMount 类似，允许你在里面做一些不涉及真实 DOM 操作的准备工作；而 componentDidUpdate 则在组件更新完毕后被触发，和 componentDidMount 类似，这个生命周期也经常被用来处理 DOM 操作。此外，我们也常常将 componentDidUpdate 的执行作为子组件更新完毕的标志通知到父组件。\nrender 与性能：初识 shouldComponentUpdate(nextProps, nextState) React 组件会根据 shouldComponentUpdate 的返回值，来决定是否执行该方法之后的生命周期，进而决定是否对组件进行re-render（重渲染）。shouldComponentUpdate 的默认值为 true，也就是说“无条件 re-render”。在实际的开发中，我们往往通过手动往 shouldComponentUpdate 中填充判定逻辑，或者直接在项目中引入 PureComponent 等最佳实践，来实现“有条件的 re-render”。\nUnmounting 阶段：组件的卸载 组件销毁的常见原因有以下两个。\n组件在父组件中被移除了：这种情况相对比较直观 组件中设置了 key 属性，父组件在 render 的过程中，发现 key 值和上一次不一致，那么这个组件就会被干掉。 React16的生命周期 Mounting 阶段：组件的初始化渲染（挂载） 认识 getDerivedStateFromProps(props,state) getDerivedStateFromProps这个API，其设计的初衷不是试图替换掉componentWillMount ，而是试图替换掉componentWillReceiveProps，因此它有且仅有一个用途:使用 props 来派生/更新 state\ngetDerivedStateFromProps 是一个静态方法，静态方法不依赖组件实例而存在，因此你在这个方法内部是访问不到 this 的。\n该方法可以接收两个参数：props 和 state，它们分别代表当前组件接收到的来自父组件的 props 和当前组件自身的 state。\ngetDerivedStateFromProps 需要一个对象格式的返回值。如果你没有指定这个返回值，那么大概率会被 React 警告一番。\ngetDerivedStateFromProps 方法对 state 的更新动作并非“覆盖”式的更新，而是针对某个属性的定向更新。比如这里我们在 getDerivedStateFromProps 里返回的是这样一个对象，对象里面有一个 fatherText 属性用于表示“父组件赋予的文本”：\n1 2 3 { fatherText: props.text } 该对象并不会替换掉组件原始的这个 state：\n1 this.state = { text: \"子组件的文本\" }; 而是仅仅针对 fatherText 这个属性作更新（这里原有的 state 里没有 fatherText，因此直接新增）。更新后，原有属性与新属性是共存的，如下图所示： Updating 阶段：组件的更新 React 16.4 的挂载和卸载流程都是与 React 16.3 保持一致的，差异在于更新流程上：\n在 React 16.4 中，任何因素触发的组件更新流程（包括由 this.setState 和 forceUpdate 触发的更新流程）都会触发 getDerivedStateFromProps；\n而在 v 16.3 版本时，只有父组件的更新会触发该生命周期。\n为什么要用 getDerivedStateFromProps 代替 componentWillReceiveProps？ 做合理的减法：\ngetDerivedStateFromProps 直接被定义为 static 方法，static 方法内部拿不到组件实例的 this，这就导致你无法在 getDerivedStateFromProps 里面做任何类似于 this.fetch()、不合理的 this.setState（会导致死循环的那种）这类可能会产生副作用的操作。 这是 React 16 在强制推行“只用 getDerivedStateFromProps 来完成 props 到 state 的映射”这一最佳实践。意在确保生命周期函数的行为更加可控可预测，从根源上帮开发者避免不合理的编程方式，避免生命周期的滥用；同时，也是在为新的 Fiber 架构铺路。 消失的 componentWillUpdate 与新增的 getSnapshotBeforeUpdate(prevProps, prevState) getSnapshotBeforeUpdate方法需要一个返回值，它的返回值会作为第三个参数给到 componentDidUpdate。它的执行时机是在 render 方法之后，真实 DOM 更新之前。在这个阶段里，我们可以同时获取到更新前的真实 DOM 和更新前后的 state\u0026props 的信息。\n重点把握它与componentDidUpdate 间的通信过程：\n1 2 3 4 5 6 7 8 9 10 11 // 组件更新时调用 getSnapshotBeforeUpdate(prevProps, prevState) { console.log(\"getSnapshotBeforeUpdate方法执行\"); return \"haha\"; } // 组件更新后调用 componentDidUpdate(prevProps, prevState, valueFromSnapshot) { console.log(\"componentDidUpdate方法执行\"); console.log(\"从 getSnapshotBeforeUpdate 获取到的值是\", valueFromSnapshot); } 这个生命周期的设计初衷，是为了“与 componentDidUpdate 一起，涵盖过时的 componentWillUpdate 的所有用例”。getSnapshotBeforeUpdate 要想发挥作用，离不开 componentDidUpdate 的配合。\nReact16为何两次求变？ Fiber 会使原本同步的渲染过程变成异步的。 同步渲染的递归调用栈是非常深的，只有最底层的调用返回了，整个渲染过程才会开始逐层返回。这个漫长且不可打断的更新过程，将会带来用户体验层面的巨大风险：同步渲染一旦开始，便会牢牢抓住主线程不放，直到递归彻底完成。在这个过程中，浏览器没有办法处理任何渲染之外的事情，会进入一种无法处理用户交互的状态。因此若渲染时间稍微长一点，页面就会面临卡顿甚至卡死的风险。\n而 React 16 引入的 Fiber 架构，恰好能够解决掉这个风险：Fiber 会将一个大的更新任务拆解为许多个小任务。每当执行完一个小任务时，渲染线程都会把主线程交回去，看看有没有优先级更高的工作要处理，确保不会出现其他任务被“饿死”的情况，进而避免同步渲染带来的卡顿。在这个过程中，渲染线程不再“一去不回头”，而是可以被打断的，这就是所谓的“异步渲染”。\n换个角度看生命周期工作流 Fiber 架构的重要特征就是可以被打断的异步渲染模式。但这个“打断”是有原则的，根据“能否被打断”这一标准，React 16 的生命周期被划分为了 render 和 commit 两个阶段，而 commit 阶段又被细分为了 pre-commit 和 commit。每个阶段所涵盖的生命周期如下图所示：\n]\n总的来说，render 阶段在执行过程中允许被打断，而 commit 阶段则总是同步执行的。\n为什么这样设计呢？简单来说，由于 render 阶段的操作对用户来说其实是“不可见”的，所以就算打断再重启，对用户来说也是零感知。而 commit 阶段的操作则涉及真实 DOM 的渲染，再狂的框架也不敢在用户眼皮子底下胡乱更改视图，所以这个过程必须用同步渲染来求稳。\n细说生命周期“废旧立新”背后的思考 在 Fiber 机制下，render 阶段是允许暂停、终止和重启的。当一个任务执行到一半被打断后，下一次渲染线程抢回主动权时，这个任务被重启的形式是“重复执行一遍整个任务”而非“接着上次执行到的那行代码往下走”。这就导致 render 阶段的生命周期都是有可能被重复执行的。\n带着这个结论，我们再来看看 React 16 打算废弃的是哪些生命周期：\ncomponentWillMount； componentWillUpdate； componentWillReceiveProps。 这些生命周期的共性，就是它们都处于 render 阶段，都可能重复被执行，而且由于这些 API 常年被滥用，它们在重复执行的过程中都存在着不可小觑的风险。\n在“componentWill”开头的生命周期里，你习惯于做的事情可能包括但不限于:\nsetState()； fetch 发起异步请求； 操作真实 DOM。 这些操作的问题（或不必要性）包括但不限于以下 3 点：\n完全可以转移到其他生命周期（尤其是 componentDidxxx）里去做。\n比如在 componentWillMount 里发起异步请求。很多同学因为太年轻，以为这样做就可以让异步请求回来得“早一点”，从而避免首次渲染白屏。\n但是异步请求再怎么快也快不过（React 15 下）同步的生命周期。componentWillMount 结束后，render 会迅速地被触发，所以说首次渲染依然会在数据返回之前执行。这样做不仅没有达到你预想的目的，还会导致服务端渲染场景下的冗余请求等额外问题，得不偿失。\n在 Fiber 带来的异步渲染机制下，可能会导致非常严重的 Bug。\n比如 componentWillxxx 里发起了一个付款请求。由于 render 阶段里的生命周期都可以重复执行，在 componentWillxxx 被打断 + 重启多次后，就会发出多个付款请求。\n又或者你可能会习惯在 componentWillReceiveProps 里操作 DOM（比如说删除符合某个特征的元素），那么 componentWillReceiveProps 若是执行了两次，你可能就会一口气删掉两个符合该特征的元素。\ngetDerivedStateFromProps 为何会在设计层面直接被约束为一个触碰不到 this 的静态方法，其背后的原因也就更加充分了——避免开发者触碰 this，就是在避免各种危险的骚操作。\n即使你没有开启异步，React 15 下也有不少人能把自己“玩死”。\n比如在 componentWillReceiveProps 和 componentWillUpdate 里滥用 setState 导致重复渲染死循环的。\n总的来说，React 16 改造生命周期的主要动机是为了配合 Fiber 架构带来的异步渲染机制。在这个改造的过程中，React 团队针对生命周期中长期被滥用的部分推行了具有强制性的最佳实践**。这一系列的工作做下来，首先是确保了 Fiber 机制下数据和视图的安全性，同时也确保了生命周期方法的行为更加纯粹、可控、可预测。\n",
-  "wordCount" : "3779",
+  "articleBody": "React15 的生命周期 Mounting 阶段：组件的初始化渲染 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成“首次渲染”。\n注意 render 在执行过程中并不会去操作真实 DOM（也就是说不会渲染），它的职能是把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来做的。\ncomponentDidMount 方法在渲染结束后被触发，此时因为真实 DOM 已经挂载到了页面上，我们可以在这个生命周期里**执行真实 DOM 相关的操作，**类似于发起异步请求、数据初始化这样的操作也大可以放在这个生命周期来做。\nUpdating 阶段：组件的更新 componentWillReceiProps(nextProps) 是由什么触发的？ 在这个生命周期方法里，nextProps 表示的是接收到新 props 内容，而现有的 props （相对于 nextProps 的“旧 props”）可以通过 this.props 拿到，由此便能够感知到 props 的变化。\ncomponentReceiveProps 并不是由 props 的变化触发的，而是由父组件的更新触发的。\n如果父组件导致组件重新渲染，即使 props 没有更改也会调用此方法（componentWillReceiveProps） 如果只想处理更改，请确保当前值与变更值的比较\n—— React 官方\n组件自身 setState 触发的更新 componentWillUpdate 会在 render 前被触发，它和 componentWillMount 类似，允许你在里面做一些不涉及真实 DOM 操作的准备工作；而 componentDidUpdate 则在组件更新完毕后被触发，和 componentDidMount 类似，这个生命周期也经常被用来处理 DOM 操作。此外，我们也常常将 componentDidUpdate 的执行作为子组件更新完毕的标志通知到父组件。\nrender 与性能： shouldComponentUpdate(nextProps, nextState) React 组件会根据 shouldComponentUpdate 的返回值，来决定是否执行该方法之后的生命周期，进而决定是否对组件进行re-render（重渲染）。shouldComponentUpdate 的默认值为 true，也就是说“无条件 re-render”。在实际的开发中，我们往往通过手动往 shouldComponentUpdate 中填充判定逻辑，或者直接在项目中引入 PureComponent 等最佳实践，来实现“有条件的 re-render”。\nUnmounting 阶段：组件的卸载 组件销毁的常见原因有以下两个。\n组件在父组件中被移除了：这种情况相对比较直观 组件中设置了 key 属性，父组件在 render 的过程中，发现 key 值和上一次不一致，那么这个组件就会被销毁。 React16 的生命周期 推荐 👉🏻 React16 生命周期图示\nMounting 阶段：组件的初始化渲染 认识 getDerivedStateFromProps(props,state) getDerivedStateFromProps 这个 API，其设计的初衷不是试图替换掉componentWillMount ，而是试图替换掉 componentWillReceiveProps，因此它有且仅有一个用途:使用 props 来派生/更新 state\ngetDerivedStateFromProps 是一个静态方法，静态方法不依赖组件实例而存在，因此在这个方法内部是访问不到 this 的。\n该方法可以接收两个参数：props 和 state，它们分别代表当前组件接收到的来自父组件的 props 和当前组件自身的 state。\ngetDerivedStateFromProps 需要一个对象格式的返回值。如果你没有指定这个返回值，那么大概率会被 React 警告一番。\ngetDerivedStateFromProps 方法对 state 的更新动作并非“覆盖”式的更新，而是针对某个属性的定向更新。比如这里我们在 getDerivedStateFromProps 里返回的是这样一个对象，对象里面有一个 fatherText 属性用于表示“父组件赋予的文本”：\n1 2 3 { fatherText: props.text; } 该对象并不会替换掉组件原始的这个 state：\n1 this.state = { text: \"子组件的文本\" }; 而是仅仅针对 fatherText 这个属性作更新（这里原有的 state 里没有 fatherText，因此直接新增）。更新后，原有属性与新属性是共存的，如下图所示： Updating 阶段：组件的更新 React 16.4 的挂载和卸载流程都是与 React 16.3 保持一致的，差异在于更新流程上：\n在 React 16.4 中，任何因素触发的组件更新流程（包括由 this.setState 和 forceUpdate 触发的更新流程）都会触发 getDerivedStateFromProps；\n而在 v 16.3 版本时，只有父组件的更新会触发该生命周期。\n为什么要用 getDerivedStateFromProps 代替 componentWillReceiveProps？ 做合理的减法：\ngetDerivedStateFromProps 直接被定义为 static 方法，static 方法内部拿不到组件实例的 this，这就导致你无法在 getDerivedStateFromProps 里面做任何类似于 this.fetch()、不合理的 this.setState（会导致死循环的那种）这类可能会产生副作用的操作。 这是 React 16 在强制推行“只用 getDerivedStateFromProps 来完成 props 到 state 的映射”这一最佳实践。意在确保生命周期函数的行为更加可控可预测，从根源上帮开发者避免不合理的编程方式，避免生命周期的滥用；同时，也是在为新的 Fiber 架构铺路。 消失的 componentWillUpdate 与新增的 getSnapshotBeforeUpdate(prevProps, prevState) getSnapshotBeforeUpdate 方法需要一个返回值，它的返回值会作为第三个参数给到 componentDidUpdate。它的执行时机是在 render 方法之后，真实 DOM 更新之前。在这个阶段里，我们可以同时获取到更新前的真实 DOM 和更新前后的 state\u0026props 的信息。\n重点把握它与 componentDidUpdate 间的通信过程：\n1 2 3 4 5 6 7 8 9 10 11 // 组件更新时调用 getSnapshotBeforeUpdate(prevProps, prevState) { console.log(\"getSnapshotBeforeUpdate方法执行\"); return \"haha\"; } // 组件更新后调用 componentDidUpdate(prevProps, prevState, valueFromSnapshot) { console.log(\"componentDidUpdate方法执行\"); console.log(\"从 getSnapshotBeforeUpdate 获取到的值是\", valueFromSnapshot); } 这个生命周期的设计初衷，是为了“与 componentDidUpdate 一起，涵盖过时的 componentWillUpdate 的所有用例”。getSnapshotBeforeUpdate 要想发挥作用，离不开 componentDidUpdate 的配合。\nReact16 为何两次求变？ Fiber 会使原本同步的渲染过程变成异步的。 同步更新与异步更新对比 Demo\n同步渲染的递归调用栈是非常深的，只有最底层的调用返回了，整个渲染过程才会开始逐层返回。这个漫长且不可打断的更新过程，将会带来用户体验层面的巨大风险：同步渲染一旦开始，便会抓住主线程不放，直到递归彻底完成。在这个过程中，浏览器没有办法处理任何渲染之外的事情，会进入一种无法处理用户交互的状态。因此若渲染时间稍微长一点，页面就会面临卡顿甚至卡死的风险。\n而 React 16 引入的 Fiber 架构，恰好能够解决掉这个风险：Fiber 会将一个大的更新任务拆解为许多个小任务。每当执行完一个小任务时，渲染线程都会把主线程交回去，调度器会看有没有优先级更高的工作要处理，确保不会出现其他任务被“饿死”的情况，进而避免同步渲染带来的卡顿。在这个过程中，渲染线程不再“一去不回头”，而是可以被打断的，这就是所谓的“异步渲染”。\n换个角度看生命周期工作流 Fiber 架构的重要特征就是可以被打断的异步渲染模式。但这个“打断”是有原则的，根据“能否被打断”这一标准，React 16 的生命周期被划分为了 render 和 commit 两个阶段，而 commit 阶段又被细分为了 pre-commit 和 commit。每个阶段所涵盖的生命周期如下图所示：\n总的来说，render 阶段在执行过程中允许被打断，而 commit 阶段则总是同步执行的。\n为什么这样设计呢？简单来说，由于 render 阶段的操作对用户来说其实是“不可见”的，所以就算打断再重启，对用户来说也是零感知。而 commit 阶段的操作则涉及真实 DOM 的渲染，这个过程必须用同步渲染。\n生命周期变更的考量 在 Fiber 机制下，render 阶段是允许暂停、终止和重启的。当一个任务执行到一半被打断后，下一次渲染线程抢回主动权时，这个任务被重启的形式是“重复执行一遍整个任务”而非“接着上次执行到的那行代码往下走”。这就导致 render 阶段的生命周期都是有可能被重复执行的。\n带着这个结论，我们再来看看 React 16 打算废弃的是哪些生命周期：\ncomponentWillMount； componentWillUpdate； componentWillReceiveProps。 这些生命周期的共性，就是它们都处于 render 阶段，都可能重复被执行，而且由于这些 API 常年被滥用，它们在重复执行的过程中都存在着不可小觑的风险。\n在“componentWill”开头的生命周期里，你习惯于做的事情可能包括但不限于:\nsetState()； fetch 发起异步请求； 操作真实 DOM。 这些操作的问题（或不必要性）包括但不限于以下 3 点：\n完全可以转移到其他生命周期（尤其是 componentDidxxx）里去做。\n比如在 componentWillMount 里发起异步请求，以为这样做就可以更快得到异步请求返回的结果，从而避免首次渲染白屏。\n但是（React 15 下）同步的生命周期函数必然先于异步请求执行。componentWillMount 结束后，render 会迅速地被触发，所以说首次渲染依然会在数据返回之前执行。这样做不仅没有达到你预想的目的，还会导致服务端渲染场景下的冗余请求等额外问题。\n在 Fiber 带来的异步渲染机制下，可能会导致非常严重的 Bug。\n比如在 componentWillxxx 里发起了一个付款请求。由于 render 阶段里的生命周期都可以重复执行，在 componentWillxxx 被打断 + 重启多次后，就会发出多个付款请求。\n又或者你可能会习惯在 componentWillReceiveProps 里操作 DOM（比如说删除符合某个特征的元素），那么 componentWillReceiveProps 若是执行了两次，你可能就会一口气删掉两个符合该特征的元素。\ngetDerivedStateFromProps 为何会在设计层面直接被约束为一个触碰不到 this 的静态方法，其背后的原因也就更加充分了———避免开发者触碰 this，就是在避免各种危险的错误操作。\n即使你没有开启异步，React 15 下也有不少人能把自己“玩死”。\n比如在 componentWillReceiveProps 和 componentWillUpdate 里滥用 setState 导致重复渲染死循环的。\n总的来说，React 16 改造生命周期的主要动机是为了配合 Fiber 架构带来的异步渲染机制。在这个改造的过程中，React 团队针对生命周期中长期被滥用的部分推行了具有强制性的最佳实践。这一系列的工作做下来，首先是确保了 Fiber 机制下数据和视图的安全性，同时也 确保了生命周期方法的行为更加纯粹、可控、可预测 。\n",
+  "wordCount" : "3649",
   "inLanguage": "en",
   "datePublished": "2022-06-02T17:58:52+08:00",
-  "dateModified": "2022-06-02T17:58:52+08:00",
+  "dateModified": "2022-06-17T21:57:20Z",
   "author":[{
     "@type": "Person",
     "name": "zzydev"
@@ -213,7 +213,7 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://zzydev.top">Home</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/">文章</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/headfirstreact/">HeadFirstReact</a></div>
     <h1 class="post-title">
-      2.React生命周期<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+      2.React生命周期
     </h1>
     <div class="post-meta">
 
@@ -226,7 +226,7 @@
 
 
 
-创建:&nbsp;<span title='2022-06-02 17:58:52 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;3779字&nbsp;|&nbsp;时长: 8分钟&nbsp;|&nbsp;zzydev
+创建:&nbsp;<span title='2022-06-02 17:58:52 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-17&nbsp;|&nbsp;字数:&nbsp;3649字&nbsp;|&nbsp;时长: 8分钟&nbsp;|&nbsp;zzydev
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -238,28 +238,28 @@
 
             <div class="inner"><ul>
                     <li>
-                        <a href="#react15%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="React15的生命周期">React15的生命周期</a><ul>
+                        <a href="#react15-%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="React15 的生命周期">React15 的生命周期</a><ul>
                             
                     <li>
-                        <a href="#mounting-%e9%98%b6%e6%ae%b5%e7%bb%84%e4%bb%b6%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96%e6%b8%b2%e6%9f%93%e6%8c%82%e8%bd%bd" aria-label="Mounting 阶段：组件的初始化渲染（挂载）">Mounting 阶段：组件的初始化渲染（挂载）</a></li>
+                        <a href="#mounting-%e9%98%b6%e6%ae%b5%e7%bb%84%e4%bb%b6%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96%e6%b8%b2%e6%9f%93" aria-label="Mounting 阶段：组件的初始化渲染">Mounting 阶段：组件的初始化渲染</a></li>
                     <li>
                         <a href="#updating-%e9%98%b6%e6%ae%b5%e7%bb%84%e4%bb%b6%e7%9a%84%e6%9b%b4%e6%96%b0" aria-label="Updating 阶段：组件的更新">Updating 阶段：组件的更新</a><ul>
                             
                     <li>
-                        <a href="#componentwillreceipropsnextprops-%e5%88%b0%e5%ba%95%e6%98%af%e7%94%b1%e4%bb%80%e4%b9%88%e8%a7%a6%e5%8f%91%e7%9a%84" aria-label="componentWillReceiProps(nextProps) 到底是由什么触发的？"><code>componentWillReceiProps(nextProps)</code> 到底是由什么触发的？</a></li>
+                        <a href="#componentwillreceipropsnextprops-%e6%98%af%e7%94%b1%e4%bb%80%e4%b9%88%e8%a7%a6%e5%8f%91%e7%9a%84" aria-label="componentWillReceiProps(nextProps) 是由什么触发的？"><code>componentWillReceiProps(nextProps)</code> 是由什么触发的？</a></li>
                     <li>
                         <a href="#%e7%bb%84%e4%bb%b6%e8%87%aa%e8%ba%ab-setstate-%e8%a7%a6%e5%8f%91%e7%9a%84%e6%9b%b4%e6%96%b0" aria-label="组件自身 setState 触发的更新"><strong>组件自身 setState 触发的更新</strong></a></li>
                     <li>
-                        <a href="#render-%e4%b8%8e%e6%80%a7%e8%83%bd%e5%88%9d%e8%af%86-shouldcomponentupdatenextprops-nextstate" aria-label="render 与性能：初识 shouldComponentUpdate(nextProps, nextState)">render 与性能：初识 <code>shouldComponentUpdate(nextProps, nextState)</code></a></li></ul>
+                        <a href="#render-%e4%b8%8e%e6%80%a7%e8%83%bd-shouldcomponentupdatenextprops-nextstate" aria-label="render 与性能： shouldComponentUpdate(nextProps, nextState)">render 与性能： <code>shouldComponentUpdate(nextProps, nextState)</code></a></li></ul>
                     </li>
                     <li>
                         <a href="#unmounting-%e9%98%b6%e6%ae%b5%e7%bb%84%e4%bb%b6%e7%9a%84%e5%8d%b8%e8%bd%bd" aria-label="Unmounting 阶段：组件的卸载">Unmounting 阶段：组件的卸载</a></li></ul>
                     </li>
                     <li>
-                        <a href="#react16%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="React16的生命周期">React16的生命周期</a><ul>
+                        <a href="#react16-%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="React16 的生命周期">React16 的生命周期</a><ul>
                             
                     <li>
-                        <a href="#mounting-%e9%98%b6%e6%ae%b5%e7%bb%84%e4%bb%b6%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96%e6%b8%b2%e6%9f%93%e6%8c%82%e8%bd%bd-1" aria-label="Mounting 阶段：组件的初始化渲染（挂载）">Mounting 阶段：组件的初始化渲染（挂载）</a><ul>
+                        <a href="#mounting-%e9%98%b6%e6%ae%b5%e7%bb%84%e4%bb%b6%e7%9a%84%e5%88%9d%e5%a7%8b%e5%8c%96%e6%b8%b2%e6%9f%93-1" aria-label="Mounting 阶段：组件的初始化渲染">Mounting 阶段：组件的初始化渲染</a><ul>
                             
                     <li>
                         <a href="#%e8%ae%a4%e8%af%86-getderivedstatefrompropspropsstate" aria-label="认识 getDerivedStateFromProps(props,state)">认识 getDerivedStateFromProps(props,state)</a></li></ul>
@@ -274,14 +274,14 @@
                     </li></ul>
                     </li>
                     <li>
-                        <a href="#react16%e4%b8%ba%e4%bd%95%e4%b8%a4%e6%ac%a1%e6%b1%82%e5%8f%98" aria-label="React16为何两次求变？">React16为何两次求变？</a><ul>
+                        <a href="#react16-%e4%b8%ba%e4%bd%95%e4%b8%a4%e6%ac%a1%e6%b1%82%e5%8f%98" aria-label="React16 为何两次求变？">React16 为何两次求变？</a><ul>
                             
                     <li>
                         <a href="#fiber-%e4%bc%9a%e4%bd%bf%e5%8e%9f%e6%9c%ac%e5%90%8c%e6%ad%a5%e7%9a%84%e6%b8%b2%e6%9f%93%e8%bf%87%e7%a8%8b%e5%8f%98%e6%88%90%e5%bc%82%e6%ad%a5%e7%9a%84" aria-label="Fiber 会使原本同步的渲染过程变成异步的。">Fiber 会使原本同步的渲染过程变成异步的。</a></li>
                     <li>
                         <a href="#%e6%8d%a2%e4%b8%aa%e8%a7%92%e5%ba%a6%e7%9c%8b%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e5%b7%a5%e4%bd%9c%e6%b5%81" aria-label="换个角度看生命周期工作流">换个角度看生命周期工作流</a></li>
                     <li>
-                        <a href="#%e7%bb%86%e8%af%b4%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e5%ba%9f%e6%97%a7%e7%ab%8b%e6%96%b0%e8%83%8c%e5%90%8e%e7%9a%84%e6%80%9d%e8%80%83" aria-label="细说生命周期“废旧立新”背后的思考">细说生命周期“废旧立新”背后的思考</a>
+                        <a href="#%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e5%8f%98%e6%9b%b4%e7%9a%84%e8%80%83%e9%87%8f" aria-label="生命周期变更的考量">生命周期变更的考量</a>
                     </li>
                 </ul>
                 </li>
@@ -350,42 +350,41 @@
     }
 </script>
 
-  <div class="post-content"><h2 id="react15的生命周期">React15的生命周期<a hidden class="anchor" aria-hidden="true" href="#react15的生命周期">#</a></h2>
-<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkOjP.png" alt="XwkOjP.png"  />
+  <div class="post-content"><h2 id="react15-的生命周期">React15 的生命周期<a hidden class="anchor" aria-hidden="true" href="#react15-的生命周期">#</a></h2>
+<p><img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/2-1.png" alt="2-1"  />
 </p>
-<h3 id="mounting-阶段组件的初始化渲染挂载">Mounting 阶段：组件的初始化渲染（挂载）<a hidden class="anchor" aria-hidden="true" href="#mounting-阶段组件的初始化渲染挂载">#</a></h3>
-<p>挂载过程在组件的一生中<strong>仅会发生一次</strong>，在这个过程中，组件被<strong>初始化</strong>，然后会被渲染到真实 DOM 里，完成所谓的“<strong>首次渲染</strong>”。</p>
-<p>注意 render 在执行过程中并不会去操作真实 DOM（也就是说不会渲染），它的职能是把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。</p>
-<p>componentDidMount 方法在<strong>渲染结束后被触发</strong>，此时因为真实 DOM 已经挂载到了页面上，我们可以在这个生命周期里**执行真实 DOM 相关的操作，**类似于异步请求、数据初始化这样的操作也大可以放在这个生命周期来做。</p>
+<h3 id="mounting-阶段组件的初始化渲染">Mounting 阶段：组件的初始化渲染<a hidden class="anchor" aria-hidden="true" href="#mounting-阶段组件的初始化渲染">#</a></h3>
+<p>挂载过程在组件的一生中<strong>仅会发生一次</strong>，在这个过程中，组件被<strong>初始化</strong>，然后会被渲染到真实 DOM 里，完成“<strong>首次渲染</strong>”。</p>
+<p>注意 render 在执行过程中并不会去操作真实 DOM（也就是说不会渲染），它的职能是把需要渲染的内容返回出来。真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来做的。</p>
+<p>componentDidMount 方法在<strong>渲染结束后被触发</strong>，此时因为真实 DOM 已经挂载到了页面上，我们可以在这个生命周期里**执行真实 DOM 相关的操作，**类似于发起异步请求、数据初始化这样的操作也大可以放在这个生命周期来做。</p>
 <h3 id="updating-阶段组件的更新">Updating 阶段：组件的更新<a hidden class="anchor" aria-hidden="true" href="#updating-阶段组件的更新">#</a></h3>
-<h4 id="componentwillreceipropsnextprops-到底是由什么触发的"><code>componentWillReceiProps(nextProps)</code> 到底是由什么触发的？<a hidden class="anchor" aria-hidden="true" href="#componentwillreceipropsnextprops-到底是由什么触发的">#</a></h4>
-<p>在这个生命周期方法里，<code>nextProps</code> 表示的是接收到新 props 内容，而现有的 props （相对于 <code>nextProps</code> 的“旧 props”）我们可以通过 <code>this.props</code> 拿到，由此便能够感知到 <code>props</code> 的变化。</p>
+<h4 id="componentwillreceipropsnextprops-是由什么触发的"><code>componentWillReceiProps(nextProps)</code> 是由什么触发的？<a hidden class="anchor" aria-hidden="true" href="#componentwillreceipropsnextprops-是由什么触发的">#</a></h4>
+<p>在这个生命周期方法里，<code>nextProps</code> 表示的是接收到新 props 内容，而现有的 props （相对于 <code>nextProps</code> 的“旧 props”）可以通过 <code>this.props</code> 拿到，由此便能够感知到 <code>props</code> 的变化。</p>
 <p><code>componentReceiveProps</code> 并不是由 <code>props</code> 的变化触发的，而是<strong>由父组件的更新触发的</strong>。</p>
 
 <div class="notice notice-info" >
-    <div class="notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512"><path d="M256 8a248 248 0 100 496 248 248 0 000-496zm0 110a42 42 0 110 84 42 42 0 010-84zm56 254c0 7-5 12-12 12h-88c-7 0-12-5-12-12v-24c0-7 5-12 12-12h12v-64h-12c-7 0-12-5-12-12v-24c0-7 5-12 12-12h64c7 0 12 5 12 12v100h12c7 0 12 5 12 12v24z"/></svg></div><p>如果父组件导致组件重新渲染，即使props没有更改也会调用此方法（componentWillReceiProps）
+    <div class="notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon notice-icon" viewBox="0 0 512 512"><path d="M256 8a248 248 0 100 496 248 248 0 000-496zm0 110a42 42 0 110 84 42 42 0 010-84zm56 254c0 7-5 12-12 12h-88c-7 0-12-5-12-12v-24c0-7 5-12 12-12h12v-64h-12c-7 0-12-5-12-12v-24c0-7 5-12 12-12h64c7 0 12 5 12 12v100h12c7 0 12 5 12 12v24z"/></svg></div><p>如果父组件导致组件重新渲染，即使 props 没有更改也会调用此方法（componentWillReceiveProps）
 如果只想处理更改，请确保当前值与变更值的比较</p>
-<p>&mdash;&mdash; React官方</p></div>
+<p>&mdash;&mdash; React 官方</p></div>
 
 <h4 id="组件自身-setstate-触发的更新"><strong>组件自身 setState 触发的更新</strong><a hidden class="anchor" aria-hidden="true" href="#组件自身-setstate-触发的更新">#</a></h4>
 <p>componentWillUpdate 会在 render 前被触发，它和 componentWillMount 类似，允许你在里面做一些不涉及真实 DOM 操作的准备工作；而 componentDidUpdate 则在组件更新完毕后被触发，和 componentDidMount 类似，这个生命周期也经常被用来处理 DOM 操作。此外，我们也常常将 componentDidUpdate 的执行作为子组件更新完毕的标志通知到父组件。</p>
-<h4 id="render-与性能初识-shouldcomponentupdatenextprops-nextstate">render 与性能：初识 <code>shouldComponentUpdate(nextProps, nextState)</code><a hidden class="anchor" aria-hidden="true" href="#render-与性能初识-shouldcomponentupdatenextprops-nextstate">#</a></h4>
+<h4 id="render-与性能-shouldcomponentupdatenextprops-nextstate">render 与性能： <code>shouldComponentUpdate(nextProps, nextState)</code><a hidden class="anchor" aria-hidden="true" href="#render-与性能-shouldcomponentupdatenextprops-nextstate">#</a></h4>
 <p>React 组件会根据 shouldComponentUpdate 的返回值，来决定是否执行该方法之后的生命周期，进而决定是否对组件进行<strong>re-render</strong>（重渲染）。shouldComponentUpdate 的默认值为 true，也就是说“无条件 re-render”。在实际的开发中，我们往往通过手动往 shouldComponentUpdate 中填充判定逻辑，或者直接在项目中引入 <code>PureComponent</code> 等最佳实践，来实现“<strong>有条件的</strong> re-render”。</p>
 <h3 id="unmounting-阶段组件的卸载">Unmounting 阶段：组件的卸载<a hidden class="anchor" aria-hidden="true" href="#unmounting-阶段组件的卸载">#</a></h3>
 <p>组件销毁的常见原因有以下两个。</p>
 <ul>
 <li>组件在父组件中被移除了：这种情况相对比较直观</li>
-<li>组件中设置了 key 属性，父组件在 render 的过程中，发现 key 值和上一次不一致，那么这个组件就会被干掉。</li>
+<li>组件中设置了 key 属性，父组件在 render 的过程中，发现 key 值和上一次不一致，那么这个组件就会被销毁。</li>
 </ul>
-<h2 id="react16的生命周期">React16的生命周期<a hidden class="anchor" aria-hidden="true" href="#react16的生命周期">#</a></h2>
-<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwkLct.png" alt="XwkLct.png"  />
+<h2 id="react16-的生命周期">React16 的生命周期<a hidden class="anchor" aria-hidden="true" href="#react16-的生命周期">#</a></h2>
+<p><a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/" target="_blank">推荐 👉🏻 React16 生命周期图示</a></p>
+<p><img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/2-2.png" alt="2-2"  />
 </p>
-<h3 id="mounting-阶段组件的初始化渲染挂载-1">Mounting 阶段：组件的初始化渲染（挂载）<a hidden class="anchor" aria-hidden="true" href="#mounting-阶段组件的初始化渲染挂载-1">#</a></h3>
-<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwkq1I.png" alt="Xwkq1I.png"  />
-</p>
+<h3 id="mounting-阶段组件的初始化渲染-1">Mounting 阶段：组件的初始化渲染<a hidden class="anchor" aria-hidden="true" href="#mounting-阶段组件的初始化渲染-1">#</a></h3>
 <h4 id="认识-getderivedstatefrompropspropsstate">认识 getDerivedStateFromProps(props,state)<a hidden class="anchor" aria-hidden="true" href="#认识-getderivedstatefrompropspropsstate">#</a></h4>
-<p>getDerivedStateFromProps这个API，其设计的初衷不是试图替换掉<strong>componentWillMount ，<strong>而是试图替换掉componentWillReceiveProps，因此它</strong>有且仅有一个用途:使用 props 来派生/更新 state</strong></p>
-<p>getDerivedStateFromProps 是一个静态方法，静态方法不依赖组件实例而存在，因此你在这个方法内部是访问不到 this 的。</p>
+<p>getDerivedStateFromProps 这个 API，其设计的初衷不是试图替换掉<strong>componentWillMount ，<strong>而是试图替换掉 componentWillReceiveProps，因此它</strong>有且仅有一个用途:使用 props 来派生/更新 state</strong></p>
+<p>getDerivedStateFromProps 是一个静态方法，静态方法不依赖组件实例而存在，因此在这个方法内部是访问不到 this 的。</p>
 <p>该方法可以接收两个参数：props 和 state，它们分别代表当前组件接收到的来自<strong>父组件的 props</strong> 和当前组件自身的 state。</p>
 <p>getDerivedStateFromProps 需要一个对象格式的返回值。如果你没有指定这个返回值，那么大概率会被 React 警告一番。</p>
 <p>getDerivedStateFromProps 方法<strong>对 state 的更新动作并非“覆盖”式的更新，而是针对某个属性的定向更新</strong>。比如这里我们在 getDerivedStateFromProps 里返回的是这样一个对象，对象里面有一个 fatherText 属性用于表示“父组件赋予的文本”：</p>
@@ -397,7 +396,7 @@
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  fatherText: props.text
+</span></span><span style="display:flex;"><span>  fatherText: props.text;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -411,10 +410,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>而是仅仅针对 fatherText 这个属性作更新（这里原有的 state 里没有 fatherText，因此直接新增）。更新后，原有属性与新属性是共存的，如下图所示：
-<img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwk6h9.png" alt="Xwk6h9.png"  />
+<img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/2-3.webp" alt="2-3"  />
 </p>
 <h3 id="updating-阶段组件的更新-1">Updating 阶段：组件的更新<a hidden class="anchor" aria-hidden="true" href="#updating-阶段组件的更新-1">#</a></h3>
-<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwkb9A.png" alt="Xwkb9A.png"  />
+<p><img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/2-4.png" alt="2-4"  />
 </p>
 <p>React 16.4 的挂载和卸载流程都是与 React 16.3 保持一致的，差异在于更新流程上：</p>
 <p>在 React 16.4 中，任何因素触发的组件更新流程（包括由 this.setState 和 forceUpdate 触发的更新流程）都会触发 getDerivedStateFromProps；</p>
@@ -426,8 +425,8 @@
 <li>这是 React 16 在<strong>强制推行</strong>“只用 getDerivedStateFromProps 来完成 props 到 state 的映射”这一最佳实践。意在确保生命周期函数的行为更加可控可预测，从根源上帮开发者避免不合理的编程方式，避免生命周期的滥用；同时，也是在为新的 Fiber 架构铺路。</li>
 </ol>
 <h4 id="消失的-componentwillupdate-与新增的-getsnapshotbeforeupdateprevprops-prevstate">消失的 componentWillUpdate 与新增的 getSnapshotBeforeUpdate(prevProps, prevState)<a hidden class="anchor" aria-hidden="true" href="#消失的-componentwillupdate-与新增的-getsnapshotbeforeupdateprevprops-prevstate">#</a></h4>
-<p>getSnapshotBeforeUpdate方法需要一个返回值，<strong>它的返回值会作为第三个参数给到 componentDidUpdate。它的执行时机是在 render 方法之后，真实 DOM 更新之前。在这个阶段里，我们可以同时获取到更新前的真实 DOM 和更新前后的 state&amp;props 的信息。</strong></p>
-<p>重点把握它与componentDidUpdate 间的通信过程：</p>
+<p>getSnapshotBeforeUpdate 方法需要一个返回值，<strong>它的返回值会作为第三个参数给到 componentDidUpdate。它的执行时机是在 render 方法之后，真实 DOM 更新之前。在这个阶段里，我们可以同时获取到更新前的真实 DOM 和更新前后的 state&amp;props 的信息。</strong></p>
+<p>重点把握它与 componentDidUpdate 间的通信过程：</p>
 <div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
 <table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
@@ -457,17 +456,18 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个生命周期的设计初衷，是为了“与 componentDidUpdate 一起，涵盖过时的 componentWillUpdate 的所有用例”。getSnapshotBeforeUpdate 要想发挥作用，离不开 componentDidUpdate 的配合。</p>
-<h2 id="react16为何两次求变">React16为何两次求变？<a hidden class="anchor" aria-hidden="true" href="#react16为何两次求变">#</a></h2>
+<h2 id="react16-为何两次求变">React16 为何两次求变？<a hidden class="anchor" aria-hidden="true" href="#react16-为何两次求变">#</a></h2>
 <h3 id="fiber-会使原本同步的渲染过程变成异步的">Fiber 会使原本同步的渲染过程变成异步的。<a hidden class="anchor" aria-hidden="true" href="#fiber-会使原本同步的渲染过程变成异步的">#</a></h3>
-<p>同步渲染的递归调用栈是非常深的，只有最底层的调用返回了，整个渲染过程才会开始逐层返回。这个漫长且不可打断的更新过程，将会带来用户体验层面的巨大风险：同步渲染一旦开始，便会牢牢抓住主线程不放，直到递归彻底完成。在这个过程中，浏览器没有办法处理任何渲染之外的事情，会进入一种无法处理用户交互的状态。因此若渲染时间稍微长一点，页面就会面临卡顿甚至卡死的风险。</p>
-<p>而 React 16 引入的 Fiber 架构，恰好能够解决掉这个风险：Fiber 会将一个大的更新任务拆解为许多个小任务。每当执行完一个小任务时，渲染线程都会把主线程交回去，看看有没有优先级更高的工作要处理，确保不会出现其他任务被“饿死”的情况，进而避免同步渲染带来的卡顿。在这个过程中，渲染线程不再“一去不回头”，而是可以被打断的，这就是所谓的“异步渲染”。</p>
+<p><a href="https://codesandbox.io/s/concurrent-3h48s?file=/src/index.js" target="_blank">同步更新与异步更新对比 Demo</a></p>
+<p>同步渲染的递归调用栈是非常深的，只有最底层的调用返回了，整个渲染过程才会开始逐层返回。这个漫长且不可打断的更新过程，将会带来用户体验层面的巨大风险：同步渲染一旦开始，便会抓住主线程不放，直到递归彻底完成。在这个过程中，浏览器没有办法处理任何渲染之外的事情，会进入一种无法处理用户交互的状态。因此若渲染时间稍微长一点，页面就会面临卡顿甚至卡死的风险。</p>
+<p>而 React 16 引入的 Fiber 架构，恰好能够解决掉这个风险：Fiber 会将一个大的更新任务拆解为许多个小任务。每当执行完一个小任务时，渲染线程都会把主线程交回去，调度器会看有没有优先级更高的工作要处理，确保不会出现其他任务被“饿死”的情况，进而避免同步渲染带来的卡顿。在这个过程中，渲染线程不再“一去不回头”，而是可以被打断的，这就是所谓的“异步渲染”。</p>
 <h3 id="换个角度看生命周期工作流">换个角度看生命周期工作流<a hidden class="anchor" aria-hidden="true" href="#换个角度看生命周期工作流">#</a></h3>
 <p>Fiber 架构的重要特征就是可以被打断的异步渲染模式。但这个“打断”是有原则的，根据“能否被打断”这一标准，React 16 的生命周期被划分为了 <strong>render</strong> 和 <strong>commit</strong> 两个阶段，而 commit 阶段又被细分为了 pre-commit 和 commit。每个阶段所涵盖的生命周期如下图所示：</p>
-<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/Xwkb9A.png" alt="Xwkb9A.png"  />
-]</p>
+<p><img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/2-4.png" alt="2-4"  />
+</p>
 <p>总的来说，<strong>render 阶段在执行过程中允许被打断，而 commit 阶段则总是同步执行的</strong>。</p>
-<p>为什么这样设计呢？简单来说，由于 <strong>render 阶段的操作对用户来说其实是“不可见”的</strong>，所以就算打断再重启，对用户来说也是零感知。而 commit 阶段的操作则涉及真实 DOM 的渲染，再狂的框架也不敢在用户眼皮子底下胡乱更改视图，所以这个过程必须用同步渲染来求稳。</p>
-<h3 id="细说生命周期废旧立新背后的思考">细说生命周期“废旧立新”背后的思考<a hidden class="anchor" aria-hidden="true" href="#细说生命周期废旧立新背后的思考">#</a></h3>
+<p>为什么这样设计呢？简单来说，由于 <strong>render 阶段的操作对用户来说其实是“不可见”的</strong>，所以就算打断再重启，对用户来说也是零感知。而 commit 阶段的操作则涉及真实 DOM 的渲染，这个过程必须用同步渲染。</p>
+<h3 id="生命周期变更的考量">生命周期变更的考量<a hidden class="anchor" aria-hidden="true" href="#生命周期变更的考量">#</a></h3>
 <p>在 Fiber 机制下，<strong>render 阶段是允许暂停、终止和重启的</strong>。当一个任务执行到一半被打断后，下一次渲染线程抢回主动权时，这个任务被重启的形式是“重复执行一遍整个任务”而非“接着上次执行到的那行代码往下走”。<strong>这就导致 render 阶段的生命周期都是有可能被重复执行的</strong>。</p>
 <p>带着这个结论，我们再来看看 React 16 打算废弃的是哪些生命周期：</p>
 <ul>
@@ -486,21 +486,21 @@
 <ol>
 <li>
 <p><strong>完全可以转移到其他生命周期（尤其是 componentDidxxx）里去做</strong>。</p>
-<p>比如在 componentWillMount 里发起异步请求。很多同学因为太年轻，以为这样做就可以让异步请求回来得“早一点”，从而避免首次渲染白屏。</p>
-<p>但是异步请求再怎么快也快不过（React 15 下）同步的生命周期。componentWillMount 结束后，render 会迅速地被触发，所以说<strong>首次渲染依然会在数据返回之前执行</strong>。这样做不仅没有达到你预想的目的，还会导致服务端渲染场景下的冗余请求等额外问题，得不偿失。</p>
+<p>比如在 componentWillMount 里发起异步请求，以为这样做就可以更快得到异步请求返回的结果，从而避免首次渲染白屏。</p>
+<p>但是（React 15 下）<strong>同步</strong>的生命周期函数必然先于<strong>异步请求</strong>执行。componentWillMount 结束后，render 会迅速地被触发，所以说<strong>首次渲染依然会在数据返回之前执行</strong>。这样做不仅没有达到你预想的目的，还会导致服务端渲染场景下的冗余请求等额外问题。</p>
 </li>
 <li>
 <p><strong>在 Fiber 带来的异步渲染机制下，可能会导致非常严重的 Bug</strong>。</p>
-<p>比如 componentWillxxx 里发起了一个付款请求。由于 render 阶段里的生命周期都可以重复执行，在 componentWillxxx 被<strong>打断 + 重启多次</strong>后，就会发出多个付款请求。</p>
+<p>比如在 componentWillxxx 里发起了一个付款请求。由于 render 阶段里的生命周期都可以重复执行，在 componentWillxxx 被<strong>打断 + 重启多次</strong>后，就会发出多个付款请求。</p>
 <p>又或者你可能会习惯在 componentWillReceiveProps 里操作 DOM（比如说删除符合某个特征的元素），那么 componentWillReceiveProps 若是执行了两次，你可能就会一口气删掉两个符合该特征的元素。</p>
-<p>getDerivedStateFromProps 为何会在设计层面直接被约束为一个触碰不到 this 的静态方法，其背后的原因也就更加充分了——避免开发者触碰 this，就是在避免各种危险的骚操作。</p>
+<p>getDerivedStateFromProps 为何会在设计层面直接被约束为一个触碰不到 this 的静态方法，其背后的原因也就更加充分了———避免开发者触碰 this，就是在避免各种危险的错误操作。</p>
 </li>
 <li>
 <p><strong>即使你没有开启异步，React 15 下也有不少人能把自己“玩死”。</strong></p>
-<p>比如在 componentWillReceiveProps  和 componentWillUpdate 里滥用 setState 导致重复渲染死循环的。</p>
+<p>比如在 componentWillReceiveProps 和 componentWillUpdate 里滥用 setState 导致重复渲染死循环的。</p>
 </li>
 </ol>
-<p>总的来说，<strong>React 16 改造生命周期的主要动机是为了配合 Fiber 架构带来的异步渲染机制</strong>。在这个改造的过程中，React 团队针对生命周期中长期被滥用的部分推行了具有<strong>强制性</strong>的最佳实践**。这一系列的工作做下来，首先是<strong>确保了 Fiber 机制下数据和视图的安全性</strong>，同时也<strong>确保了生命周期方法的行为更加纯粹、可控、可预测</strong>。</p>
+<p>总的来说，<strong>React 16 改造生命周期的主要动机是为了配合 Fiber 架构带来的异步渲染机制</strong>。在这个改造的过程中，React 团队针对生命周期中长期被滥用的部分推行了具有<strong>强制性</strong>的最佳实践。这一系列的工作做下来，首先是<strong>确保了 Fiber 机制下数据和视图的安全性</strong>，同时也 <strong>确保了生命周期方法的行为更加纯粹、可控、可预测</strong> 。</p>
 
 
   </div>

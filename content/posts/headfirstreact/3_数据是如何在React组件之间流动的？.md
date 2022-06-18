@@ -1,7 +1,8 @@
 ---
 title: "3.数据是如何在React组件之间流动的？"
 date: 2022-06-03T10:35:11+08:00
-draft: true
+lastmod: 2022-06-17 21:57:38
+draft: false
 tags:
   - "react"
 author: ["zzydev"]
@@ -19,7 +20,6 @@ cover:
   caption: ""
   alt: ""
   relative: false
-
 ---
 
 React 的核心特征是“数据驱动视图”，即 `UI = render(data)`
@@ -27,6 +27,7 @@ React 的核心特征是“数据驱动视图”，即 `UI = render(data)`
 ## 基于 props 的单向数据流
 
 所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关系中，只能由父组件传 props 给子组件，而不能反过来。
+![3-1](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/3-1.webp)
 
 ## 父子组件通信
 
@@ -43,12 +44,12 @@ function Child(props) {
 class Father extends React.Component {
   // 初始化父组件的 state
   state = {
-    text: "初始化的父组件的文本"
+    text: "初始化的父组件的文本",
   };
   // 按钮的监听函数，用于更新 text 值
   changeText = () => {
     this.setState({
-      text: "改变后的父组件文本"
+      text: "改变后的父组件文本",
     });
   };
   // 渲染父组件
@@ -120,7 +121,7 @@ class Father extends React.Component {
 
 ## 兄弟组件通信
 
-![XwAlg1.png](https://s1.ax1x.com/2022/06/05/XwAlg1.png)
+![](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/3-2.webp)
 
 ```javascript
 function Child(props) {
@@ -132,7 +133,7 @@ function Child(props) {
 }
 class NewChild extends React.Component {
   state = {
-    text: "来自 newChild 的文本"
+    text: "来自 newChild 的文本",
   };
   // NewChild 组件的按钮监听函数
   changeText = () => {
@@ -151,12 +152,12 @@ class NewChild extends React.Component {
 class Father extends React.Component {
   // 初始化父组件的 state
   state = {
-    text: "初始化的父组件的文本"
+    text: "初始化的父组件的文本",
   };
   // 传给 NewChild 组件按钮的监听函数，用于更新父组件 text 值（这个 text 值同时也是 Child 的 props）
   changeText = (newText) => {
     this.setState({
-      text: newText
+      text: newText,
     });
   };
   // 渲染父组件
@@ -227,7 +228,6 @@ class myEventEmitter {
     }
   }
 }
-
 ```
 
 ```jsx
@@ -285,14 +285,13 @@ export default function App() {
     </div>
   );
 }
-
 ```
 
-![XwAQ3R.png](https://s1.ax1x.com/2022/06/05/XwAQ3R.png)
+![3-3](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/3-3.webp)
 
-## 使用Context维护全局状态
+## 使用 Context 维护全局状态
 
-![XwA1jx.png](https://s1.ax1x.com/2022/06/05/XwA1jx.png)
+![3-4](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/3-4.png)
 
 [useContext](https://zh-hans.reactjs.org/docs/hooks-reference.html#usecontext)
 
@@ -322,6 +321,7 @@ const { Provider, Consumer } = AppContext
 
 ## Redux
 
+![3-5](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/3-5.png)
 createStore.js
 
 ```javascript
@@ -358,7 +358,6 @@ const createStore = (reducer, enhancer) => {
 };
 
 export default createStore;
-
 ```
 
 applyMiddleware.js
@@ -396,7 +395,6 @@ const compose = (...funcs) => {
 };
 
 export default applyMiddleware;
-
 ```
 
 combineReducer.js
@@ -418,7 +416,6 @@ const combineReducers =
   };
 
 export default combineReducers;
-
 ```
 
 ## React-Redux
@@ -492,6 +489,4 @@ const useForceUpdate = () => {
   }, []);
   return update;
 };
-
 ```
-

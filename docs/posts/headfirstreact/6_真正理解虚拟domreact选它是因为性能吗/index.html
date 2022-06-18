@@ -10,7 +10,7 @@
 <meta name="description" content="React 中的虚拟 DOM 大致是如何工作的? 挂载阶段，React 将结合 JSX 的描述，构建出虚拟 DOM 树，然后通过 ReactDOM.render 实现虚拟 DOM 到真实 DOM 的映射（触发渲染流水线）； 更新">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/headfirstreact/6_%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.c5f4f73e860068544d894d40f8004cd6dd88aa44ecc5342dc5737832b1ccec57.css" integrity="sha256-xfT3PoYAaFRNiU1A&#43;ABM1t2IqkTsxTQtxXN4MrHM7Fc=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.4de2c28ad363a52d9d0f17b1eccc40e33b1a2e842ad060fe71bae5593a5d4c51.css" integrity="sha256-TeLCitNjpS2dDxex7MxA4zsaLoQq0GD&#43;cbrlWTpdTFE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://zzydev.top/image/chance.gif">
@@ -61,7 +61,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zzydev.top/posts/headfirstreact/6_%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-03T19:55:46&#43;08:00" />
-<meta property="article:modified_time" content="2022-06-03T19:55:46&#43;08:00" />
+<meta property="article:modified_time" content="2022-06-18T14:27:44&#43;00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="6.真正理解虚拟DOM,React选它是因为性能吗"/>
@@ -104,11 +104,11 @@
   "keywords": [
     "react"
   ],
-  "articleBody": "React 中的虚拟 DOM 大致是如何工作的? 挂载阶段，React 将结合 JSX 的描述，构建出虚拟 DOM 树，然后通过 ReactDOM.render 实现虚拟 DOM 到真实 DOM 的映射（触发渲染流水线）；\n更新阶段，页面的变化在作用于真实 DOM 之前，会先作用于虚拟 DOM，虚拟 DOM 将在 JS 层借助算法先对比出具体有哪些真实 DOM 需要被改变，然后再将这些改变作用于真实 DOM\n模板引擎与虚拟DOM有哪些区别？ 区别就在于多出了一层虚拟 DOM 作为缓冲层。这个缓冲层带来的利好是：当 DOM 操作（渲染更新）比较频繁时，它会先将前后两次的虚拟 DOM 树进行对比，定位出具体需要更新的部分，生成一个“补丁集”，最后只把“补丁”打在需要更新的那部分真实 DOM 上，实现精准的“差量更新”。这个过程对应的虚拟 DOM 工作流如下图所示：\nReact 选用虚拟 DOM，真的是为了更好的性能吗？\n虚拟 DOM 的优越之处在于，它能够在提供更爽、更高效的研发模式（也就是函数式的 UI 编程方式）的同时，仍然保持一个还不错的性能。\n虚拟 DOM 的劣势主要在于 JS 计算的耗时，而 DOM 操作的能耗和 JS 计算的能耗根本不在一个量级。\n那么虚拟 DOM 的价值到底是什么呢？ 研发体验/研发效率的问题：这一点前面已经反复强调过，DOM 操作模式的每一次革新，背后都是前端对效率和体验的进一步追求。虚拟 DOM 的出现，为数据驱动视图这一思想提供了高度可用的载体，使得前端开发能够基于函数式 UI 的编程方式实现高效的声明式编程。 跨平台的问题：虚拟 DOM 是对真实渲染内容的一层抽象。若没有这一层抽象，那么视图层将和渲染平台紧密耦合在一起，为了描述同样的视图内容，你可能要分别在 Web 端和 Native 端写完全不同的两套甚至多套代码。但现在中间多了一层描述性的虚拟 DOM，它描述的东西可以是真实 DOM，也可以是iOS 界面、安卓界面、小程序……同一套虚拟 DOM，可以对接不同平台的渲染逻辑，从而实现“一次编码，多端运行”，如下图所示。其实说到底，跨平台也是研发提效的一种手段，它在思想上和1是高度呼应的。 ",
-  "wordCount" : "792",
+  "articleBody": "React 中的虚拟 DOM 大致是如何工作的? 挂载阶段，React 将结合 JSX 的描述，构建出虚拟 DOM 树，然后通过 ReactDOM.render 实现虚拟 DOM 到真实 DOM 的映射（触发渲染流水线）；\n更新阶段，页面的变化在作用于真实 DOM 之前，会先作用于虚拟 DOM，虚拟 DOM 将在 JS 层借助算法先对比出具体有哪些真实 DOM 需要被改变，然后再将这些改变作用于真实 DOM\n模板引擎与虚拟 DOM 有哪些区别？ 区别就在于多出了一层虚拟 DOM 作为缓冲层。这个缓冲层带来的利好是：当 DOM 操作（渲染更新）比较频繁时，它会先将前后两次的虚拟 DOM 树进行对比，定位出具体需要更新的部分，生成一个“补丁集”，最后只把“补丁”打在需要更新的那部分真实 DOM 上，实现精准的“差量更新”。这个过程对应的虚拟 DOM 工作流如下图所示：\nReact 选用虚拟 DOM，真的是为了更好的性能吗？\n虚拟 DOM 的优越之处在于，它能够在提供更爽、更高效的研发模式（也就是函数式的 UI 编程方式）的同时，仍然保持一个还不错的性能。\n虚拟 DOM 的劣势主要在于 JS 计算的耗时，而 DOM 操作的能耗和 JS 计算的能耗根本不在一个量级。\n那么虚拟 DOM 的价值到底是什么呢？ 研发体验/研发效率的问题：这一点前面已经反复强调过，DOM 操作模式的每一次革新，背后都是前端对效率和体验的进一步追求。虚拟 DOM 的出现，为数据驱动视图这一思想提供了高度可用的载体，使得前端开发能够基于函数式 UI 的编程方式实现高效的声明式编程。 跨平台的问题：虚拟 DOM 是对真实渲染内容的一层抽象。若没有这一层抽象，那么视图层将和渲染平台紧密耦合在一起，为了描述同样的视图内容，你可能要分别在 Web 端和 Native 端写完全不同的两套甚至多套代码。但现在中间多了一层描述性的虚拟 DOM，它描述的东西可以是真实 DOM，也可以是 iOS 界面、安卓界面、小程序……同一套虚拟 DOM，可以对接不同平台的渲染逻辑，从而实现“一次编码，多端运行”，如下图所示。其实说到底，跨平台也是研发提效的一种手段，它在思想上和 1 是高度呼应的。 ",
+  "wordCount" : "788",
   "inLanguage": "en",
   "datePublished": "2022-06-03T19:55:46+08:00",
-  "dateModified": "2022-06-03T19:55:46+08:00",
+  "dateModified": "2022-06-18T14:27:44Z",
   "author":[{
     "@type": "Person",
     "name": "zzydev"
@@ -213,7 +213,7 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://zzydev.top">Home</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/">文章</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/headfirstreact/">HeadFirstReact</a></div>
     <h1 class="post-title">
-      6.真正理解虚拟DOM,React选它是因为性能吗<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+      6.真正理解虚拟DOM,React选它是因为性能吗
     </h1>
     <div class="post-meta">
 
@@ -226,7 +226,7 @@
 
 
 
-创建:&nbsp;<span title='2022-06-03 19:55:46 +0800 CST'>2022-06-03</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-03&nbsp;|&nbsp;字数:&nbsp;792字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;zzydev
+创建:&nbsp;<span title='2022-06-03 19:55:46 +0800 CST'>2022-06-03</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-18&nbsp;|&nbsp;字数:&nbsp;788字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;zzydev
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -240,7 +240,7 @@
                     <li>
                         <a href="#react-%e4%b8%ad%e7%9a%84%e8%99%9a%e6%8b%9f-dom-%e5%a4%a7%e8%87%b4%e6%98%af%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c%e7%9a%84" aria-label="React 中的虚拟 DOM 大致是如何工作的?">React 中的虚拟 DOM 大致是如何工作的?</a></li>
                     <li>
-                        <a href="#%e6%a8%a1%e6%9d%bf%e5%bc%95%e6%93%8e%e4%b8%8e%e8%99%9a%e6%8b%9fdom%e6%9c%89%e5%93%aa%e4%ba%9b%e5%8c%ba%e5%88%ab" aria-label="模板引擎与虚拟DOM有哪些区别？">模板引擎与虚拟DOM有哪些区别？</a></li>
+                        <a href="#%e6%a8%a1%e6%9d%bf%e5%bc%95%e6%93%8e%e4%b8%8e%e8%99%9a%e6%8b%9f-dom-%e6%9c%89%e5%93%aa%e4%ba%9b%e5%8c%ba%e5%88%ab" aria-label="模板引擎与虚拟 DOM 有哪些区别？">模板引擎与虚拟 DOM 有哪些区别？</a></li>
                     <li>
                         <a href="#%e9%82%a3%e4%b9%88%e8%99%9a%e6%8b%9f-dom-%e7%9a%84%e4%bb%b7%e5%80%bc%e5%88%b0%e5%ba%95%e6%98%af%e4%bb%80%e4%b9%88%e5%91%a2" aria-label="那么虚拟 DOM 的价值到底是什么呢？">那么虚拟 DOM 的价值到底是什么呢？</a>
                     </li>
@@ -312,18 +312,18 @@
   <div class="post-content"><h2 id="react-中的虚拟-dom-大致是如何工作的">React 中的虚拟 DOM 大致是如何工作的?<a hidden class="anchor" aria-hidden="true" href="#react-中的虚拟-dom-大致是如何工作的">#</a></h2>
 <p><strong>挂载阶段</strong>，React 将结合 JSX 的描述，构建出虚拟 DOM 树，然后通过 ReactDOM.render 实现虚拟 DOM 到真实 DOM 的映射（触发渲染流水线）；</p>
 <p><strong>更新阶段</strong>，页面的变化在作用于真实 DOM 之前，会先作用于虚拟 DOM，虚拟 DOM 将在 JS 层借助算法先对比出具体有哪些真实 DOM 需要被改变，然后再将这些改变作用于真实 DOM</p>
-<h2 id="模板引擎与虚拟dom有哪些区别">模板引擎与虚拟DOM有哪些区别？<a hidden class="anchor" aria-hidden="true" href="#模板引擎与虚拟dom有哪些区别">#</a></h2>
+<h2 id="模板引擎与虚拟-dom-有哪些区别">模板引擎与虚拟 DOM 有哪些区别？<a hidden class="anchor" aria-hidden="true" href="#模板引擎与虚拟-dom-有哪些区别">#</a></h2>
 <p>区别就在于多出了一层虚拟 DOM 作为缓冲层。这个缓冲层带来的利好是：当 DOM 操作（渲染更新）比较频繁时，它会先将前后两次的虚拟 DOM 树进行对比，定位出具体需要更新的部分，生成一个“补丁集”，最后只把“补丁”打在需要更新的那部分真实 DOM 上，实现精准的“差量更新”。这个过程对应的虚拟 DOM 工作流如下图所示：</p>
-<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwmNp4.png" alt="XwmNp4.png"  />
+<p><img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/6-1.png" alt=""  />
 React 选用虚拟 DOM，真的是为了更好的性能吗？</p>
 <p>虚拟 DOM 的优越之处在于，它能够在提供更爽、更高效的研发模式（也就是函数式的 UI 编程方式）的同时，仍然保持一个还不错的性能。</p>
 <p>虚拟 DOM 的劣势主要在于 JS 计算的耗时，而 DOM 操作的能耗和 JS 计算的能耗根本不在一个量级。</p>
 <h2 id="那么虚拟-dom-的价值到底是什么呢">那么虚拟 DOM 的价值到底是什么呢？<a hidden class="anchor" aria-hidden="true" href="#那么虚拟-dom-的价值到底是什么呢">#</a></h2>
 <ol>
 <li><strong>研发体验/研发效率</strong>的问题：这一点前面已经反复强调过，DOM 操作模式的每一次革新，背后都是前端对效率和体验的进一步追求。虚拟 DOM 的出现，为数据驱动视图这一思想提供了高度可用的载体，使得前端开发能够<strong>基于函数式 UI 的编程方式实现高效的声明式编程</strong>。</li>
-<li><strong>跨平台</strong>的问题：虚拟 DOM 是对真实渲染内容的一层抽象。若没有这一层抽象，那么视图层将和渲染平台紧密耦合在一起，为了描述同样的视图内容，你可能要分别在 Web 端和 Native 端写完全不同的两套甚至多套代码。但现在中间多了一层描述性的虚拟 DOM，它描述的东西可以是真实 DOM，也可以是iOS 界面、安卓界面、小程序&hellip;&hellip;同一套虚拟 DOM，可以对接不同平台的渲染逻辑，从而实现“一次编码，多端运行”，如下图所示。其实说到底，跨平台也是研发提效的一种手段，它在思想上和1是高度呼应的。</li>
+<li><strong>跨平台</strong>的问题：虚拟 DOM 是对真实渲染内容的一层抽象。若没有这一层抽象，那么视图层将和渲染平台紧密耦合在一起，为了描述同样的视图内容，你可能要分别在 Web 端和 Native 端写完全不同的两套甚至多套代码。但现在中间多了一层描述性的虚拟 DOM，它描述的东西可以是真实 DOM，也可以是 iOS 界面、安卓界面、小程序&hellip;&hellip;同一套虚拟 DOM，可以对接不同平台的渲染逻辑，从而实现“一次编码，多端运行”，如下图所示。其实说到底，跨平台也是研发提效的一种手段，它在思想上和 1 是高度呼应的。</li>
 </ol>
-<p><img loading="lazy" src="https://s1.ax1x.com/2022/06/05/XwmU1J.png" alt="XwmU1J.png"  />
+<p><img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/6-2.png" alt=""  />
 </p>
 
 

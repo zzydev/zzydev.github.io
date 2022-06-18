@@ -1,7 +1,8 @@
 ---
-title: "8.SetState到底是同步的还是异步的？"
+title: "8.SetState是同步的还是异步的？"
 date: 2022-06-03T21:12:17+08:00
-draft: true
+lastmod: 2022-06-18 14:56:53
+draft: false
 tags:
   - "react"
 author: ["zzydev"]
@@ -22,6 +23,9 @@ cover:
 ---
 
 ## 从一道面试题说起
+
+[其他 setState 原理的文章](https://juejin.cn/post/6844903781813993486#heading-0)  
+[online Demo](https://codesandbox.io/s/zen-brattain-pjg16u?file=/src/App.js)
 
 ```javascript
 import React from "react";
@@ -80,11 +84,11 @@ export default class App extends React.Component {
 ```
 
 结果打印如下：
-![XwMnU0.png](https://s1.ax1x.com/2022/06/05/XwMnU0.png)
+![](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/8-1.png)
 
-## 异步的动机和原理——批量更新的艺术
+## 异步的动机和原理——批量更新
 
-![XwMmEq.png](https://s1.ax1x.com/2022/06/05/XwMmEq.png)
+![](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/8-2.png)
 
 从图上我们可以看出，一个完整的更新流程，涉及了包括 re-render（重渲染） 在内的多个步骤。re-render 本身涉及对 DOM 的操作，它会带来较大的性能开销。假如说“一次 setState 就触发一个完整的更新流程”这个结论成立，那么每一次 setState 的调用都会触发一次 re-render，我们的视图很可能没刷新几次就卡死了。这个过程如我们下面代码中的箭头流程图所示：
 
@@ -102,7 +106,7 @@ this.setState({
 
 事实上，这正是 setState 异步的一个重要的动机——**避免频繁的 re-render**。
 
-在实际的 React 运行时中，setState 异步的实现方式有点类似于 Vue 的 $nextTick 和浏览器里的 Event-Loop：**每来一个 setState，就把它塞进一个队列里“攒起来”。等时机成熟，再把“攒起来”的 state 结果做合并，最后只针对最新的 state 值走一次更新流程。**这个过程，叫作“批量更新”，批量更新的过程正如下面代码中的箭头流程图所示：
+在实际的 React 运行时中，setState 异步的实现方式有点类似于 Vue 的 $nextTick 和浏览器里的 Event-Loop：**每来一个 setState，就把它塞进一个队列里“攒起来”。等时机成熟，再把“攒起来”的 state 结果做合并，最后只针对最新的 state 值走一次更新流程。** 这个过程，叫作“批量更新”，批量更新的过程正如下面代码中的箭头流程图所示：
 
 ```javascript
 this.setState({
@@ -136,7 +140,8 @@ test = () => {
 
 也只是会增加 state 任务入队的次数，并不会带来频繁的 re-render。当 100 次调用结束后，仅仅是 state 的任务队列内容发生了变化， state 本身并不会立刻改变：
 
-![XwMVDs.png](https://s1.ax1x.com/2022/06/05/XwMVDs.png)“同步现象”背后的故事：从源码角度看 setState 工作流
+![](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/8-3.png)
+“同步现象”背后的故事：从源码角度看 setState 工作流
 
 读到这里，相信你对异步这回事多少有些眉目了。接下来我们就要重点理解刚刚代码里最诡异的一部分——setState 的同步现象：
 
@@ -168,7 +173,7 @@ reduce = () => {
 
 点击后的输出结果如下图所示：
 
-![XwMZbn.png](https://s1.ax1x.com/2022/06/05/XwMZbn.png)
+![](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/8-4.png)
 
 现在问题就变得清晰多了：为什么 setTimeout 可以将 setState 的执行顺序从异步变为同步？
 
@@ -178,7 +183,7 @@ reduce = () => {
 
 ## 解读 setState 工作流
 
-![XwMu5V.png](https://s1.ax1x.com/2022/06/05/XwMu5V.png)
+![](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/8-5.png)
 
 接下来我们就沿着这个流程，逐个在源码中对号入座。首先是 setState 入口函数：
 
@@ -327,8 +332,7 @@ var TRANSACTION_WRAPPERS = [FLUSH_BATCHED_UPDATES, RESET_BATCHED_UPDATES];
 
 我们把这两个 wrapper 套进 Transaction 的执行机制里，不难得出一个这样的流程：
 
-![8_6](http://cdn.zzydev.top/react/8_6.png)
-
+![](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/8-6.png)
 到这里，相信你对 isBatchingUpdates 管控下的批量更新机制已经了然于胸。但是 setState 为何会表现同步这个问题，似乎还是没有从当前展示出来的源码里得到根本上的回答。这是因为 batchedUpdates 这个方法，不仅仅会在 setState 之后才被调用。若我们在 React 源码中全局搜索 batchedUpdates，会发现调用它的地方很多，但与更新流有关的只有这两个地方：
 
 ```javascript
@@ -351,3 +355,55 @@ _renderNewRootComponent: function( nextElement, container, shouldReuseMarkup, co
 这段代码是在首次渲染组件时会执行的一个方法，我们看到它内部调用了一次 batchedUpdates，这是因为在组件的渲染过程中，会按照顺序调用各个生命周期函数。开发者很有可能在声明周期函数中调用 setState。因此，我们需要通过开启 batch 来确保所有的更新都能够进入 dirtyComponents 里去，进而确保初始渲染流程中所有的 setState 都是生效的。
 
 下面代码是 React 事件系统的一部分。当我们在组件上绑定了事件之后，事件中也有可能会触发 setState。为了确保每一次 setState 都有效，React 同样会在此处手动开启批量更新。
+
+```javascript
+// ReactEventListener.js
+
+dispatchEvent: function (topLevelType, nativeEvent) {
+  ...
+  try {
+    // 处理事件
+    ReactUpdates.batchedUpdates(handleTopLevelImpl, bookKeeping);
+  } finally {
+    TopLevelCallbackBookKeeping.release(bookKeeping);
+  }
+}
+```
+
+话说到这里，一切都变得明朗了起来：isBatchingUpdates 这个变量，在 React 的生命周期函数以及合成事件执行前，已经被 React 悄悄修改为了 true，这时我们所做的 setState 操作自然不会立即生效。当函数执行完毕后，事务的 close 方法会再把 isBatchingUpdates 改为 false。
+
+以开头示例中的 increment 方法为例，整个过程像是这样：
+
+```javascript
+increment = () => {
+  // 进来先锁上
+  isBatchingUpdates = true;
+  console.log("increment setState前的count", this.state.count);
+  this.setState({
+    count: this.state.count + 1,
+  });
+  console.log("increment setState后的count", this.state.count);
+  // 执行完函数再放开
+  isBatchingUpdates = false;
+};
+```
+
+很明显，在 isBatchingUpdates 的约束下，setState 只能是异步的。而当 setTimeout 从中作祟时，事情就会发生一点点变化：
+
+```javascript
+reduce = () => {
+  // 进来先锁上
+  isBatchingUpdates = true;
+  setTimeout(() => {
+    console.log("reduce setState前的count", this.state.count);
+    this.setState({
+      count: this.state.count - 1,
+    });
+    console.log("reduce setState后的count", this.state.count);
+  }, 0);
+  // 执行完函数再放开
+  isBatchingUpdates = false;
+};
+```
+
+会发现，咱们开头锁上的那个 isBatchingUpdates，对 setTimeout 内部的执行逻辑完全没有约束力。因为 isBatchingUpdates 是在同步代码中变化的，而 setTimeout 的逻辑是异步执行的。当 this.setState 调用真正发生的时候，isBatchingUpdates 早已经被重置为了 false，这就使得当前场景下的 setState 具备了立刻发起同步更新的能力。所以咱们前面说的没错——setState 并不是具备同步这种特性，只是在特定的情境下，它会从 React 的异步管控中“逃脱”掉。
