@@ -39,8 +39,8 @@ languages:
     weight: 1
     profileMode:
       enabled: true
-      title: 面向<span class="heimu" title="你知道的太多了">讨饭</span>编程
-      subtitle: 好饿啊，早知道<span class="heimu" title="你知道的太多了">不学前端了</span>
+      title: 面向<span class="heimu" title="总不能一直啃老吧 👴">讨饭</span>编程
+      subtitle: 肚子好饿，早知道<span class="heimu" title="你知道的太多了🦶">不学前端了</span>
       imageUrl: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/profile.gif"
       imageTitle:
       imageWidth: 150

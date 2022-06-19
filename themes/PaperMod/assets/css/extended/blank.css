@@ -208,7 +208,7 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
 .github {
     border: 1px solid ;
     border-radius: 3px;
-    border-color: rgb(50, 48, 48);
+    border-color: rgb(67, 65, 65);
     margin: 0 auto;
     margin-bottom: 1em;
     padding: 1em;
@@ -219,20 +219,24 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
     margin-right: 0.5em;
     margin-bottom: 0.2em;
     fill: rgb(171, 167, 167);
-    transition: all .5s;
+    position: relative;
+    left: -20px;
+    top: 10px;
 }
 .github .name {
-    font-weight: bold;
-    color: #0fb8ca;
+    font-weight: bolder;
+    color: #283ee1;
     text-decoration: none;
+    /* display: inline-block; */
+    position: relative;
+    left: -10px;
 }
 .description {
         margin-top: 0.5em;
         margin-bottom: 1em;
-        color: rgb(171, 167, 167);
+        color: #252525;
         text-align: justify;
         font-size: 90%;
-        transition: all .5s;
 }
 .language-color {
         position: relative;
@@ -246,7 +250,6 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
         color: rgb(171, 167, 167);
         font-size: 90%;
         margin-left: 0.5em;
-        transition: all .5s;
 }
 
 
@@ -581,4 +584,5 @@ blockquote.quote-center::after {
 .heimu:active .new, .heimu .new:active, .new:active .heimu {
   color: #BA0000 !important;
 }
+
 

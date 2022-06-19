@@ -4,7 +4,7 @@ hidemeta: true
 comments: true
 ---
 
-{{<friend name="人类低质量男性求职准备" url="zzydev.top" logo="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/profile.gif" word="下水道的鼠鼠罢了">}}
+{{<friend name="人类低质量男性求职准备" url="https://zzydev.top" logo="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/profile.gif" word="下水道的鼠鼠罢了">}}
 
 {{< simple-notice simple-notice-tip >}}
 哥几个又来学前端转行呀
