@@ -2,32 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zzydev.top/posts/leetcode/</loc>
+  </url><url>
     <loc>https://zzydev.top/tags/</loc>
-    <lastmod>2022-06-19T08:09:57+00:00</lastmod>
-    <priority>0</priority>
+    <lastmod>2022-06-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zzydev.top/posts/headfirstts/</loc>
-    <lastmod>2022-06-10T06:19:56+08:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</loc>
-    <lastmod>2022-06-10T06:19:56+08:00</lastmod>
+    <loc>https://zzydev.top/posts/headfirstts/ts%E5%86%85%E7%BD%AE%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2022-06-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/tags/typescript/</loc>
-    <lastmod>2022-06-10T06:19:56+08:00</lastmod>
+    <lastmod>2022-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/</loc>
+    <lastmod>2022-06-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/</loc>
-    <lastmod>2022-06-19T08:09:57+00:00</lastmod>
+    <lastmod>2022-06-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/</loc>
-    <lastmod>2022-06-19T08:09:57+00:00</lastmod>
+    <lastmod>2022-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/tsconfig%E9%80%9F%E6%9F%A5%E6%89%8B%E5%86%8C/</loc>
+    <lastmod>2022-06-24T07:21:37+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/ts%E4%B8%9C%E6%96%B9%E7%94%84%E9%80%89/</loc>
+    <lastmod>2022-06-24T07:17:42+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98extreme%E7%AF%87/</loc>
+    <lastmod>2022-06-24T01:00:33+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98hard%E7%AF%87/</loc>
+    <lastmod>2022-06-24T01:00:14+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98medium%E7%AF%87/</loc>
+    <lastmod>2022-06-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98easy%E7%AF%87/</loc>
+    <lastmod>2022-06-24T00:59:28+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/tags/node/</loc>
+    <lastmod>2022-06-20T14:50:48+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/node_deno/</loc>
+    <lastmod>2022-06-20T14:50:48+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80api/</loc>
+    <lastmod>2022-06-20T14:50:48+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</loc>
+    <lastmod>2022-06-24T01:26:41+00:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/headfirstreact/10_reactdom.render%E7%9A%84%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%B8%8A/</loc>
     <lastmod>2022-06-09T03:59:38+08:00</lastmod>
   </url><url>
-    <loc>https://zzydev.top/posts/headfirstreact/</loc>
+    <loc>https://zzydev.top/tags/react/</loc>
     <lastmod>2022-06-18T16:55:46+00:00</lastmod>
   </url><url>
-    <loc>https://zzydev.top/tags/react/</loc>
+    <loc>https://zzydev.top/posts/headfirstreact/</loc>
     <lastmod>2022-06-18T16:55:46+00:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/eight-part-essay/</loc>
@@ -84,18 +115,16 @@
     <loc>https://zzydev.top/posts/eight-part-essay/%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C/</loc>
     <lastmod>2022-06-02T00:26:27+08:00</lastmod>
   </url><url>
-    <loc>https://zzydev.top/archives/</loc>
-  </url><url>
     <loc>https://zzydev.top/categories/</loc>
   </url><url>
     <loc>https://zzydev.top/series/</loc>
   </url><url>
     <loc>https://zzydev.top/about/</loc>
   </url><url>
-    <loc>https://zzydev.top/posts/leetcode/</loc>
-  </url><url>
     <loc>https://zzydev.top/links/</loc>
   </url><url>
     <loc>https://zzydev.top/search/</loc>
+  </url><url>
+    <loc>https://zzydev.top/archives/</loc>
   </url>
 </urlset>

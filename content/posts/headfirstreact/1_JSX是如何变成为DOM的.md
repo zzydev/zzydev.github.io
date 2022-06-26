@@ -166,7 +166,7 @@ console.log(AppJSX);
 
 你会发现它确实是一个标准的 ReactElement 对象实例，如下图：
 
-![XwkkwD.png](https://s1.ax1x.com/2022/06/05/XwkkwD.png)
+![1-3](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/1-3.png)
 
 这个 ReactElement 对象实例，本质上是 **以 JavaScript 对象形式存在的对 DOM 的描述** ，也就是 **虚拟 DOM 中的一个节点** 。
 

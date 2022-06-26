@@ -40,31 +40,31 @@ languages:
     profileMode:
       enabled: true
       title: 面向<span class="heimu" title="总不能一直啃老吧 👴">讨饭</span>编程
-      subtitle: 肚子好饿，早知道<span class="heimu" title="你知道的太多了🦶">不学前端了</span>
+      subtitle: 肚子好饿，早知道<span class="heimu" title="这是可以说的吗？🙊">不学前端了</span>
       imageUrl: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/profile.gif"
       imageTitle:
       imageWidth: 150
       imageHeight: 150
       buttons:
-        - name: 💯力扣
+        - name: 💪力扣
           url: posts/leetcode
-        - name: 🎱八股文
+        - name: 🎱八股
           url: posts/eight-part-essay
-        - name: 🦐瞎扯淡
+        - name: 🦐瞎扯
           url: posts/chat
 
     menu:
       main:
         - identifier: search
-          name: 🔍搜索
+          name: 搜索
           url: search
           weight: 1
         - identifier: home
-          name: 🏠主页
+          name: 主页
           url: /
           weight: 2
         - identifier: posts
-          name: 📚文章
+          name: 文章
           url: posts
           weight: 3
         # - identifier: tech
@@ -76,7 +76,7 @@ languages:
         #   url: posts/life
         #   weight: 6
         - identifier: archives
-          name: ⏱时间轴
+          name: 时间轴
           url: archives/
           weight: 20
         # - identifier: categories
@@ -84,15 +84,15 @@ languages:
         #   url: categories
         #   weight: 30
         - identifier: tags
-          name: 🔖标签
+          name: 标签
           url: tags
           weight: 40
         - identifier: about
-          name: 🙋🏻‍♂️关于
+          name: 关于
           url: about
           weight: 50
         - identifier: links
-          name: 🤝友链
+          name: 友链
           url: links
           weight: 60
 
@@ -163,11 +163,11 @@ params:
   #         SiteVerificationTag: "XYZabc"
 
   assets:
-    favicon: "image/chance.gif"
-    favicon16x16: "image/chance.gif"
-    favicon32x32: "image/chance.gif"
-    apple_touch_icon: "chance.gif"
-    safari_pinned_tab: "chance.gif"
+    favicon: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png"
+    favicon16x16: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png"
+    favicon32x32: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png"
+    apple_touch_icon: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png"
+    safari_pinned_tab: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png"
 
   # cover:
   #   hidden: true # hide everywhere but not in structured data

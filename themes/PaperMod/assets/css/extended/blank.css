@@ -63,6 +63,16 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
   margin: 0 0 0 20px;
   padding: 0px 15px 15px 20px;
   font-size: 16px;
+
+  /*目录显示高度*/
+  max-height: 83vh;
+  overflow-y: auto;
+}
+
+.toc .inner::-webkit-scrollbar-thumb {  /*滚动条*/
+  background: var(--border);
+  border: 7px solid var(--theme);
+  border-radius: var(--radius);
 }
 
 .toc li ul {
@@ -79,7 +89,6 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
 .toc li a:hover {
   color: var(--secondary);
 }
-
 
 .post-entry {
   display: flex;

@@ -57,7 +57,7 @@
 {{- if (and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) (not $user_preferred)) }}
 {{- $class = "first-entry" }}
 {{- else if $term }}
-{{- $class = "post-entry tag-entry" }}
+{{- $class = "post-entry" }}
 {{- end }}
 
 <article class="{{ $class }}">

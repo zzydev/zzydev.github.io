@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><meta charset="utf-8">
+<head><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -10,14 +11,14 @@
 <meta name="description" content="&nbsp;手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== &#34;object&#34; || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } &nbsp;手写 getType 1 2 3 4">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/eight-part-essay/%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.6674d7a50459849e4062fe493da0c9c42da7aeff274291c318824f1e4cb20ec6.css" integrity="sha256-ZnTXpQRZhJ5AYv5JPaDJxC2nrv8nQpHDGIJPHkyyDsY=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fe109434cf5d323a72067370643ba3b710e780990f98d63ed30b7cfd72d6e024.css" integrity="sha256-/hCUNM9dMjpyBnNwZDujtxDngJkPmNY&#43;0wt8/XLW4CQ=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="https://zzydev.top/image/chance.gif">
-<link rel="icon" type="image/png" sizes="16x16" href="https://zzydev.top/image/chance.gif">
-<link rel="icon" type="image/png" sizes="32x32" href="https://zzydev.top/image/chance.gif">
-<link rel="apple-touch-icon" href="https://zzydev.top/chance.gif">
-<link rel="mask-icon" href="https://zzydev.top/chance.gif">
+<link rel="icon" href="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png">
+<link rel="apple-touch-icon" href="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png">
+<link rel="mask-icon" href="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <noscript>
@@ -59,11 +60,13 @@
 </noscript><meta property="og:title" content="有手就行" />
 <meta property="og:description" content="&nbsp;手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== &#34;object&#34; || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } &nbsp;手写 getType 1 2 3 4" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zzydev.top/posts/eight-part-essay/%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://zzydev.top/posts/eight-part-essay/%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C/" />
+<meta property="og:image" content="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/jojo01.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-02T00:26:27&#43;08:00" />
 <meta property="article:modified_time" content="2022-06-02T00:26:27&#43;08:00" />
 
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/jojo01.png" />
 <meta name="twitter:title" content="有手就行"/>
 <meta name="twitter:description" content="&nbsp;手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== &#34;object&#34; || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } &nbsp;手写 getType 1 2 3 4"/>
 
@@ -76,7 +79,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "文章",
+      "name": "文章 📖",
       "item": "https://zzydev.top/posts/"
     }, 
     {
@@ -104,10 +107,10 @@
   "keywords": [
     
   ],
-  "articleBody": " 手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== \"object\" || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } 手写 getType 1 2 3 4 5 6 7 8 function getType(obj) { let type = typeof obj; if (type !== \"object\") return type; return Object.prototype .toString() .call(obj) .replace(/^\\[object (\\S+)\\]$/, \"S1\"); } 手写浅拷贝 1 2 3 4 5 6 7 8 9 10 11 12 13 function shallowClone(target) { if (typeof target === \"object\" \u0026\u0026 target !== null) { const cloneTarget = Array.isArray() ? [] : {}; for (let prop in target) { if (target.hasOwnProperty(prop)) { cloneTarget[prop] = target[prop]; } } return cloneTarget; } else { return target; } } 手写深拷贝 小杯\n1 2 3 4 5 6 7 8 9 10 11 function deepClone(obj) { let cloneObj = {}; for (let key in obj) { if (typeof key === \"obj\" \u0026\u0026 key !== null) { cloneObj[key] = deepClone(obj[key]); } else { cloneObj[key] = obj[key]; } } return cloneObj; } 超大杯\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 const isComplexDataType = (obj) =\u003e (typeof obj === \"object\" || typeof obj === \"function\") \u0026\u0026 obj !== null; function deepClone(obj, hash = new WeakMap()) { if (obj instanceof Date) return +new Date(obj); if (obj instanceof RegExp) return new RegExp(obj); if (hash.has(obj)) return hash.get(obj); //获取对象所有属性及其对应的特征 let allDesc = Object.getOwnPropertyDescriptors(obj); //继承原对象的原型链 let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc); hash.set(obj, cloneObj); for (let key of Reflect.ownKeys()) { cloneObj[key] = isComplexDataType(obj[key]) \u0026\u0026 typeof obj[key] !== \"function\" ? deepClone(obj[key], hash) : obj[key]; } return cloneObj; } JS WeakMap 应该什么时候使用\n1 const newData = structuredClone(data); structuredClone MDN\n手写深比较 1 2 3 4 5 6 7 8 9 10 11 12 13 const isObject = (obj) =\u003e typeof obj === \"object\" \u0026\u0026 obj !== null; function isEqual(obj1, obj2) { if (isObject(obj1) ^ isObject(obj2)) return false; if (obj1 === obj2) return true; const obj1Key = Object.keys(obj1); const obj2Key = Object.keys(obj2); if (obj1Key.length !== obj2Key.length) return false; for (let key in obj) { const res = isEqual(obj1[key], obj2[key]); if (!res) return false; } return true; } 手写函数AOP 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 Function.prototype.before = function (beforeFn) { const self = this; return function beforeFunc() { const args = arguments; beforeFn.apply(this, args); return self.apply(this, args); }; }; Function.prototype.after = function (afterFn) { const self = this; return function afterFunc() { const args = arguments; const result = self.apply(this, args); afterFn.apply(this, args); return result; }; }; function func() { console.log(\"2\"); } const newFunc = func .before(() =\u003e { console.log(\"1\"); }) .after(() =\u003e { console.log(\"3\"); }); newFunc(); // 1 2 3 手写柯里化 1 2 3 4 5 6 7 8 9 10 11 12 // 通用的柯里化 var currying = function (fn) { var args = []; return function () { if (arguments.length == 0) { return fn.apply(this, args); } else { Array.prototype.push.apply(args, arguments); return arguments.callee; } }; }; 手写 call 、apply 、bind 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Function.prototype.myCall = function (context, ...args) { // xxx.myCall() this就是这里的xxx myApply和myBind中的this同理 context.func = this; context.func(...args); delete context.func; }; Function.prototype.myBind = function () { const args = Array.from(arguments); const t = args.shift(); const self = this; return function () { return self.apply(t, args); }; }; Function.prototype.myApply = function (context, args) { context.func = this; context.func(...args); delete context.func; }; 手写 Object.create() 1 2 3 4 5 6 //这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型 Object.create = function (prototype) { var cls = function () {}; cls.prototype = prototype; return new cls(); }; 手写 new 1 2 3 4 5 6 7 8 9 10 11 12 function myNew(...args) { // 取出 args 数组第一个参数，即目标构造函数 const constructor = args.shift(); // 创建一个空对象，且这个空对象继承构造函数的 prototype 属性 // 即实现 obj.__proto__ = constructor.prototype const obj = Object.create(constructor.prototype); // 执行构造函数，得到构造函数返回结果 // 注意这里我们使用 apply，将构造函数内的 this 指向为 obj const result = constructor.apply(obj, args); // 如果构造函数执行后，返回结果是对象类型，就直接返回，否则返回 obj 对象 return typeof result === \"object\" \u0026\u0026 result != null ? result : obj; } 手写防抖节流 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 // Throttle(事件节流)： 第一个人说了算 // fn是我们需要包装的事件回调, interval是时间间隔的阈值 function throttle(fn, interval) { // last为上一次触发回调的时间 let last = 0; // 将throttle处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 记录本次触发回调的时间 let now = new Date(); // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值 if (now - last \u003e= interval) { // 如果时间间隔大于我们设定的时间间隔阈值，则执行回调 last = now; fn.apply(context, args); } }; } // 用throttle来包装scroll的回调 const better_scroll = throttle(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); // Debounce(事件防抖)： 最后一个人说了算 // fn是我们需要包装的事件回调, delay是每次推迟执行的等待时间 function debounce(fn, delay) { // 定时器 let timer = null; // 将debounce处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 每次事件被触发时，都去清除之前的旧定时器 if (timer) { clearTimeout(timer); } // 设立新定时器 timer = setTimeout(function () { fn.apply(context, args); }, delay); }; } // 用debounce来包装scroll的回调 const better_scroll = debounce(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); 手写原生AJAX请求 原生 ajax 步骤\n创建XMLHttpRequest对象 使用open方法设置和服务器的交互信息 使用send发送数据 注册事件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 const getJSON = function (url) { return new Promise((resolve, reject) =\u003e { const xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject(\"Mscrosoft.XMLHttp\"); xhr.open(\"GET\", url, false); xhr.setRequestHeader(\"Accept\", \"application/json\"); xhr.onreadystatechange = function () { if (xhr.readyState !== 4) return; if (xhr.status === 200 || xhr.status === 304) { resolve(xhr.responseText); } else { reject(new Error(xhr.responseText)); } }; xhr.send(); }); }; 手写 String.prototype.trim 1 2 3 String.prototype.trim = function () { return this.replace(/^\\s+/, \"\").replace(/\\s+$/, \"\"); }; 手写 Array.flat 1 2 3 4 5 6 7 const flat = (arr) =\u003e { const isDeep = arr.some((item) =\u003e item instanceof Array); if (!isDeep) return arr; const res = Array.prototype.concat.apply([], arr); return flat(res); }; 手写去重 1 2 3 4 const unique = (arr) =\u003e { const set = new Set(arr); return [...arr]; }; 手写 setInterval 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 const mySetInterval = (fn, delay) =\u003e { let timer = null, isClear = false; function loop() { if (isClear) { isClear = false; clearTimeout(timer); return; } fn(); timer = setTimeout(loop, delay); } timer = setTimeout(loop, delay); return () =\u003e { isClear = true; }; }; 手写 判断类数组 1 2 3 4 5 6 7 8 9 10 const isArrayLikeObject = (arr) =\u003e { if (typeof arr !== \"object\" || arr === null) return false; const lengthMaxVal = Math.pow(2, 53) - 1; if (!Object.prototype.hasOwnProperty.call(arr, \"length\")) return false; if (typeof arr.length !== \"number\") return false; if (!isFinite(arr.length)) return false; if (Array !== arr.constructor) return false; if (arr.length \u003e 0 \u0026\u0026 arr.length \u003c lengthMaxVal) return true; return false; }; 获取当前 url 中的参数的值 1 2 3 4 5 const query = (name) =\u003e { const search = location.search; const params = new URLSearchParams(search); return params.get(name); }; 将 URL 参数解析为 JS 对象 1 2 3 4 5 6 7 8 9 function queryToObject() { const res = {}; const search = location.search; const pList = new URLSearchParams(search); pList.forEach((key, val) =\u003e { res[key] = val; }); return res; } 手写JSON.Stringify JSON.stringify()将值转换为相应的 JSON 格式：\n转换值如果有 toJSON() 方法，该方法定义什么值将被序列化。\n非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。\n布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值。\nundefined、任意的函数以及 symbol 值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。函数、undefined 被单独转换时，会返回 undefined，如JSON.stringify(function(){}) or JSON.stringify(undefined).\n对包含循环引用的对象（对象之间相互引用，形成无限循环）执行此方法，会抛出错误。\n所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们。\nDate 日期调用了 toJSON() 将其转换为了 string 字符串（同 Date.toISOString()），因此会被当做字符串处理。\nNaN 和 Infinity 格式的数值及 null 都会被当做 null。\n其他类型的对象，包括 Map/Set/WeakMap/WeakSet，仅会序列化可枚举的属性。\n——— MDN\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 function jsonStringify(data) { let type = typeof data; if (type !== \"object\") { let result = data; //data 可能是基础数据类型的情况在这里处理 if (Number.isNaN(data) || data === Infinity) { //NaN 和 Infinity 序列化返回 \"null\" result = \"null\"; } else if ( type === \"function\" || type === \"undefined\" || type === \"symbol\" ) { // 由于 function 序列化返回 undefined，因此和 undefined、symbol 一起处理 return undefined; } else if (type === \"string\") { result = '\"' + data + '\"'; } return String(result); } else if (type === \"object\") { if (data === null) { return \"null\"; } else if (data.toJSON \u0026\u0026 typeof data.toJSON === \"function\") { return jsonStringify(data.toJSON()); } else if (data instanceof Array) { let result = []; //如果是数组，那么数组里面的每一项类型又有可能是多样的 data.forEach((item, index) =\u003e { if ( typeof item === \"undefined\" || typeof item === \"function\" || typeof item === \"symbol\" ) { result[index] = \"null\"; } else { result[index] = jsonStringify(item); } }); result = \"[\" + result + \"]\"; return result.replace(/'/g, '\"'); } else { // 处理普通对象 let result = []; Object.keys(data).forEach((item, index) =\u003e { if (typeof item !== \"symbol\") { //key 如果是 symbol 对象，忽略 if ( data[item] !== undefined \u0026\u0026 typeof data[item] !== \"function\" \u0026\u0026 typeof data[item] !== \"symbol\" ) { //键值如果是 undefined、function、symbol 为属性值，忽略 result.push('\"' + item + '\"' + \":\" + jsonStringify(data[item])); } } }); return (\"{\" + result + \"}\").replace(/'/g, '\"'); } } } 手写runGenerator 手写Promise Promise\nPromise.race\n1 2 3 4 5 6 7 8 9 10 11 Promise.race = function (arr) { return new Promise(function (resolve, reject) { if (!Array.isArray(arr)) { return reject(new TypeError(\"Promise.race accepts an array\")); } for (var i = 0, len = arr.length; i \u003c len; i++) { Promise.resolve(arr[i]).then(resolve, reject); } }); }; Promise.all\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 // 输入不仅仅只有Array function promiseAll(args) { return new Promise((resolve, reject) =\u003e { const promiseResults = []; let iteratorIndex = 0; // 已完成的数量，用于最终的返回，不能直接用完成数量作为iteratorIndex // 输出顺序和完成顺序是两码事 let fullCount = 0; // 用于迭代iterator数据 for (const item of args) { // for of 遍历顺序，用于返回正确顺序的结果 // 因iterator用forEach遍历后的key和value一样，所以必须存一份for of的 iteratorIndex let resultIndex = iteratorIndex; iteratorIndex += 1; // 包一层，以兼容非promise的情况 Promise.resolve(item) .then((res) =\u003e { promiseResults[resultIndex] = res; fullCount += 1; // Iterator 接口的数据无法单纯的用length和size判断长度，不能局限于Array和 Map类型中 if (fullCount === iteratorIndex) { resolve(promiseResults); } }) .catch((err) =\u003e { reject(err); }); } // 处理空 iterator 的情况 if (iteratorIndex === 0) { resolve(promiseResults); } }); } if (!Promise.all) Promise.all = promiseAll; 实现lodash.get 实现类似 lodash.get ，有以下测试用例:\n1 2 3 4 5 6 7 8 9 10 var object = { a: [{ b: { c: 3 } }] }; get(object, \"a[0].b.c\"); // =\u003e 3 get(object, [\"a\", \"0\", \"b\", \"c\"]); // =\u003e 3 get(object, \"a.b.c\", \"default\"); // =\u003e 'default' 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 /** * object: 对象 * path: 输入的路径 * defaultVal: 默认值 **/ function get(object, path, defaultVal = \"undefined\") { // 先将path处理成统一格式 let newPath = []; if (Array.isArray(path)) { newPath = path; } else { // 先将字符串中的'['、']'去除替换为'.'，split分割成数组形式 newPath = path.replace(/\\[/g, \".\").replace(/\\]/g, \"\").split(\".\"); } // 递归处理，返回最后结果 return ( newPath.reduce((o, k) =\u003e { // console.log(o, k); // 此处o初始值为下边传入的 object，后续值为每次取的内部值 return (o || {})[k]; }, object) || defaultVal ); } ",
-  "wordCount" : "3650",
+  "articleBody": " 手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== \"object\" || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } 手写 getType 1 2 3 4 5 6 7 function getType(obj) { let type = typeof obj; if (type !== \"object\") return type; return Object.prototype.toString .call(obj) .replace(/^\\[object (\\S+)\\]$/, \"S1\"); } 手写浅拷贝 1 2 3 4 5 6 7 8 9 10 11 12 13 function shallowClone(target) { if (typeof target === \"object\" \u0026\u0026 target !== null) { const cloneTarget = Array.isArray() ? [] : {}; for (let prop in target) { if (target.hasOwnProperty(prop)) { cloneTarget[prop] = target[prop]; } } return cloneTarget; } else { return target; } } 手写深拷贝 小杯\n1 2 3 4 5 6 7 8 9 10 11 function deepClone(obj) { let cloneObj = {}; for (let key in obj) { if (typeof key === \"obj\" \u0026\u0026 key !== null) { cloneObj[key] = deepClone(obj[key]); } else { cloneObj[key] = obj[key]; } } return cloneObj; } 超大杯\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 const isComplexDataType = (obj) =\u003e (typeof obj === \"object\" || typeof obj === \"function\") \u0026\u0026 obj !== null; function deepClone(obj, hash = new WeakMap()) { if (obj instanceof Date) return +new Date(obj); if (obj instanceof RegExp) return new RegExp(obj); if (hash.has(obj)) return hash.get(obj); //获取对象所有属性及其对应的特征 let allDesc = Object.getOwnPropertyDescriptors(obj); //继承原对象的原型链 let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc); hash.set(obj, cloneObj); for (let key of Reflect.ownKeys()) { cloneObj[key] = isComplexDataType(obj[key]) \u0026\u0026 typeof obj[key] !== \"function\" ? deepClone(obj[key], hash) : obj[key]; } return cloneObj; } JS WeakMap 应该什么时候使用\n1 const newData = structuredClone(data); structuredClone MDN\n手写深比较 1 2 3 4 5 6 7 8 9 10 11 12 13 const isObject = (obj) =\u003e typeof obj === \"object\" \u0026\u0026 obj !== null; function isEqual(obj1, obj2) { if (isObject(obj1) ^ isObject(obj2)) return false; if (obj1 === obj2) return true; const obj1Key = Object.keys(obj1); const obj2Key = Object.keys(obj2); if (obj1Key.length !== obj2Key.length) return false; for (let key in obj) { const res = isEqual(obj1[key], obj2[key]); if (!res) return false; } return true; } 手写函数AOP 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 Function.prototype.before = function (beforeFn) { const self = this; return function beforeFunc() { const args = arguments; beforeFn.apply(this, args); return self.apply(this, args); }; }; Function.prototype.after = function (afterFn) { const self = this; return function afterFunc() { const args = arguments; const result = self.apply(this, args); afterFn.apply(this, args); return result; }; }; function func() { console.log(\"2\"); } const newFunc = func .before(() =\u003e { console.log(\"1\"); }) .after(() =\u003e { console.log(\"3\"); }); newFunc(); // 1 2 3 手写柯里化 1 2 3 4 5 6 7 8 9 10 11 12 // 通用的柯里化 var currying = function (fn) { var args = []; return function () { if (arguments.length == 0) { return fn.apply(this, args); } else { Array.prototype.push.apply(args, arguments); return arguments.callee; } }; }; 手写 call 、apply 、bind 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Function.prototype.myCall = function (context, ...args) { // xxx.myCall() this就是这里的xxx myApply和myBind中的this同理 context.func = this; context.func(...args); delete context.func; }; Function.prototype.myBind = function () { const args = Array.from(arguments); const t = args.shift(); const self = this; return function () { return self.apply(t, args); }; }; Function.prototype.myApply = function (context, args) { context.func = this; context.func(...args); delete context.func; }; 手写 Object.create() 1 2 3 4 5 6 //这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型 Object.create = function (prototype) { var cls = function () {}; cls.prototype = prototype; return new cls(); }; 手写 new 1 2 3 4 5 6 7 8 9 10 11 12 function myNew(...args) { // 取出 args 数组第一个参数，即目标构造函数 const constructor = args.shift(); // 创建一个空对象，且这个空对象继承构造函数的 prototype 属性 // 即实现 obj.__proto__ = constructor.prototype const obj = Object.create(constructor.prototype); // 执行构造函数，得到构造函数返回结果 // 注意这里我们使用 apply，将构造函数内的 this 指向为 obj const result = constructor.apply(obj, args); // 如果构造函数执行后，返回结果是对象类型，就直接返回，否则返回 obj 对象 return typeof result === \"object\" \u0026\u0026 result != null ? result : obj; } 手写防抖节流 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 // Throttle(事件节流)： 第一个人说了算 // fn是我们需要包装的事件回调, interval是时间间隔的阈值 function throttle(fn, interval) { // last为上一次触发回调的时间 let last = 0; // 将throttle处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 记录本次触发回调的时间 let now = new Date(); // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值 if (now - last \u003e= interval) { // 如果时间间隔大于我们设定的时间间隔阈值，则执行回调 last = now; fn.apply(context, args); } }; } // 用throttle来包装scroll的回调 const better_scroll = throttle(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); // Debounce(事件防抖)： 最后一个人说了算 // fn是我们需要包装的事件回调, delay是每次推迟执行的等待时间 function debounce(fn, delay) { // 定时器 let timer = null; // 将debounce处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 每次事件被触发时，都去清除之前的旧定时器 if (timer) { clearTimeout(timer); } // 设立新定时器 timer = setTimeout(function () { fn.apply(context, args); }, delay); }; } // 用debounce来包装scroll的回调 const better_scroll = debounce(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); 手写原生AJAX请求 原生 ajax 步骤\n创建XMLHttpRequest对象 使用open方法设置和服务器的交互信息 使用send发送数据 注册事件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 const getJSON = function (url) { return new Promise((resolve, reject) =\u003e { const xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject(\"Mscrosoft.XMLHttp\"); xhr.open(\"GET\", url, false); xhr.setRequestHeader(\"Accept\", \"application/json\"); xhr.onreadystatechange = function () { if (xhr.readyState !== 4) return; if (xhr.status === 200 || xhr.status === 304) { resolve(xhr.responseText); } else { reject(new Error(xhr.responseText)); } }; xhr.send(); }); }; 手写 String.prototype.trim 1 2 3 String.prototype.trim = function () { return this.replace(/^\\s+/, \"\").replace(/\\s+$/, \"\"); }; 手写 Array.flat 1 2 3 4 5 6 7 const flat = (arr) =\u003e { const isDeep = arr.some((item) =\u003e item instanceof Array); if (!isDeep) return arr; const res = Array.prototype.concat.apply([], arr); return flat(res); }; 手写去重 1 2 3 4 const unique = (arr) =\u003e { const set = new Set(arr); return [...arr]; }; 手写 setInterval 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 const mySetInterval = (fn, delay) =\u003e { let timer = null, isClear = false; function loop() { if (isClear) { isClear = false; clearTimeout(timer); return; } fn(); timer = setTimeout(loop, delay); } timer = setTimeout(loop, delay); return () =\u003e { isClear = true; }; }; 手写 判断类数组 1 2 3 4 5 6 7 8 9 10 const isArrayLikeObject = (arr) =\u003e { if (typeof arr !== \"object\" || arr === null) return false; const lengthMaxVal = Math.pow(2, 53) - 1; if (!Object.prototype.hasOwnProperty.call(arr, \"length\")) return false; if (typeof arr.length !== \"number\") return false; if (!isFinite(arr.length)) return false; if (Array !== arr.constructor) return false; if (arr.length \u003e 0 \u0026\u0026 arr.length \u003c lengthMaxVal) return true; return false; }; 获取当前 url 中的参数的值 1 2 3 4 5 const query = (name) =\u003e { const search = location.search; const params = new URLSearchParams(search); return params.get(name); }; 将 URL 参数解析为 JS 对象 1 2 3 4 5 6 7 8 9 function queryToObject() { const res = {}; const search = location.search; const pList = new URLSearchParams(search); pList.forEach((key, val) =\u003e { res[key] = val; }); return res; } 手写JSON.Stringify JSON.stringify()将值转换为相应的 JSON 格式：\n转换值如果有 toJSON() 方法，该方法定义什么值将被序列化。\n非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。\n布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值。\nundefined、任意的函数以及 symbol 值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。函数、undefined 被单独转换时，会返回 undefined，如JSON.stringify(function(){}) or JSON.stringify(undefined).\n对包含循环引用的对象（对象之间相互引用，形成无限循环）执行此方法，会抛出错误。\n所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们。\nDate 日期调用了 toJSON() 将其转换为了 string 字符串（同 Date.toISOString()），因此会被当做字符串处理。\nNaN 和 Infinity 格式的数值及 null 都会被当做 null。\n其他类型的对象，包括 Map/Set/WeakMap/WeakSet，仅会序列化可枚举的属性。\n——— MDN\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 function jsonStringify(data) { let type = typeof data; if (type !== \"object\") { let result = data; //data 可能是基础数据类型的情况在这里处理 if (Number.isNaN(data) || data === Infinity) { //NaN 和 Infinity 序列化返回 \"null\" result = \"null\"; } else if ( type === \"function\" || type === \"undefined\" || type === \"symbol\" ) { // 由于 function 序列化返回 undefined，因此和 undefined、symbol 一起处理 return undefined; } else if (type === \"string\") { result = '\"' + data + '\"'; } return String(result); } else if (type === \"object\") { if (data === null) { return \"null\"; } else if (data.toJSON \u0026\u0026 typeof data.toJSON === \"function\") { return jsonStringify(data.toJSON()); } else if (data instanceof Array) { let result = []; //如果是数组，那么数组里面的每一项类型又有可能是多样的 data.forEach((item, index) =\u003e { if ( typeof item === \"undefined\" || typeof item === \"function\" || typeof item === \"symbol\" ) { result[index] = \"null\"; } else { result[index] = jsonStringify(item); } }); result = \"[\" + result + \"]\"; return result.replace(/'/g, '\"'); } else { // 处理普通对象 let result = []; Object.keys(data).forEach((item, index) =\u003e { if (typeof item !== \"symbol\") { //key 如果是 symbol 对象，忽略 if ( data[item] !== undefined \u0026\u0026 typeof data[item] !== \"function\" \u0026\u0026 typeof data[item] !== \"symbol\" ) { //键值如果是 undefined、function、symbol 为属性值，忽略 result.push('\"' + item + '\"' + \":\" + jsonStringify(data[item])); } } }); return (\"{\" + result + \"}\").replace(/'/g, '\"'); } } } 手写runGenerator 手写Promise Promise\nPromise.race\n1 2 3 4 5 6 7 8 9 10 11 Promise.race = function (arr) { return new Promise(function (resolve, reject) { if (!Array.isArray(arr)) { return reject(new TypeError(\"Promise.race accepts an array\")); } for (var i = 0, len = arr.length; i \u003c len; i++) { Promise.resolve(arr[i]).then(resolve, reject); } }); }; Promise.all\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 // 输入不仅仅只有Array function promiseAll(args) { return new Promise((resolve, reject) =\u003e { const promiseResults = []; let iteratorIndex = 0; // 已完成的数量，用于最终的返回，不能直接用完成数量作为iteratorIndex // 输出顺序和完成顺序是两码事 let fullCount = 0; // 用于迭代iterator数据 for (const item of args) { // for of 遍历顺序，用于返回正确顺序的结果 // 因iterator用forEach遍历后的key和value一样，所以必须存一份for of的 iteratorIndex let resultIndex = iteratorIndex; iteratorIndex += 1; // 包一层，以兼容非promise的情况 Promise.resolve(item) .then((res) =\u003e { promiseResults[resultIndex] = res; fullCount += 1; // Iterator 接口的数据无法单纯的用length和size判断长度，不能局限于Array和 Map类型中 if (fullCount === iteratorIndex) { resolve(promiseResults); } }) .catch((err) =\u003e { reject(err); }); } // 处理空 iterator 的情况 if (iteratorIndex === 0) { resolve(promiseResults); } }); } if (!Promise.all) Promise.all = promiseAll; 实现lodash.get 实现类似 lodash.get ，有以下测试用例:\n1 2 3 4 5 6 7 8 9 10 var object = { a: [{ b: { c: 3 } }] }; get(object, \"a[0].b.c\"); // =\u003e 3 get(object, [\"a\", \"0\", \"b\", \"c\"]); // =\u003e 3 get(object, \"a.b.c\", \"default\"); // =\u003e 'default' 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 /** * object: 对象 * path: 输入的路径 * defaultVal: 默认值 **/ function get(object, path, defaultVal = \"undefined\") { // 先将path处理成统一格式 let newPath = []; if (Array.isArray(path)) { newPath = path; } else { // 先将字符串中的'['、']'去除替换为'.'，split分割成数组形式 newPath = path.replace(/\\[/g, \".\").replace(/\\]/g, \"\").split(\".\"); } // 递归处理，返回最后结果 return ( newPath.reduce((o, k) =\u003e { // console.log(o, k); // 此处o初始值为下边传入的 object，后续值为每次取的内部值 return (o || {})[k]; }, object) || defaultVal ); } 手写JS继承 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 //原型链继承 //缺点：Parent1和Child1创建的两个实例使用的是同一个原型对象，它们的内存空间是共享的，当一个发生变化的时候，另外一个也随之进行了变化 function Parent1() { this.name = \"parent1\"; this.play = [1, 2, 3]; } function Child1() { this.type = \"child2\"; } Child1.prototype = new Parent1(); //构造函数继承（借助 call） //缺点：父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法 function Parent2() { this.name = \"parent1\"; } Parent2.prototype.getName = function () { return this.name; }; function Child2() { Parent2.call(this); this.type = \"child1\"; } let child = new Child2(); console.log(child); // 没问题 console.log(child.getName()); // 会报错 //组合继承（前两种组合） //缺点：Parent3 执行了两次 function Parent3() { this.name = \"parent3\"; this.play = [1, 2, 3]; } Parent3.prototype.getName = function () { return this.name; }; function Child3() { // ② 第二次调用 Parent3() Parent3.call(this); this.type = \"child3\"; } // ① 第一次调用 Parent3() Child3.prototype = new Parent3(); // 手动挂上构造器，指向自己的构造函数 Child3.prototype.constructor = Child3; var s3 = new Child3(); var s4 = new Child3(); s3.play.push(4); console.log(s3.play, s4.play); // 不互相影响 console.log(s3.getName()); // 正常输出'parent3' console.log(s4.getName()); // 正常输出'parent3' //原型式继承 //缺点：多个实例的引用类型属性指向相同的内存，存在篡改的可能 let parent4 = { name: \"parent4\", friends: [\"p1\", \"p2\", \"p3\"], getName: function () { return this.name; }, }; let person4 = Object.create(parent4); person4.name = \"tom\"; person4.friends.push(\"jerry\"); //通过 Object.create()这个方法可以实现普通对象的继承 //不仅仅能继承属性，同样也可以继承 getName 的方法 let person5 = Object.create(parent4); person5.friends.push(\"lucy\"); console.log(person4.name); //tom console.log(person4.name === person4.getName()); //true console.log(person5.name); //parent4 console.log(person4.friends); //[\"p1\", \"p2\", \"p3\", \"jerry\", \"lucy\"] console.log(person5.friends); //[\"p1\", \"p2\", \"p3\", \"jerry\", \"lucy\"] //寄生式继承 //优缺点和原型式继承一样，但是对于普通对象的继承方式来说，寄生式继承相比于原型式继承，还是在父类基础上添加了更多的方法。 let parent5 = { name: \"parent5\", friends: [\"p1\", \"p2\", \"p3\"], getName: function () { return this.name; }, }; function clone(original) { let clone = Object.create(original); clone.getFriends = function () { return this.friends; }; return clone; } let person5 = clone(parent5); console.log(person5.getName()); console.log(person5.getFriends()); //寄生组合式继承 //extends原理 function clone(parent, child) { // 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程 child.prototype = Object.create(parent.prototype); child.prototype.constructor = child; } function Parent6() { this.name = \"parent6\"; this.play = [1, 2, 3]; } Parent6.prototype.getName = function () { return this.name; }; function Child6() { Parent6.call(this); this.friends = \"child5\"; } clone(Parent6, Child6); Child6.prototype.getFriends = function () { return this.friends; }; let person6 = new Child6(); console.log(person6); console.log(person6.getName()); console.log(person6.getFriends()); ",
+  "wordCount" : "4511",
   "inLanguage": "en",
-  "datePublished": "2022-06-02T00:26:27+08:00",
+  "image":"https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/jojo01.png","datePublished": "2022-06-02T00:26:27+08:00",
   "dateModified": "2022-06-02T00:26:27+08:00",
   "author":[{
     "@type": "Person",
@@ -122,7 +125,7 @@
     "name": "人类低质量男性求职准备",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://zzydev.top/image/chance.gif"
+      "url": "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png"
     }
   }
 }
@@ -170,38 +173,38 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://zzydev.top/search" title="🔍搜索 (Alt &#43; /)" accesskey=/>
-                    <span>🔍搜索</span>
+                <a href="https://zzydev.top/search" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
                 </a>
             </li>
             <li>
-                <a href="https://zzydev.top/" title="🏠主页">
-                    <span>🏠主页</span>
+                <a href="https://zzydev.top/" title="主页">
+                    <span>主页</span>
                 </a>
             </li>
             <li>
-                <a href="https://zzydev.top/posts" title="📚文章">
-                    <span>📚文章</span>
+                <a href="https://zzydev.top/posts" title="文章">
+                    <span>文章</span>
                 </a>
             </li>
             <li>
-                <a href="https://zzydev.top/archives/" title="⏱时间轴">
-                    <span>⏱时间轴</span>
+                <a href="https://zzydev.top/archives/" title="时间轴">
+                    <span>时间轴</span>
                 </a>
             </li>
             <li>
-                <a href="https://zzydev.top/tags" title="🔖标签">
-                    <span>🔖标签</span>
+                <a href="https://zzydev.top/tags" title="标签">
+                    <span>标签</span>
                 </a>
             </li>
             <li>
-                <a href="https://zzydev.top/about" title="🙋🏻‍♂️关于">
-                    <span>🙋🏻‍♂️关于</span>
+                <a href="https://zzydev.top/about" title="关于">
+                    <span>关于</span>
                 </a>
             </li>
             <li>
-                <a href="https://zzydev.top/links" title="🤝友链">
-                    <span>🤝友链</span>
+                <a href="https://zzydev.top/links" title="友链">
+                    <span>友链</span>
                 </a>
             </li>
         </ul>
@@ -211,7 +214,7 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://zzydev.top">Home</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/">文章</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/eight-part-essay/">八股文</a></div>
+    <div class="breadcrumbs"><a href="https://zzydev.top">Home</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/">文章 📖</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/eight-part-essay/">八股文</a></div>
     <h1 class="post-title">
       有手就行<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
     </h1>
@@ -226,10 +229,15 @@
 
 
 
-创建:&nbsp;<span title='2022-06-02 00:26:27 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;3650字&nbsp;|&nbsp;时长: 8分钟&nbsp;|&nbsp;zzydev
+创建:&nbsp;<span title='2022-06-02 00:26:27 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;4511字&nbsp;|&nbsp;时长: 10分钟&nbsp;|&nbsp;zzydev<span id="busuanzi_container_page_pv">
+        &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
+    </span>
 
 </div>
-  </header> <aside id="toc-container" class="toc-container wide">
+  </header> 
+<figure class="entry-cover1"><img loading="lazy" src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/jojo01.png" alt="">
+        
+</figure><aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
             <summary accesskey="c" title="(Alt + C)">
@@ -282,7 +290,9 @@
                     <li>
                         <a href="#%e6%89%8b%e5%86%99Promise" aria-label="手写Promise">手写Promise</a></li>
                     <li>
-                        <a href="#%e5%ae%9e%e7%8e%b0lodash.get" aria-label="实现lodash.get">实现lodash.get</a>
+                        <a href="#%e5%ae%9e%e7%8e%b0lodash.get" aria-label="实现lodash.get">实现lodash.get</a></li>
+                    <li>
+                        <a href="#%e6%89%8b%e5%86%99JS%e7%bb%a7%e6%89%bf" aria-label="手写JS继承">手写JS继承</a>
                     </li>
                 </ul>
             </div>
@@ -349,9 +359,10 @@
     }
 </script>
 
+
   <div class="post-content"><details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 instanceof" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 instanceof<a hidden class="anchor" aria-hidden="true" href="#手写 instanceof">#</a></h3>
   </summary>
@@ -382,7 +393,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 getType" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 getType<a hidden class="anchor" aria-hidden="true" href="#手写 getType">#</a></h3>
   </summary>
@@ -395,14 +406,12 @@ padding: .5em .5em 0;">
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
-</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> getType(obj) {
 </span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> type = <span style="color:#fff;font-weight:bold">typeof</span> obj;
 </span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (type !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>) <span style="color:#fff;font-weight:bold">return</span> type;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">Object</span>.prototype
-</span></span><span style="display:flex;"><span>    .toString()
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">Object</span>.prototype.toString
 </span></span><span style="display:flex;"><span>    .call(obj)
 </span></span><span style="display:flex;"><span>    .replace(<span style="color:#0ff;font-weight:bold">/^\[object (\S+)\]$/</span>, <span style="color:#0ff;font-weight:bold">&#34;S1&#34;</span>);
 </span></span><span style="display:flex;"><span>}
@@ -411,7 +420,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写浅拷贝" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写浅拷贝<a hidden class="anchor" aria-hidden="true" href="#手写浅拷贝">#</a></h3>
   </summary>
@@ -450,7 +459,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写深拷贝" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写深拷贝<a hidden class="anchor" aria-hidden="true" href="#手写深拷贝">#</a></h3>
   </summary><p><strong>小杯</strong></p>
@@ -540,7 +549,7 @@ padding: .5em .5em 0;">
 </details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写深比较" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写深比较<a hidden class="anchor" aria-hidden="true" href="#手写深比较">#</a></h3>
   </summary>
@@ -579,7 +588,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写函数AOP" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写函数AOP<a hidden class="anchor" aria-hidden="true" href="#手写函数AOP">#</a></h3>
   </summary>
@@ -648,7 +657,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写柯里化" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写柯里化<a hidden class="anchor" aria-hidden="true" href="#手写柯里化">#</a></h3>
   </summary>
@@ -685,7 +694,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 call 、apply 、bind" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 call 、apply 、bind<a hidden class="anchor" aria-hidden="true" href="#手写 call 、apply 、bind">#</a></h3>
   </summary>
@@ -740,7 +749,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 Object.create()" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 Object.create()<a hidden class="anchor" aria-hidden="true" href="#手写 Object.create()">#</a></h3>
   </summary>
@@ -765,7 +774,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 new" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 new<a hidden class="anchor" aria-hidden="true" href="#手写 new">#</a></h3>
   </summary>
@@ -802,7 +811,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写防抖节流" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写防抖节流<a hidden class="anchor" aria-hidden="true" href="#手写防抖节流">#</a></h3>
   </summary>
@@ -919,7 +928,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写原生AJAX请求" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写原生AJAX请求<a hidden class="anchor" aria-hidden="true" href="#手写原生AJAX请求">#</a></h3>
   </summary>
@@ -976,7 +985,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 String.prototype.trim" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 String.prototype.trim<a hidden class="anchor" aria-hidden="true" href="#手写 String.prototype.trim">#</a></h3>
   </summary>
@@ -995,7 +1004,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 Array.flat" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 Array.flat<a hidden class="anchor" aria-hidden="true" href="#手写 Array.flat">#</a></h3>
   </summary>
@@ -1022,7 +1031,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写去重" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写去重<a hidden class="anchor" aria-hidden="true" href="#手写去重">#</a></h3>
   </summary>
@@ -1043,7 +1052,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写 setInterval" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写 setInterval<a hidden class="anchor" aria-hidden="true" href="#手写 setInterval">#</a></h3>
   </summary>
@@ -1090,7 +1099,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id=" 手写 判断类数组" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;"> 手写 判断类数组<a hidden class="anchor" aria-hidden="true" href="# 手写 判断类数组">#</a></h3>
   </summary>
@@ -1123,7 +1132,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="获取当前 url 中的参数的值" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">获取当前 url 中的参数的值<a hidden class="anchor" aria-hidden="true" href="#获取当前 url 中的参数的值">#</a></h3>
   </summary>
@@ -1146,7 +1155,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="将 URL 参数解析为 JS 对象" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">将 URL 参数解析为 JS 对象<a hidden class="anchor" aria-hidden="true" href="#将 URL 参数解析为 JS 对象">#</a></h3>
   </summary>
@@ -1177,7 +1186,7 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写JSON.Stringify" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写JSON.Stringify<a hidden class="anchor" aria-hidden="true" href="#手写JSON.Stringify">#</a></h3>
   </summary>
@@ -1344,14 +1353,14 @@ padding: .5em .5em 0;">
 </div></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写runGenerator" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写runGenerator<a hidden class="anchor" aria-hidden="true" href="#手写runGenerator">#</a></h3>
   </summary>
     <p style="margin-left:1rem"></p></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="手写Promise" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写Promise<a hidden class="anchor" aria-hidden="true" href="#手写Promise">#</a></h3>
   </summary><p>Promise</p>
@@ -1470,7 +1479,7 @@ padding: .5em .5em 0;">
 </div></details>
 <details style="border: 1px solid #aaa;
 border-radius: 4px;
-padding: .5em .5em 0;">
+padding: .5em .5em 0;" open>
   <summary>
       &nbsp;<h3 id="实现lodash.get" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">实现lodash.get<a hidden class="anchor" aria-hidden="true" href="#实现lodash.get">#</a></h3>
   </summary><p>实现类似 <code>lodash.get</code> ，有以下测试用例:</p>
@@ -1555,6 +1564,281 @@ padding: .5em .5em 0;">
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="手写JS继承" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">手写JS继承<a hidden class="anchor" aria-hidden="true" href="#手写JS继承">#</a></h3>
+  </summary>
+    <p style="margin-left:1rem"><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">  9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 15
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 16
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 17
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 18
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 19
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 20
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 21
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 22
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 23
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 24
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 25
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 26
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 27
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 28
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 29
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 30
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 31
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 32
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 33
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 34
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 35
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 36
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 37
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 38
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 39
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 40
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 41
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 42
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 43
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 44
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 45
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 46
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 47
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 48
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 49
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 50
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 51
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 52
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 53
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 54
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 55
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 56
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 57
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 58
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 59
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 60
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 61
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 62
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 63
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 64
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 65
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 66
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 67
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 68
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 69
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 70
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 71
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 72
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 73
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 74
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 75
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 76
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 77
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 78
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 79
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 80
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 81
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 82
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 83
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 84
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 85
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 86
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 87
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 88
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 89
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 90
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 91
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 92
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 93
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 94
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 95
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 96
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 97
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 98
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 99
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">100
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">101
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">102
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">103
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">104
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">105
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">106
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">107
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">108
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">109
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">110
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">111
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">112
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">113
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">114
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">115
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">116
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">117
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">118
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">119
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">120
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">121
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">122
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">123
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">124
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">125
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">126
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">127
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">128
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">129
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">130
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">131
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007f7f">//原型链继承
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：Parent1和Child1创建的两个实例使用的是同一个原型对象，它们的内存空间是共享的，当一个发生变化的时候，另外一个也随之进行了变化
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> Parent1() {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent1&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child1() {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child2&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Child1.prototype = <span style="color:#fff;font-weight:bold">new</span> Parent1();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">//构造函数继承（借助 call）
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> Parent2() {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent1&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Parent2.prototype.getName = <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child2() {
+</span></span><span style="display:flex;"><span>  Parent2.call(<span style="color:#fff;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child1&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> child = <span style="color:#fff;font-weight:bold">new</span> Child2();
+</span></span><span style="display:flex;"><span>console.log(child); <span style="color:#007f7f">// 没问题
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>console.log(child.getName()); <span style="color:#007f7f">// 会报错
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">//组合继承（前两种组合）
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：Parent3 执行了两次
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> Parent3() {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent3&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Parent3.prototype.getName = <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child3() {
+</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// ② 第二次调用 Parent3()
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  Parent3.call(<span style="color:#fff;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child3&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">// ① 第一次调用 Parent3()
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>Child3.prototype = <span style="color:#fff;font-weight:bold">new</span> Parent3();
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">// 手动挂上构造器，指向自己的构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>Child3.prototype.constructor = Child3;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">var</span> s3 = <span style="color:#fff;font-weight:bold">new</span> Child3();
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">var</span> s4 = <span style="color:#fff;font-weight:bold">new</span> Child3();
+</span></span><span style="display:flex;"><span>s3.play.push(<span style="color:#ff0;font-weight:bold">4</span>);
+</span></span><span style="display:flex;"><span>console.log(s3.play, s4.play); <span style="color:#007f7f">// 不互相影响
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>console.log(s3.getName()); <span style="color:#007f7f">// 正常输出&#39;parent3&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>console.log(s4.getName()); <span style="color:#007f7f">// 正常输出&#39;parent3&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">//原型式继承
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：多个实例的引用类型属性指向相同的内存，存在篡改的可能
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">let</span> parent4 = {
+</span></span><span style="display:flex;"><span>  name: <span style="color:#0ff;font-weight:bold">&#34;parent4&#34;</span>,
+</span></span><span style="display:flex;"><span>  friends: [<span style="color:#0ff;font-weight:bold">&#34;p1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p3&#34;</span>],
+</span></span><span style="display:flex;"><span>  getName: <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> person4 = <span style="color:#fff;font-weight:bold">Object</span>.create(parent4);
+</span></span><span style="display:flex;"><span>person4.name = <span style="color:#0ff;font-weight:bold">&#34;tom&#34;</span>;
+</span></span><span style="display:flex;"><span>person4.friends.push(<span style="color:#0ff;font-weight:bold">&#34;jerry&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">//通过 Object.create()这个方法可以实现普通对象的继承
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//不仅仅能继承属性，同样也可以继承 getName 的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">let</span> person5 = <span style="color:#fff;font-weight:bold">Object</span>.create(parent4);
+</span></span><span style="display:flex;"><span>person5.friends.push(<span style="color:#0ff;font-weight:bold">&#34;lucy&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>console.log(person4.name); <span style="color:#007f7f">//tom
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>console.log(person4.name === person4.getName()); <span style="color:#007f7f">//true
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>console.log(person5.name); <span style="color:#007f7f">//parent4
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>console.log(person4.friends); <span style="color:#007f7f">//[&#34;p1&#34;, &#34;p2&#34;, &#34;p3&#34;, &#34;jerry&#34;, &#34;lucy&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>console.log(person5.friends); <span style="color:#007f7f">//[&#34;p1&#34;, &#34;p2&#34;, &#34;p3&#34;, &#34;jerry&#34;, &#34;lucy&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">//寄生式继承
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//优缺点和原型式继承一样，但是对于普通对象的继承方式来说，寄生式继承相比于原型式继承，还是在父类基础上添加了更多的方法。
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">let</span> parent5 = {
+</span></span><span style="display:flex;"><span>  name: <span style="color:#0ff;font-weight:bold">&#34;parent5&#34;</span>,
+</span></span><span style="display:flex;"><span>  friends: [<span style="color:#0ff;font-weight:bold">&#34;p1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p3&#34;</span>],
+</span></span><span style="display:flex;"><span>  getName: <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> clone(original) {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> clone = <span style="color:#fff;font-weight:bold">Object</span>.create(original);
+</span></span><span style="display:flex;"><span>  clone.getFriends = <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.friends;
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> clone;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> person5 = clone(parent5);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>console.log(person5.getName());
+</span></span><span style="display:flex;"><span>console.log(person5.getFriends());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">//寄生组合式继承
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//extends原理
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> clone(parent, child) {
+</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  child.prototype = <span style="color:#fff;font-weight:bold">Object</span>.create(parent.prototype);
+</span></span><span style="display:flex;"><span>  child.prototype.constructor = child;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Parent6() {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent6&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>Parent6.prototype.getName = <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child6() {
+</span></span><span style="display:flex;"><span>  Parent6.call(<span style="color:#fff;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.friends = <span style="color:#0ff;font-weight:bold">&#34;child5&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>clone(Parent6, Child6);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Child6.prototype.getFriends = <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.friends;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> person6 = <span style="color:#fff;font-weight:bold">new</span> Child6();
+</span></span><span style="display:flex;"><span>console.log(person6);
+</span></span><span style="display:flex;"><span>console.log(person6.getName());
+</span></span><span style="display:flex;"><span>console.log(person6.getFriends());
+</span></span></code></pre></td></tr></table>
+</div>
+</div></p></details>
 
 
   </div>
@@ -1645,6 +1929,13 @@ padding: .5em .5em 0;">
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+    <span id="busuanzi_container_site_pv">
+        本站访问量：<span id="busuanzi_value_site_pv"></span>次
+    </span>
+    &nbsp;
+    <span id="busuanzi_container_site_uv">
+        您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
     </span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">

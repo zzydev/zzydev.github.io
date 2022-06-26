@@ -1,6 +1,7 @@
 ---
 title: 力扣
 hidemeta: true
+weight: 1
 cover:
   image: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/leetcode.png"
 ---
