@@ -81,7 +81,7 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
 }
 
 .toc li {
-  list-style: none;
+  list-style:inside;
   font-size: 0.95rem;
   padding-bottom: 5px;
 }
@@ -89,6 +89,14 @@ Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-cs
 .toc li a:hover {
   color: var(--secondary);
 }
+
+.toc li a:focus{
+  color: #3178c6;
+  font-weight: bolder;
+  font-size: 110%;
+}
+
+
 
 .post-entry {
   display: flex;

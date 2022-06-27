@@ -168,7 +168,7 @@
                                 url: url, type: 'GET', dataType: "json", success: function (data) {
                                     localStorage.setItem(ls_item, JSON.stringify(data));
                                     movieShow(_this, ls_item, strs)
-                                }
+                                },async: false
                             })
                         } else {
                             movieShow(_this, ls_item, strs)
@@ -181,7 +181,7 @@
                                 url: url, type: 'GET', dataType: 'json', success: function (data) {
                                     localStorage.setItem('book' + db_id, JSON.stringify(data));
                                     bookShow(_this, ls_item, strs)
-                                }
+                                },async: false
                             })
                         } else {
                             bookShow(_this, ls_item, strs)

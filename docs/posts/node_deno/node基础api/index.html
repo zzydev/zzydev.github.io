@@ -11,7 +11,7 @@
 <meta name="description" content="node 中英对照文档 &lt;!DOCTYPE HTML&gt; &lt;!DOCTYPE HTML&gt; &nbsp;常见模块基础用法 fs 模块 1 2 3 4 5 6 7 8 9 10 11 12 13 14 const data = fs.readFileSync(&#34;./data.json&#34;, (err, data) =&gt; { //错误优先的回调函数 if (err) { throw err; } console.log(data.toString()); }); async">
 <meta name="author" content="zzydev">
 <link rel="canonical" href="https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80api/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.fe109434cf5d323a72067370643ba3b710e780990f98d63ed30b7cfd72d6e024.css" integrity="sha256-/hCUNM9dMjpyBnNwZDujtxDngJkPmNY&#43;0wt8/XLW4CQ=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ce8eaa724ac5cfa35cb5e776d031ea4b1e1eb3c88bbd1dd133fd07f82206c87d.css" integrity="sha256-zo6qckrFz6Ncted20DHqSx4es8iLvR3RM/0H&#43;CIGyH0=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/caidog.png">
@@ -480,7 +480,7 @@
                                 url: url, type: 'GET', dataType: "json", success: function (data) {
                                     localStorage.setItem(ls_item, JSON.stringify(data));
                                     movieShow(_this, ls_item, strs)
-                                }
+                                },async: false
                             })
                         } else {
                             movieShow(_this, ls_item, strs)
@@ -493,7 +493,7 @@
                                 url: url, type: 'GET', dataType: 'json', success: function (data) {
                                     localStorage.setItem('book' + db_id, JSON.stringify(data));
                                     bookShow(_this, ls_item, strs)
-                                }
+                                },async: false
                             })
                         } else {
                             bookShow(_this, ls_item, strs)
@@ -695,7 +695,7 @@
                                 url: url, type: 'GET', dataType: "json", success: function (data) {
                                     localStorage.setItem(ls_item, JSON.stringify(data));
                                     movieShow(_this, ls_item, strs)
-                                }
+                                },async: false
                             })
                         } else {
                             movieShow(_this, ls_item, strs)
@@ -708,7 +708,7 @@
                                 url: url, type: 'GET', dataType: 'json', success: function (data) {
                                     localStorage.setItem('book' + db_id, JSON.stringify(data));
                                     bookShow(_this, ls_item, strs)
-                                }
+                                },async: false
                             })
                         } else {
                             bookShow(_this, ls_item, strs)

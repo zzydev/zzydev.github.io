@@ -22,7 +22,7 @@ cover:
 ---
 
 {{< spoiler  "Pick">}}
-[💯Take a Challenge](https://tsch.js.org/4/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/4/play/)  
 实现 TS 内置的 `Pick<T, K>`，但不可以使用它。  
 **从类型 `T` 中选择出属性 `K`，构造成一个新的类型**。  
 例如：
@@ -53,7 +53,7 @@ type MyPick<T, K extends keyof T> = {
 {{< /spoiler >}}
 
 {{< spoiler  "实现 Readonly">}}
-[💯Take a Challenge](https://tsch.js.org/7/play/zh-CN)
+[💯Take a Challenge](https://tsch.js.org/7/play/)
 
 不要使用内置的`Readonly<T>`，自己实现一个。  
 该 `Readonly` 会接收一个 _泛型参数_，并返回一个完全一样的类型，只是所有属性都会被 `readonly` 所修饰。  
@@ -86,7 +86,7 @@ type MyReadonly<T> = {
 {{< /spoiler >}}
 
 {{< spoiler  "Tuple To Object">}}
-[💯Take a Challenge](https://tsch.js.org/11/play/zh-CN)
+[💯Take a Challenge](https://tsch.js.org/11/play/)
 
 传入一个元组类型，将这个元组类型转换为对象类型，这个对象类型的键/值都是从元组中遍历出来。  
 例如：
@@ -109,7 +109,7 @@ type TupleToObject<T extends readonly any[]> = {
 {{< /spoiler >}}
 
 {{< spoiler  "First of Array">}}
-[💯Take a Challenge](https://tsch.js.org/14/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/14/play/)  
 实现一个通用`First<T>`，它接受一个数组`T`并返回它的第一个元素的类型。
 
 例如：
@@ -135,7 +135,7 @@ type MyFirst<T extends unknown[]> = T extends [infer R, ...unknown[]]
 
 {{< spoiler  "Length of Tuple">}}
 
-[💯Take a Challenge](https://tsch.js.org/18/play/zh-CN)
+[💯Take a Challenge](https://tsch.js.org/18/play/)
 
 创建一个通用的 Length，接受一个 readonly 的数组，返回这个数组的长度。
 
@@ -167,7 +167,7 @@ type MyLength<T extends any> = T extends { length: number }
 
 {{< spoiler  "Exclude">}}
 
-[💯Take a Challenge](https://tsch.js.org/43/play/zh-CN)
+[💯Take a Challenge](https://tsch.js.org/43/play/)
 
 实现内置的 Exclude <T, U>类型，但不能直接使用它本身。
 
@@ -183,7 +183,7 @@ type MyExclude<T, U> = T extends U ? never : T;
 {{< /spoiler >}}
 
 {{< spoiler  "Awaited">}}
-[💯Take a Challenge](https://tsch.js.org/189/play/zh-CN)
+[💯Take a Challenge](https://tsch.js.org/189/play/)
 
 假如我们有一个 Promise 对象，这个 Promise 对象会返回一个类型。在 TS 中，我们用 Promise 中的 T 来描述这个 Promise 返回的类型。请你实现一个类型，可以获取这个类型。
 
@@ -204,7 +204,7 @@ type MyAwaited<P extends Promise<unknown>> = P extends Promise<infer ValueType>
 {{< /spoiler >}}
 
 {{< spoiler  "If">}}
-[💯Take a Challenge](https://tsch.js.org/268/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/268/play/)  
 实现一个 `IF` 类型，它接收一个条件类型 `C` ，一个判断为真时的返回类型 `T` ，以及一个判断为假时的返回类型 `F`。 `C` 只能是 `true` 或者 `false`， `T` 和 `F` 可以是任意类型。
 
 举例:
@@ -223,7 +223,7 @@ type If<C extends boolean, T, F> = C extends true ? T : F;
 {{< /spoiler >}}
 
 {{< spoiler  "Concat">}}
-[💯Take a Challenge](https://tsch.js.org/533/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/533/play/)  
  在类型系统里实现 JavaScript 内置的 `Array.concat` 方法，这个类型接受两个参数，返回的新数组类型应该按照输入参数从左到右的顺序合并为一个新的数组。
 
 举例，
@@ -241,7 +241,7 @@ type Concat<T extends any[], U extends any[]> = [...T, ...U];
 {{< /spoiler >}}
 
 {{< spoiler  "Includes">}}
-[💯Take a Challenge](https://tsch.js.org/898/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/898/play/)  
 在类型系统里实现 JavaScript 的 `Array.includes` 方法，这个类型接受两个参数，返回的类型要么是 `true` 要么是 `false`。
 
 举例来说，
@@ -268,7 +268,7 @@ type Includes<Arr extends unknown[], FindItem> = Arr extends [
 {{< /spoiler >}}
 
 {{< spoiler  "Push">}}
-[💯Take a Challenge](https://tsch.js.org/3057/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/3057/play/)  
 在类型系统里实现通用的 `Array.push` 。
 
 举例如下，
@@ -286,7 +286,7 @@ type Push<Arr extends unknown[], Elem> = [...Arr, Elem];
 {{< /spoiler >}}
 
 {{< spoiler  "Unshift">}}
-[💯Take a Challenge](https://tsch.js.org/3060/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/3060/play/)  
 实现类型版本的 `Array.unshift`。
 
 举例，
@@ -304,7 +304,7 @@ type Unshift<Arr extends unknown[], Elem> = [Elem, ...Arr];
 {{< /spoiler >}}
 
 {{< spoiler  "Parameters">}}
-[💯Take a Challenge](https://tsch.js.org/3312/play/zh-CN)  
+[💯Take a Challenge](https://tsch.js.org/3312/play/)  
 实现内置的 Parameters<T> 类型，而不是直接使用它，可参考[TypeScript 官方文档](https://www.typescriptlang.org/docs/handbook/utility-types.html#parameterstype)。
 
 答案:
