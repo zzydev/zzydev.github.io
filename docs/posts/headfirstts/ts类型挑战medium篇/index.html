@@ -106,7 +106,7 @@
     "typescript"
   ],
   "articleBody": " 获取函数返回类型 💯Take a Challenge\n不使用 ReturnType 实现 TypeScript 的 ReturnType 泛型。\n例如：\n1 2 3 4 5 6 const fn = (v: boolean) =\u003e { if (v) return 1; else return 2; }; type a = MyReturnType\u003ctypeof fn\u003e; // 应推导出 \"1 | 2\" 答案:\n1 type ReturnType\u003cT\u003e = T extends (...args: any) =\u003e infer R ? R : never; 实现 Omit 💯Take a Challenge\n不使用 Omit 实现 TypeScript 的 Omit 泛型。\nOmit 会创建一个省略 K 中字段的 T 对象。\n例如：\n1 2 3 4 5 6 7 8 9 10 11 interface Todo { title: string; description: string; completed: boolean; } type TodoPreview = MyOmit\u003cTodo, \"description\" | \"title\"\u003e; const todo: TodoPreview = { completed: false, }; 答案:\n1 type MyOmit\u003cT, K\u003e = MyPick\u003cT, MyExclude\u003ckeyof T, K\u003e\u003e; Readonly 2 💯Take a Challenge\nImplement a generic MyReadonly2 which takes two type argument T and K.\nK specify the set of properties of T that should set to Readonly. When K is not provided, it should make all properties readonly just like the normal Readonly.\nFor example\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 interface Todo { title: string; description: string; completed: boolean; } const todo: MyReadonly2\u003cTodo, \"title\" | \"description\"\u003e = { title: \"Hey\", description: \"foobar\", completed: false, }; todo.title = \"Hello\"; // Error: cannot reassign a readonly property todo.description = \"barFoo\"; // Error: cannot reassign a readonly property todo.completed = true; // OK 答案:\n1 2 3 type MyReadonly2\u003cT, K extends keyof T = keyof T\u003e = Omit\u003cT, K\u003e \u0026 { readonly [P in K]: T[P]; }; 深度 Readonly 💯Take a Challenge\nImplement a generic DeepReadonly which make every parameter of an object - and its sub-objects recursively - readonly.\nYou can assume that we are only dealing with Objects in this challenge. Arrays, Functions, Classes and so on are no need to take into consideration. However, you can still challenge your self by covering different cases as many as possible.\nFor example\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 type X = { x: { a: 1; b: \"hi\"; }; y: \"hey\"; }; type Expected = { readonly x: { readonly a: 1; readonly b: \"hi\"; }; readonly y: \"hey\"; }; type Todo = DeepReadonly\u003cX\u003e; // should be same as `Expected` 答案:\n1 2 3 4 5 type DeepReadonly\u003cT\u003e = { readonly [P in keyof T]: T[P] extends { [key: string]: any } ? DeepReadonly\u003cT[P]\u003e : T[P]; }; 元组转联合类型 💯Take a Challenge\n实现泛型TupleToUnion，它返回元组所有值组成的联合类型。\n例如\n1 2 3 type Arr = [\"1\", \"2\", \"3\"]; type Test = TupleToUnion\u003cArr\u003e; // expected to be '1' | '2' | '3' 答案:\n1 2 3 type TupleToUnion\u003cT extends readonly any[]\u003e = T extends [infer R, ...infer args] ? R | TupleToUnion\u003cargs\u003e : never; Chainable Options 💯Take a Challenge\nChainable options are commonly used in Javascript. But when we switch to TypeScript, can you properly type it?\nIn this challenge, you need to type an object or a class - whatever you like - to provide two function option(key, value) and get(). In option, you can extend the current config type by the given key and value. We should about to access the final result via get.\nFor example\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 declare const config: Chainable; const result = config .option(\"foo\", 123) .option(\"name\", \"type-challenges\") .option(\"bar\", { value: \"Hello World\" }) .get(); // expect the type of result to be: interface Result { foo: number; name: string; bar: { value: string; }; } You don’t need to write any js/ts logic to handle the problem - just in type level.\nYou can assume that key only accepts string and the value can be anything - just leave it as-is. Same key won’t be passed twice. 答案:\n1 2 3 4 5 6 7 type Chainable\u003cT\u003e = { options\u003cK extends string, V\u003e( key: K, value: V ): Chainable\u003cT \u0026 { [k in K]: V }\u003e; get(): T; }; Last 💯Take a Challenge\nTypeScript 4.0 is recommended in this challenge\nImplement a generic Last that takes an Array T and returns its last element.\nFor example\n1 2 3 4 5 type arr1 = [\"a\", \"b\", \"c\"]; type arr2 = [3, 2, 1]; type tail1 = Last\u003carr1\u003e; // expected to be 'c' type tail2 = Last\u003carr2\u003e; // expected to be 1 答案:\n1 type Last\u003cT extends any[]\u003e = T extends [...any[], infer L] ? L : never; Pop 💯Take a Challenge\nTypeScript 4.0 is recommended in this challenge\nImplement a generic Pop that takes an Array T and returns an Array without it’s last element.\nFor example\n1 2 3 4 5 type arr1 = [\"a\", \"b\", \"c\", \"d\"]; type arr2 = [3, 2, 1]; type re1 = Pop\u003carr1\u003e; // expected to be ['a', 'b', 'c'] type re2 = Pop\u003carr2\u003e; // expected to be [3, 2] Extra: Similarly, can you implement Shift, Push and Unshift as well?\n答案:\n1 2 3 4 5 type Pop\u003cT extends any[]\u003e = T extends [] ? [] : T extends [...infer Rest, any] ? Rest : never; Promise.all 💯Take a Challenge Type the function PromiseAll that accepts an array of PromiseLike objects, the returning value should be Promise where T is the resolved result array.\n1 2 3 4 5 6 7 8 const promise1 = Promise.resolve(3); const promise2 = 42; const promise3 = new Promise\u003cstring\u003e((resolve, reject) =\u003e { setTimeout(resolve, 100, \"foo\"); }); // expected to be `Promise\u003c[number, 42, string]\u003e` const p = Promise.all([promise1, promise2, promise3] as const); 答案:\n1 2 3 4 5 6 type PromiseAllType\u003cT\u003e = Promise\u003c{ [P in keyof T]: T[P] extends Promise\u003cinfer R\u003e ? R : T[P]; }\u003e; declare function PromiseAll\u003cT extends any[]\u003e( values: readonly [...T] ): PromiseAllType\u003cT\u003e; Type Lookup 💯Take a Challenge\nSometimes, you may want to lookup for a type in a union to by their attributes.\nIn this challenge, we would like to get the corresponding type by searching for the common type field in the union Cat | Dog. In other words, we will expect to get Dog for LookUp",
-  "wordCount" : "5480",
+  "wordCount" : "7898",
   "inLanguage": "en",
   "datePublished": "2022-06-24T00:59:50+08:00",
   "dateModified": "2022-06-28T00:00:00Z",
@@ -214,7 +214,7 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://zzydev.top">Home</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/">文章 📖</a>&nbsp;»&nbsp;<a href="https://zzydev.top/posts/headfirstts/">Typescript</a></div>
     <h1 class="post-title">
-      TS类型挑战Medium篇<sup><span class="entry-isdraft">&nbsp;&nbsp;[draft]</span></sup>
+      TS类型挑战Medium篇
     </h1>
     <div class="post-meta">
 
@@ -227,7 +227,7 @@
 
 
 
-创建:&nbsp;<span title='2022-06-24 00:59:50 +0800 CST'>2022-06-24</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-28&nbsp;|&nbsp;字数:&nbsp;5480字&nbsp;|&nbsp;时长: 11分钟&nbsp;|&nbsp;zzydev<span id="busuanzi_container_page_pv">
+创建:&nbsp;<span title='2022-06-24 00:59:50 +0800 CST'>2022-06-24</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-28&nbsp;|&nbsp;字数:&nbsp;7898字&nbsp;|&nbsp;时长: 16分钟&nbsp;|&nbsp;zzydev<span id="busuanzi_container_page_pv">
         &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
     </span>
 
@@ -335,7 +335,47 @@
                     <li>
                         <a href="#BEM%20style%20string" aria-label="BEM style string">BEM style string</a></li>
                     <li>
-                        <a href="#InorderTraversal" aria-label="InorderTraversal">InorderTraversal</a>
+                        <a href="#InorderTraversal" aria-label="InorderTraversal">InorderTraversal</a></li>
+                    <li>
+                        <a href="#Flip" aria-label="Flip">Flip</a></li>
+                    <li>
+                        <a href="#Fibonacci%20Sequence" aria-label="Fibonacci Sequence">Fibonacci Sequence</a></li>
+                    <li>
+                        <a href="#AllCombinations" aria-label="AllCombinations">AllCombinations</a></li>
+                    <li>
+                        <a href="#Greater%20Than" aria-label="Greater Than">Greater Than</a></li>
+                    <li>
+                        <a href="#Zip" aria-label="Zip">Zip</a></li>
+                    <li>
+                        <a href="#IsTuple" aria-label="IsTuple">IsTuple</a></li>
+                    <li>
+                        <a href="#Chunk" aria-label="Chunk">Chunk</a></li>
+                    <li>
+                        <a href="#Fill" aria-label="Fill">Fill</a></li>
+                    <li>
+                        <a href="#Trim%20Right" aria-label="Trim Right">Trim Right</a></li>
+                    <li>
+                        <a href="#Without" aria-label="Without">Without</a></li>
+                    <li>
+                        <a href="#Trunc" aria-label="Trunc">Trunc</a></li>
+                    <li>
+                        <a href="#IndexOf" aria-label="IndexOf">IndexOf</a></li>
+                    <li>
+                        <a href="#Join" aria-label="Join">Join</a></li>
+                    <li>
+                        <a href="#LastIndexOf" aria-label="LastIndexOf">LastIndexOf</a></li>
+                    <li>
+                        <a href="#Unique" aria-label="Unique">Unique</a></li>
+                    <li>
+                        <a href="#MapTypes" aria-label="MapTypes">MapTypes</a></li>
+                    <li>
+                        <a href="#Construct%20Tuple" aria-label="Construct Tuple">Construct Tuple</a></li>
+                    <li>
+                        <a href="#Number%20Range" aria-label="Number Range">Number Range</a></li>
+                    <li>
+                        <a href="#Combination" aria-label="Combination">Combination</a></li>
+                    <li>
+                        <a href="#Subsequence" aria-label="Subsequence">Subsequence</a>
                     </li>
                 </ul>
             </div>
@@ -2479,6 +2519,922 @@ Implement the type version of binary tree inorder traversal.</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details></p>
+<p><details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Flip" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Flip<a hidden class="anchor" aria-hidden="true" href="#Flip">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4179/play/" target="_blank">💯Take a Challenge</a><br>
+Implement the type of <code>just-flip-object</code>. Examples:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span>Flip&lt;{ a: <span style="color:#0ff;font-weight:bold">&#34;x&#34;</span>, b: <span style="color:#0ff;font-weight:bold">&#34;y&#34;</span>, c: <span style="color:#0ff;font-weight:bold">&#34;z&#34;</span> }&gt;; <span style="color:#007f7f">// {x: &#39;a&#39;, y: &#39;b&#39;, z: &#39;c&#39;}
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>Flip&lt;{ a: <span style="color:#fff;font-weight:bold">1</span>, b: <span style="color:#fff;font-weight:bold">2</span>, c: <span style="color:#fff;font-weight:bold">3</span> }&gt;; <span style="color:#007f7f">// {1: &#39;a&#39;, 2: &#39;b&#39;, 3: &#39;c&#39;}
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>Flip&lt;{ a: <span style="color:#fff;font-weight:bold">false</span>, b: <span style="color:#fff;font-weight:bold">true</span> }&gt;; <span style="color:#007f7f">// {false: &#39;a&#39;, true: &#39;b&#39;}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>No need to support nested objects and values which cannot be object keys such as arrays
+答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Flip&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">Record</span><span style="color:#f00">&lt;</span><span style="color:#007f7f">string</span><span style="color:#f00">,</span> <span style="color:#007f7f">boolean</span> <span style="color:#f00">|</span> <span style="color:#007f7f">number</span> <span style="color:#f00">|</span> <span style="color:#007f7f">string</span>&gt;&gt; = {
+</span></span><span style="display:flex;"><span>  [P <span style="color:#fff;font-weight:bold">in</span> <span style="color:#fff;font-weight:bold">keyof</span> T <span style="color:#fff;font-weight:bold">as</span> <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>T[P]<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>]: P;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Fibonacci Sequence" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Fibonacci Sequence<a hidden class="anchor" aria-hidden="true" href="#Fibonacci Sequence">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4182/play/" target="_blank">💯Take a Challenge</a><br>
+Implement a generic Fibonacci&lt;T&gt; takes an number T and returns it&rsquo;s corresponding <a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank">Fibonacci number</a>.</p>
+<p>The sequence starts:
+1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, &hellip;</p>
+<p>For example</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Result1 = Fibonacci&lt;<span style="font-weight:bold">3</span>&gt;; <span style="color:#007f7f">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Result2 = Fibonacci&lt;<span style="font-weight:bold">8</span>&gt;; <span style="color:#007f7f">// 21
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Fibonacci&lt;
+</span></span><span style="display:flex;"><span>  Num <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  PrevArr <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">unknown</span>[] = [<span style="color:#ff0;font-weight:bold">1</span>],
+</span></span><span style="display:flex;"><span>  CurrentArr <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">unknown</span>[] = [],
+</span></span><span style="display:flex;"><span>  IndexArr <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">unknown</span>[] = []
+</span></span><span style="display:flex;"><span>&gt; = IndexArr[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> Num
+</span></span><span style="display:flex;"><span>  ? CurrentArr[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>]
+</span></span><span style="display:flex;"><span>  : Fibonacci&lt;
+</span></span><span style="display:flex;"><span>      Num,
+</span></span><span style="display:flex;"><span>      CurrentArr,
+</span></span><span style="display:flex;"><span>      [...PrevArr, ...CurrentArr],
+</span></span><span style="display:flex;"><span>      [...IndexArr, <span style="color:#fff;font-weight:bold">unknown</span>]
+</span></span><span style="display:flex;"><span>    &gt;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="AllCombinations" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">AllCombinations<a hidden class="anchor" aria-hidden="true" href="#AllCombinations">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4260/play/" target="_blank">💯Take a Challenge</a><br>
+Implement type <code>AllCombinations&lt;S&gt;</code> that return all combinations of strings which use characters from <code>S</code> at most once.</p>
+<p>For example:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> AllCombinations_ABC = AllCombinations&lt;<span style="color:#0ff;font-weight:bold">&#34;ABC&#34;</span>&gt;;
+</span></span><span style="display:flex;"><span><span style="color:#007f7f">// should be &#39;&#39; | &#39;A&#39; | &#39;B&#39; | &#39;C&#39; | &#39;AB&#39; | &#39;AC&#39; | &#39;BA&#39; | &#39;BC&#39; | &#39;CA&#39; | &#39;CB&#39; | &#39;ABC&#39; | &#39;ACB&#39; | &#39;BAC&#39; | &#39;BCA&#39; | &#39;CAB&#39; | &#39;CBA&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> StringToUnion&lt;<span style="font-weight:bold">S</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string</span>&gt; = S <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span><span style="color:#fff;font-weight:bold">infer</span> F<span style="color:#0ff;font-weight:bold">}${</span><span style="color:#fff;font-weight:bold">infer</span> R<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>
+</span></span><span style="display:flex;"><span>  ? F | StringToUnion&lt;<span style="font-weight:bold">R</span>&gt;
+</span></span><span style="display:flex;"><span>  : <span style="color:#fff;font-weight:bold">never</span>;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Combination&lt;<span style="font-weight:bold">S</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string</span><span style="color:#f00">,</span> <span style="color:#007f7f">U</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string </span>= <span style="color:#0ff;font-weight:bold">&#34;&#34;</span><span style="color:#f00">,</span> <span style="color:#007f7f">K </span>= <span style="color:#007f7f">S</span>&gt; = [S] <span style="color:#fff;font-weight:bold">extends</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">never</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>  ? U
+</span></span><span style="display:flex;"><span>  : <span style="color:#fff;font-weight:bold">K</span> <span style="color:#fff;font-weight:bold">extends</span> S
+</span></span><span style="display:flex;"><span>  ? Combination&lt;<span style="font-weight:bold">Exclude</span><span style="color:#f00">&lt;</span><span style="color:#007f7f">S</span><span style="color:#f00">,</span> <span style="color:#007f7f">K</span>&gt;, U | <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>U<span style="color:#0ff;font-weight:bold">}${</span>K<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>&gt;
+</span></span><span style="display:flex;"><span>  : U;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> AllCombination&lt;<span style="font-weight:bold">S</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string</span>&gt; = Combination&lt;<span style="font-weight:bold">StringToUnion</span><span style="color:#f00">&lt;</span><span style="color:#007f7f">S</span>&gt;&gt;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details></p>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Greater Than" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Greater Than<a hidden class="anchor" aria-hidden="true" href="#Greater Than">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4425/play/" target="_blank">💯Take a Challenge</a><br>
+In This Challenge, You should implement a type <code>GreaterThan&lt;T, U&gt;</code> like <code>T &gt; U</code></p>
+<p>Negative numbers do not need to be considered.</p>
+<p>For example</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>GreaterThan&lt;<span style="font-weight:bold">2</span><span style="color:#f00">,</span> <span style="color:#007f7f">1</span>&gt; <span style="color:#007f7f">//should be true
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>GreaterThan&lt;<span style="font-weight:bold">1</span><span style="color:#f00">,</span> <span style="color:#007f7f">1</span>&gt; <span style="color:#007f7f">//should be false
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>GreaterThan&lt;<span style="font-weight:bold">10</span><span style="color:#f00">,</span> <span style="color:#007f7f">100</span>&gt; <span style="color:#007f7f">//should be false
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>GreaterThan&lt;<span style="font-weight:bold">111</span><span style="color:#f00">,</span> <span style="color:#007f7f">11</span>&gt; <span style="color:#007f7f">//should be true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> GreaterThan&lt;
+</span></span><span style="display:flex;"><span>  Num1 <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  Num2 <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  CountArr <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">unknown</span>[] = []
+</span></span><span style="display:flex;"><span>&gt; = Num1 <span style="color:#fff;font-weight:bold">extends</span> Num2
+</span></span><span style="display:flex;"><span>  ? <span style="color:#fff;font-weight:bold">false</span>
+</span></span><span style="display:flex;"><span>  : CountArr[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> Num2
+</span></span><span style="display:flex;"><span>  ? <span style="color:#fff;font-weight:bold">true</span>
+</span></span><span style="display:flex;"><span>  : CountArr[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> Num1
+</span></span><span style="display:flex;"><span>  ? <span style="color:#fff;font-weight:bold">false</span>
+</span></span><span style="display:flex;"><span>  : GreaterThan&lt;<span style="font-weight:bold">Num1</span><span style="color:#f00">,</span> <span style="color:#007f7f">Num2</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...CountArr</span><span style="color:#f00">,</span> <span style="color:#007f7f">unknown</span><span style="color:#f00">]</span>&gt;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Zip" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Zip<a hidden class="anchor" aria-hidden="true" href="#Zip">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4471/play/" target="_blank">💯Take a Challenge</a><br>
+In This Challenge, You should implement a type <code>Zip&lt;T, U&gt;</code>, T and U must be <code>Tuple</code></p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> exp = Zip&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>], [<span style="color:#fff;font-weight:bold">true</span>, <span style="color:#fff;font-weight:bold">false</span>]&gt;; <span style="color:#007f7f">// expected to be [[1, true], [2, false]]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Zip&lt;<span style="font-weight:bold">One</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">unknown</span><span style="color:#f00">[],</span> <span style="color:#007f7f">Other</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">unknown</span><span style="color:#f00">[]</span>&gt; = One <span style="color:#fff;font-weight:bold">extends</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">infer</span> OneFirst,
+</span></span><span style="display:flex;"><span>  ...<span style="color:#fff;font-weight:bold">infer</span> OneRest
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>  ? Other <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">infer</span> OtherFirst, ...<span style="color:#fff;font-weight:bold">infer</span> OtherRest]
+</span></span><span style="display:flex;"><span>    ? [[OneFirst, OtherFirst], ...Zip&lt;<span style="font-weight:bold">OneRest</span><span style="color:#f00">,</span> <span style="color:#007f7f">OtherRest</span>&gt;]
+</span></span><span style="display:flex;"><span>    : []
+</span></span><span style="display:flex;"><span>  : [];
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="IsTuple" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">IsTuple<a hidden class="anchor" aria-hidden="true" href="#IsTuple">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4484/play/" target="_blank">💯Take a Challenge</a><br>
+Implement a type <code>IsTuple</code>, which takes an input type <code>T</code> and returns whether <code>T</code> is tuple type.</p>
+<p>For example:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> case1 = IsTuple&lt;[<span style="color:#fff;font-weight:bold">number</span>]&gt;; <span style="color:#007f7f">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> case2 = IsTuple&lt;<span style="font-weight:bold">readonly</span> <span style="color:#f00">[</span><span style="color:#007f7f">number</span><span style="color:#f00">]</span>&gt;; <span style="color:#007f7f">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> case3 = IsTuple&lt;<span style="font-weight:bold">number</span><span style="color:#f00">[]</span>&gt;; <span style="color:#007f7f">// false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> IsTuple&lt;<span style="font-weight:bold">T</span>&gt; = [T] <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">never</span>]
+</span></span><span style="display:flex;"><span>  ? <span style="color:#fff;font-weight:bold">false</span>
+</span></span><span style="display:flex;"><span>  : T <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">readonly</span> [...params: <span style="color:#fff;font-weight:bold">infer</span> Eles]
+</span></span><span style="display:flex;"><span>  ? NotEqual&lt;<span style="font-weight:bold">Eles</span><span style="color:#f00">[&#34;</span><span style="color:#007f7f">length</span><span style="color:#f00">&#34;],</span> <span style="color:#007f7f">number</span>&gt;
+</span></span><span style="display:flex;"><span>  : <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> NotEqual&lt;<span style="font-weight:bold">A</span><span style="color:#f00">,</span> <span style="color:#007f7f">B</span>&gt; = (&lt;<span style="font-weight:bold">T</span>&gt;() =&gt; T <span style="color:#fff;font-weight:bold">extends</span> A ? 1 : <span style="color:#fff;font-weight:bold">2</span>) <span style="color:#fff;font-weight:bold">extends</span> &lt;
+</span></span><span style="display:flex;"><span>  T
+</span></span><span style="display:flex;"><span>&gt;() =&gt; T <span style="color:#fff;font-weight:bold">extends</span> B ? 1 : <span style="color:#fff;font-weight:bold">2</span>
+</span></span><span style="display:flex;"><span>  ? <span style="color:#fff;font-weight:bold">false</span>
+</span></span><span style="display:flex;"><span>  : <span style="color:#fff;font-weight:bold">true</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<p><details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Chunk" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Chunk<a hidden class="anchor" aria-hidden="true" href="#Chunk">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4499/play/" target="_blank">💯Take a Challenge</a><br>
+Do you know <code>lodash</code>? <code>Chunk</code> is a very useful function in it, now let&rsquo;s implement it.
+<code>Chunk&lt;T, N&gt;</code> accepts two required type parameters, the <code>T</code> must be a <code>tuple</code>, and the <code>N</code> must be an <code>integer &gt;=1</code></p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> exp1 = Chunk&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>], <span style="color:#ff0;font-weight:bold">2</span>&gt;; <span style="color:#007f7f">// expected to be [[1, 2], [3]]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> exp2 = Chunk&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>], <span style="color:#ff0;font-weight:bold">4</span>&gt;; <span style="color:#007f7f">// expected to be [[1, 2, 3]]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> exp3 = Chunk&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>], <span style="color:#ff0;font-weight:bold">1</span>&gt;; <span style="color:#007f7f">// expected to be [[1], [2], [3]]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Chunk&lt;
+</span></span><span style="display:flex;"><span>  T <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">any</span>[],
+</span></span><span style="display:flex;"><span>  Size <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  R <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">any</span>[] = []
+</span></span><span style="display:flex;"><span>&gt; = R[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> Size
+</span></span><span style="display:flex;"><span>  ? [R, ...Chunk&lt;<span style="font-weight:bold">T</span><span style="color:#f00">,</span> <span style="color:#007f7f">Size</span>&gt;]
+</span></span><span style="display:flex;"><span>  : T <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">infer</span> F, ...<span style="color:#fff;font-weight:bold">infer</span> L]
+</span></span><span style="display:flex;"><span>  ? Chunk&lt;<span style="font-weight:bold">L</span><span style="color:#f00">,</span> <span style="color:#007f7f">Size</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...R</span><span style="color:#f00">,</span> <span style="color:#007f7f">F</span><span style="color:#f00">]</span>&gt;
+</span></span><span style="display:flex;"><span>  : R[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#ff0;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>  ? []
+</span></span><span style="display:flex;"><span>  : [R];
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Fill" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Fill<a hidden class="anchor" aria-hidden="true" href="#Fill">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4518/play/" target="_blank">💯Take a Challenge</a><br>
+<code>Fill</code>, a common JavaScript function, now let us implement it with types.
+<code>Fill&lt;T, N, Start?, End?&gt;</code>, as you can see,<code>Fill</code> accepts four types of parameters, of which <code>T</code> and <code>N</code> are required parameters, and <code>Start</code> and <code>End</code> are optional parameters.
+The requirements for these parameters are: <code>T</code> must be a <code>tuple</code>, <code>N</code> can be any type of value, <code>Start</code> and <code>End</code> must be integers greater than or equal to 0.</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> exp = Fill&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>], <span style="color:#ff0;font-weight:bold">0</span>&gt;; <span style="color:#007f7f">// expected to be [0, 0, 0]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>In order to simulate the real function, the test may contain some boundary conditions, I hope you can enjoy it :)
+答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Fill&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[],</span> <span style="color:#007f7f">U</span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">any</span>, ...<span style="color:#fff;font-weight:bold">infer</span> Rest]
+</span></span><span style="display:flex;"><span>  ? [U, ...Fill&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#007f7f">U</span>&gt;]
+</span></span><span style="display:flex;"><span>  : [];
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Trim Right" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Trim Right<a hidden class="anchor" aria-hidden="true" href="#Trim Right">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/4803/play/" target="_blank">💯Take a Challenge</a><br>
+Implement <code>TrimRight&lt;T&gt;</code> which takes an exact string type and returns a new string with the whitespace ending removed.</p>
+<p>For example:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Trimed = TrimRight&lt;<span style="color:#0ff;font-weight:bold">&#34;   Hello World    &#34;</span>&gt;; <span style="color:#007f7f">// expected to be &#39;   Hello World&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> TrimRight&lt;<span style="font-weight:bold">Str</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string</span>&gt; = Str <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span><span style="color:#fff;font-weight:bold">infer</span> Rest<span style="color:#0ff;font-weight:bold">}${</span>
+</span></span><span style="display:flex;"><span>  | <span style="color:#0ff;font-weight:bold">&#34; &#34;</span>
+</span></span><span style="display:flex;"><span>  | <span style="color:#0ff;font-weight:bold">&#34;\n&#34;</span>
+</span></span><span style="display:flex;"><span>  | <span style="color:#0ff;font-weight:bold">&#34;\t&#34;</span><span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>
+</span></span><span style="display:flex;"><span>  ? TrimRight&lt;<span style="font-weight:bold">Rest</span>&gt;
+</span></span><span style="display:flex;"><span>  : Str;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Without" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Without<a hidden class="anchor" aria-hidden="true" href="#Without">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/5117/play/" target="_blank">💯Take a Challenge</a><br>
+Implement the type version of Lodash.without, Without&lt;T, U&gt; takes an Array T, number or array U and returns an Array without the elements of U.</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Res = Without&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>], <span style="color:#ff0;font-weight:bold">1</span>&gt;; <span style="color:#007f7f">// expected to be [2]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res1 = Without&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">5</span>], [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>]&gt;; <span style="color:#007f7f">// expected to be [4, 5]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res2 = Without&lt;[<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>], [<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>]&gt;; <span style="color:#007f7f">// expected to be []
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> ToUnion&lt;<span style="font-weight:bold">T</span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">any</span>[] ? T[<span style="color:#fff;font-weight:bold">number</span>] : T;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Without&lt;
+</span></span><span style="display:flex;"><span>  T <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">any</span>[],
+</span></span><span style="display:flex;"><span>  F,
+</span></span><span style="display:flex;"><span>  U = ToUnion&lt;<span style="font-weight:bold">F</span>&gt;,
+</span></span><span style="display:flex;"><span>  R <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">any</span>[] = []
+</span></span><span style="display:flex;"><span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">infer</span> First, ...<span style="color:#fff;font-weight:bold">infer</span> Rest]
+</span></span><span style="display:flex;"><span>  ? First <span style="color:#fff;font-weight:bold">extends</span> U
+</span></span><span style="display:flex;"><span>    ? Without&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#007f7f">F</span><span style="color:#f00">,</span> <span style="color:#007f7f">U</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...R</span><span style="color:#f00">]</span>&gt;
+</span></span><span style="display:flex;"><span>    : Without&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#007f7f">F</span><span style="color:#f00">,</span> <span style="color:#007f7f">U</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...R</span><span style="color:#f00">,</span> <span style="color:#007f7f">First</span><span style="color:#f00">]</span>&gt;
+</span></span><span style="display:flex;"><span>  : R;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Trunc" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Trunc<a hidden class="anchor" aria-hidden="true" href="#Trunc">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/5140/play/" target="_blank">💯Take a Challenge</a>
+Implement the type version of <code>Math.trunc</code>, which takes string or number and returns the integer part of a number by removing any fractional digits.</p>
+<p>For example:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> A = Trunc&lt;<span style="font-weight:bold">12.34</span>&gt;; <span style="color:#007f7f">// 12
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Trunc&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">number</span> <span style="color:#f00">|</span> <span style="color:#007f7f">string</span>&gt; = <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>T<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span> <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span><span style="color:#fff;font-weight:bold">infer</span> L<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">.</span><span style="color:#0ff;font-weight:bold">${</span><span style="color:#fff;font-weight:bold">string</span><span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>
+</span></span><span style="display:flex;"><span>  ? L
+</span></span><span style="display:flex;"><span>  : <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>T<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="IndexOf" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">IndexOf<a hidden class="anchor" aria-hidden="true" href="#IndexOf">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/5153/play/" target="_blank">💯Take a Challenge</a><br>
+Implement the type version of Array.indexOf, indexOf&lt;T, U&gt; takes an Array T, any U and returns the index of the first U in Array T.</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Res = IndexOf&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>], <span style="color:#ff0;font-weight:bold">2</span>&gt;; <span style="color:#007f7f">// expected to be 1
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res1 = IndexOf&lt;[<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">6</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">8</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">7</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">9</span>], <span style="color:#ff0;font-weight:bold">3</span>&gt;; <span style="color:#007f7f">// expected to be 2
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res2 = IndexOf&lt;[<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>], <span style="color:#ff0;font-weight:bold">2</span>&gt;; <span style="color:#007f7f">// expected to be -1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> IndexOf&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[],</span> <span style="color:#007f7f">U</span><span style="color:#f00">,</span> <span style="color:#007f7f">Index</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[]</span> <span style="color:#f00">=</span> <span style="color:#f00">[]</span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">infer</span> First,
+</span></span><span style="display:flex;"><span>  ...<span style="color:#fff;font-weight:bold">infer</span> Rest
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>  ? First <span style="color:#fff;font-weight:bold">extends</span> U
+</span></span><span style="display:flex;"><span>    ? Index[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>]
+</span></span><span style="display:flex;"><span>    : IndexOf&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#007f7f">U</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...Index</span><span style="color:#f00">,</span> <span style="color:#007f7f">0</span><span style="color:#f00">]</span>&gt;
+</span></span><span style="display:flex;"><span>  : -<span style="color:#ff0;font-weight:bold">1</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Join" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Join<a hidden class="anchor" aria-hidden="true" href="#Join">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/5310/play/" target="_blank">💯Take a Challenge</a><br>
+Implement the type version of Array.join, Join&lt;T, U&gt; takes an Array T, string or number U and returns the Array T with U stitching up.</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Res = Join&lt;[<span style="color:#0ff;font-weight:bold">&#34;a&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;l&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;e&#34;</span>], <span style="color:#0ff;font-weight:bold">&#34;-&#34;</span>&gt;; <span style="color:#007f7f">// expected to be &#39;a-p-p-l-e&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res1 = Join&lt;[<span style="color:#0ff;font-weight:bold">&#34;Hello&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;World&#34;</span>], <span style="color:#0ff;font-weight:bold">&#34; &#34;</span>&gt;; <span style="color:#007f7f">// expected to be &#39;Hello World&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res2 = Join&lt;[<span style="color:#0ff;font-weight:bold">&#34;2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;2&#34;</span>], <span style="color:#ff0;font-weight:bold">1</span>&gt;; <span style="color:#007f7f">// expected to be &#39;21212&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res3 = Join&lt;[<span style="color:#0ff;font-weight:bold">&#34;o&#34;</span>], <span style="color:#0ff;font-weight:bold">&#34;u&#34;</span>&gt;; <span style="color:#007f7f">// expected to be &#39;o&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Join&lt;
+</span></span><span style="display:flex;"><span>  T <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">any</span>[],
+</span></span><span style="display:flex;"><span>  U <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">string</span> | <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  R <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">string</span> = <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">infer</span> First, ...<span style="color:#fff;font-weight:bold">infer</span> Rest]
+</span></span><span style="display:flex;"><span>  ? Rest[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#ff0;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>    ? <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>R <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#0ff;font-weight:bold">&#34;&#34;</span> ? <span style="color:#0ff;font-weight:bold">&#34;&#34;</span> : <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>R<span style="color:#0ff;font-weight:bold">}${</span>U<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">}${</span>First &amp; <span style="color:#fff;font-weight:bold">string</span><span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>
+</span></span><span style="display:flex;"><span>    : Join&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#007f7f">U</span><span style="color:#f00">,</span> <span style="color:#f00">`$</span>{<span style="color:#007f7f">R</span> <span style="color:#007f7f">extends</span> <span style="color:#f00">&#34;&#34;</span> <span style="color:#f00">?</span> <span style="color:#f00">&#34;&#34;</span> <span style="color:#f00">:</span> <span style="color:#f00">`$</span>{<span style="color:#007f7f">R</span>}<span style="color:#f00">$</span>{<span style="color:#007f7f">U</span>}<span style="color:#f00">`</span>}<span style="color:#f00">$</span>{<span style="color:#007f7f">First</span> <span style="color:#f00">&amp;</span> <span style="color:#007f7f">string</span>}<span style="color:#f00">`</span>&gt;
+</span></span><span style="display:flex;"><span>  : R;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="LastIndexOf" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">LastIndexOf<a hidden class="anchor" aria-hidden="true" href="#LastIndexOf">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/5317/play/" target="_blank">💯Take a Challenge</a><br>
+Implement the type version of <code>Array.lastIndexOf</code>, <code>LastIndexOf&lt;T, U&gt;</code> takes an Array <code>T</code>, any <code>U</code> and returns the index of the last <code>U</code> in Array <code>T</code></p>
+<p>For example:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Res1 = LastIndexOf&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">1</span>], <span style="color:#ff0;font-weight:bold">2</span>&gt;; <span style="color:#007f7f">// 3
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res2 = LastIndexOf&lt;[<span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>, <span style="color:#ff0;font-weight:bold">0</span>], <span style="color:#ff0;font-weight:bold">2</span>&gt;; <span style="color:#007f7f">// -1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Pop&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[]</span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [...<span style="color:#fff;font-weight:bold">infer</span> Rest, <span style="color:#fff;font-weight:bold">any</span>] ? Rest : <span style="color:#fff;font-weight:bold">never</span>;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> LastIndexOf&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[],</span> <span style="color:#007f7f">U</span><span style="color:#f00">,</span> <span style="color:#007f7f">Index</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[]</span> <span style="color:#f00">=</span> <span style="color:#007f7f">Pop</span><span style="color:#f00">&lt;</span><span style="color:#007f7f">T</span>&gt;&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [
+</span></span><span style="display:flex;"><span>  ...<span style="color:#fff;font-weight:bold">infer</span> Rest,
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">infer</span> Last
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>  ? Last <span style="color:#fff;font-weight:bold">extends</span> U
+</span></span><span style="display:flex;"><span>    ? Index[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>]
+</span></span><span style="display:flex;"><span>    : LastIndexOf&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#007f7f">U</span><span style="color:#f00">,</span> <span style="color:#007f7f">Pop</span><span style="color:#f00">&lt;</span><span style="color:#007f7f">Index</span>&gt;&gt;
+</span></span><span style="display:flex;"><span>  : -<span style="color:#ff0;font-weight:bold">1</span>;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Unique" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Unique<a hidden class="anchor" aria-hidden="true" href="#Unique">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/5360/play/" target="_blank">💯Take a Challenge</a><br>
+Implement the type version of Lodash.uniq, Unique<T> takes an Array T, returns the Array T without repeated values.</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Res = Unique&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">3</span>]&gt;; <span style="color:#007f7f">// expected to be [1, 2, 3]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res1 = Unique&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">4</span>, <span style="color:#ff0;font-weight:bold">5</span>, <span style="color:#ff0;font-weight:bold">6</span>, <span style="color:#ff0;font-weight:bold">7</span>]&gt;; <span style="color:#007f7f">// expected to be [1, 2, 3, 4, 5, 6, 7]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res2 = Unique&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;a&#34;</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#0ff;font-weight:bold">&#34;b&#34;</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#0ff;font-weight:bold">&#34;a&#34;</span>]&gt;; <span style="color:#007f7f">// expected to be [1, &#34;a&#34;, 2, &#34;b&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res3 = Unique&lt;[<span style="color:#fff;font-weight:bold">string</span>, <span style="color:#fff;font-weight:bold">number</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#0ff;font-weight:bold">&#34;a&#34;</span>, <span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#fff;font-weight:bold">string</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#0ff;font-weight:bold">&#34;b&#34;</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#fff;font-weight:bold">number</span>]&gt;; <span style="color:#007f7f">// expected to be [string, number, 1, &#34;a&#34;, 2, &#34;b&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Res4 = Unique&lt;[<span style="color:#fff;font-weight:bold">unknown</span>, <span style="color:#fff;font-weight:bold">unknown</span>, <span style="color:#fff;font-weight:bold">any</span>, <span style="color:#fff;font-weight:bold">any</span>, <span style="color:#fff;font-weight:bold">never</span>, <span style="color:#fff;font-weight:bold">never</span>]&gt;; <span style="color:#007f7f">// expected to be [unknown, any, never]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Unique&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[],</span> <span style="color:#007f7f">R</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">any</span><span style="color:#f00">[]</span> <span style="color:#f00">=</span> <span style="color:#f00">[]</span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">infer</span> First,
+</span></span><span style="display:flex;"><span>  ...<span style="color:#fff;font-weight:bold">infer</span> Rest
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>  ? First <span style="color:#fff;font-weight:bold">extends</span> R[<span style="color:#fff;font-weight:bold">number</span>]
+</span></span><span style="display:flex;"><span>    ? Unique&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...R</span><span style="color:#f00">]</span>&gt;
+</span></span><span style="display:flex;"><span>    : Unique&lt;<span style="font-weight:bold">Rest</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...R</span><span style="color:#f00">,</span> <span style="color:#007f7f">First</span><span style="color:#f00">]</span>&gt;
+</span></span><span style="display:flex;"><span>  : R;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="MapTypes" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">MapTypes<a hidden class="anchor" aria-hidden="true" href="#MapTypes">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/5821/play/" target="_blank">💯Take a Challenge</a><br>
+Implement <code>MapTypes&lt;T, R&gt;</code> which will transform types in object T to different types defined by type R which has the following structure</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> StringToNumber = {
+</span></span><span style="display:flex;"><span>  mapFrom: <span style="color:#fff;font-weight:bold">string</span>; <span style="color:#007f7f">// value of key which value is string
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  mapTo: <span style="color:#fff;font-weight:bold">number</span>; <span style="color:#007f7f">// will be transformed for number
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Examples:</strong></p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> StringToNumber = { mapFrom: <span style="color:#fff;font-weight:bold">string</span>; mapTo: <span style="color:#fff;font-weight:bold">number</span>;}
+</span></span><span style="display:flex;"><span>MapTypes&lt;{iWillBeANumberOneDay: <span style="color:#fff;font-weight:bold">string</span>}, StringToNumber&gt; <span style="color:#007f7f">// gives { iWillBeANumberOneDay: number; }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Be aware that user can provide a union of types:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> StringToNumber = { mapFrom: <span style="color:#fff;font-weight:bold">string</span>; mapTo: <span style="color:#fff;font-weight:bold">number</span>;}
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> StringToDate = { mapFrom: <span style="color:#fff;font-weight:bold">string</span>; mapTo: <span style="color:#fff;font-weight:bold">Date</span>;}
+</span></span><span style="display:flex;"><span>MapTypes&lt;{iWillBeNumberOrDate: <span style="color:#fff;font-weight:bold">string</span>}, StringToDate | StringToNumber&gt; <span style="color:#007f7f">// gives { iWillBeNumberOrDate: number | Date; }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>If the type doesn&rsquo;t exist in our map, leave it as it was:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> StringToNumber = { mapFrom: <span style="color:#fff;font-weight:bold">string</span>; mapTo: <span style="color:#fff;font-weight:bold">number</span>;}
+</span></span><span style="display:flex;"><span>MapTypes&lt;{iWillBeANumberOneDay: <span style="color:#fff;font-weight:bold">string</span>, iWillStayTheSame: <span style="color:#fff;font-weight:bold">Function</span>}, StringToNumber&gt; <span style="color:#007f7f">// // gives { iWillBeANumberOneDay: number, iWillStayTheSame: Function }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> GetMapType&lt;
+</span></span><span style="display:flex;"><span>  T,
+</span></span><span style="display:flex;"><span>  R,
+</span></span><span style="display:flex;"><span>  Type = R <span style="color:#fff;font-weight:bold">extends</span> { mapFrom: <span style="color:#fff;font-weight:bold">T</span>; mapTo: <span style="color:#fff;font-weight:bold">infer</span> To } ? To : <span style="color:#fff;font-weight:bold">never</span>
+</span></span><span style="display:flex;"><span>&gt; = [Type] <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">never</span>] ? T : <span style="color:#fff;font-weight:bold">Type</span>;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> MapTypes&lt;<span style="font-weight:bold">T</span><span style="color:#f00">,</span> <span style="color:#007f7f">R</span>&gt; = {
+</span></span><span style="display:flex;"><span>  [P <span style="color:#fff;font-weight:bold">in</span> <span style="color:#fff;font-weight:bold">keyof</span> T]: GetMapType&lt;<span style="font-weight:bold">T</span><span style="color:#f00">[</span><span style="color:#007f7f">P</span><span style="color:#f00">],</span> <span style="color:#007f7f">R</span>&gt;;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Construct Tuple" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Construct Tuple<a hidden class="anchor" aria-hidden="true" href="#Construct Tuple">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/7544/play/" target="_blank">💯Take a Challenge</a><br>
+Construct a tuple with a given length.</p>
+<p>For example</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> result = ConstructTuple&lt;<span style="font-weight:bold">2</span>&gt;; <span style="color:#007f7f">// expect to be [unknown, unkonwn]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#007f7f">// your answers
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> ConstructTuple&lt;
+</span></span><span style="display:flex;"><span>  T <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  R <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">unknown</span>[] = []
+</span></span><span style="display:flex;"><span>&gt; = R[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> T ? R : <span style="color:#fff;font-weight:bold">ConstructTuple</span>&lt;<span style="font-weight:bold">T</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...R</span><span style="color:#f00">,</span> <span style="color:#007f7f">unknown</span><span style="color:#f00">]</span>&gt;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details></p>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Number Range" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Number Range<a hidden class="anchor" aria-hidden="true" href="#Number Range">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/8640/play/" target="_blank">💯Take a Challenge</a><br>
+Sometimes we want to limit the range of numbers&hellip;
+For examples.</p>
+<pre tabindex="0"><code>type result = NumberRange&lt;2 , 9&gt; //  | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+</code></pre><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> ConstructTuple&lt;
+</span></span><span style="display:flex;"><span>  L <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  Result <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>[] = []
+</span></span><span style="display:flex;"><span>&gt; = Result[<span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>] <span style="color:#fff;font-weight:bold">extends</span> L
+</span></span><span style="display:flex;"><span>  ? [...Result, <span style="color:#ff0;font-weight:bold">1</span>]
+</span></span><span style="display:flex;"><span>  : ConstructTuple&lt;<span style="font-weight:bold">L</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...Result</span><span style="color:#f00">,</span> <span style="color:#007f7f">1</span><span style="color:#f00">]</span>&gt;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> NumberRange&lt;
+</span></span><span style="display:flex;"><span>  L <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  H <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>,
+</span></span><span style="display:flex;"><span>  Temp <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>[] = ConstructTuple&lt;<span style="font-weight:bold">L</span>&gt;,
+</span></span><span style="display:flex;"><span>  Result <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">unknown</span>[] = [L]
+</span></span><span style="display:flex;"><span>&gt; = L <span style="color:#fff;font-weight:bold">extends</span> H
+</span></span><span style="display:flex;"><span>  ? Result[<span style="color:#fff;font-weight:bold">number</span>]
+</span></span><span style="display:flex;"><span>  : NumberRange&lt;<span style="font-weight:bold">Temp</span><span style="color:#f00">[&#34;</span><span style="color:#007f7f">length</span><span style="color:#f00">&#34;],</span> <span style="color:#007f7f">H</span><span style="color:#f00">,</span> <span style="color:#f00">[</span><span style="color:#007f7f">...Temp</span><span style="color:#f00">,</span> <span style="color:#007f7f">1</span><span style="color:#f00">],</span> <span style="color:#f00">[</span><span style="color:#007f7f">...Result</span><span style="color:#f00">,</span> <span style="color:#007f7f">Temp</span><span style="color:#f00">[&#34;</span><span style="color:#007f7f">length</span><span style="color:#f00">&#34;]]</span>&gt;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<p><details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Combination" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Combination<a hidden class="anchor" aria-hidden="true" href="#Combination">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/8767/play/" target="_blank">💯Take a Challenge</a><br>
+Given an array of strings, do Permutation &amp; Combination.
+It&rsquo;s also useful for the prop types like video <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controlsList" target="_blank">controlsList</a></p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#007f7f">// expected to be `&#34;foo&#34; | &#34;bar&#34; | &#34;baz&#34; | &#34;foo bar&#34; | &#34;foo bar baz&#34; | &#34;foo baz&#34; | &#34;foo baz bar&#34; | &#34;bar foo&#34; | &#34;bar foo baz&#34; | &#34;bar baz&#34; | &#34;bar baz foo&#34; | &#34;baz foo&#34; | &#34;baz foo bar&#34; | &#34;baz bar&#34; | &#34;baz bar foo&#34;`
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">type</span> Keys = Combination&lt;[<span style="color:#0ff;font-weight:bold">&#34;foo&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;bar&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;baz&#34;</span>]&gt;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> AllCombinations&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string</span><span style="color:#f00">[],</span> <span style="color:#007f7f">S</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string </span>= <span style="color:#007f7f">T</span><span style="color:#f00">[</span><span style="color:#007f7f">number</span><span style="color:#f00">]</span>&gt; = [
+</span></span><span style="display:flex;"><span>  S
+</span></span><span style="display:flex;"><span>] <span style="color:#fff;font-weight:bold">extends</span> [<span style="color:#fff;font-weight:bold">never</span>]
+</span></span><span style="display:flex;"><span>  ? <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  : <span style="color:#0ff;font-weight:bold">&#34;&#34;</span> | { [K <span style="color:#fff;font-weight:bold">in</span> S]: <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span>K<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold"> </span><span style="color:#0ff;font-weight:bold">${</span>AllCombinations&lt;<span style="font-weight:bold">never</span><span style="color:#f00">,</span> <span style="color:#007f7f">Exclude</span><span style="color:#f00">&lt;</span><span style="color:#007f7f">S</span><span style="color:#f00">,</span> <span style="color:#007f7f">K</span>&gt;&gt;<span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span> }[S];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> TrimRight&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string</span><span style="color:#f00">,</span> <span style="color:#007f7f">S </span>= <span style="color:#007f7f">T</span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#0ff;font-weight:bold">`</span><span style="color:#0ff;font-weight:bold">${</span><span style="color:#fff;font-weight:bold">infer</span> R<span style="color:#0ff;font-weight:bold">}${</span>
+</span></span><span style="display:flex;"><span>  | <span style="color:#0ff;font-weight:bold">&#34; &#34;</span>
+</span></span><span style="display:flex;"><span>  | <span style="color:#0ff;font-weight:bold">&#34;\n&#34;</span>
+</span></span><span style="display:flex;"><span>  | <span style="color:#0ff;font-weight:bold">&#34;\t&#34;</span><span style="color:#0ff;font-weight:bold">}</span><span style="color:#0ff;font-weight:bold">`</span>
+</span></span><span style="display:flex;"><span>  ? TrimRight&lt;<span style="font-weight:bold">R</span>&gt;
+</span></span><span style="display:flex;"><span>  : S;
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Combination&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">string</span><span style="color:#f00">[]</span>&gt; = TrimRight&lt;
+</span></span><span style="display:flex;"><span>  Exclude&lt;<span style="font-weight:bold">AllCombinations</span><span style="color:#f00">&lt;</span><span style="color:#007f7f">T</span>&gt;, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&gt;;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details style="border: 1px solid #aaa;
+border-radius: 4px;
+padding: .5em .5em 0;" open>
+  <summary>
+      &nbsp;<h3 id="Subsequence" style="background-color:rgb(238, 238, 238); display:inline-block; width: auto; margin-top: 1px;">Subsequence<a hidden class="anchor" aria-hidden="true" href="#Subsequence">#</a></h3>
+  </summary><p><a href="https://tsch.js.org/8987/play/" target="_blank">💯Take a Challenge</a><br>
+Given an array of unique elements, return all possible subsequences.</p>
+<p>A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements.</p>
+<p>For example:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> A = Subsequence&lt;[<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>]&gt;; <span style="color:#007f7f">// [] | [1] | [2] | [1, 2]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>答案:</p>
+<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">type</span> Subsequence&lt;<span style="font-weight:bold">T</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">number</span><span style="color:#f00">[],</span> <span style="color:#007f7f">K</span> <span style="color:#007f7f">extends</span> <span style="color:#007f7f">number</span><span style="color:#f00">[]</span> <span style="color:#f00">=</span> <span style="color:#f00">[]</span>&gt; = T <span style="color:#fff;font-weight:bold">extends</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">infer</span> L,
+</span></span><span style="display:flex;"><span>  ...<span style="color:#fff;font-weight:bold">infer</span> R
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>  ? Subsequence&lt;
+</span></span><span style="display:flex;"><span>      R <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span>[] ? R : [],
+</span></span><span style="display:flex;"><span>      K | [...K, ...(L <span style="color:#fff;font-weight:bold">extends</span> <span style="color:#fff;font-weight:bold">number</span> ? [L] : [])]
+</span></span><span style="display:flex;"><span>    &gt;
+</span></span><span style="display:flex;"><span>  : K;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details></p>
 
 
   </div>
@@ -2489,15 +3445,15 @@ Implement the type version of binary tree inorder traversal.</p>
     </ul>
 <nav class="paginav">
   
-  <a class="prev" href="https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98easy%E7%AF%87/">
+  <a class="prev" href="https://zzydev.top/posts/fe-travel/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/">
     <span class="title">« Prev</span>
     <br>
-    <span>TS类型挑战Easy篇</span>
+    <span>前端工程化</span>
   </a>
-  <a class="next" href="https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98hard%E7%AF%87/">
+  <a class="next" href="https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98easy%E7%AF%87/">
     <span class="title">Next »</span>
     <br>
-    <span>TS类型挑战Hard篇</span>
+    <span>TS类型挑战Easy篇</span>
   </a>
 </nav>
 
@@ -2570,12 +3526,12 @@ Implement the type version of binary tree inorder traversal.</p>
     </main>
     
 <footer class="footer">
-    <span>zzydev</span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
+    <span>&copy; 2022 <a href="https://zzydev.top">人类低质量男性求职准备</a></span>
+    
+        
+        
+        
+    
     <span id="busuanzi_container_site_pv">
         本站访问量：<span id="busuanzi_value_site_pv"></span>次
     </span>

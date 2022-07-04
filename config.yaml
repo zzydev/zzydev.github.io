@@ -17,7 +17,7 @@ buildFuture: false
 buildExpired: false
 
 #googleAnalytics: UA-123-45 # 谷歌统计
-Copyright: zzydev
+Copyright:
 
 paginate: 15 # 首页每页显示的文章数
 
@@ -50,9 +50,8 @@ languages:
           url: posts/leetcode
         - name: 🎱八股
           url: posts/eight-part-essay
-        - name: 🦐瞎扯
+        - name: 🦐扯蛋
           url: posts/chat
-
     menu:
       main:
         - identifier: search
@@ -78,7 +77,7 @@ languages:
         - identifier: archives
           name: 时间轴
           url: archives/
-          weight: 20
+          weight: 7
         # - identifier: categories
         #   name: 🧩分类
         #   url: categories
@@ -86,15 +85,15 @@ languages:
         - identifier: tags
           name: 标签
           url: tags
-          weight: 40
+          weight: 8
         - identifier: about
           name: 关于
           url: about
-          weight: 50
+          weight: 9
         - identifier: links
           name: 友链
           url: links
-          weight: 60
+          weight: 10
 
 outputs:
   home:

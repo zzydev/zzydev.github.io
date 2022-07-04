@@ -25,7 +25,7 @@ cover:
 ## 从一道面试题说起
 
 [其他 setState 原理的文章](https://juejin.cn/post/6844903781813993486#heading-0)  
-[online Demo](https://codesandbox.io/s/zen-brattain-pjg16u?file=/src/App.js)
+[本文的 online Demo](https://codesandbox.io/s/zen-brattain-pjg16u?file=/src/App.js)
 
 ```javascript
 import React from "react";

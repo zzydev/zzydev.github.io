@@ -1,5 +1,5 @@
 ---
-title: "6.真正理解虚拟DOM,React选它是因为性能吗"
+title: "6.React是为了更好的性能选择虚拟DOM吗"
 date: 2022-06-03T19:55:46+08:00
 lastmod: 2022-06-18 14:27:44
 draft: false

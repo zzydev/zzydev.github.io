@@ -167,7 +167,17 @@ console.log(AppJSX);
 你会发现它确实是一个标准的 ReactElement 对象实例，如下图：
 
 ![1-3](https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/hfreact/1-3.png)
+这个 ReactElement 对象实例，本质上是 **以 JavaScript 对象形式存在的对 DOM 的描述** ，也就是 **虚拟 DOM 中的一个节点** 。  
+React 提供了验证合法 React Element 的全局 API [React.isValidElement](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react/src/ReactElement.js#L547)，我们看下他的实现：
 
-这个 ReactElement 对象实例，本质上是 **以 JavaScript 对象形式存在的对 DOM 的描述** ，也就是 **虚拟 DOM 中的一个节点** 。
+```javascript
+export function isValidElement(object) {
+  return (
+    typeof object === "object" &&
+    object !== null &&
+    object.$$typeof === REACT_ELEMENT_TYPE
+  );
+}
+```
 
 **“虚拟 DOM”**需要通过 `ReactDOM.render`方法，变成**渲染到页面上的真实 DOM**

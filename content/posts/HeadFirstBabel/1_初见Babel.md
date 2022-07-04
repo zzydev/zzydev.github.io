@@ -22,6 +22,8 @@ cover:
   relative: false
 ---
 
+## 什么是 Babel
+
 {{< github name="babel" link="https://github.com/babel/babel" description="🐠 Babel is a compiler for writing next generation JavaScript." color="#2b7489" language="typescript" >}}
 [babel 是什么](https://www.babeljs.cn/docs/index.html)
 
@@ -54,7 +56,7 @@ Javascript AST 遵循 [estree 规范](https://github.com/estree/estree)
 [在线 AST 可视化工具(一)](https://astexplorer.net/)  
 [在线 AST 可视化工具(二)](https://resources.jointjs.com/demos/rappid/apps/Ast/index.html)
 
-[⭐ Babel 类型定义](https://github.com/babel/babel/blob/main/packages/babel-types/src/ast-types/generated/index.ts) 部分源码截取：
+[⭐ Babel 类型定义](https://github.com/babel/babel/blob/main/packages/babel-types/src/ast-types/generated/index.ts) 及其部分源码截取：
 
 ```typescript
 //每种 AST 都有自己的属性，但是它们也有一些公共属性，其他AST Node通过继承BaseNode来获得公共属性
@@ -69,9 +71,6 @@ interface BaseNode {
   range?: [number, number]; // 相当于[start, end]
   extra?: Record<string, unknown>; //记录一些额外的信息，用于处理一些特殊情况。比如 StringLiteral 修改 value 只是值的修改，而修改 extra.raw 则可以连同单双引号一起修改。
 }
-
-## Babel的API
-[](https://babeljs.io/docs/en/babel-core/#parse)
 
 export interface SourceLocation {
   start: {
@@ -103,3 +102,7 @@ export interface CommentLine extends BaseComment {
 
 export type Comment = CommentBlock | CommentLine;
 ```
+
+## Babel 的 API
+
+[parse](https://babeljs.io/docs/en/babel-core/#parse)

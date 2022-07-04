@@ -2,12 +2,12 @@
 title: "TS类型挑战Medium篇"
 date: 2022-06-24T00:59:50+08:00
 lastmod: 2022-06-28
-draft: true
+draft: false
 tags:
   - "typescript"
 author: ["zzydev"]
 description: ""
-weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
+weight: 3 # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
 slug: ""
 comments: true
 showToc: true # 显示目录
@@ -1295,6 +1295,551 @@ type InorderTraversal<
 > = T extends TreeNode
   ? [...InorderTraversal<U["left"]>, U["val"], ...InorderTraversal<U["right"]>]
   : [];
+```
+
+{{< /spoiler >}}
+
+{{< spoiler  "Flip">}}
+[💯Take a Challenge](https://tsch.js.org/4179/play/)  
+Implement the type of `just-flip-object`. Examples:
+
+```typescript
+Flip<{ a: "x", b: "y", c: "z" }>; // {x: 'a', y: 'b', z: 'c'}
+Flip<{ a: 1, b: 2, c: 3 }>; // {1: 'a', 2: 'b', 3: 'c'}
+Flip<{ a: false, b: true }>; // {false: 'a', true: 'b'}
+```
+
+No need to support nested objects and values which cannot be object keys such as arrays
+答案:
+
+```ts
+type Flip<T extends Record<string, boolean | number | string>> = {
+  [P in keyof T as `${T[P]}`]: P;
+};
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Fibonacci Sequence">}}
+[💯Take a Challenge](https://tsch.js.org/4182/play/)  
+Implement a generic Fibonacci\<T\> takes an number T and returns it's corresponding [Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number).
+
+The sequence starts:
+1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
+
+For example
+
+```ts
+type Result1 = Fibonacci<3>; // 2
+type Result2 = Fibonacci<8>; // 21
+```
+
+答案:
+
+```ts
+type Fibonacci<
+  Num extends number,
+  PrevArr extends unknown[] = [1],
+  CurrentArr extends unknown[] = [],
+  IndexArr extends unknown[] = []
+> = IndexArr["length"] extends Num
+  ? CurrentArr["length"]
+  : Fibonacci<
+      Num,
+      CurrentArr,
+      [...PrevArr, ...CurrentArr],
+      [...IndexArr, unknown]
+    >;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "AllCombinations">}}
+[💯Take a Challenge](https://tsch.js.org/4260/play/)  
+Implement type `AllCombinations<S>` that return all combinations of strings which use characters from `S` at most once.
+
+For example:
+
+```ts
+type AllCombinations_ABC = AllCombinations<"ABC">;
+// should be '' | 'A' | 'B' | 'C' | 'AB' | 'AC' | 'BA' | 'BC' | 'CA' | 'CB' | 'ABC' | 'ACB' | 'BAC' | 'BCA' | 'CAB' | 'CBA'
+```
+
+答案:
+
+```ts
+type StringToUnion<S extends string> = S extends `${infer F}${infer R}`
+  ? F | StringToUnion<R>
+  : never;
+type Combination<S extends string, U extends string = "", K = S> = [S] extends [
+  never
+]
+  ? U
+  : K extends S
+  ? Combination<Exclude<S, K>, U | `${U}${K}`>
+  : U;
+type AllCombination<S extends string> = Combination<StringToUnion<S>>;
+```
+
+{{< /spoiler >}}
+
+{{< spoiler  "Greater Than">}}
+[💯Take a Challenge](https://tsch.js.org/4425/play/)  
+In This Challenge, You should implement a type `GreaterThan<T, U>` like `T > U`
+
+Negative numbers do not need to be considered.
+
+For example
+
+```ts
+GreaterThan<2, 1> //should be true
+GreaterThan<1, 1> //should be false
+GreaterThan<10, 100> //should be false
+GreaterThan<111, 11> //should be true
+```
+
+答案:
+
+```ts
+type GreaterThan<
+  Num1 extends number,
+  Num2 extends number,
+  CountArr extends unknown[] = []
+> = Num1 extends Num2
+  ? false
+  : CountArr["length"] extends Num2
+  ? true
+  : CountArr["length"] extends Num1
+  ? false
+  : GreaterThan<Num1, Num2, [...CountArr, unknown]>;
+```
+
+{{< /spoiler >}}
+
+{{< spoiler  "Zip">}}
+[💯Take a Challenge](https://tsch.js.org/4471/play/)  
+In This Challenge, You should implement a type `Zip<T, U>`, T and U must be `Tuple`
+
+```ts
+type exp = Zip<[1, 2], [true, false]>; // expected to be [[1, true], [2, false]]
+```
+
+答案:
+
+```ts
+type Zip<One extends unknown[], Other extends unknown[]> = One extends [
+  infer OneFirst,
+  ...infer OneRest
+]
+  ? Other extends [infer OtherFirst, ...infer OtherRest]
+    ? [[OneFirst, OtherFirst], ...Zip<OneRest, OtherRest>]
+    : []
+  : [];
+```
+
+{{< /spoiler >}}
+
+{{< spoiler  "IsTuple">}}
+[💯Take a Challenge](https://tsch.js.org/4484/play/)  
+ Implement a type `IsTuple`, which takes an input type `T` and returns whether `T` is tuple type.
+
+For example:
+
+```typescript
+type case1 = IsTuple<[number]>; // true
+type case2 = IsTuple<readonly [number]>; // true
+type case3 = IsTuple<number[]>; // false
+```
+
+答案:
+
+```ts
+type IsTuple<T> = [T] extends [never]
+  ? false
+  : T extends readonly [...params: infer Eles]
+  ? NotEqual<Eles["length"], number>
+  : false;
+
+type NotEqual<A, B> = (<T>() => T extends A ? 1 : 2) extends <
+  T
+>() => T extends B ? 1 : 2
+  ? false
+  : true;
+```
+
+{{< /spoiler >}}
+
+{{< spoiler  "Chunk">}}
+[💯Take a Challenge](https://tsch.js.org/4499/play/)  
+Do you know `lodash`? `Chunk` is a very useful function in it, now let's implement it.
+`Chunk<T, N>` accepts two required type parameters, the `T` must be a `tuple`, and the `N` must be an `integer >=1`
+
+```ts
+type exp1 = Chunk<[1, 2, 3], 2>; // expected to be [[1, 2], [3]]
+type exp2 = Chunk<[1, 2, 3], 4>; // expected to be [[1, 2, 3]]
+type exp3 = Chunk<[1, 2, 3], 1>; // expected to be [[1], [2], [3]]
+```
+
+答案:
+
+```ts
+type Chunk<
+  T extends any[],
+  Size extends number,
+  R extends any[] = []
+> = R["length"] extends Size
+  ? [R, ...Chunk<T, Size>]
+  : T extends [infer F, ...infer L]
+  ? Chunk<L, Size, [...R, F]>
+  : R["length"] extends 0
+  ? []
+  : [R];
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Fill">}}
+[💯Take a Challenge](https://tsch.js.org/4518/play/)  
+`Fill`, a common JavaScript function, now let us implement it with types.
+`Fill<T, N, Start?, End?>`, as you can see,`Fill` accepts four types of parameters, of which `T` and `N` are required parameters, and `Start` and `End` are optional parameters.
+The requirements for these parameters are: `T` must be a `tuple`, `N` can be any type of value, `Start` and `End` must be integers greater than or equal to 0.
+
+```ts
+type exp = Fill<[1, 2, 3], 0>; // expected to be [0, 0, 0]
+```
+
+In order to simulate the real function, the test may contain some boundary conditions, I hope you can enjoy it :)
+答案:
+
+```ts
+type Fill<T extends any[], U> = T extends [any, ...infer Rest]
+  ? [U, ...Fill<Rest, U>]
+  : [];
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Trim Right">}}
+[💯Take a Challenge](https://tsch.js.org/4803/play/)  
+ Implement `TrimRight<T>` which takes an exact string type and returns a new string with the whitespace ending removed.
+
+For example:
+
+```ts
+type Trimed = TrimRight<"   Hello World    ">; // expected to be '   Hello World'
+```
+
+答案:
+
+```ts
+type TrimRight<Str extends string> = Str extends `${infer Rest}${
+  | " "
+  | "\n"
+  | "\t"}`
+  ? TrimRight<Rest>
+  : Str;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Without">}}
+[💯Take a Challenge](https://tsch.js.org/5117/play/)  
+Implement the type version of Lodash.without, Without<T, U> takes an Array T, number or array U and returns an Array without the elements of U.
+
+```ts
+type Res = Without<[1, 2], 1>; // expected to be [2]
+type Res1 = Without<[1, 2, 4, 1, 5], [1, 2]>; // expected to be [4, 5]
+type Res2 = Without<[2, 3, 2, 3, 2, 3, 2, 3], [2, 3]>; // expected to be []
+```
+
+答案:
+
+```ts
+type ToUnion<T> = T extends any[] ? T[number] : T;
+type Without<
+  T extends any[],
+  F,
+  U = ToUnion<F>,
+  R extends any[] = []
+> = T extends [infer First, ...infer Rest]
+  ? First extends U
+    ? Without<Rest, F, U, [...R]>
+    : Without<Rest, F, U, [...R, First]>
+  : R;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Trunc">}}
+[💯Take a Challenge](https://tsch.js.org/5140/play/)
+Implement the type version of `Math.trunc`, which takes string or number and returns the integer part of a number by removing any fractional digits.
+
+For example:
+
+```typescript
+type A = Trunc<12.34>; // 12
+```
+
+答案:
+
+```ts
+type Trunc<T extends number | string> = `${T}` extends `${infer L}.${string}`
+  ? L
+  : `${T}`;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "IndexOf">}}
+[💯Take a Challenge](https://tsch.js.org/5153/play/)  
+Implement the type version of Array.indexOf, indexOf<T, U> takes an Array T, any U and returns the index of the first U in Array T.
+
+```ts
+type Res = IndexOf<[1, 2, 3], 2>; // expected to be 1
+type Res1 = IndexOf<[2, 6, 3, 8, 4, 1, 7, 3, 9], 3>; // expected to be 2
+type Res2 = IndexOf<[0, 0, 0], 2>; // expected to be -1
+```
+
+答案:
+
+```ts
+type IndexOf<T extends any[], U, Index extends any[] = []> = T extends [
+  infer First,
+  ...infer Rest
+]
+  ? First extends U
+    ? Index["length"]
+    : IndexOf<Rest, U, [...Index, 0]>
+  : -1;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Join">}}
+[💯Take a Challenge](https://tsch.js.org/5310/play/)  
+Implement the type version of Array.join, Join<T, U> takes an Array T, string or number U and returns the Array T with U stitching up.
+
+```ts
+type Res = Join<["a", "p", "p", "l", "e"], "-">; // expected to be 'a-p-p-l-e'
+type Res1 = Join<["Hello", "World"], " ">; // expected to be 'Hello World'
+type Res2 = Join<["2", "2", "2"], 1>; // expected to be '21212'
+type Res3 = Join<["o"], "u">; // expected to be 'o'
+```
+
+答案:
+
+```ts
+type Join<
+  T extends any[],
+  U extends string | number,
+  R extends string = ""
+> = T extends [infer First, ...infer Rest]
+  ? Rest["length"] extends 0
+    ? `${R extends "" ? "" : `${R}${U}`}${First & string}`
+    : Join<Rest, U, `${R extends "" ? "" : `${R}${U}`}${First & string}`>
+  : R;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "LastIndexOf">}}
+[💯Take a Challenge](https://tsch.js.org/5317/play/)  
+Implement the type version of `Array.lastIndexOf`, `LastIndexOf<T, U>` takes an Array `T`, any `U` and returns the index of the last `U` in Array `T`
+
+For example:
+
+```typescript
+type Res1 = LastIndexOf<[1, 2, 3, 2, 1], 2>; // 3
+type Res2 = LastIndexOf<[0, 0, 0], 2>; // -1
+```
+
+答案:
+
+```ts
+type Pop<T extends any[]> = T extends [...infer Rest, any] ? Rest : never;
+type LastIndexOf<T extends any[], U, Index extends any[] = Pop<T>> = T extends [
+  ...infer Rest,
+  infer Last
+]
+  ? Last extends U
+    ? Index["length"]
+    : LastIndexOf<Rest, U, Pop<Index>>
+  : -1;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Unique">}}
+[💯Take a Challenge](https://tsch.js.org/5360/play/)  
+ Implement the type version of Lodash.uniq, Unique<T> takes an Array T, returns the Array T without repeated values.
+
+```ts
+type Res = Unique<[1, 1, 2, 2, 3, 3]>; // expected to be [1, 2, 3]
+type Res1 = Unique<[1, 2, 3, 4, 4, 5, 6, 7]>; // expected to be [1, 2, 3, 4, 5, 6, 7]
+type Res2 = Unique<[1, "a", 2, "b", 2, "a"]>; // expected to be [1, "a", 2, "b"]
+type Res3 = Unique<[string, number, 1, "a", 1, string, 2, "b", 2, number]>; // expected to be [string, number, 1, "a", 2, "b"]
+type Res4 = Unique<[unknown, unknown, any, any, never, never]>; // expected to be [unknown, any, never]
+```
+
+答案:
+
+```ts
+type Unique<T extends any[], R extends any[] = []> = T extends [
+  infer First,
+  ...infer Rest
+]
+  ? First extends R[number]
+    ? Unique<Rest, [...R]>
+    : Unique<Rest, [...R, First]>
+  : R;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "MapTypes">}}
+[💯Take a Challenge](https://tsch.js.org/5821/play/)  
+Implement `MapTypes<T, R>` which will transform types in object T to different types defined by type R which has the following structure
+
+```ts
+type StringToNumber = {
+  mapFrom: string; // value of key which value is string
+  mapTo: number; // will be transformed for number
+};
+```
+
+**Examples:**
+
+```ts
+type StringToNumber = { mapFrom: string; mapTo: number;}
+MapTypes<{iWillBeANumberOneDay: string}, StringToNumber> // gives { iWillBeANumberOneDay: number; }
+```
+
+Be aware that user can provide a union of types:
+
+```ts
+type StringToNumber = { mapFrom: string; mapTo: number;}
+type StringToDate = { mapFrom: string; mapTo: Date;}
+MapTypes<{iWillBeNumberOrDate: string}, StringToDate | StringToNumber> // gives { iWillBeNumberOrDate: number | Date; }
+```
+
+If the type doesn't exist in our map, leave it as it was:
+
+```ts
+type StringToNumber = { mapFrom: string; mapTo: number;}
+MapTypes<{iWillBeANumberOneDay: string, iWillStayTheSame: Function}, StringToNumber> // // gives { iWillBeANumberOneDay: number, iWillStayTheSame: Function }
+```
+
+答案:
+
+```ts
+type GetMapType<
+  T,
+  R,
+  Type = R extends { mapFrom: T; mapTo: infer To } ? To : never
+> = [Type] extends [never] ? T : Type;
+type MapTypes<T, R> = {
+  [P in keyof T]: GetMapType<T[P], R>;
+};
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Construct Tuple">}}
+[💯Take a Challenge](https://tsch.js.org/7544/play/)  
+Construct a tuple with a given length.
+
+For example
+
+```ts
+type result = ConstructTuple<2>; // expect to be [unknown, unkonwn]
+```
+
+答案:
+
+```ts
+// your answers
+type ConstructTuple<
+  T extends number,
+  R extends unknown[] = []
+> = R["length"] extends T ? R : ConstructTuple<T, [...R, unknown]>;
+```
+
+{{< /spoiler >}}
+
+{{< spoiler  "Number Range">}}
+[💯Take a Challenge](https://tsch.js.org/8640/play/)  
+Sometimes we want to limit the range of numbers...
+For examples.
+
+```
+type result = NumberRange<2 , 9> //  | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+```
+
+答案:
+
+```ts
+type ConstructTuple<
+  L extends number,
+  Result extends number[] = []
+> = Result["length"] extends L
+  ? [...Result, 1]
+  : ConstructTuple<L, [...Result, 1]>;
+
+type NumberRange<
+  L extends number,
+  H extends number,
+  Temp extends number[] = ConstructTuple<L>,
+  Result extends unknown[] = [L]
+> = L extends H
+  ? Result[number]
+  : NumberRange<Temp["length"], H, [...Temp, 1], [...Result, Temp["length"]]>;
+```
+
+{{< /spoiler >}}
+
+{{< spoiler  "Combination">}}
+[💯Take a Challenge](https://tsch.js.org/8767/play/)  
+ Given an array of strings, do Permutation & Combination.
+It's also useful for the prop types like video [controlsList](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/controlsList)
+
+```ts
+// expected to be `"foo" | "bar" | "baz" | "foo bar" | "foo bar baz" | "foo baz" | "foo baz bar" | "bar foo" | "bar foo baz" | "bar baz" | "bar baz foo" | "baz foo" | "baz foo bar" | "baz bar" | "baz bar foo"`
+type Keys = Combination<["foo", "bar", "baz"]>;
+```
+
+答案:
+
+```ts
+type AllCombinations<T extends string[], S extends string = T[number]> = [
+  S
+] extends [never]
+  ? ""
+  : "" | { [K in S]: `${K} ${AllCombinations<never, Exclude<S, K>>}` }[S];
+
+type TrimRight<T extends string, S = T> = T extends `${infer R}${
+  | " "
+  | "\n"
+  | "\t"}`
+  ? TrimRight<R>
+  : S;
+type Combination<T extends string[]> = TrimRight<
+  Exclude<AllCombinations<T>, "">
+>;
+```
+
+{{< /spoiler >}}
+{{< spoiler  "Subsequence">}}
+[💯Take a Challenge](https://tsch.js.org/8987/play/)  
+Given an array of unique elements, return all possible subsequences.
+
+A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements.
+
+For example:
+
+```typescript
+type A = Subsequence<[1, 2]>; // [] | [1] | [2] | [1, 2]
+```
+
+答案:
+
+```ts
+type Subsequence<T extends number[], K extends number[] = []> = T extends [
+  infer L,
+  ...infer R
+]
+  ? Subsequence<
+      R extends number[] ? R : [],
+      K | [...K, ...(L extends number ? [L] : [])]
+    >
+  : K;
 ```
 
 {{< /spoiler >}}

@@ -1,6 +1,7 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
+lastmod:
 draft: true
 tags:
   - ""
@@ -20,5 +21,3 @@ cover:
   alt: ""
   relative: false
 ---
-
-[原题链接]()

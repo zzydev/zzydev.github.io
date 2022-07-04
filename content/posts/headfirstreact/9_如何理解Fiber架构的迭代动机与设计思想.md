@@ -149,4 +149,4 @@ export const Deletion = /*              */ 0b0000000001000;
 
 ## Fiber 架构对生命周期的影响
 
-[Fiber 对生命周期的影响](https://zzydev.top/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#%e7%bb%86%e8%af%b4%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e5%ba%9f%e6%97%a7%e7%ab%8b%e6%96%b0%e8%83%8c%e5%90%8e%e7%9a%84%e6%80%9d%e8%80%83)
+[Fiber 对生命周期的影响](https://zzydev.top/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#react16-%e4%b8%ba%e4%bd%95%e4%b8%a4%e6%ac%a1%e6%b1%82%e5%8f%98)
