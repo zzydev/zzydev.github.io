@@ -159,7 +159,7 @@
                 if (db_reg.test(strs)) {
                     var db_type = strs.replace(db_reg, "$1");
                     var db_id = strs.replace(db_reg, "$2").toString();
-                    var db_api = "https://douban.edui.fun/";
+                    var db_api = "http://douban.edui.fun/";
                     if (db_type === 'movie') {
                         var ls_item = 'movie' + db_id;
                         var url = db_api + "movies/" + db_id;
