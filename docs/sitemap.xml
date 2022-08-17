@@ -13,23 +13,44 @@
     <loc>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98medium%E7%AF%87/</loc>
     <lastmod>2022-06-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zzydev.top/posts/fe-travel/</loc>
-    <lastmod>2022-06-30T22:10:58+08:00</lastmod>
-  </url><url>
     <loc>https://zzydev.top/</loc>
+    <lastmod>2022-07-10T13:58:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/eight-part-essay/</loc>
+    <lastmod>2022-07-10T13:58:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/eight-part-essay/%E6%88%91%E7%9A%84%E6%8B%B7%E9%9D%A2%E7%BB%8F_3/</loc>
+    <lastmod>2022-07-10T13:58:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/</loc>
+    <lastmod>2022-07-10T13:58:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/tags/react/</loc>
+    <lastmod>2022-07-10T13:49:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstreact/</loc>
+    <lastmod>2022-07-10T13:49:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstreact/react%E4%B8%9C%E6%96%B9%E7%94%84%E9%80%89/</loc>
+    <lastmod>2022-07-10T13:49:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/tags/</loc>
+    <lastmod>2022-07-10T13:49:54+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstrust/</loc>
+    <lastmod>2022-07-08T11:21:23+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/headfirstrust/%E5%93%A5%E5%87%A0%E4%B8%AA%E5%8F%88%E6%9D%A5%E5%85%A5%E9%97%A8rust%E5%95%8A/</loc>
+    <lastmod>2022-07-08T11:21:23+08:00</lastmod>
+  </url><url>
+    <loc>https://zzydev.top/posts/fe-travel/</loc>
     <lastmod>2022-06-30T22:10:58+08:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/fe-travel/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</loc>
     <lastmod>2022-06-30T22:10:58+08:00</lastmod>
   </url><url>
-    <loc>https://zzydev.top/posts/</loc>
-    <lastmod>2022-06-30T22:10:58+08:00</lastmod>
-  </url><url>
     <loc>https://zzydev.top/posts/fe-travel/%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2022-06-29T09:42:08+08:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/tags/</loc>
-    <lastmod>2022-06-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/headfirstts/ts%E4%B8%9C%E6%96%B9%E7%94%84%E9%80%89/</loc>
     <lastmod>2022-06-24T07:17:42+08:00</lastmod>
@@ -57,15 +78,6 @@
   </url><url>
     <loc>https://zzydev.top/posts/headfirstreact/10_reactdom.render%E7%9A%84%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%B8%8A/</loc>
     <lastmod>2022-06-09T03:59:38+08:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/tags/react/</loc>
-    <lastmod>2022-06-18T16:55:46+00:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/posts/headfirstreact/</loc>
-    <lastmod>2022-06-18T16:55:46+00:00</lastmod>
-  </url><url>
-    <loc>https://zzydev.top/posts/eight-part-essay/</loc>
-    <lastmod>2022-06-19T08:09:57+00:00</lastmod>
   </url><url>
     <loc>https://zzydev.top/posts/eight-part-essay/%E6%88%91%E7%9A%84%E6%8B%B7%E9%9D%A2%E7%BB%8F_2/</loc>
     <lastmod>2022-06-08T14:08:40+08:00</lastmod>
@@ -129,5 +141,9 @@
     <loc>https://zzydev.top/search/</loc>
   </url><url>
     <loc>https://zzydev.top/archives/</loc>
+  </url><url>
+    <loc>https://zzydev.top/posts/webassembly/</loc>
+  </url><url>
+    <loc>https://zzydev.top/posts/chat/</loc>
   </url>
 </urlset>

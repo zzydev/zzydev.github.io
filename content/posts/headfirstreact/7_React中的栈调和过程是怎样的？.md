@@ -24,9 +24,11 @@ cover:
 
 ## 调和（Reconciliation）过程与 Diff 算法
 
+{{< notice notice-tip >}}
 {{< quote >}}
-Virtual DOM 是一种编程概念。在这个概念里，UI 以一种理想化的，或者说“虚拟的”表现形式被保存于内存中，并通过如 ReactDOM 等类库使之与“真实的” DOM 同步。这一过程叫作[协调](https://zh-hans.reactjs.org/docs/reconciliation.html)（调和）。 ---- React 官方
+Virtual DOM 是一种编程概念。在这个概念里，UI 以一种理想化的，或者说“虚拟的”表现形式被保存于内存中，并通过如 ReactDOM 等类库使之与“真实的” DOM 同步。这一过程叫作[协调](https://zh-hans.reactjs.org/docs/reconciliation.html)（调和）。 ——— React 官方
 {{< /quote >}}
+{{< /notice >}}
 
 Reconciler（调和器）所做的工作是一系列的，包括组件的挂载、卸载、更新等过程，其中更新过程涉及对 Diff 算法的调用。
 
