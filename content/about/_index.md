@@ -6,7 +6,7 @@ layout: about
 ---
 
 <div>
-<img src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/zzy-1.jpeg" width="248rem" height="331rem" style="float:right" loading="lazy"/>
+<img src="https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/avatar/WechatIMG873.jpeg" width="248rem" height="331rem" style="float:right" loading="lazy"/>
 <ul>
 <li> 学历：本科（2015 - 2019）👨🏻‍🎓</li>
 <li> 学校：广州软件学院 🏫 </li>
