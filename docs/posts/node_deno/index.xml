@@ -13,7 +13,7 @@
       <pubDate>Mon, 20 Jun 2022 14:50:48 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80api/</guid>
-      <description>node 学习资源推荐 node 中英对照文档 &lt;!DOCTYPE HTML&gt; &lt;!DOCTYPE HTML&gt; node 基础概念 异步 IO 事件驱动架构 事件驱动实现 - 发布订阅模式 1 2 3 4 5 6 const EventEmitter = require(&amp;#34;events&amp;#34;); const myEvent = new EventEmitter(); myEvent.on</description>
+      <description>node 基础概念 异步 IO 事件驱动架构 事件驱动实现 - 发布订阅模式 1 2 3 4 5 6 const EventEmitter = require(&amp;#34;events&amp;#34;); const myEvent = new EventEmitter(); myEvent.on(&amp;#34;事件1&amp;#34;, () =&amp;gt; {</description>
     </item>
     
   </channel>

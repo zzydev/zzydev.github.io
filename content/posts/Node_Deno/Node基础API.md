@@ -3,7 +3,7 @@ title: "Node基础API"
 date: 2022-06-20T14:50:48+08:00
 draft: true
 tags:
-  - "node"
+    - "node"
 author: ["zzydev"]
 description: ""
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
@@ -15,17 +15,11 @@ hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
 disableShare: false # 底部不显示分享栏
 showbreadcrumbs: true #顶部显示当前路径
 cover:
-  image: ""
-  caption: ""
-  alt: ""
-  relative: false
+    image: ""
+    caption: ""
+    alt: ""
+    relative: false
 ---
-
-### node 学习资源推荐
-
-[node 中英对照文档](http://nodejs.cn/api/)
-{{< douban src="https://book.douban.com/subject/25768396/" >}}
-{{< douban src="https://book.douban.com/subject/30247892/" >}}
 
 ### node 基础概念
 
@@ -41,7 +35,7 @@ cover:
 const EventEmitter = require("events");
 const myEvent = new EventEmitter();
 myEvent.on("事件1", () => {
-  console.log("事件1执行了");
+    console.log("事件1执行了");
 });
 myEvent.emit("事件1");
 ```

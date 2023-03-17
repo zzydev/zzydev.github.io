@@ -6,7 +6,7 @@
     <description>Recent content in Typescript on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 24 Jun 2022 07:17:42 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Jun 2022 01:00:33 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TS基础拾遗</title>
       <link>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
@@ -32,15 +32,6 @@
       
       <guid>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98medium%E7%AF%87/</guid>
       <description>&amp;nbsp;获取函数返回类型 💯Take a Challenge 不使用 ReturnType 实现 TypeScript 的 ReturnType&amp;lt;T&amp;gt; 泛型。 例如： 1 2 3 4 5 6 const fn = (v: boolean) =&amp;gt; { if (v) return 1; else return 2; }; type a = MyReturnType&amp;lt;typeof fn&amp;gt;; // 应推导出 &amp;#34;1 | 2&amp;#34;</description>
-    </item>
-    
-    <item>
-      <title>TS东方甄选</title>
-      <link>https://zzydev.top/posts/headfirstts/ts%E4%B8%9C%E6%96%B9%E7%94%84%E9%80%89/</link>
-      <pubDate>Fri, 24 Jun 2022 07:17:42 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/headfirstts/ts%E4%B8%9C%E6%96%B9%E7%94%84%E9%80%89/</guid>
-      <description>慎点，先阶段作为 TS 相关资料收藏夹 编程与类型系统 Starseeker 通过实现mini版的axios来练习Typescript Typescript</description>
     </item>
     
     <item>

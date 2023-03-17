@@ -107,8 +107,8 @@
   "keywords": [
     
   ],
-  "articleBody": " 手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== \"object\" || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } 手写 getType 1 2 3 4 5 6 7 function getType(obj) { let type = typeof obj; if (type !== \"object\") return type; return Object.prototype.toString .call(obj) .replace(/^\\[object (\\S+)\\]$/, \"S1\"); } 手写浅拷贝 1 2 3 4 5 6 7 8 9 10 11 12 13 function shallowClone(target) { if (typeof target === \"object\" \u0026\u0026 target !== null) { const cloneTarget = Array.isArray() ? [] : {}; for (let prop in target) { if (target.hasOwnProperty(prop)) { cloneTarget[prop] = target[prop]; } } return cloneTarget; } else { return target; } } 手写深拷贝 小杯\n1 2 3 4 5 6 7 8 9 10 11 function deepClone(obj) { let cloneObj = {}; for (let key in obj) { if (typeof key === \"obj\" \u0026\u0026 key !== null) { cloneObj[key] = deepClone(obj[key]); } else { cloneObj[key] = obj[key]; } } return cloneObj; } 超大杯\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 const isComplexDataType = (obj) =\u003e (typeof obj === \"object\" || typeof obj === \"function\") \u0026\u0026 obj !== null; function deepClone(obj, hash = new WeakMap()) { if (obj instanceof Date) return +new Date(obj); if (obj instanceof RegExp) return new RegExp(obj); if (hash.has(obj)) return hash.get(obj); //获取对象所有属性及其对应的特征 let allDesc = Object.getOwnPropertyDescriptors(obj); //继承原对象的原型链 let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc); hash.set(obj, cloneObj); for (let key of Reflect.ownKeys()) { cloneObj[key] = isComplexDataType(obj[key]) \u0026\u0026 typeof obj[key] !== \"function\" ? deepClone(obj[key], hash) : obj[key]; } return cloneObj; } JS WeakMap 应该什么时候使用\n1 const newData = structuredClone(data); structuredClone MDN\n手写深比较 1 2 3 4 5 6 7 8 9 10 11 12 13 const isObject = (obj) =\u003e typeof obj === \"object\" \u0026\u0026 obj !== null; function isEqual(obj1, obj2) { if (isObject(obj1) ^ isObject(obj2)) return false; if (obj1 === obj2) return true; const obj1Key = Object.keys(obj1); const obj2Key = Object.keys(obj2); if (obj1Key.length !== obj2Key.length) return false; for (let key in obj) { const res = isEqual(obj1[key], obj2[key]); if (!res) return false; } return true; } 手写函数AOP 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 Function.prototype.before = function (beforeFn) { const self = this; return function beforeFunc() { const args = arguments; beforeFn.apply(this, args); return self.apply(this, args); }; }; Function.prototype.after = function (afterFn) { const self = this; return function afterFunc() { const args = arguments; const result = self.apply(this, args); afterFn.apply(this, args); return result; }; }; function func() { console.log(\"2\"); } const newFunc = func .before(() =\u003e { console.log(\"1\"); }) .after(() =\u003e { console.log(\"3\"); }); newFunc(); // 1 2 3 手写柯里化 1 2 3 4 5 6 7 8 9 10 11 12 // 通用的柯里化 var currying = function (fn) { var args = []; return function () { if (arguments.length == 0) { return fn.apply(this, args); } else { Array.prototype.push.apply(args, arguments); return arguments.callee; } }; }; 手写 call 、apply 、bind 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Function.prototype.myCall = function (context, ...args) { // xxx.myCall() this就是这里的xxx myApply和myBind中的this同理 context.func = this; context.func(...args); delete context.func; }; Function.prototype.myBind = function () { const args = Array.from(arguments); const t = args.shift(); const self = this; return function () { return self.apply(t, args); }; }; Function.prototype.myApply = function (context, args) { context.func = this; context.func(...args); delete context.func; }; 手写 Object.create() 1 2 3 4 5 6 //这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型 Object.create = function (prototype) { var cls = function () {}; cls.prototype = prototype; return new cls(); }; 手写 new 1 2 3 4 5 6 7 8 9 10 11 12 function myNew(...args) { // 取出 args 数组第一个参数，即目标构造函数 const constructor = args.shift(); // 创建一个空对象，且这个空对象继承构造函数的 prototype 属性 // 即实现 obj.__proto__ = constructor.prototype const obj = Object.create(constructor.prototype); // 执行构造函数，得到构造函数返回结果 // 注意这里我们使用 apply，将构造函数内的 this 指向为 obj const result = constructor.apply(obj, args); // 如果构造函数执行后，返回结果是对象类型，就直接返回，否则返回 obj 对象 return typeof result === \"object\" \u0026\u0026 result != null ? result : obj; } 手写防抖节流 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 // Throttle(事件节流)： 第一个人说了算 // fn是我们需要包装的事件回调, interval是时间间隔的阈值 function throttle(fn, interval) { // last为上一次触发回调的时间 let last = 0; // 将throttle处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 记录本次触发回调的时间 let now = new Date(); // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值 if (now - last \u003e= interval) { // 如果时间间隔大于我们设定的时间间隔阈值，则执行回调 last = now; fn.apply(context, args); } }; } // 用throttle来包装scroll的回调 const better_scroll = throttle(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); // Debounce(事件防抖)： 最后一个人说了算 // fn是我们需要包装的事件回调, delay是每次推迟执行的等待时间 function debounce(fn, delay) { // 定时器 let timer = null; // 将debounce处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 每次事件被触发时，都去清除之前的旧定时器 if (timer) { clearTimeout(timer); } // 设立新定时器 timer = setTimeout(function () { fn.apply(context, args); }, delay); }; } // 用debounce来包装scroll的回调 const better_scroll = debounce(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); 手写原生AJAX请求 原生 ajax 步骤\n创建XMLHttpRequest对象 使用open方法设置和服务器的交互信息 使用send发送数据 注册事件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 const getJSON = function (url) { return new Promise((resolve, reject) =\u003e { const xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject(\"Mscrosoft.XMLHttp\"); xhr.open(\"GET\", url, false); xhr.setRequestHeader(\"Accept\", \"application/json\"); xhr.onreadystatechange = function () { if (xhr.readyState !== 4) return; if (xhr.status === 200 || xhr.status === 304) { resolve(xhr.responseText); } else { reject(new Error(xhr.responseText)); } }; xhr.send(); }); }; 手写 String.prototype.trim 1 2 3 String.prototype.trim = function () { return this.replace(/^\\s+/, \"\").replace(/\\s+$/, \"\"); }; 手写 Array.flat 1 2 3 4 5 6 7 const flat = (arr) =\u003e { const isDeep = arr.some((item) =\u003e item instanceof Array); if (!isDeep) return arr; const res = Array.prototype.concat.apply([], arr); return flat(res); }; 手写去重 1 2 3 4 const unique = (arr) =\u003e { const set = new Set(arr); return [...arr]; }; 手写 setInterval 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 const mySetInterval = (fn, delay) =\u003e { let timer = null, isClear = false; function loop() { if (isClear) { isClear = false; clearTimeout(timer); return; } fn(); timer = setTimeout(loop, delay); } timer = setTimeout(loop, delay); return () =\u003e { isClear = true; }; }; 手写 判断类数组 1 2 3 4 5 6 7 8 9 10 const isArrayLikeObject = (arr) =\u003e { if (typeof arr !== \"object\" || arr === null) return false; const lengthMaxVal = Math.pow(2, 53) - 1; if (!Object.prototype.hasOwnProperty.call(arr, \"length\")) return false; if (typeof arr.length !== \"number\") return false; if (!isFinite(arr.length)) return false; if (Array !== arr.constructor) return false; if (arr.length \u003e 0 \u0026\u0026 arr.length \u003c lengthMaxVal) return true; return false; }; 获取当前 url 中的参数的值 1 2 3 4 5 const query = (name) =\u003e { const search = location.search; const params = new URLSearchParams(search); return params.get(name); }; 将 URL 参数解析为 JS 对象 1 2 3 4 5 6 7 8 9 function queryToObject() { const res = {}; const search = location.search; const pList = new URLSearchParams(search); pList.forEach((key, val) =\u003e { res[key] = val; }); return res; } 手写JSON.Stringify JSON.stringify()将值转换为相应的 JSON 格式：\n转换值如果有 toJSON() 方法，该方法定义什么值将被序列化。\n非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。\n布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值。\nundefined、任意的函数以及 symbol 值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。函数、undefined 被单独转换时，会返回 undefined，如JSON.stringify(function(){}) or JSON.stringify(undefined).\n对包含循环引用的对象（对象之间相互引用，形成无限循环）执行此方法，会抛出错误。\n所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们。\nDate 日期调用了 toJSON() 将其转换为了 string 字符串（同 Date.toISOString()），因此会被当做字符串处理。\nNaN 和 Infinity 格式的数值及 null 都会被当做 null。\n其他类型的对象，包括 Map/Set/WeakMap/WeakSet，仅会序列化可枚举的属性。\n——— MDN\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 function jsonStringify(data) { let type = typeof data; if (type !== \"object\") { let result = data; //data 可能是基础数据类型的情况在这里处理 if (Number.isNaN(data) || data === Infinity) { //NaN 和 Infinity 序列化返回 \"null\" result = \"null\"; } else if ( type === \"function\" || type === \"undefined\" || type === \"symbol\" ) { // 由于 function 序列化返回 undefined，因此和 undefined、symbol 一起处理 return undefined; } else if (type === \"string\") { result = '\"' + data + '\"'; } return String(result); } else if (type === \"object\") { if (data === null) { return \"null\"; } else if (data.toJSON \u0026\u0026 typeof data.toJSON === \"function\") { return jsonStringify(data.toJSON()); } else if (data instanceof Array) { let result = []; //如果是数组，那么数组里面的每一项类型又有可能是多样的 data.forEach((item, index) =\u003e { if ( typeof item === \"undefined\" || typeof item === \"function\" || typeof item === \"symbol\" ) { result[index] = \"null\"; } else { result[index] = jsonStringify(item); } }); result = \"[\" + result + \"]\"; return result.replace(/'/g, '\"'); } else { // 处理普通对象 let result = []; Object.keys(data).forEach((item, index) =\u003e { if (typeof item !== \"symbol\") { //key 如果是 symbol 对象，忽略 if ( data[item] !== undefined \u0026\u0026 typeof data[item] !== \"function\" \u0026\u0026 typeof data[item] !== \"symbol\" ) { //键值如果是 undefined、function、symbol 为属性值，忽略 result.push('\"' + item + '\"' + \":\" + jsonStringify(data[item])); } } }); return (\"{\" + result + \"}\").replace(/'/g, '\"'); } } } 手写runGenerator 手写Promise Promise\n手写Promise.race 1 2 3 4 5 6 7 8 9 10 11 Promise.race = function (arr) { return new Promise(function (resolve, reject) { if (!Array.isArray(arr)) { return reject(new TypeError(\"Promise.race accepts an array\")); } for (var i = 0, len = arr.length; i \u003c len; i++) { Promise.resolve(arr[i]).then(resolve, reject); } }); }; 手写Promise.all 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 // 输入不仅仅只有Array function promiseAll(args) { return new Promise((resolve, reject) =\u003e { const promiseResults = []; let iteratorIndex = 0; // 已完成的数量，用于最终的返回，不能直接用完成数量作为iteratorIndex // 输出顺序和完成顺序是两码事 let fullCount = 0; // 用于迭代iterator数据 for (const item of args) { // for of 遍历顺序，用于返回正确顺序的结果 // 因iterator用forEach遍历后的key和value一样，所以必须存一份for of的 iteratorIndex let resultIndex = iteratorIndex; iteratorIndex += 1; // 包一层，以兼容非promise的情况 Promise.resolve(item) .then((res) =\u003e { promiseResults[resultIndex] = res; fullCount += 1; // Iterator 接口的数据无法单纯的用length和size判断长度，不能局限于Array和 Map类型中 if (fullCount === iteratorIndex) { resolve(promiseResults); } }) .catch((err) =\u003e { reject(err); }); } // 处理空 iterator 的情况 if (iteratorIndex === 0) { resolve(promiseResults); } }); } if (!Promise.all) Promise.all = promiseAll; 实现lodash.get 实现类似 lodash.get ，有以下测试用例:\n1 2 3 4 5 6 7 8 9 10 var object = { a: [{ b: { c: 3 } }] }; get(object, \"a[0].b.c\"); // =\u003e 3 get(object, [\"a\", \"0\", \"b\", \"c\"]); // =\u003e 3 get(object, \"a.b.c\", \"default\"); // =\u003e 'default' 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 /** * object: 对象 * path: 输入的路径 * defaultVal: 默认值 **/ function get(object, path, defaultVal = \"undefined\") { // 先将path处理成统一格式 let newPath = []; if (Array.isArray(path)) { newPath = path; } else { // 先将字符串中的'['、']'去除替换为'.'，split分割成数组形式 newPath = path.replace(/\\[/g, \".\").replace(/\\]/g, \"\").split(\".\"); } // 递归处理，返回最后结果 return ( newPath.reduce((o, k) =\u003e { // console.log(o, k); // 此处o初始值为下边传入的 object，后续值为每次取的内部值 return (o || {})[k]; }, object) || defaultVal ); } 手写JS继承 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 //原型链继承 //缺点：Parent1和Child1创建的两个实例使用的是同一个原型对象，它们的内存空间是共享的，当一个发生变化的时候，另外一个也随之进行了变化 function Parent1() { this.name = \"parent1\"; this.play = [1, 2, 3]; } function Child1() { this.type = \"child2\"; } Child1.prototype = new Parent1(); //构造函数继承（借助 call） //缺点：父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法 function Parent2() { this.name = \"parent1\"; } Parent2.prototype.getName = function () { return this.name; }; function Child2() { Parent2.call(this); this.type = \"child1\"; } let child = new Child2(); console.log(child); // 没问题 console.log(child.getName()); // 会报错 //组合继承（前两种组合） //缺点：Parent3 执行了两次 function Parent3() { this.name = \"parent3\"; this.play = [1, 2, 3]; } Parent3.prototype.getName = function () { return this.name; }; function Child3() { // ② 第二次调用 Parent3() Parent3.call(this); this.type = \"child3\"; } // ① 第一次调用 Parent3() Child3.prototype = new Parent3(); // 手动挂上构造器，指向自己的构造函数 Child3.prototype.constructor = Child3; var s3 = new Child3(); var s4 = new Child3(); s3.play.push(4); console.log(s3.play, s4.play); // 不互相影响 console.log(s3.getName()); // 正常输出'parent3' console.log(s4.getName()); // 正常输出'parent3' //原型式继承 //缺点：多个实例的引用类型属性指向相同的内存，存在篡改的可能 let parent4 = { name: \"parent4\", friends: [\"p1\", \"p2\", \"p3\"], getName: function () { return this.name; }, }; let person4 = Object.create(parent4); person4.name = \"tom\"; person4.friends.push(\"jerry\"); //通过 Object.create()这个方法可以实现普通对象的继承 //不仅仅能继承属性，同样也可以继承 getName 的方法 let person5 = Object.create(parent4); person5.friends.push(\"lucy\"); console.log(person4.name); //tom console.log(person4.name === person4.getName()); //true console.log(person5.name); //parent4 console.log(person4.friends); //[\"p1\", \"p2\", \"p3\", \"jerry\", \"lucy\"] console.log(person5.friends); //[\"p1\", \"p2\", \"p3\", \"jerry\", \"lucy\"] //寄生式继承 //优缺点和原型式继承一样，但是对于普通对象的继承方式来说，寄生式继承相比于原型式继承，还是在父类基础上添加了更多的方法。 let parent5 = { name: \"parent5\", friends: [\"p1\", \"p2\", \"p3\"], getName: function () { return this.name; }, }; function clone(original) { let clone = Object.create(original); clone.getFriends = function () { return this.friends; }; return clone; } let person5 = clone(parent5); console.log(person5.getName()); console.log(person5.getFriends()); //寄生组合式继承 //extends原理 function clone(parent, child) { // 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程 child.prototype = Object.create(parent.prototype); child.prototype.constructor = child; } function Parent6() { this.name = \"parent6\"; this.play = [1, 2, 3]; } Parent6.prototype.getName = function () { return this.name; }; function Child6() { Parent6.call(this); this.friends = \"child5\"; } clone(Parent6, Child6); Child6.prototype.getFriends = function () { return this.friends; }; let person6 = new Child6(); console.log(person6); console.log(person6.getName()); console.log(person6.getFriends()); ",
-  "wordCount" : "4548",
+  "articleBody": " 手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== \"object\" || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } 手写 getType 1 2 3 4 5 6 7 function getType(obj) { let type = typeof obj; if (type !== \"object\") return type; return Object.prototype.toString .call(obj) .replace(/^\\[object (\\S+)\\]$/, \"S1\"); } 手写浅拷贝 1 2 3 4 5 6 7 8 9 10 11 12 13 function shallowClone(target) { if (typeof target === \"object\" \u0026\u0026 target !== null) { const cloneTarget = Array.isArray() ? [] : {}; for (let prop in target) { if (target.hasOwnProperty(prop)) { cloneTarget[prop] = target[prop]; } } return cloneTarget; } else { return target; } } 手写深拷贝 小杯\n1 2 3 4 5 6 7 8 9 10 11 function deepClone(obj) { let cloneObj = {}; for (let key in obj) { if (typeof key === \"obj\" \u0026\u0026 key !== null) { cloneObj[key] = deepClone(obj[key]); } else { cloneObj[key] = obj[key]; } } return cloneObj; } 超大杯\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 const isComplexDataType = (obj) =\u003e (typeof obj === \"object\" || typeof obj === \"function\") \u0026\u0026 obj !== null; function deepClone(obj, hash = new WeakMap()) { if (obj instanceof Date) return +new Date(obj); if (obj instanceof RegExp) return new RegExp(obj); if (hash.has(obj)) return hash.get(obj); //获取对象所有属性及其对应的特征 let allDesc = Object.getOwnPropertyDescriptors(obj); //继承原对象的原型链 let cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc); hash.set(obj, cloneObj); for (let key of Reflect.ownKeys()) { cloneObj[key] = isComplexDataType(obj[key]) \u0026\u0026 typeof obj[key] !== \"function\" ? deepClone(obj[key], hash) : obj[key]; } return cloneObj; } JS WeakMap 应该什么时候使用\n1 const newData = structuredClone(data); structuredClone MDN\n手写深比较 1 2 3 4 5 6 7 8 9 10 11 12 13 const isObject = (obj) =\u003e typeof obj === \"object\" \u0026\u0026 obj !== null; function isEqual(obj1, obj2) { if (isObject(obj1) ^ isObject(obj2)) return false; if (obj1 === obj2) return true; const obj1Key = Object.keys(obj1); const obj2Key = Object.keys(obj2); if (obj1Key.length !== obj2Key.length) return false; for (let key in obj) { const res = isEqual(obj1[key], obj2[key]); if (!res) return false; } return true; } 手写函数AOP 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 Function.prototype.before = function (beforeFn) { const self = this; return function beforeFunc() { const args = arguments; beforeFn.apply(this, args); return self.apply(this, args); }; }; Function.prototype.after = function (afterFn) { const self = this; return function afterFunc() { const args = arguments; const result = self.apply(this, args); afterFn.apply(this, args); return result; }; }; function func() { console.log(\"2\"); } const newFunc = func .before(() =\u003e { console.log(\"1\"); }) .after(() =\u003e { console.log(\"3\"); }); newFunc(); // 1 2 3 手写柯里化 1 2 3 4 5 6 7 8 9 10 11 12 // 通用的柯里化 var currying = function (fn) { var args = []; return function () { if (arguments.length == 0) { return fn.apply(this, args); } else { Array.prototype.push.apply(args, arguments); return arguments.callee; } }; }; 手写 call 、apply 、bind 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 Function.prototype.myCall = function (context, ...args) { // xxx.myCall() this就是这里的xxx myApply和myBind中的this同理 context.func = this; context.func(...args); delete context.func; }; Function.prototype.myBind = function () { const args = Array.from(arguments); const t = args.shift(); const self = this; return function () { return self.apply(t, args); }; }; Function.prototype.myApply = function (context, args) { context.func = this; context.func(...args); delete context.func; }; 手写 Object.create() 1 2 3 4 5 6 //这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型 Object.create = function (prototype) { var cls = function () {}; cls.prototype = prototype; return new cls(); }; 手写 new 1 2 3 4 5 6 7 8 9 10 11 12 function myNew(...args) { // 取出 args 数组第一个参数，即目标构造函数 const constructor = args.shift(); // 创建一个空对象，且这个空对象继承构造函数的 prototype 属性 // 即实现 obj.__proto__ = constructor.prototype const obj = Object.create(constructor.prototype); // 执行构造函数，得到构造函数返回结果 // 注意这里我们使用 apply，将构造函数内的 this 指向为 obj const result = constructor.apply(obj, args); // 如果构造函数执行后，返回结果是对象类型，就直接返回，否则返回 obj 对象 return typeof result === \"object\" \u0026\u0026 result != null ? result : obj; } 手写防抖节流 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 // Throttle(事件节流)： 第一个人说了算 // fn是我们需要包装的事件回调, interval是时间间隔的阈值 function throttle(fn, interval) { // last为上一次触发回调的时间 let last = 0; // 将throttle处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 记录本次触发回调的时间 let now = new Date(); // 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值 if (now - last \u003e= interval) { // 如果时间间隔大于我们设定的时间间隔阈值，则执行回调 last = now; fn.apply(context, args); } }; } // 用throttle来包装scroll的回调 const better_scroll = throttle(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); // Debounce(事件防抖)： 最后一个人说了算 // fn是我们需要包装的事件回调, delay是每次推迟执行的等待时间 function debounce(fn, delay) { // 定时器 let timer = null; // 将debounce处理结果当作函数返回 return function () { // 保留调用时的this上下文 let context = this; // 保留调用时传入的参数 let args = arguments; // 每次事件被触发时，都去清除之前的旧定时器 if (timer) { clearTimeout(timer); } // 设立新定时器 timer = setTimeout(function () { fn.apply(context, args); }, delay); }; } // 用debounce来包装scroll的回调 const better_scroll = debounce(() =\u003e console.log(\"触发了滚动事件\"), 1000); document.addEventListener(\"scroll\", better_scroll); 手写原生AJAX请求 原生 ajax 步骤\n创建XMLHttpRequest对象 使用open方法设置和服务器的交互信息 使用send发送数据 注册事件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 const getJSON = function (url) { return new Promise((resolve, reject) =\u003e { const xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject(\"Mscrosoft.XMLHttp\"); xhr.open(\"GET\", url, false); xhr.setRequestHeader(\"Accept\", \"application/json\"); xhr.onreadystatechange = function () { if (xhr.readyState !== 4) return; if (xhr.status === 200 || xhr.status === 304) { resolve(xhr.responseText); } else { reject(new Error(xhr.responseText)); } }; xhr.send(); }); }; 手写 String.prototype.trim 1 2 3 String.prototype.trim = function () { return this.replace(/^\\s+/, \"\").replace(/\\s+$/, \"\"); }; 手写 Array.flat 1 2 3 4 5 6 7 const flat = (arr) =\u003e { const isDeep = arr.some((item) =\u003e item instanceof Array); if (!isDeep) return arr; const res = Array.prototype.concat.apply([], arr); return flat(res); }; 手写去重 1 2 3 4 const unique = (arr) =\u003e { const set = new Set(arr); return [...arr]; }; 手写 setInterval 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 const mySetInterval = (fn, delay) =\u003e { let timer = null, isClear = false; function loop() { if (isClear) { isClear = false; clearTimeout(timer); return; } fn(); timer = setTimeout(loop, delay); } timer = setTimeout(loop, delay); return () =\u003e { isClear = true; }; }; 手写 判断类数组 1 2 3 4 5 6 7 8 9 10 const isArrayLikeObject = (arr) =\u003e { if (typeof arr !== \"object\" || arr === null) return false; const lengthMaxVal = Math.pow(2, 53) - 1; if (!Object.prototype.hasOwnProperty.call(arr, \"length\")) return false; if (typeof arr.length !== \"number\") return false; if (!isFinite(arr.length)) return false; if (Array !== arr.constructor) return false; if (arr.length \u003e 0 \u0026\u0026 arr.length \u003c lengthMaxVal) return true; return false; }; 获取当前 url 中的参数的值 1 2 3 4 5 const query = (name) =\u003e { const search = location.search; const params = new URLSearchParams(search); return params.get(name); }; 将 URL 参数解析为 JS 对象 1 2 3 4 5 6 7 8 9 function queryToObject() { const res = {}; const search = location.search; const pList = new URLSearchParams(search); pList.forEach((key, val) =\u003e { res[key] = val; }); return res; } 手写JSON.Stringify JSON.stringify()将值转换为相应的 JSON 格式：\n转换值如果有 toJSON() 方法，该方法定义什么值将被序列化。\n非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。\n布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值。\nundefined、任意的函数以及 symbol 值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）或者被转换成 null（出现在数组中时）。函数、undefined 被单独转换时，会返回 undefined，如JSON.stringify(function(){}) or JSON.stringify(undefined).\n对包含循环引用的对象（对象之间相互引用，形成无限循环）执行此方法，会抛出错误。\n所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们。\nDate 日期调用了 toJSON() 将其转换为了 string 字符串（同 Date.toISOString()），因此会被当做字符串处理。\nNaN 和 Infinity 格式的数值及 null 都会被当做 null。\n其他类型的对象，包括 Map/Set/WeakMap/WeakSet，仅会序列化可枚举的属性。\n——— MDN\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 function jsonStringify(data) { let type = typeof data; if (type !== \"object\") { let result = data; //data 可能是基础数据类型的情况在这里处理 if (Number.isNaN(data) || data === Infinity) { //NaN 和 Infinity 序列化返回 \"null\" result = \"null\"; } else if ( type === \"function\" || type === \"undefined\" || type === \"symbol\" ) { // 由于 function 序列化返回 undefined，因此和 undefined、symbol 一起处理 return undefined; } else if (type === \"string\") { result = '\"' + data + '\"'; } return String(result); } else if (type === \"object\") { if (data === null) { return \"null\"; } else if (data.toJSON \u0026\u0026 typeof data.toJSON === \"function\") { return jsonStringify(data.toJSON()); } else if (data instanceof Array) { let result = []; //如果是数组，那么数组里面的每一项类型又有可能是多样的 data.forEach((item, index) =\u003e { if ( typeof item === \"undefined\" || typeof item === \"function\" || typeof item === \"symbol\" ) { result[index] = \"null\"; } else { result[index] = jsonStringify(item); } }); result = \"[\" + result + \"]\"; return result.replace(/'/g, '\"'); } else { // 处理普通对象 let result = []; Object.keys(data).forEach((item, index) =\u003e { if (typeof item !== \"symbol\") { //key 如果是 symbol 对象，忽略 if ( data[item] !== undefined \u0026\u0026 typeof data[item] !== \"function\" \u0026\u0026 typeof data[item] !== \"symbol\" ) { //键值如果是 undefined、function、symbol 为属性值，忽略 result.push( '\"' + item + '\"' + \":\" + jsonStringify(data[item]) ); } } }); return (\"{\" + result + \"}\").replace(/'/g, '\"'); } } } 手写runGenerator 手写Promise Promise\n手写Promise.race 1 2 3 4 5 6 7 8 9 10 11 Promise.race = function (arr) { return new Promise(function (resolve, reject) { if (!Array.isArray(arr)) { return reject(new TypeError(\"Promise.race accepts an array\")); } for (var i = 0, len = arr.length; i \u003c len; i++) { Promise.resolve(arr[i]).then(resolve, reject); } }); }; 手写Promise.all 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 // 输入不仅仅只有Array function promiseAll(args) { return new Promise((resolve, reject) =\u003e { const promiseResults = []; let iteratorIndex = 0; // 已完成的数量，用于最终的返回，不能直接用完成数量作为iteratorIndex // 输出顺序和完成顺序是两码事 let fullCount = 0; // 用于迭代iterator数据 for (const item of args) { // for of 遍历顺序，用于返回正确顺序的结果 // 因iterator用forEach遍历后的key和value一样，所以必须存一份for of的 iteratorIndex let resultIndex = iteratorIndex; iteratorIndex += 1; // 包一层，以兼容非promise的情况 Promise.resolve(item) .then((res) =\u003e { promiseResults[resultIndex] = res; fullCount += 1; // Iterator 接口的数据无法单纯的用length和size判断长度，不能局限于Array和 Map类型中 if (fullCount === iteratorIndex) { resolve(promiseResults); } }) .catch((err) =\u003e { reject(err); }); } // 处理空 iterator 的情况 if (iteratorIndex === 0) { resolve(promiseResults); } }); } if (!Promise.all) Promise.all = promiseAll; 实现lodash.get 实现类似 lodash.get ，有以下测试用例:\n1 2 3 4 5 6 7 8 9 10 var object = { a: [{ b: { c: 3 } }] }; get(object, \"a[0].b.c\"); // =\u003e 3 get(object, [\"a\", \"0\", \"b\", \"c\"]); // =\u003e 3 get(object, \"a.b.c\", \"default\"); // =\u003e 'default' 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 /** * object: 对象 * path: 输入的路径 * defaultVal: 默认值 **/ function get(object, path, defaultVal = \"undefined\") { // 先将path处理成统一格式 let newPath = []; if (Array.isArray(path)) { newPath = path; } else { // 先将字符串中的'['、']'去除替换为'.'，split分割成数组形式 newPath = path.replace(/\\[/g, \".\").replace(/\\]/g, \"\").split(\".\"); } // 递归处理，返回最后结果 return ( newPath.reduce((o, k) =\u003e { // console.log(o, k); // 此处o初始值为下边传入的 object，后续值为每次取的内部值 return (o || {})[k]; }, object) || defaultVal ); } 手写JS继承 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 //原型链继承 //缺点：Parent1和Child1创建的两个实例使用的是同一个原型对象，它们的内存空间是共享的，当一个发生变化的时候，另外一个也随之进行了变化 function Parent1() { this.name = \"parent1\"; this.play = [1, 2, 3]; } function Child1() { this.type = \"child2\"; } Child1.prototype = new Parent1(); //构造函数继承（借助 call） //缺点：父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法 function Parent2() { this.name = \"parent1\"; } Parent2.prototype.getName = function () { return this.name; }; function Child2() { Parent2.call(this); this.type = \"child1\"; } let child = new Child2(); console.log(child); // 没问题 console.log(child.getName()); // 会报错 //组合继承（前两种组合） //缺点：Parent3 执行了两次 function Parent3() { this.name = \"parent3\"; this.play = [1, 2, 3]; } Parent3.prototype.getName = function () { return this.name; }; function Child3() { // ② 第二次调用 Parent3() Parent3.call(this); this.type = \"child3\"; } // ① 第一次调用 Parent3() Child3.prototype = new Parent3(); // 手动挂上构造器，指向自己的构造函数 Child3.prototype.constructor = Child3; var s3 = new Child3(); var s4 = new Child3(); s3.play.push(4); console.log(s3.play, s4.play); // 不互相影响 console.log(s3.getName()); // 正常输出'parent3' console.log(s4.getName()); // 正常输出'parent3' //原型式继承 //缺点：多个实例的引用类型属性指向相同的内存，存在篡改的可能 let parent4 = { name: \"parent4\", friends: [\"p1\", \"p2\", \"p3\"], getName: function () { return this.name; }, }; let person4 = Object.create(parent4); person4.name = \"tom\"; person4.friends.push(\"jerry\"); //通过 Object.create()这个方法可以实现普通对象的继承 //不仅仅能继承属性，同样也可以继承 getName 的方法 let person5 = Object.create(parent4); person5.friends.push(\"lucy\"); console.log(person4.name); //tom console.log(person4.name === person4.getName()); //true console.log(person5.name); //parent4 console.log(person4.friends); //[\"p1\", \"p2\", \"p3\", \"jerry\", \"lucy\"] console.log(person5.friends); //[\"p1\", \"p2\", \"p3\", \"jerry\", \"lucy\"] //寄生式继承 //优缺点和原型式继承一样，但是对于普通对象的继承方式来说，寄生式继承相比于原型式继承，还是在父类基础上添加了更多的方法。 let parent5 = { name: \"parent5\", friends: [\"p1\", \"p2\", \"p3\"], getName: function () { return this.name; }, }; function clone(original) { let clone = Object.create(original); clone.getFriends = function () { return this.friends; }; return clone; } let person5 = clone(parent5); console.log(person5.getName()); console.log(person5.getFriends()); //寄生组合式继承 //extends原理 function clone(parent, child) { // 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程 child.prototype = Object.create(parent.prototype); child.prototype.constructor = child; } function Parent6() { this.name = \"parent6\"; this.play = [1, 2, 3]; } Parent6.prototype.getName = function () { return this.name; }; function Child6() { Parent6.call(this); this.friends = \"child5\"; } clone(Parent6, Child6); Child6.prototype.getFriends = function () { return this.friends; }; let person6 = new Child6(); console.log(person6); console.log(person6.getName()); console.log(person6.getFriends()); ",
+  "wordCount" : "4552",
   "inLanguage": "en",
   "image":"https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/jojo01.png","datePublished": "2022-06-02T00:26:27+08:00",
   "dateModified": "2022-06-02T00:26:27+08:00",
@@ -229,7 +229,7 @@
 
 
 
-创建:&nbsp;<span title='2022-06-02 00:26:27 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;4548字&nbsp;|&nbsp;时长: 10分钟&nbsp;|&nbsp;zzydev<span id="busuanzi_container_page_pv">
+创建:&nbsp;<span title='2022-06-02 00:26:27 +0800 CST'>2022-06-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-06-02&nbsp;|&nbsp;字数:&nbsp;4552字&nbsp;|&nbsp;时长: 10分钟&nbsp;|&nbsp;zzydev<span id="busuanzi_container_page_pv">
         &nbsp;| 访问: <span id="busuanzi_value_page_pv"></span>
     </span>
 
@@ -384,13 +384,13 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> myInstanceof(Left, Right) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> Left !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> || Left === <span style="color:#fff;font-weight:bold">null</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> proto = <span style="color:#fff;font-weight:bold">Object</span>.getPrototypeOf(Left);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">while</span> (<span style="color:#fff;font-weight:bold">true</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (proto == <span style="color:#fff;font-weight:bold">null</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (protp == Right.prototype) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-</span></span><span style="display:flex;"><span>    proto = <span style="color:#fff;font-weight:bold">Object</span>.getPrototypeOf(proto);
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> Left !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> || Left === <span style="color:#fff;font-weight:bold">null</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> proto = <span style="color:#fff;font-weight:bold">Object</span>.getPrototypeOf(Left);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">while</span> (<span style="color:#fff;font-weight:bold">true</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (proto == <span style="color:#fff;font-weight:bold">null</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (protp == Right.prototype) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>        proto = <span style="color:#fff;font-weight:bold">Object</span>.getPrototypeOf(proto);
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -413,11 +413,11 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> getType(obj) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> type = <span style="color:#fff;font-weight:bold">typeof</span> obj;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (type !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>) <span style="color:#fff;font-weight:bold">return</span> type;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">Object</span>.prototype.toString
-</span></span><span style="display:flex;"><span>    .call(obj)
-</span></span><span style="display:flex;"><span>    .replace(<span style="color:#0ff;font-weight:bold">/^\[object (\S+)\]$/</span>, <span style="color:#0ff;font-weight:bold">&#34;S1&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> type = <span style="color:#fff;font-weight:bold">typeof</span> obj;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (type !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>) <span style="color:#fff;font-weight:bold">return</span> type;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">Object</span>.prototype.toString
+</span></span><span style="display:flex;"><span>        .call(obj)
+</span></span><span style="display:flex;"><span>        .replace(<span style="color:#0ff;font-weight:bold">/^\[object (\S+)\]$/</span>, <span style="color:#0ff;font-weight:bold">&#34;S1&#34;</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -446,17 +446,17 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> shallowClone(target) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> target === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> &amp;&amp; target !== <span style="color:#fff;font-weight:bold">null</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> cloneTarget = <span style="color:#fff;font-weight:bold">Array</span>.isArray() ? [] : {};
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> prop <span style="color:#fff;font-weight:bold">in</span> target) {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">if</span> (target.hasOwnProperty(prop)) {
-</span></span><span style="display:flex;"><span>        cloneTarget[prop] = target[prop];
-</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> target === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> &amp;&amp; target !== <span style="color:#fff;font-weight:bold">null</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">const</span> cloneTarget = <span style="color:#fff;font-weight:bold">Array</span>.isArray() ? [] : {};
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> prop <span style="color:#fff;font-weight:bold">in</span> target) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">if</span> (target.hasOwnProperty(prop)) {
+</span></span><span style="display:flex;"><span>                cloneTarget[prop] = target[prop];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> cloneTarget;
+</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> target;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> cloneTarget;
-</span></span><span style="display:flex;"><span>  } <span style="color:#fff;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> target;
-</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -483,15 +483,15 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> deepClone(obj) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> cloneObj = {};
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> key <span style="color:#fff;font-weight:bold">in</span> obj) {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> key === <span style="color:#0ff;font-weight:bold">&#34;obj&#34;</span> &amp;&amp; key !== <span style="color:#fff;font-weight:bold">null</span>) {
-</span></span><span style="display:flex;"><span>      cloneObj[key] = deepClone(obj[key]);
-</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>      cloneObj[key] = obj[key];
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> cloneObj = {};
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> key <span style="color:#fff;font-weight:bold">in</span> obj) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> key === <span style="color:#0ff;font-weight:bold">&#34;obj&#34;</span> &amp;&amp; key !== <span style="color:#fff;font-weight:bold">null</span>) {
+</span></span><span style="display:flex;"><span>            cloneObj[key] = deepClone(obj[key]);
+</span></span><span style="display:flex;"><span>        } <span style="color:#fff;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>            cloneObj[key] = obj[key];
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> cloneObj;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> cloneObj;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -520,23 +520,23 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> isComplexDataType = (obj) =&gt;
-</span></span><span style="display:flex;"><span>  (<span style="color:#fff;font-weight:bold">typeof</span> obj === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> || <span style="color:#fff;font-weight:bold">typeof</span> obj === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span>) &amp;&amp; obj !== <span style="color:#fff;font-weight:bold">null</span>;
+</span></span><span style="display:flex;"><span>    (<span style="color:#fff;font-weight:bold">typeof</span> obj === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> || <span style="color:#fff;font-weight:bold">typeof</span> obj === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span>) &amp;&amp; obj !== <span style="color:#fff;font-weight:bold">null</span>;
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> deepClone(obj, hash = <span style="color:#fff;font-weight:bold">new</span> WeakMap()) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (obj <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">Date</span>) <span style="color:#fff;font-weight:bold">return</span> +<span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Date</span>(obj);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (obj <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">RegExp</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">RegExp</span>(obj);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (hash.has(obj)) <span style="color:#fff;font-weight:bold">return</span> hash.get(obj);
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">//获取对象所有属性及其对应的特征
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">let</span> allDesc = <span style="color:#fff;font-weight:bold">Object</span>.getOwnPropertyDescriptors(obj);
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">//继承原对象的原型链
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">let</span> cloneObj = <span style="color:#fff;font-weight:bold">Object</span>.create(<span style="color:#fff;font-weight:bold">Object</span>.getPrototypeOf(obj), allDesc);
-</span></span><span style="display:flex;"><span>  hash.set(obj, cloneObj);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> key <span style="color:#fff;font-weight:bold">of</span> Reflect.ownKeys()) {
-</span></span><span style="display:flex;"><span>    cloneObj[key] =
-</span></span><span style="display:flex;"><span>      isComplexDataType(obj[key]) &amp;&amp; <span style="color:#fff;font-weight:bold">typeof</span> obj[key] !== <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span>
-</span></span><span style="display:flex;"><span>        ? deepClone(obj[key], hash)
-</span></span><span style="display:flex;"><span>        : obj[key];
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> cloneObj;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (obj <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">Date</span>) <span style="color:#fff;font-weight:bold">return</span> +<span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Date</span>(obj);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (obj <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">RegExp</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">RegExp</span>(obj);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (hash.has(obj)) <span style="color:#fff;font-weight:bold">return</span> hash.get(obj);
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">//获取对象所有属性及其对应的特征
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> allDesc = <span style="color:#fff;font-weight:bold">Object</span>.getOwnPropertyDescriptors(obj);
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">//继承原对象的原型链
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> cloneObj = <span style="color:#fff;font-weight:bold">Object</span>.create(<span style="color:#fff;font-weight:bold">Object</span>.getPrototypeOf(obj), allDesc);
+</span></span><span style="display:flex;"><span>    hash.set(obj, cloneObj);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> key <span style="color:#fff;font-weight:bold">of</span> Reflect.ownKeys()) {
+</span></span><span style="display:flex;"><span>        cloneObj[key] =
+</span></span><span style="display:flex;"><span>            isComplexDataType(obj[key]) &amp;&amp; <span style="color:#fff;font-weight:bold">typeof</span> obj[key] !== <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span>
+</span></span><span style="display:flex;"><span>                ? deepClone(obj[key], hash)
+</span></span><span style="display:flex;"><span>                : obj[key];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> cloneObj;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -576,16 +576,16 @@ padding: .5em .5em 0;" open>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> isObject = (obj) =&gt; <span style="color:#fff;font-weight:bold">typeof</span> obj === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> &amp;&amp; obj !== <span style="color:#fff;font-weight:bold">null</span>;
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> isEqual(obj1, obj2) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (isObject(obj1) ^ isObject(obj2)) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (obj1 === obj2) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> obj1Key = <span style="color:#fff;font-weight:bold">Object</span>.keys(obj1);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> obj2Key = <span style="color:#fff;font-weight:bold">Object</span>.keys(obj2);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (obj1Key.length !== obj2Key.length) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> key <span style="color:#fff;font-weight:bold">in</span> obj) {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> res = isEqual(obj1[key], obj2[key]);
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (!res) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (isObject(obj1) ^ isObject(obj2)) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (obj1 === obj2) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> obj1Key = <span style="color:#fff;font-weight:bold">Object</span>.keys(obj1);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> obj2Key = <span style="color:#fff;font-weight:bold">Object</span>.keys(obj2);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (obj1Key.length !== obj2Key.length) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">let</span> key <span style="color:#fff;font-weight:bold">in</span> obj) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">const</span> res = isEqual(obj1[key], obj2[key]);
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (!res) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -629,32 +629,32 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">Function</span>.prototype.before = <span style="color:#fff;font-weight:bold">function</span> (beforeFn) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> self = <span style="color:#fff;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> beforeFunc() {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> args = arguments;
-</span></span><span style="display:flex;"><span>    beforeFn.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> self.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
-</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> self = <span style="color:#fff;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> beforeFunc() {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">const</span> args = arguments;
+</span></span><span style="display:flex;"><span>        beforeFn.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> self.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">Function</span>.prototype.after = <span style="color:#fff;font-weight:bold">function</span> (afterFn) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> self = <span style="color:#fff;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> afterFunc() {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> args = arguments;
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> result = self.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
-</span></span><span style="display:flex;"><span>    afterFn.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> result;
-</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> self = <span style="color:#fff;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> afterFunc() {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">const</span> args = arguments;
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">const</span> result = self.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
+</span></span><span style="display:flex;"><span>        afterFn.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> result;
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> func() {
-</span></span><span style="display:flex;"><span>  console.log(<span style="color:#0ff;font-weight:bold">&#34;2&#34;</span>);
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#0ff;font-weight:bold">&#34;2&#34;</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> newFunc = func
-</span></span><span style="display:flex;"><span>  .before(() =&gt; {
-</span></span><span style="display:flex;"><span>    console.log(<span style="color:#0ff;font-weight:bold">&#34;1&#34;</span>);
-</span></span><span style="display:flex;"><span>  })
-</span></span><span style="display:flex;"><span>  .after(() =&gt; {
-</span></span><span style="display:flex;"><span>    console.log(<span style="color:#0ff;font-weight:bold">&#34;3&#34;</span>);
-</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>    .before(() =&gt; {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#0ff;font-weight:bold">&#34;1&#34;</span>);
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    .after(() =&gt; {
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#0ff;font-weight:bold">&#34;3&#34;</span>);
+</span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>newFunc(); <span style="color:#007f7f">// 1 2 3
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -683,15 +683,15 @@ padding: .5em .5em 0;" open>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007f7f">// 通用的柯里化
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">var</span> currying = <span style="color:#fff;font-weight:bold">function</span> (fn) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">var</span> args = [];
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (arguments.length == <span style="color:#ff0;font-weight:bold">0</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span> fn.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
-</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">Array</span>.prototype.push.apply(args, arguments);
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span> arguments.callee;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">var</span> args = [];
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (arguments.length == <span style="color:#ff0;font-weight:bold">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> fn.apply(<span style="color:#fff;font-weight:bold">this</span>, args);
+</span></span><span style="display:flex;"><span>        } <span style="color:#fff;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">Array</span>.prototype.push.apply(args, arguments);
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> arguments.callee;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -728,25 +728,25 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">Function</span>.prototype.myCall = <span style="color:#fff;font-weight:bold">function</span> (context, ...args) {
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// xxx.myCall()  this就是这里的xxx   myApply和myBind中的this同理
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  context.func = <span style="color:#fff;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>  context.func(...args);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">delete</span> context.func;
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// xxx.myCall()  this就是这里的xxx   myApply和myBind中的this同理
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    context.func = <span style="color:#fff;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>    context.func(...args);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">delete</span> context.func;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">Function</span>.prototype.myBind = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> args = <span style="color:#fff;font-weight:bold">Array</span>.from(arguments);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> t = args.shift();
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> self = <span style="color:#fff;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> self.apply(t, args);
-</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> args = <span style="color:#fff;font-weight:bold">Array</span>.from(arguments);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> t = args.shift();
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> self = <span style="color:#fff;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> self.apply(t, args);
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">Function</span>.prototype.myApply = <span style="color:#fff;font-weight:bold">function</span> (context, args) {
-</span></span><span style="display:flex;"><span>  context.func = <span style="color:#fff;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>  context.func(...args);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">delete</span> context.func;
+</span></span><span style="display:flex;"><span>    context.func = <span style="color:#fff;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>    context.func(...args);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">delete</span> context.func;
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -769,9 +769,9 @@ padding: .5em .5em 0;" open>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007f7f">//这个函数无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">Object</span>.create = <span style="color:#fff;font-weight:bold">function</span> (prototype) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">var</span> cls = <span style="color:#fff;font-weight:bold">function</span> () {};
-</span></span><span style="display:flex;"><span>  cls.prototype = prototype;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> cls();
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">var</span> cls = <span style="color:#fff;font-weight:bold">function</span> () {};
+</span></span><span style="display:flex;"><span>    cls.prototype = prototype;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> cls();
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -799,16 +799,16 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> myNew(...args) {
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 取出 args 数组第一个参数，即目标构造函数
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">const</span> constructor = args.shift();
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 创建一个空对象，且这个空对象继承构造函数的 prototype 属性
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#007f7f">// 即实现 obj.__proto__ = constructor.prototype
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">const</span> obj = <span style="color:#fff;font-weight:bold">Object</span>.create(constructor.prototype);
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 执行构造函数，得到构造函数返回结果
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#007f7f">// 注意这里我们使用 apply，将构造函数内的 this 指向为 obj
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">const</span> result = constructor.apply(obj, args);
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 如果构造函数执行后，返回结果是对象类型，就直接返回，否则返回 obj 对象
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">typeof</span> result === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> &amp;&amp; result != <span style="color:#fff;font-weight:bold">null</span> ? result : obj;
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 取出 args 数组第一个参数，即目标构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">const</span> constructor = args.shift();
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 创建一个空对象，且这个空对象继承构造函数的 prototype 属性
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// 即实现 obj.__proto__ = constructor.prototype
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">const</span> obj = <span style="color:#fff;font-weight:bold">Object</span>.create(constructor.prototype);
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 执行构造函数，得到构造函数返回结果
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// 注意这里我们使用 apply，将构造函数内的 this 指向为 obj
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">const</span> result = constructor.apply(obj, args);
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 如果构造函数执行后，返回结果是对象类型，就直接返回，否则返回 obj 对象
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">typeof</span> result === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> &amp;&amp; result != <span style="color:#fff;font-weight:bold">null</span> ? result : obj;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -878,25 +878,25 @@ padding: .5em .5em 0;" open>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007f7f">// Throttle(事件节流)： 第一个人说了算
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">// fn是我们需要包装的事件回调, interval是时间间隔的阈值
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> throttle(fn, interval) {
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// last为上一次触发回调的时间
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">let</span> last = <span style="color:#ff0;font-weight:bold">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// last为上一次触发回调的时间
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> last = <span style="color:#ff0;font-weight:bold">0</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 将throttle处理结果当作函数返回
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 保留调用时的this上下文
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> context = <span style="color:#fff;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 保留调用时传入的参数
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> args = arguments;
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 记录本次触发回调的时间
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> now = <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Date</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 将throttle处理结果当作函数返回
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 保留调用时的this上下文
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">let</span> context = <span style="color:#fff;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 保留调用时传入的参数
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">let</span> args = arguments;
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 记录本次触发回调的时间
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">let</span> now = <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Date</span>();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">if</span> (now - last &gt;= interval) {
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">// 如果时间间隔大于我们设定的时间间隔阈值，则执行回调
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      last = now;
-</span></span><span style="display:flex;"><span>      fn.apply(context, args);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 判断上次触发的时间和本次触发的时间差是否小于时间间隔的阈值
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">if</span> (now - last &gt;= interval) {
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">// 如果时间间隔大于我们设定的时间间隔阈值，则执行回调
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            last = now;
+</span></span><span style="display:flex;"><span>            fn.apply(context, args);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">// 用throttle来包装scroll的回调
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">const</span> better_scroll = throttle(() =&gt; console.log(<span style="color:#0ff;font-weight:bold">&#34;触发了滚动事件&#34;</span>), <span style="color:#ff0;font-weight:bold">1000</span>);
@@ -905,24 +905,24 @@ padding: .5em .5em 0;" open>
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">// Debounce(事件防抖)： 最后一个人说了算
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">// fn是我们需要包装的事件回调, delay是每次推迟执行的等待时间
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> debounce(fn, delay) {
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 定时器
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">let</span> timer = <span style="color:#fff;font-weight:bold">null</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 定时器
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> timer = <span style="color:#fff;font-weight:bold">null</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 将debounce处理结果当作函数返回
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 保留调用时的this上下文
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> context = <span style="color:#fff;font-weight:bold">this</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 保留调用时传入的参数
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> args = arguments;
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 每次事件被触发时，都去清除之前的旧定时器
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">if</span> (timer) {
-</span></span><span style="display:flex;"><span>      clearTimeout(timer);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 设立新定时器
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    timer = setTimeout(<span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>      fn.apply(context, args);
-</span></span><span style="display:flex;"><span>    }, delay);
-</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 将debounce处理结果当作函数返回
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 保留调用时的this上下文
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">let</span> context = <span style="color:#fff;font-weight:bold">this</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 保留调用时传入的参数
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">let</span> args = arguments;
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 每次事件被触发时，都去清除之前的旧定时器
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">if</span> (timer) {
+</span></span><span style="display:flex;"><span>            clearTimeout(timer);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 设立新定时器
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        timer = setTimeout(<span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>            fn.apply(context, args);
+</span></span><span style="display:flex;"><span>        }, delay);
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">// 用debounce来包装scroll的回调
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">const</span> better_scroll = debounce(() =&gt; console.log(<span style="color:#0ff;font-weight:bold">&#34;触发了滚动事件&#34;</span>), <span style="color:#ff0;font-weight:bold">1000</span>);
@@ -967,22 +967,22 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> getJSON = <span style="color:#fff;font-weight:bold">function</span> (url) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Promise</span>((resolve, reject) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> xhr = XMLHttpRequest
-</span></span><span style="display:flex;"><span>      ? <span style="color:#fff;font-weight:bold">new</span> XMLHttpRequest()
-</span></span><span style="display:flex;"><span>      : <span style="color:#fff;font-weight:bold">new</span> ActiveXObject(<span style="color:#0ff;font-weight:bold">&#34;Mscrosoft.XMLHttp&#34;</span>);
-</span></span><span style="display:flex;"><span>    xhr.open(<span style="color:#0ff;font-weight:bold">&#34;GET&#34;</span>, url, <span style="color:#fff;font-weight:bold">false</span>);
-</span></span><span style="display:flex;"><span>    xhr.setRequestHeader(<span style="color:#0ff;font-weight:bold">&#34;Accept&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;application/json&#34;</span>);
-</span></span><span style="display:flex;"><span>    xhr.onreadystatechange = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">if</span> (xhr.readyState !== <span style="color:#ff0;font-weight:bold">4</span>) <span style="color:#fff;font-weight:bold">return</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">if</span> (xhr.status === <span style="color:#ff0;font-weight:bold">200</span> || xhr.status === <span style="color:#ff0;font-weight:bold">304</span>) {
-</span></span><span style="display:flex;"><span>        resolve(xhr.responseText);
-</span></span><span style="display:flex;"><span>      } <span style="color:#fff;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>        reject(<span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Error</span>(xhr.responseText));
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    };
-</span></span><span style="display:flex;"><span>    xhr.send();
-</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Promise</span>((resolve, reject) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">const</span> xhr = XMLHttpRequest
+</span></span><span style="display:flex;"><span>            ? <span style="color:#fff;font-weight:bold">new</span> XMLHttpRequest()
+</span></span><span style="display:flex;"><span>            : <span style="color:#fff;font-weight:bold">new</span> ActiveXObject(<span style="color:#0ff;font-weight:bold">&#34;Mscrosoft.XMLHttp&#34;</span>);
+</span></span><span style="display:flex;"><span>        xhr.open(<span style="color:#0ff;font-weight:bold">&#34;GET&#34;</span>, url, <span style="color:#fff;font-weight:bold">false</span>);
+</span></span><span style="display:flex;"><span>        xhr.setRequestHeader(<span style="color:#0ff;font-weight:bold">&#34;Accept&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;application/json&#34;</span>);
+</span></span><span style="display:flex;"><span>        xhr.onreadystatechange = <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">if</span> (xhr.readyState !== <span style="color:#ff0;font-weight:bold">4</span>) <span style="color:#fff;font-weight:bold">return</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">if</span> (xhr.status === <span style="color:#ff0;font-weight:bold">200</span> || xhr.status === <span style="color:#ff0;font-weight:bold">304</span>) {
+</span></span><span style="display:flex;"><span>                resolve(xhr.responseText);
+</span></span><span style="display:flex;"><span>            } <span style="color:#fff;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>                reject(<span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Error</span>(xhr.responseText));
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>        xhr.send();
+</span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1001,7 +1001,7 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">String</span>.prototype.trim = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.replace(<span style="color:#0ff;font-weight:bold">/^\s+/</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">/\s+$/</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.replace(<span style="color:#0ff;font-weight:bold">/^\s+/</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">/\s+$/</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>);
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1024,11 +1024,11 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> flat = (arr) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> isDeep = arr.some((item) =&gt; item <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">Array</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (!isDeep) <span style="color:#fff;font-weight:bold">return</span> arr;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> res = <span style="color:#fff;font-weight:bold">Array</span>.prototype.concat.apply([], arr);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> isDeep = arr.some((item) =&gt; item <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">Array</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (!isDeep) <span style="color:#fff;font-weight:bold">return</span> arr;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> res = <span style="color:#fff;font-weight:bold">Array</span>.prototype.concat.apply([], arr);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> flat(res);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> flat(res);
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1048,8 +1048,8 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> unique = (arr) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> set = <span style="color:#fff;font-weight:bold">new</span> Set(arr);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> [...arr];
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> set = <span style="color:#fff;font-weight:bold">new</span> Set(arr);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> [...arr];
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1082,21 +1082,21 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> mySetInterval = (fn, delay) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> timer = <span style="color:#fff;font-weight:bold">null</span>,
-</span></span><span style="display:flex;"><span>    isClear = <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">function</span> loop() {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (isClear) {
-</span></span><span style="display:flex;"><span>      isClear = <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>      clearTimeout(timer);
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> timer = <span style="color:#fff;font-weight:bold">null</span>,
+</span></span><span style="display:flex;"><span>        isClear = <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">function</span> loop() {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (isClear) {
+</span></span><span style="display:flex;"><span>            isClear = <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>            clearTimeout(timer);
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        fn();
+</span></span><span style="display:flex;"><span>        timer = setTimeout(loop, delay);
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    fn();
 </span></span><span style="display:flex;"><span>    timer = setTimeout(loop, delay);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  timer = setTimeout(loop, delay);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> () =&gt; {
-</span></span><span style="display:flex;"><span>    isClear = <span style="color:#fff;font-weight:bold">true</span>;
-</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> () =&gt; {
+</span></span><span style="display:flex;"><span>        isClear = <span style="color:#fff;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>    };
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1122,14 +1122,14 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> isArrayLikeObject = (arr) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> arr !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> || arr === <span style="color:#fff;font-weight:bold">null</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> lengthMaxVal = <span style="color:#fff;font-weight:bold">Math</span>.pow(<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">53</span>) - <span style="color:#ff0;font-weight:bold">1</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (!<span style="color:#fff;font-weight:bold">Object</span>.prototype.hasOwnProperty.call(arr, <span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>)) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> arr.length !== <span style="color:#0ff;font-weight:bold">&#34;number&#34;</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (!<span style="color:#fff;font-weight:bold">isFinite</span>(arr.length)) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">Array</span> !== arr.constructor) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (arr.length &gt; <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; arr.length &lt; lengthMaxVal) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> arr !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span> || arr === <span style="color:#fff;font-weight:bold">null</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> lengthMaxVal = <span style="color:#fff;font-weight:bold">Math</span>.pow(<span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">53</span>) - <span style="color:#ff0;font-weight:bold">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (!<span style="color:#fff;font-weight:bold">Object</span>.prototype.hasOwnProperty.call(arr, <span style="color:#0ff;font-weight:bold">&#34;length&#34;</span>)) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> arr.length !== <span style="color:#0ff;font-weight:bold">&#34;number&#34;</span>) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (!<span style="color:#fff;font-weight:bold">isFinite</span>(arr.length)) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">Array</span> !== arr.constructor) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (arr.length &gt; <span style="color:#ff0;font-weight:bold">0</span> &amp;&amp; arr.length &lt; lengthMaxVal) <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">false</span>;
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1150,9 +1150,9 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">const</span> query = (name) =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> search = location.search;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> params = <span style="color:#fff;font-weight:bold">new</span> URLSearchParams(search);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> params.get(name);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> search = location.search;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> params = <span style="color:#fff;font-weight:bold">new</span> URLSearchParams(search);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> params.get(name);
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1177,13 +1177,13 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> queryToObject() {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> res = {};
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> search = location.search;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">const</span> pList = <span style="color:#fff;font-weight:bold">new</span> URLSearchParams(search);
-</span></span><span style="display:flex;"><span>  pList.forEach((key, val) =&gt; {
-</span></span><span style="display:flex;"><span>    res[key] = val;
-</span></span><span style="display:flex;"><span>  });
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> res;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> res = {};
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> search = location.search;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> pList = <span style="color:#fff;font-weight:bold">new</span> URLSearchParams(search);
+</span></span><span style="display:flex;"><span>    pList.forEach((key, val) =&gt; {
+</span></span><span style="display:flex;"><span>        res[key] = val;
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> res;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1289,68 +1289,72 @@ padding: .5em .5em 0;" open>
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">59
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">60
 </span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">61
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">62
+</span><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">63
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> jsonStringify(data) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> type = <span style="color:#fff;font-weight:bold">typeof</span> data;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> type = <span style="color:#fff;font-weight:bold">typeof</span> data;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (type !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> result = data;
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">//data 可能是基础数据类型的情况在这里处理
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">Number</span>.<span style="color:#fff;font-weight:bold">isNaN</span>(data) || data === <span style="color:#fff;font-weight:bold">Infinity</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">//NaN 和 Infinity 序列化返回 &#34;null&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      result = <span style="color:#0ff;font-weight:bold">&#34;null&#34;</span>;
-</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (
-</span></span><span style="display:flex;"><span>      type === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span> ||
-</span></span><span style="display:flex;"><span>      type === <span style="color:#0ff;font-weight:bold">&#34;undefined&#34;</span> ||
-</span></span><span style="display:flex;"><span>      type === <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>
-</span></span><span style="display:flex;"><span>    ) {
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">// 由于 function 序列化返回 undefined，因此和 undefined、symbol 一起处理
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">undefined</span>;
-</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (type === <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>) {
-</span></span><span style="display:flex;"><span>      result = <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span> + data + <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">String</span>(result);
-</span></span><span style="display:flex;"><span>  } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (type === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (data === <span style="color:#fff;font-weight:bold">null</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#34;null&#34;</span>;
-</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (data.toJSON &amp;&amp; <span style="color:#fff;font-weight:bold">typeof</span> data.toJSON === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span> jsonStringify(data.toJSON());
-</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (data <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">Array</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">let</span> result = [];
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">//如果是数组，那么数组里面的每一项类型又有可能是多样的
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      data.forEach((item, index) =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (
-</span></span><span style="display:flex;"><span>          <span style="color:#fff;font-weight:bold">typeof</span> item === <span style="color:#0ff;font-weight:bold">&#34;undefined&#34;</span> ||
-</span></span><span style="display:flex;"><span>          <span style="color:#fff;font-weight:bold">typeof</span> item === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span> ||
-</span></span><span style="display:flex;"><span>          <span style="color:#fff;font-weight:bold">typeof</span> item === <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (type !== <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">let</span> result = data;
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">//data 可能是基础数据类型的情况在这里处理
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">Number</span>.<span style="color:#fff;font-weight:bold">isNaN</span>(data) || data === <span style="color:#fff;font-weight:bold">Infinity</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">//NaN 和 Infinity 序列化返回 &#34;null&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            result = <span style="color:#0ff;font-weight:bold">&#34;null&#34;</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (
+</span></span><span style="display:flex;"><span>            type === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span> ||
+</span></span><span style="display:flex;"><span>            type === <span style="color:#0ff;font-weight:bold">&#34;undefined&#34;</span> ||
+</span></span><span style="display:flex;"><span>            type === <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>
 </span></span><span style="display:flex;"><span>        ) {
-</span></span><span style="display:flex;"><span>          result[index] = <span style="color:#0ff;font-weight:bold">&#34;null&#34;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">// 由于 function 序列化返回 undefined，因此和 undefined、symbol 一起处理
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">undefined</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (type === <span style="color:#0ff;font-weight:bold">&#34;string&#34;</span>) {
+</span></span><span style="display:flex;"><span>            result = <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span> + data + <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">String</span>(result);
+</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (type === <span style="color:#0ff;font-weight:bold">&#34;object&#34;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (data === <span style="color:#fff;font-weight:bold">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#34;null&#34;</span>;
+</span></span><span style="display:flex;"><span>        } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (data.toJSON &amp;&amp; <span style="color:#fff;font-weight:bold">typeof</span> data.toJSON === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> jsonStringify(data.toJSON());
+</span></span><span style="display:flex;"><span>        } <span style="color:#fff;font-weight:bold">else</span> <span style="color:#fff;font-weight:bold">if</span> (data <span style="color:#fff;font-weight:bold">instanceof</span> <span style="color:#fff;font-weight:bold">Array</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">let</span> result = [];
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">//如果是数组，那么数组里面的每一项类型又有可能是多样的
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            data.forEach((item, index) =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">if</span> (
+</span></span><span style="display:flex;"><span>                    <span style="color:#fff;font-weight:bold">typeof</span> item === <span style="color:#0ff;font-weight:bold">&#34;undefined&#34;</span> ||
+</span></span><span style="display:flex;"><span>                    <span style="color:#fff;font-weight:bold">typeof</span> item === <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span> ||
+</span></span><span style="display:flex;"><span>                    <span style="color:#fff;font-weight:bold">typeof</span> item === <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>
+</span></span><span style="display:flex;"><span>                ) {
+</span></span><span style="display:flex;"><span>                    result[index] = <span style="color:#0ff;font-weight:bold">&#34;null&#34;</span>;
+</span></span><span style="display:flex;"><span>                } <span style="color:#fff;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>                    result[index] = jsonStringify(item);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>            result = <span style="color:#0ff;font-weight:bold">&#34;[&#34;</span> + result + <span style="color:#0ff;font-weight:bold">&#34;]&#34;</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> result.replace(<span style="color:#0ff;font-weight:bold">/&#39;/g</span>, <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span>);
 </span></span><span style="display:flex;"><span>        } <span style="color:#fff;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>          result[index] = jsonStringify(item);
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">// 处理普通对象
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">let</span> result = [];
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">Object</span>.keys(data).forEach((item, index) =&gt; {
+</span></span><span style="display:flex;"><span>                <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> item !== <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#007f7f">//key 如果是 symbol 对象，忽略
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                    <span style="color:#fff;font-weight:bold">if</span> (
+</span></span><span style="display:flex;"><span>                        data[item] !== <span style="color:#fff;font-weight:bold">undefined</span> &amp;&amp;
+</span></span><span style="display:flex;"><span>                        <span style="color:#fff;font-weight:bold">typeof</span> data[item] !== <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span> &amp;&amp;
+</span></span><span style="display:flex;"><span>                        <span style="color:#fff;font-weight:bold">typeof</span> data[item] !== <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>
+</span></span><span style="display:flex;"><span>                    ) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#007f7f">//键值如果是 undefined、function、symbol 为属性值，忽略
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                        result.push(
+</span></span><span style="display:flex;"><span>                            <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span> + item + <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span> + <span style="color:#0ff;font-weight:bold">&#34;:&#34;</span> + jsonStringify(data[item])
+</span></span><span style="display:flex;"><span>                        );
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> (<span style="color:#0ff;font-weight:bold">&#34;{&#34;</span> + result + <span style="color:#0ff;font-weight:bold">&#34;}&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">/&#39;/g</span>, <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span>);
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      });
-</span></span><span style="display:flex;"><span>      result = <span style="color:#0ff;font-weight:bold">&#34;[&#34;</span> + result + <span style="color:#0ff;font-weight:bold">&#34;]&#34;</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span> result.replace(<span style="color:#0ff;font-weight:bold">/&#39;/g</span>, <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span>);
-</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">// 处理普通对象
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      <span style="color:#fff;font-weight:bold">let</span> result = [];
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">Object</span>.keys(data).forEach((item, index) =&gt; {
-</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">typeof</span> item !== <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>) {
-</span></span><span style="display:flex;"><span>          <span style="color:#007f7f">//key 如果是 symbol 对象，忽略
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>          <span style="color:#fff;font-weight:bold">if</span> (
-</span></span><span style="display:flex;"><span>            data[item] !== <span style="color:#fff;font-weight:bold">undefined</span> &amp;&amp;
-</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">typeof</span> data[item] !== <span style="color:#0ff;font-weight:bold">&#34;function&#34;</span> &amp;&amp;
-</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">typeof</span> data[item] !== <span style="color:#0ff;font-weight:bold">&#34;symbol&#34;</span>
-</span></span><span style="display:flex;"><span>          ) {
-</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">//键值如果是 undefined、function、symbol 为属性值，忽略
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            result.push(<span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span> + item + <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span> + <span style="color:#0ff;font-weight:bold">&#34;:&#34;</span> + jsonStringify(data[item]));
-</span></span><span style="display:flex;"><span>          }
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      });
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span> (<span style="color:#0ff;font-weight:bold">&#34;{&#34;</span> + result + <span style="color:#0ff;font-weight:bold">&#34;}&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">/&#39;/g</span>, <span style="color:#0ff;font-weight:bold">&#39;&#34;&#39;</span>);
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1397,15 +1401,15 @@ padding: .5em .5em 0;" open>
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">Promise</span>.race = <span style="color:#fff;font-weight:bold">function</span> (arr) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Promise</span>(<span style="color:#fff;font-weight:bold">function</span> (resolve, reject) {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (!<span style="color:#fff;font-weight:bold">Array</span>.isArray(arr)) {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">return</span> reject(<span style="color:#fff;font-weight:bold">new</span> TypeError(<span style="color:#0ff;font-weight:bold">&#34;Promise.race accepts an array&#34;</span>));
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Promise</span>(<span style="color:#fff;font-weight:bold">function</span> (resolve, reject) {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">if</span> (!<span style="color:#fff;font-weight:bold">Array</span>.isArray(arr)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">return</span> reject(<span style="color:#fff;font-weight:bold">new</span> TypeError(<span style="color:#0ff;font-weight:bold">&#34;Promise.race accepts an array&#34;</span>));
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">var</span> i = <span style="color:#ff0;font-weight:bold">0</span>, len = arr.length; i &lt; len; i++) {
-</span></span><span style="display:flex;"><span>      <span style="color:#fff;font-weight:bold">Promise</span>.resolve(arr[i]).then(resolve, reject);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">var</span> i = <span style="color:#ff0;font-weight:bold">0</span>, len = arr.length; i &lt; len; i++) {
+</span></span><span style="display:flex;"><span>            <span style="color:#fff;font-weight:bold">Promise</span>.resolve(arr[i]).then(resolve, reject);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1457,37 +1461,37 @@ padding: .5em .5em 0;" open>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007f7f">// 输入不仅仅只有Array
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> promiseAll(args) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Promise</span>((resolve, reject) =&gt; {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">const</span> promiseResults = [];
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> iteratorIndex = <span style="color:#ff0;font-weight:bold">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 已完成的数量，用于最终的返回，不能直接用完成数量作为iteratorIndex
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#007f7f">// 输出顺序和完成顺序是两码事
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> fullCount = <span style="color:#ff0;font-weight:bold">0</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 用于迭代iterator数据
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">const</span> item <span style="color:#fff;font-weight:bold">of</span> args) {
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">// for of 遍历顺序，用于返回正确顺序的结果
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      <span style="color:#007f7f">// 因iterator用forEach遍历后的key和value一样，所以必须存一份for of的 iteratorIndex
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      <span style="color:#fff;font-weight:bold">let</span> resultIndex = iteratorIndex;
-</span></span><span style="display:flex;"><span>      iteratorIndex += <span style="color:#ff0;font-weight:bold">1</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">// 包一层，以兼容非promise的情况
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      <span style="color:#fff;font-weight:bold">Promise</span>.resolve(item)
-</span></span><span style="display:flex;"><span>        .then((res) =&gt; {
-</span></span><span style="display:flex;"><span>          promiseResults[resultIndex] = res;
-</span></span><span style="display:flex;"><span>          fullCount += <span style="color:#ff0;font-weight:bold">1</span>;
-</span></span><span style="display:flex;"><span>          <span style="color:#007f7f">// Iterator 接口的数据无法单纯的用length和size判断长度，不能局限于Array和 Map类型中
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>          <span style="color:#fff;font-weight:bold">if</span> (fullCount === iteratorIndex) {
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">new</span> <span style="color:#fff;font-weight:bold">Promise</span>((resolve, reject) =&gt; {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">const</span> promiseResults = [];
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">let</span> iteratorIndex = <span style="color:#ff0;font-weight:bold">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 已完成的数量，用于最终的返回，不能直接用完成数量作为iteratorIndex
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#007f7f">// 输出顺序和完成顺序是两码事
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">let</span> fullCount = <span style="color:#ff0;font-weight:bold">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 用于迭代iterator数据
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">for</span> (<span style="color:#fff;font-weight:bold">const</span> item <span style="color:#fff;font-weight:bold">of</span> args) {
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">// for of 遍历顺序，用于返回正确顺序的结果
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            <span style="color:#007f7f">// 因iterator用forEach遍历后的key和value一样，所以必须存一份for of的 iteratorIndex
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">let</span> resultIndex = iteratorIndex;
+</span></span><span style="display:flex;"><span>            iteratorIndex += <span style="color:#ff0;font-weight:bold">1</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">// 包一层，以兼容非promise的情况
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">Promise</span>.resolve(item)
+</span></span><span style="display:flex;"><span>                .then((res) =&gt; {
+</span></span><span style="display:flex;"><span>                    promiseResults[resultIndex] = res;
+</span></span><span style="display:flex;"><span>                    fullCount += <span style="color:#ff0;font-weight:bold">1</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#007f7f">// Iterator 接口的数据无法单纯的用length和size判断长度，不能局限于Array和 Map类型中
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>                    <span style="color:#fff;font-weight:bold">if</span> (fullCount === iteratorIndex) {
+</span></span><span style="display:flex;"><span>                        resolve(promiseResults);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>                .<span style="color:#fff;font-weight:bold">catch</span>((err) =&gt; {
+</span></span><span style="display:flex;"><span>                    reject(err);
+</span></span><span style="display:flex;"><span>                });
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 处理空 iterator 的情况
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        <span style="color:#fff;font-weight:bold">if</span> (iteratorIndex === <span style="color:#ff0;font-weight:bold">0</span>) {
 </span></span><span style="display:flex;"><span>            resolve(promiseResults);
-</span></span><span style="display:flex;"><span>          }
-</span></span><span style="display:flex;"><span>        })
-</span></span><span style="display:flex;"><span>        .<span style="color:#fff;font-weight:bold">catch</span>((err) =&gt; {
-</span></span><span style="display:flex;"><span>          reject(err);
-</span></span><span style="display:flex;"><span>        });
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 处理空 iterator 的情况
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">if</span> (iteratorIndex === <span style="color:#ff0;font-weight:bold">0</span>) {
-</span></span><span style="display:flex;"><span>      resolve(promiseResults);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">if</span> (!<span style="color:#fff;font-weight:bold">Promise</span>.all) <span style="color:#fff;font-weight:bold">Promise</span>.all = promiseAll;
 </span></span></code></pre></td></tr></table>
@@ -1560,22 +1564,22 @@ padding: .5em .5em 0;" open>
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"> **/</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> get(object, path, defaultVal = <span style="color:#0ff;font-weight:bold">&#34;undefined&#34;</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 先将path处理成统一格式
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">let</span> newPath = [];
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">Array</span>.isArray(path)) {
-</span></span><span style="display:flex;"><span>    newPath = path;
-</span></span><span style="display:flex;"><span>  } <span style="color:#fff;font-weight:bold">else</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 先将字符串中的&#39;[&#39;、&#39;]&#39;去除替换为&#39;.&#39;，split分割成数组形式
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    newPath = path.replace(<span style="color:#0ff;font-weight:bold">/\[/g</span>, <span style="color:#0ff;font-weight:bold">&#34;.&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">/\]/g</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>).split(<span style="color:#0ff;font-weight:bold">&#34;.&#34;</span>);
-</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 先将path处理成统一格式
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">let</span> newPath = [];
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">Array</span>.isArray(path)) {
+</span></span><span style="display:flex;"><span>        newPath = path;
+</span></span><span style="display:flex;"><span>    } <span style="color:#fff;font-weight:bold">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#007f7f">// 先将字符串中的&#39;[&#39;、&#39;]&#39;去除替换为&#39;.&#39;，split分割成数组形式
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>        newPath = path.replace(<span style="color:#0ff;font-weight:bold">/\[/g</span>, <span style="color:#0ff;font-weight:bold">&#34;.&#34;</span>).replace(<span style="color:#0ff;font-weight:bold">/\]/g</span>, <span style="color:#0ff;font-weight:bold">&#34;&#34;</span>).split(<span style="color:#0ff;font-weight:bold">&#34;.&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 递归处理，返回最后结果
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  <span style="color:#fff;font-weight:bold">return</span> (
-</span></span><span style="display:flex;"><span>    newPath.reduce((o, k) =&gt; {
-</span></span><span style="display:flex;"><span>      <span style="color:#007f7f">// console.log(o, k); // 此处o初始值为下边传入的 object，后续值为每次取的内部值
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>      <span style="color:#fff;font-weight:bold">return</span> (o || {})[k];
-</span></span><span style="display:flex;"><span>    }, object) || defaultVal
-</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 递归处理，返回最后结果
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    <span style="color:#fff;font-weight:bold">return</span> (
+</span></span><span style="display:flex;"><span>        newPath.reduce((o, k) =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#007f7f">// console.log(o, k); // 此处o初始值为下边传入的 object，后续值为每次取的内部值
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>            <span style="color:#fff;font-weight:bold">return</span> (o || {})[k];
+</span></span><span style="display:flex;"><span>        }, object) || defaultVal
+</span></span><span style="display:flex;"><span>    );
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1724,25 +1728,25 @@ padding: .5em .5em 0;" open>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#007f7f">//原型链继承
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：Parent1和Child1创建的两个实例使用的是同一个原型对象，它们的内存空间是共享的，当一个发生变化的时候，另外一个也随之进行了变化
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> Parent1() {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent1&#34;</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent1&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child1() {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child2&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child2&#34;</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>Child1.prototype = <span style="color:#fff;font-weight:bold">new</span> Parent1();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">//构造函数继承（借助 call）
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：父类原型对象中一旦存在父类之前自己定义的方法，那么子类将无法继承这些方法
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> Parent2() {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent1&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent1&#34;</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>Parent2.prototype.getName = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child2() {
-</span></span><span style="display:flex;"><span>  Parent2.call(<span style="color:#fff;font-weight:bold">this</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child1&#34;</span>;
+</span></span><span style="display:flex;"><span>    Parent2.call(<span style="color:#fff;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child1&#34;</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> child = <span style="color:#fff;font-weight:bold">new</span> Child2();
 </span></span><span style="display:flex;"><span>console.log(child); <span style="color:#007f7f">// 没问题
@@ -1751,17 +1755,17 @@ padding: .5em .5em 0;" open>
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">//组合继承（前两种组合）
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：Parent3 执行了两次
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> Parent3() {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent3&#34;</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent3&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Parent3.prototype.getName = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child3() {
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// ② 第二次调用 Parent3()
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  Parent3.call(<span style="color:#fff;font-weight:bold">this</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child3&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// ② 第二次调用 Parent3()
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    Parent3.call(<span style="color:#fff;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.type = <span style="color:#0ff;font-weight:bold">&#34;child3&#34;</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">// ① 第一次调用 Parent3()
@@ -1778,11 +1782,11 @@ padding: .5em .5em 0;" open>
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">//原型式继承
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//缺点：多个实例的引用类型属性指向相同的内存，存在篡改的可能
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">let</span> parent4 = {
-</span></span><span style="display:flex;"><span>  name: <span style="color:#0ff;font-weight:bold">&#34;parent4&#34;</span>,
-</span></span><span style="display:flex;"><span>  friends: [<span style="color:#0ff;font-weight:bold">&#34;p1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p3&#34;</span>],
-</span></span><span style="display:flex;"><span>  getName: <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
-</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>    name: <span style="color:#0ff;font-weight:bold">&#34;parent4&#34;</span>,
+</span></span><span style="display:flex;"><span>    friends: [<span style="color:#0ff;font-weight:bold">&#34;p1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p3&#34;</span>],
+</span></span><span style="display:flex;"><span>    getName: <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> person4 = <span style="color:#fff;font-weight:bold">Object</span>.create(parent4);
@@ -1802,19 +1806,19 @@ padding: .5em .5em 0;" open>
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">//寄生式继承
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//优缺点和原型式继承一样，但是对于普通对象的继承方式来说，寄生式继承相比于原型式继承，还是在父类基础上添加了更多的方法。
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">let</span> parent5 = {
-</span></span><span style="display:flex;"><span>  name: <span style="color:#0ff;font-weight:bold">&#34;parent5&#34;</span>,
-</span></span><span style="display:flex;"><span>  friends: [<span style="color:#0ff;font-weight:bold">&#34;p1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p3&#34;</span>],
-</span></span><span style="display:flex;"><span>  getName: <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
-</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>    name: <span style="color:#0ff;font-weight:bold">&#34;parent5&#34;</span>,
+</span></span><span style="display:flex;"><span>    friends: [<span style="color:#0ff;font-weight:bold">&#34;p1&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p2&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;p3&#34;</span>],
+</span></span><span style="display:flex;"><span>    getName: <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> clone(original) {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">let</span> clone = <span style="color:#fff;font-weight:bold">Object</span>.create(original);
-</span></span><span style="display:flex;"><span>  clone.getFriends = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.friends;
-</span></span><span style="display:flex;"><span>  };
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> clone;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">let</span> clone = <span style="color:#fff;font-weight:bold">Object</span>.create(original);
+</span></span><span style="display:flex;"><span>    clone.getFriends = <span style="color:#fff;font-weight:bold">function</span> () {
+</span></span><span style="display:flex;"><span>        <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.friends;
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> clone;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> person5 = clone(parent5);
@@ -1825,27 +1829,27 @@ padding: .5em .5em 0;" open>
 </span></span><span style="display:flex;"><span><span style="color:#007f7f">//寄生组合式继承
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f">//extends原理
 </span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">function</span> clone(parent, child) {
-</span></span><span style="display:flex;"><span>  <span style="color:#007f7f">// 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程
-</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>  child.prototype = <span style="color:#fff;font-weight:bold">Object</span>.create(parent.prototype);
-</span></span><span style="display:flex;"><span>  child.prototype.constructor = child;
+</span></span><span style="display:flex;"><span>    <span style="color:#007f7f">// 这里改用 Object.create 就可以减少组合继承中多进行一次构造的过程
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>    child.prototype = <span style="color:#fff;font-weight:bold">Object</span>.create(parent.prototype);
+</span></span><span style="display:flex;"><span>    child.prototype.constructor = child;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Parent6() {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent6&#34;</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.name = <span style="color:#0ff;font-weight:bold">&#34;parent6&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.play = [<span style="color:#ff0;font-weight:bold">1</span>, <span style="color:#ff0;font-weight:bold">2</span>, <span style="color:#ff0;font-weight:bold">3</span>];
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>Parent6.prototype.getName = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.name;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">function</span> Child6() {
-</span></span><span style="display:flex;"><span>  Parent6.call(<span style="color:#fff;font-weight:bold">this</span>);
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">this</span>.friends = <span style="color:#0ff;font-weight:bold">&#34;child5&#34;</span>;
+</span></span><span style="display:flex;"><span>    Parent6.call(<span style="color:#fff;font-weight:bold">this</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">this</span>.friends = <span style="color:#0ff;font-weight:bold">&#34;child5&#34;</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>clone(Parent6, Child6);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Child6.prototype.getFriends = <span style="color:#fff;font-weight:bold">function</span> () {
-</span></span><span style="display:flex;"><span>  <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.friends;
+</span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">this</span>.friends;
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">let</span> person6 = <span style="color:#fff;font-weight:bold">new</span> Child6();
@@ -1940,7 +1944,7 @@ padding: .5em .5em 0;" open>
     </main>
     
 <footer class="footer">
-    <span>&copy; 2022 <a href="https://zzydev.top">人类低质量男性求职准备</a></span>
+    <span>&copy; 2023 <a href="https://zzydev.top">人类低质量男性求职准备</a></span>
     
         
         

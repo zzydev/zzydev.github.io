@@ -1,8 +1,9 @@
 ---
 title: React
 hidemeta: true
+weight: 4
 cover:
-  image: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/react.png"
+    image: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/react.png"
 ---
 
 React⚛️ 学习笔记 📒，和《深入浅出搞定 React》《React 技术揭秘》是同样类型的替身<sup>[1]</sup>🧞‍♂️ 呢

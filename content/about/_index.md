@@ -15,10 +15,10 @@ layout: about
 <li> 应聘岗位：前端工程师 👨‍💻 </li>
 <li> 建议零售价: <span class="heimu" title="不甜不要钱🍉">面议</span> 💲</li>
 <li> 求职状态: 待业-随时到岗 💨</li>
-<li> base: [深圳、广州、杭州、上海]🌆</li>
-<li> 兴趣: [羽毛球 🏸,打电动🕹️]</li>
+<li> base: [上海、深圳、广州、杭州]🌆</li>
+<li> 兴趣: [羽毛球 🏸 听音乐 🎵]</li>
 </ul>
 </div>
 
 {{<bilibili BV1t5411S7RQ>}}
-座右铭：<strike class="heimu" title="节选自酒馆战棋yygq的勃勃的经典语录🍺">不选大的怎么能赢</strike>瓦多矮知瓦胶地，明明住系凹过 theshy。当瓦接受瓦系柴浪紫件事，霞瓦住个街市腊无个。
+座右铭：瓦多矮知瓦胶地，明明住系凹过 theshy。当瓦接受瓦系柴浪紫件事，霞瓦住个街市腊无个。

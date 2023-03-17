@@ -6,25 +6,7 @@
     <description>Recent content in react on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 10 Jul 2022 13:49:54 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/react/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>React东方甄选</title>
-      <link>https://zzydev.top/posts/headfirstreact/react%E4%B8%9C%E6%96%B9%E7%94%84%E9%80%89/</link>
-      <pubDate>Sun, 10 Jul 2022 13:49:54 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/headfirstreact/react%E4%B8%9C%E6%96%B9%E7%94%84%E9%80%89/</guid>
-      <description>React 技术揭秘 Thinking in Effects 搞懂这 12 个 Hooks，保证让你玩转 React</description>
-    </item>
-    
-    <item>
-      <title>10.ReactDom.render的渲染链路(上)</title>
-      <link>https://zzydev.top/posts/headfirstreact/10_reactdom.render%E7%9A%84%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%B8%8A/</link>
-      <pubDate>Thu, 09 Jun 2022 03:59:38 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/headfirstreact/10_reactdom.render%E7%9A%84%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%B8%8A/</guid>
-      <description>ReactDOM.render 调用栈的逻辑分层 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 import React from &amp;#34;react&amp;#34;; import ReactDOM from &amp;#34;react-dom&amp;#34;; function App() { return ( &amp;lt;div className=&amp;#34;App&amp;#34;&amp;gt; &amp;lt;div className=&amp;#34;container&amp;#34;&amp;gt; &amp;lt;h1&amp;gt;我是标题&amp;lt;/h1&amp;gt; &amp;l</description>
-    </item>
-    
+    <lastBuildDate>Mon, 06 Jun 2022 19:15:48 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/react/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>9.如何理解Fiber架构的迭代动机与设计思想</title>
       <link>https://zzydev.top/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
