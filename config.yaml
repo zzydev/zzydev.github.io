@@ -131,21 +131,8 @@ params:
     socialIcons:
         - name: github
           url: "https://github.com/zzydev"
-        - name: twitter
-          url: "https://twitter.com/mojito_none"
-        - name: facebook
-          url: "https://www.facebook.com/profile.php?id=100081491275892"
-        - name: instagram
-          url: "https://www.instagram.com/zzy_dev/"
-        - name: QQ
-          url: "http://tool.gljlw.com/qq/?qq=1024738521"
-
-        - name: bilibili
-          url: "https://space.bilibili.com/429451958?spm_id_from=333.1007.0.0"
         - name: email
           url: "mailto:4amzzydev@gmail.com"
-        - name: RSS
-          url: "index.xml"
 
     # editPost:
     #     URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
