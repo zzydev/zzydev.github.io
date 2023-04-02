@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>FE-Travel on 人类低质量男性求职准备</title>
+    <title>前端工程化 on 人类低质量男性求职准备</title>
     <link>https://zzydev.top/posts/frontendengineering/</link>
-    <description>Recent content in FE-Travel on 人类低质量男性求职准备</description>
+    <description>Recent content in 前端工程化 on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Jun 2022 22:10:58 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/frontendengineering/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 00:09:46 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/frontendengineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vite初探</title>
+      <link>https://zzydev.top/posts/frontendengineering/vite%E5%88%9D%E6%8E%A2/</link>
+      <pubDate>Thu, 23 Mar 2023 00:09:46 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/frontendengineering/vite%E5%88%9D%E6%8E%A2/</guid>
+      <description>大概是一份不完整的 Vite 备忘录 no-bundle 是什么 no-bundle 理念：利用浏览器原生 ES 模块的支持，实现开发阶段的 Dev Server，进行模块的按需加载，而不是先整体打包再进</description>
+    </item>
+    
+    <item>
+      <title>重学包管理工具</title>
+      <link>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 21 Mar 2023 02:35:47 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
+      <description>我那么多遗憾，那么多 npm，你知道吗？ npm 安装机制 npm 安装流程 npm 配置的优先级 命令行设置 npm 配置 &amp;gt; env 环境变量设置 npm 配置 &amp;gt; 项目级的 .npmrc 文件 &amp;gt; 用户级的 .npmrc 文</description>
+    </item>
+    
+    <item>
+      <title>重学webpack</title>
+      <link>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6webpack/</link>
+      <pubDate>Mon, 20 Mar 2023 10:06:41 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6webpack/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>前端工程化</title>
       <link>https://zzydev.top/posts/frontendengineering/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</link>

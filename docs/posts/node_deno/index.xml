@@ -8,12 +8,12 @@
     <language>zh-cn</language>
     <lastBuildDate>Mon, 20 Jun 2022 14:50:48 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/node_deno/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Node基础API</title>
-      <link>https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80api/</link>
+      <title>Node基础</title>
+      <link>https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Mon, 20 Jun 2022 14:50:48 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80api/</guid>
-      <description>node 基础概念 异步 IO 事件驱动架构 事件驱动实现 - 发布订阅模式 1 2 3 4 5 6 const EventEmitter = require(&amp;#34;events&amp;#34;); const myEvent = new EventEmitter(); myEvent.on(&amp;#34;事件1&amp;#34;, () =&amp;gt; {</description>
+      <guid>https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80/</guid>
+      <description>node 基础概念</description>
     </item>
     
   </channel>

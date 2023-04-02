@@ -1,0 +1,7 @@
+<figure class="align-center">
+  <img
+    src="{{ .Get `src` }}#center"
+    width="{{- if .Get `width` -}} {{ .Get `width` }}{{ else }} 60% {{- end -}}"
+  />
+  <figcaption style="opacity: 60%;font-size: small;">{{ with (.Get "title") -}} {{ . }} {{- end -}}</figcaption>
+</figure>

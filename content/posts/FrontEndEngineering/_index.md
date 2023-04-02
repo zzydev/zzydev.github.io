@@ -1,8 +1,8 @@
 ---
-title: "FE-Travel"
+title: "前端工程化"
 hidemeta: true
 cover:
-  image: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/jest.png"
+    image: "https://zzydev-1255467326.cos.ap-guangzhou.myqcloud.com/other/cover/jest.png"
 ---
 
-前端，我劝你别学
+值了！！！
