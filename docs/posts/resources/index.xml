@@ -6,14 +6,23 @@
     <description>Recent content in 资源推荐 on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 19 Feb 2023 16:10:30 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/resources/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Apr 2023 22:50:10 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/resources/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>必备网站</title>
+      <link>https://zzydev.top/posts/resources/%E5%BF%85%E5%A4%87%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Wed, 05 Apr 2023 22:50:10 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/resources/%E5%BF%85%E5%A4%87%E7%BD%91%E7%AB%99/</guid>
+      <description>tool keycode CSS unocss</description>
+    </item>
+    
     <item>
       <title>学习资源</title>
       <link>https://zzydev.top/posts/resources/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/</link>
       <pubDate>Sun, 19 Feb 2023 16:10:30 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/resources/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/</guid>
-      <description>node 学习资源推荐 node 中英对照文档 深入浅出 Node.js Node.js：来一打 C&amp;#43;&amp;#43; 扩展 趣学 Node 深入剖析 Node.js 底层原理 TS 学习资源 TypeScript 全面进阶指南 type-challenges Typescript React 学习资源 React 设计原理</description>
+      <description>node 学习资源推荐 🌐 node 中英对照文档 📚 深入浅出 Node.js 📚 Node.js：来一打 C&amp;#43;&amp;#43; 扩展 📖 趣学 Node 📖 深入剖析 Node.js 底层原理 TS 学习资源 📖 TypeScript 全面进阶指南 type-challenges Typescript React 学习资源</description>
     </item>
     
   </channel>

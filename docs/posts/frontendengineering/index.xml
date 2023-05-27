@@ -22,16 +22,7 @@
       <pubDate>Tue, 21 Mar 2023 02:35:47 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
-      <description>我那么多遗憾，那么多 npm，你知道吗？ npm 安装机制 npm 安装流程 npm 配置的优先级 命令行设置 npm 配置 &amp;gt; env 环境变量设置 npm 配置 &amp;gt; 项目级的 .npmrc 文件 &amp;gt; 用户级的 .npmrc 文</description>
-    </item>
-    
-    <item>
-      <title>重学webpack</title>
-      <link>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6webpack/</link>
-      <pubDate>Mon, 20 Mar 2023 10:06:41 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6webpack/</guid>
-      <description></description>
+      <description>npm 安装机制 npm 安装流程 npm 配置的优先级 命令行设置 npm 配置 &amp;gt; env 环境变量设置 npm 配置 &amp;gt; 项目级的 .npmrc 文件 &amp;gt; 用户级的 .npmrc 文件&amp;gt; 全局级的 .npmrc 文件 &amp;gt; npm 内置的 .npmrc 文</description>
     </item>
     
     <item>
@@ -40,7 +31,7 @@
       <pubDate>Thu, 30 Jun 2022 22:10:58 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/frontendengineering/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</guid>
-      <description>实现一个前端脚手架</description>
+      <description>实现一个前端脚手架 todo</description>
     </item>
     
     <item>

@@ -6,7 +6,7 @@
     <description>Recent content on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 23 Mar 2023 00:09:46 +0800</lastBuildDate><atom:link href="https://zzydev.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Apr 2023 22:50:10 +0800</lastBuildDate><atom:link href="https://zzydev.top/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TS基础拾遗</title>
       <link>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
@@ -62,6 +62,15 @@
     </item>
     
     <item>
+      <title>必备网站</title>
+      <link>https://zzydev.top/posts/resources/%E5%BF%85%E5%A4%87%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Wed, 05 Apr 2023 22:50:10 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/resources/%E5%BF%85%E5%A4%87%E7%BD%91%E7%AB%99/</guid>
+      <description>tool keycode CSS unocss</description>
+    </item>
+    
+    <item>
       <title>Vite初探</title>
       <link>https://zzydev.top/posts/frontendengineering/vite%E5%88%9D%E6%8E%A2/</link>
       <pubDate>Thu, 23 Mar 2023 00:09:46 +0800</pubDate>
@@ -76,16 +85,7 @@
       <pubDate>Tue, 21 Mar 2023 02:35:47 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
-      <description>我那么多遗憾，那么多 npm，你知道吗？ npm 安装机制 npm 安装流程 npm 配置的优先级 命令行设置 npm 配置 &amp;gt; env 环境变量设置 npm 配置 &amp;gt; 项目级的 .npmrc 文件 &amp;gt; 用户级的 .npmrc 文</description>
-    </item>
-    
-    <item>
-      <title>重学webpack</title>
-      <link>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6webpack/</link>
-      <pubDate>Mon, 20 Mar 2023 10:06:41 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/frontendengineering/%E9%87%8D%E5%AD%A6webpack/</guid>
-      <description></description>
+      <description>npm 安装机制 npm 安装流程 npm 配置的优先级 命令行设置 npm 配置 &amp;gt; env 环境变量设置 npm 配置 &amp;gt; 项目级的 .npmrc 文件 &amp;gt; 用户级的 .npmrc 文件&amp;gt; 全局级的 .npmrc 文件 &amp;gt; npm 内置的 .npmrc 文</description>
     </item>
     
     <item>
@@ -112,16 +112,7 @@
       <pubDate>Sun, 19 Feb 2023 16:10:30 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/resources/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/</guid>
-      <description>node 学习资源推荐 node 中英对照文档 深入浅出 Node.js Node.js：来一打 C&amp;#43;&amp;#43; 扩展 趣学 Node 深入剖析 Node.js 底层原理 TS 学习资源 TypeScript 全面进阶指南 type-challenges Typescript React 学习资源 React 设计原理</description>
-    </item>
-    
-    <item>
-      <title>哥几个又来入门Rust啊</title>
-      <link>https://zzydev.top/posts/headfirstrust/%E5%93%A5%E5%87%A0%E4%B8%AA%E5%8F%88%E6%9D%A5%E5%85%A5%E9%97%A8rust%E5%95%8A/</link>
-      <pubDate>Fri, 08 Jul 2022 11:21:23 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/headfirstrust/%E5%93%A5%E5%87%A0%E4%B8%AA%E5%8F%88%E6%9D%A5%E5%85%A5%E9%97%A8rust%E5%95%8A/</guid>
-      <description></description>
+      <description>node 学习资源推荐 🌐 node 中英对照文档 📚 深入浅出 Node.js 📚 Node.js：来一打 C&amp;#43;&amp;#43; 扩展 📖 趣学 Node 📖 深入剖析 Node.js 底层原理 TS 学习资源 📖 TypeScript 全面进阶指南 type-challenges Typescript React 学习资源</description>
     </item>
     
     <item>
@@ -130,7 +121,7 @@
       <pubDate>Thu, 30 Jun 2022 22:10:58 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/frontendengineering/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</guid>
-      <description>实现一个前端脚手架</description>
+      <description>实现一个前端脚手架 todo</description>
     </item>
     
     <item>
@@ -166,7 +157,7 @@
       <pubDate>Mon, 20 Jun 2022 14:50:48 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/node_deno/node%E5%9F%BA%E7%A1%80/</guid>
-      <description>node 基础概念</description>
+      <description>node 基础概念 todo</description>
     </item>
     
     <item>

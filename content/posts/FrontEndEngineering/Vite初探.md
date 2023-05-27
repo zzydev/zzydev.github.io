@@ -36,10 +36,10 @@ no-bundle 理念：**利用浏览器原生 ES 模块的支持，实现开发阶�
 ### 自动引入 CSS
 
 ```css
-#文件variable.scss
+/*variable.scss*/
 $theme-color: red;
 
-#文件index.scss
+/*index.scss*/
 @import "../../variable";
 
 .header {
@@ -50,7 +50,7 @@ $theme-color: red;
 ```typescript
 // vite.config.ts
 import { normalizePath } from "vite";
-// 如果类型报错，需要安装 @types/node: pnpm i @types/node -D
+// 如果类型报错，需要安装 @types/node
 import path from "path";
 
 // 全局 scss 文件的路径
@@ -148,17 +148,18 @@ export default defineConfig({
 
 ### 原子化 CSS
 
-UnoCSS 接入
-执行`pnpm i windicss vite-plugin-windicss -D`安装 windicss 和对应的 vite 插件
+接入 [Unocss](https://unocss.dev/integrations/vite)
 
 ## Vite 与自动化代码规范工具
 
 ### ESLint
 
 `pnpm i eslint -D`  
-`npx eslint --init`
-ESLint 会帮我们自动生成.eslintrc.js 配置文件。注意在上述初始化流程中我们并没有用 npm 安装依赖，需要进行手动安装:  
-`pnpm i eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest -D`
+`npx eslint --init`  
+ESLint 会帮我们自动生成.eslintrc.js 配置文件。我们选择不直接使用 npm 安装依赖，所以需要自己手动安装:  
+`pnpm i eslint-plugin-react@latest -D`  
+`pnpm i @typescript-eslint/eslint-plugin@latest -D`  
+`pnpm i @typescript-eslint/parser@latest -D`
 
 ```js
 // .eslintrc.js
@@ -231,9 +232,10 @@ module.exports = {
 };
 ```
 
-接下来我们将 Prettier 集成到现有的 ESLint 工具中，首先安装两个工具包:
-`pnpm i eslint-config-prettier eslint-plugin-prettier -D`
-其中 eslint-config-prettier 用来覆盖 ESLint 本身的规则配置，而 eslint-plugin-prettier 则是用于让 Prettier 来接管 eslint --fix 即修复代码的能力。
+接下来我们将 Prettier 集成到现有的 ESLint 工具中，首先安装两个工具包:  
+`pnpm i eslint-config-prettier -D`  
+`pnpm i eslint-plugin-prettier -D`  
+其中 `eslint-config-prettier` 用来覆盖 ESLint 本身的规则配置，而 `eslint-plugin-prettier` 则是用于让 Prettier 来接管 `eslint --fix` 即修复代码的能力。
 
 ```js
 // .eslintrc.js
@@ -258,7 +260,11 @@ VSCode 中安装 ESLint 和 Prettier 这两个插件，并且在设置区中开�
 
 ### 样式规范工具: Stylelint
 
-`pnpm i stylelint stylelint-prettier stylelint-config-prettier stylelint-config-recess-order stylelint-config-standard stylelint-config-standard-scss -D`
+`pnpm i stylelint stylelint-prettier -D`  
+`pnpm i stylelint-config-prettier -D`  
+`pnpm i stylelint-config-recess-order -D`  
+`pnpm i stylelint-config-standard -D`  
+`pnpm i stylelint-config-standard-scss -D`
 
 ```js
 // .stylelintrc.js
@@ -286,3 +292,49 @@ module.exports = {
 ```
 
 ## Husky + lint-staged 的 Git 提交工作流集成
+
+安装依赖： `pnpm i husky -D`  
+初始化 Husky： `npx husky install`
+注册 Husky 的 pre-commit 钩子： `npx husky add .husky/pre-commit "npm run lint"`
+在 package.json 注册 prepare 命令：
+
+```json
+{
+    "prepare": "husky install"
+}
+```
+
+接入 commitlint 进行 commit 信息的检查，安装依赖：
+`pnpm i commitlint @commitlint/cli @commitlint/config-conventional -D`
+
+commitlint 配置:
+
+```shell
+echo "module.exports = {
+  extends: ['@commitlint/config-conventional']
+}" > .commitlintrc.cjs
+```
+
+增加 Husky 的 commit-msg 钩子：`npx husky add .husky/commit-msg "npx --no-install commitlint --edit \"$1\""`  
+现在是全量的进行代码规范检查的，实际上这是没必要的，我们只需要对新增的文件内容进行检查即可。这就需要使用到另外一个工具: `lint-staged` 了。安装依赖:  
+`pnpm i lint-staged -D`
+package.json 中新增一些内容:
+
+```json
+{
+    "lint-staged": {
+        "**/*.{js,jsx,tsx,ts}": ["eslint --fix"]
+    }
+}
+```
+
+在.husky/pre-commit 脚本中，修改一下其中的内容：
+
+```shell
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no -- lint-staged
+```
+
+现在就可以在 git commit 的过程中实现局部的代码风格检查了。
