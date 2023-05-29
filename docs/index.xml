@@ -6,7 +6,7 @@
     <description>Recent content on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 05 Apr 2023 22:50:10 +0800</lastBuildDate><atom:link href="https://zzydev.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 00:09:46 +0800</lastBuildDate><atom:link href="https://zzydev.top/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TS基础拾遗</title>
       <link>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
@@ -62,15 +62,6 @@
     </item>
     
     <item>
-      <title>必备网站</title>
-      <link>https://zzydev.top/posts/resources/%E5%BF%85%E5%A4%87%E7%BD%91%E7%AB%99/</link>
-      <pubDate>Wed, 05 Apr 2023 22:50:10 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/resources/%E5%BF%85%E5%A4%87%E7%BD%91%E7%AB%99/</guid>
-      <description>tool keycode CSS unocss</description>
-    </item>
-    
-    <item>
       <title>Vite初探</title>
       <link>https://zzydev.top/posts/frontendengineering/vite%E5%88%9D%E6%8E%A2/</link>
       <pubDate>Thu, 23 Mar 2023 00:09:46 +0800</pubDate>
@@ -104,15 +95,6 @@
       
       <guid>https://zzydev.top/posts/eight-part-essay/%E6%95%85%E6%84%8F%E4%B8%8D%E5%B0%8F%E5%BF%83%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98_01/</guid>
       <description>// todo 等待面试实战完补上</description>
-    </item>
-    
-    <item>
-      <title>学习资源</title>
-      <link>https://zzydev.top/posts/resources/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/</link>
-      <pubDate>Sun, 19 Feb 2023 16:10:30 +0800</pubDate>
-      
-      <guid>https://zzydev.top/posts/resources/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/</guid>
-      <description>node 学习资源推荐 🌐 node 中英对照文档 📚 深入浅出 Node.js 📚 Node.js：来一打 C&amp;#43;&amp;#43; 扩展 📖 趣学 Node 📖 深入剖析 Node.js 底层原理 TS 学习资源 📖 TypeScript 全面进阶指南 type-challenges Typescript React 学习资源</description>
     </item>
     
     <item>
