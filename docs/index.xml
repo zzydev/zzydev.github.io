@@ -6,7 +6,7 @@
     <description>Recent content on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 23 Mar 2023 00:09:46 +0800</lastBuildDate><atom:link href="https://zzydev.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Jun 2023 04:37:14 +0800</lastBuildDate><atom:link href="https://zzydev.top/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TS基础拾遗</title>
       <link>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
@@ -22,7 +22,7 @@
       <pubDate>Thu, 02 Jun 2022 00:26:27 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/eight-part-essay/%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C/</guid>
-      <description>&amp;nbsp;手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== &amp;#34;object&amp;#34; || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } &amp;nbsp;手写 getType 1 2 3 4</description>
+      <description>&amp;nbsp;手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== &amp;#34;object&amp;#34; || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (proto == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } &amp;nbsp;手写 getType 1 2 3 4</description>
     </item>
     
     <item>
@@ -59,6 +59,15 @@
       
       <guid>https://zzydev.top/posts/eight-part-essay/%E6%88%91%E7%9A%84%E6%8B%B7%E9%9D%A2%E7%BB%8F_2/</guid>
       <description>&amp;nbsp;根据运算优先级添加括号 现已知一个字符串是由正整数和加减乘除四个运算符(+ - * /)组成。 例如存在字符串 const str = &#39;11+2-3*4+5</description>
+    </item>
+    
+    <item>
+      <title>TS设计模式</title>
+      <link>https://zzydev.top/posts/headfirstts/ts%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 29 Jun 2023 04:37:14 +0800</pubDate>
+      
+      <guid>https://zzydev.top/posts/headfirstts/ts%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>工厂模式 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 interface IProduct { name: string; fn1: () =&amp;gt; void; fn2: () =&amp;gt; void; } class Product1 implements IProduct { constructor(public name: string) {} fn1() { console.log(&amp;#34;product1&amp;#34;); } fn2()</description>
     </item>
     
     <item>

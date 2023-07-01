@@ -13,7 +13,7 @@
       <pubDate>Thu, 02 Jun 2022 00:26:27 +0800</pubDate>
       
       <guid>https://zzydev.top/posts/eight-part-essay/%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C/</guid>
-      <description>&amp;nbsp;手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== &amp;#34;object&amp;#34; || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (protp == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } &amp;nbsp;手写 getType 1 2 3 4</description>
+      <description>&amp;nbsp;手写 instanceof 1 2 3 4 5 6 7 8 9 function myInstanceof(Left, Right) { if (typeof Left !== &amp;#34;object&amp;#34; || Left === null) return false; let proto = Object.getPrototypeOf(Left); while (true) { if (proto == null) return false; if (proto == Right.prototype) return true; proto = Object.getPrototypeOf(proto); } } &amp;nbsp;手写 getType 1 2 3 4</description>
     </item>
     
     <item>
