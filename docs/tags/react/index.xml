@@ -2,89 +2,89 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>react on 人类低质量男性求职准备</title>
-    <link>https://zzydev.top/tags/react/</link>
+    <link>https://zzydev.github.io/tags/react/</link>
     <description>Recent content in react on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 06 Jun 2022 19:15:48 +0800</lastBuildDate><atom:link href="https://zzydev.top/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Jun 2022 19:15:48 +0800</lastBuildDate><atom:link href="https://zzydev.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>9.如何理解Fiber架构的迭代动机与设计思想</title>
-      <link>https://zzydev.top/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
       <pubDate>Mon, 06 Jun 2022 19:15:48 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
       <description>前置知识：单线程的 JavaScript 与多线程的浏览器 JavaScript 线程和渲染线程必须是互斥的：这两个线程不能够穿插执行，必须串行。当其中一个线程执行时，另一个线程只能挂</description>
     </item>
     
     <item>
       <title>8.SetState是同步的还是异步的？</title>
-      <link>https://zzydev.top/posts/headfirstreact/8_setstate%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/8_setstate%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/</link>
       <pubDate>Fri, 03 Jun 2022 21:12:17 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/8_setstate%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/8_setstate%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/</guid>
       <description>从一道面试题说起 其他 setState 原理的文章 本文的 online Demo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49</description>
     </item>
     
     <item>
       <title>7.React中的栈调和过程是怎样的？</title>
-      <link>https://zzydev.top/posts/headfirstreact/7_react%E4%B8%AD%E7%9A%84%E6%A0%88%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/7_react%E4%B8%AD%E7%9A%84%E6%A0%88%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/</link>
       <pubDate>Fri, 03 Jun 2022 20:18:38 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/7_react%E4%B8%AD%E7%9A%84%E6%A0%88%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/7_react%E4%B8%AD%E7%9A%84%E6%A0%88%E8%B0%83%E5%92%8C%E8%BF%87%E7%A8%8B%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84/</guid>
       <description>调和（Reconciliation）过程与 Diff 算法 Virtual DOM 是一种编程概念。在这个概念里，UI 以一种理想化的，或者说“虚拟的”表现形式被保存于内存中</description>
     </item>
     
     <item>
       <title>6.React是为了更好的性能选择虚拟DOM吗</title>
-      <link>https://zzydev.top/posts/headfirstreact/6_%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/6_%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/</link>
       <pubDate>Fri, 03 Jun 2022 19:55:46 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/6_%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/6_%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E8%99%9A%E6%8B%9Fdomreact%E9%80%89%E5%AE%83%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%80%A7%E8%83%BD%E5%90%97/</guid>
       <description>React 中的虚拟 DOM 大致是如何工作的? 挂载阶段，React 将结合 JSX 的描述，构建出虚拟 DOM 树，然后通过 ReactDOM.render 实现虚拟 DOM 到真实 DOM 的映射（触发渲染流水线）； 更新</description>
     </item>
     
     <item>
       <title>5.深入React Hooks工作机制,Hooks本质是链表</title>
-      <link>https://zzydev.top/posts/headfirstreact/5_%E6%B7%B1%E5%85%A5react-hooks%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/5_%E6%B7%B1%E5%85%A5react-hooks%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/</link>
       <pubDate>Fri, 03 Jun 2022 17:34:48 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/5_%E6%B7%B1%E5%85%A5react-hooks%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/5_%E6%B7%B1%E5%85%A5react-hooks%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/</guid>
       <description>React 团队面向开发者给出了两条 React-Hooks 的使用原则，原则的内容如下： 只在 React 函数中调用 Hooks； 不要在循环、条件或嵌套函数中调用 Hooks。 原则 2 中强调</description>
     </item>
     
     <item>
       <title>4.React Hooks设计动机与工作模式</title>
-      <link>https://zzydev.top/posts/headfirstreact/4_react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/4_react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Fri, 03 Jun 2022 11:16:41 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/4_react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/4_react-hooks%E8%AE%BE%E8%AE%A1%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/</guid>
       <description>函数组件会捕获 render 内部的状态，这是两类组件最大的不同。 React 框架的主要工作，就是及时地把声明式的代码转换为命令式的 DOM 操作，把数据层面的描述映射到用</description>
     </item>
     
     <item>
       <title>3.数据是如何在React组件之间流动的？</title>
-      <link>https://zzydev.top/posts/headfirstreact/3_%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/3_%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/</link>
       <pubDate>Fri, 03 Jun 2022 10:35:11 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/3_%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/3_%E6%95%B0%E6%8D%AE%E6%98%AF%E5%A6%82%E4%BD%95%E5%9C%A8react%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E6%B5%81%E5%8A%A8%E7%9A%84/</guid>
       <description>React 的核心特征是“数据驱动视图”，即 UI = render(data) 基于 props 的单向数据流 所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更</description>
     </item>
     
     <item>
       <title>2.React生命周期</title>
-      <link>https://zzydev.top/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</link>
       <pubDate>Thu, 02 Jun 2022 17:58:52 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/2_react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</guid>
       <description>React15 的生命周期 Mounting 阶段：组件的初始化渲染 挂载过程在组件的一生中仅会发生一次，在这个过程中，组件被初始化，然后会被渲染到真实 DOM 里，完成“首次渲染”</description>
     </item>
     
     <item>
       <title>1.JSX 是如何变成为 DOM 的</title>
-      <link>https://zzydev.top/posts/headfirstreact/1_jsx%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E4%B8%BAdom%E7%9A%84/</link>
+      <link>https://zzydev.github.io/posts/headfirstreact/1_jsx%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E4%B8%BAdom%E7%9A%84/</link>
       <pubDate>Thu, 02 Jun 2022 17:23:43 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstreact/1_jsx%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E4%B8%BAdom%E7%9A%84/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstreact/1_jsx%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E6%88%90%E4%B8%BAdom%E7%9A%84/</guid>
       <description>JSX 的本质：JavaScript 的语法糖 JSX 会被编译为 React.createElement()， React.createElement() 将返回一个叫作“React Element”的</description>
     </item>
     

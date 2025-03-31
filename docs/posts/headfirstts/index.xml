@@ -2,62 +2,62 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Typescript on 人类低质量男性求职准备</title>
-    <link>https://zzydev.top/posts/headfirstts/</link>
+    <link>https://zzydev.github.io/posts/headfirstts/</link>
     <description>Recent content in Typescript on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 29 Jun 2023 04:37:14 +0800</lastBuildDate><atom:link href="https://zzydev.top/posts/headfirstts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Jun 2023 04:37:14 +0800</lastBuildDate><atom:link href="https://zzydev.github.io/posts/headfirstts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TS基础拾遗</title>
-      <link>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
+      <link>https://zzydev.github.io/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
       <pubDate>Fri, 10 Jun 2022 06:19:56 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</guid>
       <description>本文只记录一些个人觉得比较容易遗忘或需要注意的点，抑或是一些跟本人接触过的其他静态语言不太一样的语法，并不是一份完整的学习教程。 &amp;nbsp;</description>
     </item>
     
     <item>
       <title>TS类型挑战Easy篇</title>
-      <link>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98easy%E7%AF%87/</link>
+      <link>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98easy%E7%AF%87/</link>
       <pubDate>Fri, 24 Jun 2022 00:59:28 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98easy%E7%AF%87/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98easy%E7%AF%87/</guid>
       <description>&amp;nbsp;Pick 💯Take a Challenge 实现 TS 内置的 Pick&amp;lt;T, K&amp;gt;，但不可以使用它。 从类型 T 中选择出属性 K，构造成一个新的类型。 例如： 1 2 3 4 5 6 7 8 9 10 11 12 interface Todo { title:</description>
     </item>
     
     <item>
       <title>TS类型挑战Medium篇</title>
-      <link>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98medium%E7%AF%87/</link>
+      <link>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98medium%E7%AF%87/</link>
       <pubDate>Fri, 24 Jun 2022 00:59:50 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98medium%E7%AF%87/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98medium%E7%AF%87/</guid>
       <description>&amp;nbsp;获取函数返回类型 💯Take a Challenge 不使用 ReturnType 实现 TypeScript 的 ReturnType&amp;lt;T&amp;gt; 泛型。 例如： 1 2 3 4 5 6 const fn = (v: boolean) =&amp;gt; { if (v) return 1; else return 2; }; type a = MyReturnType&amp;lt;typeof fn&amp;gt;; // 应推导出 &amp;#34;1 | 2&amp;#34;</description>
     </item>
     
     <item>
       <title>TS设计模式</title>
-      <link>https://zzydev.top/posts/headfirstts/ts%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://zzydev.github.io/posts/headfirstts/ts%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Thu, 29 Jun 2023 04:37:14 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstts/ts%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstts/ts%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
       <description>工厂模式 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 interface IProduct { name: string; fn1: () =&amp;gt; void; fn2: () =&amp;gt; void; } class Product1 implements IProduct { constructor(public name: string) {} fn1() { console.log(&amp;#34;product1&amp;#34;); } fn2()</description>
     </item>
     
     <item>
       <title>TS类型挑战Extreme篇</title>
-      <link>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98extreme%E7%AF%87/</link>
+      <link>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98extreme%E7%AF%87/</link>
       <pubDate>Fri, 24 Jun 2022 01:00:33 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98extreme%E7%AF%87/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98extreme%E7%AF%87/</guid>
       <description>//todo</description>
     </item>
     
     <item>
       <title>TS类型挑战Hard篇</title>
-      <link>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98hard%E7%AF%87/</link>
+      <link>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98hard%E7%AF%87/</link>
       <pubDate>Fri, 24 Jun 2022 01:00:14 +0800</pubDate>
       
-      <guid>https://zzydev.top/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98hard%E7%AF%87/</guid>
+      <guid>https://zzydev.github.io/posts/headfirstts/ts%E7%B1%BB%E5%9E%8B%E6%8C%91%E6%88%98hard%E7%AF%87/</guid>
       <description>//todo</description>
     </item>
     
