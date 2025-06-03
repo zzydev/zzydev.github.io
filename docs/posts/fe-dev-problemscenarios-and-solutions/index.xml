@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>前端开发问题场景与解决方案 on 人类低质量男性求职准备</title>
+    <link>https://zzydev.github.io/posts/fe-dev-problemscenarios-and-solutions/</link>
+    <description>Recent content in 前端开发问题场景与解决方案 on 人类低质量男性求职准备</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 06 Apr 2025 16:07:32 +0800</lastBuildDate><atom:link href="https://zzydev.github.io/posts/fe-dev-problemscenarios-and-solutions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>多端响应式适配方案</title>
+      <link>https://zzydev.github.io/posts/fe-dev-problemscenarios-and-solutions/%E5%A4%9A%E7%AB%AF%E5%93%8D%E5%BA%94%E5%BC%8F%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Sun, 06 Apr 2025 16:07:32 +0800</pubDate>
+      
+      <guid>https://zzydev.github.io/posts/fe-dev-problemscenarios-and-solutions/%E5%A4%9A%E7%AB%AF%E5%93%8D%E5%BA%94%E5%BC%8F%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/</guid>
+      <description>rem方案 让html的根标签的font-size随着屏幕宽度变化而变化 1 2 3 4 5 6 7 8 //对于移动端设备，还要考虑ipad，iPad的宽度太</description>
+    </item>
+    
+  </channel>
+</rss>
