@@ -6,7 +6,7 @@
     <description>Recent content on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 31 Mar 2025 11:06:48 +0800</lastBuildDate><atom:link href="https://zzydev.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Apr 2025 16:07:32 +0800</lastBuildDate><atom:link href="https://zzydev.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>TS基础拾遗</title>
       <link>https://zzydev.github.io/posts/headfirstts/ts%E5%9F%BA%E7%A1%80%E6%8B%BE%E9%81%97/</link>
@@ -62,12 +62,12 @@
     </item>
     
     <item>
-      <title>从0写react组件库之日历组件</title>
-      <link>https://zzydev.github.io/posts/react%E5%AE%9E%E6%88%98/%E4%BB%8E0%E5%86%99react%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6/</link>
-      <pubDate>Mon, 31 Mar 2025 11:06:48 +0800</pubDate>
+      <title>多端响应式适配方案</title>
+      <link>https://zzydev.github.io/posts/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98%E5%9C%BA%E6%99%AF%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/%E5%A4%9A%E7%AB%AF%E5%93%8D%E5%BA%94%E5%BC%8F%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Sun, 06 Apr 2025 16:07:32 +0800</pubDate>
       
-      <guid>https://zzydev.github.io/posts/react%E5%AE%9E%E6%88%98/%E4%BB%8E0%E5%86%99react%E7%BB%84%E4%BB%B6%E5%BA%93%E4%B9%8B%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6/</guid>
-      <description></description>
+      <guid>https://zzydev.github.io/posts/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98%E5%9C%BA%E6%99%AF%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/%E5%A4%9A%E7%AB%AF%E5%93%8D%E5%BA%94%E5%BC%8F%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/</guid>
+      <description>rem方案 让html的根标签的font-size随着屏幕宽度变化而变化 1 2 3 4 5 6 7 8 //对于移动端设备，还要考虑ipad，iPad的宽度太</description>
     </item>
     
     <item>
@@ -77,24 +77,6 @@
       
       <guid>https://zzydev.github.io/posts/headfirstts/ts%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
       <description>工厂模式 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 interface IProduct { name: string; fn1: () =&amp;gt; void; fn2: () =&amp;gt; void; } class Product1 implements IProduct { constructor(public name: string) {} fn1() { console.log(&amp;#34;product1&amp;#34;); } fn2()</description>
-    </item>
-    
-    <item>
-      <title>Vite初探</title>
-      <link>https://zzydev.github.io/posts/frontendengineering/vite%E5%88%9D%E6%8E%A2/</link>
-      <pubDate>Thu, 23 Mar 2023 00:09:46 +0800</pubDate>
-      
-      <guid>https://zzydev.github.io/posts/frontendengineering/vite%E5%88%9D%E6%8E%A2/</guid>
-      <description>大概是一份不完整的 Vite 备忘录 no-bundle 是什么 no-bundle 理念：利用浏览器原生 ES 模块的支持，实现开发阶段的 Dev Server，进行模块的按需加载，而不是先整体打包再进</description>
-    </item>
-    
-    <item>
-      <title>重学包管理工具</title>
-      <link>https://zzydev.github.io/posts/frontendengineering/%E9%87%8D%E5%AD%A6%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Tue, 21 Mar 2023 02:35:47 +0800</pubDate>
-      
-      <guid>https://zzydev.github.io/posts/frontendengineering/%E9%87%8D%E5%AD%A6%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</guid>
-      <description>npm 安装机制 npm 安装流程 npm 配置的优先级 命令行设置 npm 配置 &amp;gt; env 环境变量设置 npm 配置 &amp;gt; 项目级的 .npmrc 文件 &amp;gt; 用户级的 .npmrc 文件&amp;gt; 全局级的 .npmrc 文件 &amp;gt; npm 内置的 .npmrc 文</description>
     </item>
     
     <item>
@@ -113,24 +95,6 @@
       
       <guid>https://zzydev.github.io/posts/eight-part-essay/%E6%95%85%E6%84%8F%E4%B8%8D%E5%B0%8F%E5%BF%83%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98_01/</guid>
       <description>// todo 等待面试实战完补上 // 崩辣</description>
-    </item>
-    
-    <item>
-      <title>前端工程化</title>
-      <link>https://zzydev.github.io/posts/frontendengineering/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</link>
-      <pubDate>Thu, 30 Jun 2022 22:10:58 +0800</pubDate>
-      
-      <guid>https://zzydev.github.io/posts/frontendengineering/%E8%84%9A%E6%89%8B%E6%9E%B6%E5%BC%80%E5%8F%91/</guid>
-      <description>实现一个前端脚手架 todo</description>
-    </item>
-    
-    <item>
-      <title>Jest与前端自动化测试</title>
-      <link>https://zzydev.github.io/posts/frontendengineering/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</link>
-      <pubDate>Wed, 29 Jun 2022 09:42:08 +0800</pubDate>
-      
-      <guid>https://zzydev.github.io/posts/frontendengineering/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</guid>
-      <description>Jest 的简易原理 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 function expect(result) { return { toBe: function (actual) { if (result !== actual) { throw new Error(`expected ${actual} but got ${result}`); } }, }; } function test(desc, fn) { try { fn(); console.log(`${desc} - passed`); } catch (e) { console.log(`${desc} - failed: ${e.message}`); } } Jest</description>
     </item>
     
     <item>
@@ -167,15 +131,6 @@
       
       <guid>https://zzydev.github.io/posts/headfirstbabel/1_%E5%88%9D%E8%A7%81babel/</guid>
       <description>什么是 Babel babel 🐠 Babel is a compiler for writing next generation JavaScript. typescript babel 是什么 babel 的编译流程 &amp;nbsp;parse parse 阶段的目的是把源码字符串转换成机器能够理解的抽象语法树(AST)，这个过程分为词法分</description>
-    </item>
-    
-    <item>
-      <title>9.如何理解Fiber架构的迭代动机与设计思想</title>
-      <link>https://zzydev.github.io/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
-      <pubDate>Mon, 06 Jun 2022 19:15:48 +0800</pubDate>
-      
-      <guid>https://zzydev.github.io/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
-      <description>前置知识：单线程的 JavaScript 与多线程的浏览器 JavaScript 线程和渲染线程必须是互斥的：这两个线程不能够穿插执行，必须串行。当其中一个线程执行时，另一个线程只能挂</description>
     </item>
     
     <item>

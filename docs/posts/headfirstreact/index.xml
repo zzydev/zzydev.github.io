@@ -6,16 +6,7 @@
     <description>Recent content in React on 人类低质量男性求职准备</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 06 Jun 2022 19:15:48 +0800</lastBuildDate><atom:link href="https://zzydev.github.io/posts/headfirstreact/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>9.如何理解Fiber架构的迭代动机与设计思想</title>
-      <link>https://zzydev.github.io/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
-      <pubDate>Mon, 06 Jun 2022 19:15:48 +0800</pubDate>
-      
-      <guid>https://zzydev.github.io/posts/headfirstreact/9_%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3fiber%E6%9E%B6%E6%9E%84%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%8A%A8%E6%9C%BA%E4%B8%8E%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
-      <description>前置知识：单线程的 JavaScript 与多线程的浏览器 JavaScript 线程和渲染线程必须是互斥的：这两个线程不能够穿插执行，必须串行。当其中一个线程执行时，另一个线程只能挂</description>
-    </item>
-    
+    <lastBuildDate>Fri, 03 Jun 2022 21:12:17 +0800</lastBuildDate><atom:link href="https://zzydev.github.io/posts/headfirstreact/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>8.SetState是同步的还是异步的？</title>
       <link>https://zzydev.github.io/posts/headfirstreact/8_setstate%E6%98%AF%E5%90%8C%E6%AD%A5%E7%9A%84%E8%BF%98%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84/</link>
